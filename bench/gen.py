@@ -24,9 +24,9 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church
+from .families import a_semantics, b_birds, c_church, d0_avon
 
-FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church}
+FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon}
 
 # Auto-pinning policy (rows with pin_policy == "auto"):
 AVIARY_TIMEOUT = float(os.environ.get("BENCH_AVIARY_TIMEOUT", 10))  # s per row
@@ -45,16 +45,56 @@ def tier(steps):
     return "XL"
 
 
+def run1(engine, r, fuel, timeout=None):
+    """Run one row on one engine at the given fuel, in the row's mode."""
+    return E.ENGINES[engine]([(r["term"], fuel)], whnf=(r["mode"] == "whnf"),
+                             timeout=timeout)[0]
+
+
+def given_pin(r, prov):
+    """A row whose pin comes from an outside source (`r["pin"]` already set,
+    e.g. Avon's conformance manifest). Every engine that can run the row in
+    reasonable time must reproduce the pin and the expectation, or the row is
+    rejected. Returns (row, problem or None)."""
+    want = r["pin"]["steps"]
+    exp = r["expect"]
+    engines = []
+    for eng in ("avon-copy", "mini", "aviary"):
+        if eng.startswith("avon") and not E.avon_can_run(r["term"]):
+            continue
+        if eng == "mini" and (want > MINI_MAX or not E.mini_can_run(r["term"])):
+            continue
+        st, n, nf = run1(eng, r, r["fuel"], AVIARY_TIMEOUT if eng == "aviary" else COPY_TIMEOUT)
+        if eng == "aviary" and st == "INTERRUPTED":
+            continue  # too slow to confirm here; not run by check either
+        probs = outcome_problems(exp, st, nf) + ([] if n == want else [f"steps {n} != pin {want}"])
+        if probs:
+            return None, (eng, probs)
+        engines.append(eng)
+    if not engines:
+        return None, ("no engine could confirm the given pin", want)
+    if E.avon_can_run(r["term"]):
+        st, n, nf = run1("avon-share", r, r["fuel"], SHARE_TIMEOUT)
+        probs = outcome_problems(exp, st, nf)
+        if probs:
+            return None, ("avon-share", probs)
+        r["share_ref"] = n
+        engines.append("avon-share")
+    r["engines"] = engines
+    r["pin"]["source"] += "; confirmed by " + ", ".join(e for e in engines if e != "avon-share")
+    r["tier"] = tier(want)
+    return r, None
+
+
 def auto_pin(r, prov):
     """Pin a row by the policy in README.md ("Where pins come from").
     Returns (row or None, problem or None)."""
     exp = r["expect"]
 
     def matches(status, nf):
-        return status == exp["status"] and same_nf(nf, expected_nf(exp))
+        return not outcome_problems(exp, status, nf)
 
-    share = E.ENGINES["avon-share"]([(r["term"], SHARE_FUEL)], timeout=SHARE_TIMEOUT)[0] \
-        if E.avon_can_run(r["term"]) else None
+    share = run1("avon-share", r, SHARE_FUEL, SHARE_TIMEOUT) if E.avon_can_run(r["term"]) else None
     if share is not None:
         if not matches(share[0], share[2]):
             return None, ("avon-share", share[:2])
@@ -63,7 +103,7 @@ def auto_pin(r, prov):
     if r.get("copy") is False:
         st = "SKIPPED"  # family says copy mode is too costly here; share only
     else:
-        st, n, nf = E.run_aviary([(r["term"], COPY_FUEL)], timeout=AVIARY_TIMEOUT)[0]
+        st, n, nf = run1("aviary", r, COPY_FUEL, AVIARY_TIMEOUT)
     if st == "SKIPPED":
         if share is None or r.get("require_aviary"):
             return None, None
@@ -77,14 +117,14 @@ def auto_pin(r, prov):
     elif r.get("require_aviary"):
         return None, None  # dropped, not rejected
     else:
-        st, n, nf = E.ENGINES["avon-copy"]([(r["term"], COPY_FUEL)], timeout=COPY_TIMEOUT)[0]
-        if st == "NORMAL":
+        st, n, nf = run1("avon-copy", r, COPY_FUEL, COPY_TIMEOUT)
+        if st in ("NORMAL", "WHNF"):
             if not matches(st, nf):
                 return None, ("avon-copy", (st, n))
             src = f"avon-copy@{prov['avon']}"
             engines = ["avon-copy", "avon-share"]
             if n <= MINI_MAX and E.mini_can_run(r["term"]):
-                ms, mn, mnf = E.run_mini([(r["term"], COPY_FUEL)])[0]
+                ms, mn, mnf = run1("mini", r, COPY_FUEL)
                 if (ms, mn) != (st, n) or not matches(ms, mnf):
                     return None, ("mini disagrees with avon-copy", (ms, mn, st, n))
                 src += ", confirmed by mini"
@@ -123,6 +163,27 @@ def expected_nf(expect: dict) -> str | None:
     return expect.get("nf")
 
 
+def head_of(text: str) -> str | None:
+    """The head atom of a printed term: its first token. Printing puts the
+    head first, so this survives a print cut off with " ..."."""
+    tok = text.replace("(", " ").split(maxsplit=1)
+    return tok[0] if tok else None
+
+
+def outcome_problems(expect: dict, status: str, nf: str) -> list:
+    """Every way an engine's (status, printed result) misses a row's
+    expectation; empty if it meets it. Used by gen, check and timing alike."""
+    probs = []
+    if status != expect["status"]:
+        probs.append(f"status {status} != {expect['status']}")
+    want = expected_nf(expect)
+    if want is not None and not same_nf(nf, want):
+        probs.append(f"nf {nf[:200]!r} != {want[:200]!r}")
+    if expect.get("head") is not None and head_of(nf) != expect["head"]:
+        probs.append(f"head {head_of(nf)!r} != {expect['head']!r}")
+    return probs
+
+
 def same_nf(got: str, expected: str) -> bool:
     """Compare normal forms; output that does not parse never matches."""
     try:
@@ -147,23 +208,23 @@ def pin(rows):
     for r in rows:
         _check_term_text(r)
         r["size"] = mini.size(mini.parse(r["term"]))
-        if r.get("pin_policy") == "auto":
-            got, problem = auto_pin(r, prov)
+        if r.get("pin_policy") in ("auto", "given"):
+            got, problem = (auto_pin if r["pin_policy"] == "auto" else given_pin)(r, prov)
             if problem:
                 bad.append((r["id"], r["expect"]["status"], problem))
             if got is None:
                 continue
             out.append(got)
-            if got["pin"] and got["pin"]["steps"] <= EDGE_MAX:
-                out.extend(_edges(got, "NORMAL"))
+            if (got["pin"] and got["pin"]["steps"] <= EDGE_MAX
+                    and got["expect"]["status"] in ("NORMAL", "WHNF")):
+                out.extend(_edges(got, got["expect"]["status"]))
             print(f"   {got['id']:24s} {got['tier']:2s} pin={got['pin'] and got['pin']['steps']} "
                   f"share={got.get('share_ref')} via {got['pin'] and got['pin']['source']}", flush=True)
             continue
         whnf = r["mode"] == "whnf"
         status, steps, nf = E.run_aviary([(r["term"], r["fuel"])], whnf=whnf)[0]
         exp = r["expect"]
-        ok = status == exp["status"] and (expected_nf(exp) is None or same_nf(nf, expected_nf(exp)))
-        if not ok:
+        if outcome_problems(exp, status, nf):
             bad.append((r["id"], exp, (status, steps, nf)))
             continue
         r["pin"] = {"steps": steps, "source": f"aviary@{prov['aviary']}"}
@@ -182,8 +243,9 @@ def _edges(r, status):
         e = dict(r)
         e["id"] = f"{r['id']}.fuel{d:+d}"
         e["fuel"] = steps + d
-        e["expect"] = {"status": st, "nf": r["expect"].get("nf") if d >= 0 else None,
-                       "numeral": r["expect"].get("numeral") if d >= 0 else None}
+        # At fuel c and c + 1 the result reached is the expected one; at c - 1 only
+        # the status (FUEL) and count are known.
+        e["expect"] = ({**r["expect"], "status": st} if d >= 0 else {"status": st, "nf": None})
         e["expect_src"] = "fuel-edge"
         e["pin"] = {"steps": steps + min(d, 0), "source": r["pin"]["source"]}
         out.append(e)

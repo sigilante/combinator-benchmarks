@@ -160,6 +160,15 @@ def reduce(t, fuel: int):
     return status, steps, t
 
 
+def reduce_whnf(t, fuel: int):
+    """Head reduction to weak head normal form. Returns (status, steps, term),
+    status WHNF or FUEL under the same fuel convention as `reduce`."""
+    t, steps = _whnf(t, fuel)
+    head, args = _spine(t)
+    status = "FUEL" if steps >= fuel or _is_redex(head, args) else "WHNF"
+    return status, steps, t
+
+
 def _reduce(t, fuel: int):
     steps = 0
     t, s = _whnf(t, fuel)

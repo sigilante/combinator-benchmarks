@@ -1,4 +1,4 @@
-{"provenance": {"aviary": "bfba908+dirty", "avon": "e69cf59", "avon_bin": {"bin": "/Users/neal/avon/build/avon", "version": "avon 0.1.0", "mtime": "2026-11-06T17:09:27", "sha256": "91a03aac2701b9ff"}}, "not_applicable": {"aviary": 0, "avon-copy": 86, "avon-share": 248, "mini": 2}}
+{"provenance": {"aviary": "bfba908+dirty", "avon": "e69cf59", "avon_bin": {"bin": "/Users/neal/avon/build/avon", "version": "avon 0.1.0", "mtime": "2026-11-06T17:09:27", "sha256": "91a03aac2701b9ff"}}, "not_applicable": {"aviary": 0, "avon-copy": 86, "avon-share": 248, "mini": 0}}
 {"id": "a.i.ski", "engine": "aviary", "status": "NORMAL", "steps": 1, "pin": 1, "ok": true, "problems": []}
 {"id": "a.i.ski.fuel-1", "engine": "aviary", "status": "FUEL", "steps": 0, "pin": 0, "ok": true, "problems": []}
 {"id": "a.i.ski.fuel+0", "engine": "aviary", "status": "FUEL", "steps": 1, "pin": 1, "ok": true, "problems": []}
@@ -899,6 +899,8 @@
 {"id": "a.names.bckw.fuel-1", "engine": "mini", "status": "FUEL", "steps": 2, "pin": 2, "ok": true, "problems": []}
 {"id": "a.names.bckw.fuel+0", "engine": "mini", "status": "FUEL", "steps": 3, "pin": 3, "ok": true, "problems": []}
 {"id": "a.names.bckw.fuel+1", "engine": "mini", "status": "NORMAL", "steps": 3, "pin": 3, "ok": true, "problems": []}
+{"id": "a.omega_whnf.ski", "engine": "mini", "status": "FUEL", "steps": 1000, "pin": 1000, "ok": true, "problems": []}
+{"id": "a.partial_whnf.ski", "engine": "mini", "status": "WHNF", "steps": 0, "pin": 0, "ok": true, "problems": []}
 {"id": "a.i.ski.share-edge", "engine": "avon-share", "status": "NORMAL", "steps": 1, "pin": null, "ok": true, "problems": []}
 {"id": "a.i.sk.share-edge", "engine": "avon-share", "status": "NORMAL", "steps": 2, "pin": null, "ok": true, "problems": []}
 {"id": "a.skk.ski.share-edge", "engine": "avon-share", "status": "NORMAL", "steps": 2, "pin": null, "ok": true, "problems": []}

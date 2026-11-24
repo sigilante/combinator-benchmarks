@@ -89,6 +89,26 @@ them. Each row records `tier` (XS < 10^2 <= S < 10^4 <= M < 10^6 <= L < 10^8
 `share_ref`, Avon's share-mode count when the manifest was built (recorded,
 not asserted). Fuel-edge rows are added only for pins up to 10^5.
 
+## Family D0: Avon's conformance corpus
+
+`data/d0/` vendors Avon's `tests/conformance` corpus (MIT; see `data/d0/SOURCE`):
+45 closed SKIjack level-1 executables (self-interpreter towers, the T3 table,
+parsers, scry programs) as SKIT files (`bench/skit.py` decodes them; it is
+written from the format description, not from Avon's or skijack's code). Each
+target gives two rows:
+
+- `d0.<id>`: reduce to weak head normal form under the corpus's cap; the
+  status and copy count come from the corpus (`pin_policy: "given"`, made by
+  skijack on aviary), and `bench.gen` keeps a row only if every engine that
+  can run it in time (Avon copy, mini, aviary within its timeout) reproduces
+  that count exactly.
+- `d0.<id>.ctor`: the target applied to one marker atom per result
+  constructor (`r_Nothing r_Just`, ...). Its weak head normal form must have the
+  expected constructor's marker as its head (`expect.head`). This checks the
+  answer, not only the cost. Pinned by the auto policy.
+
+The decoded payload (the corpus's last column) is not checked yet.
+
 ## Timing
 
     python3 -m bench.timing C --runs 3     # tiers M, L, XL

@@ -33,7 +33,7 @@ from pathlib import Path
 from . import engines as E
 from . import mini
 from .check import applicable
-from .gen import ROOT, same_nf, expected_nf
+from .gen import ROOT, outcome_problems
 
 MINI_MAX = 5_000_000
 TIMEOUT = 900
@@ -108,8 +108,7 @@ def main(argv):
                         res = _mini(r["term"], r["fuel"])
                     else:
                         res = _avon(e.split("-")[1], path, r["fuel"])
-                    ok = (res.get("status") == r["expect"]["status"]
-                          and same_nf(res.get("nf", ""), expected_nf(r["expect"])))
+                    ok = not outcome_problems(r["expect"], res.get("status"), res.get("nf", ""))
                     if e != "avon-share" and r["pin"] is not None:
                         ok = ok and res.get("steps") == r["pin"]["steps"]
                     res.pop("nf", None)
