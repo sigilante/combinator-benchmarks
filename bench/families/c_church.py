@@ -7,14 +7,14 @@ to two fresh atoms `f` and `x`; its normal form must be `f (f (... x))` with
 the right number of f's. Expectations come from arithmetic (`expect_src:
 "arith"`), never from an engine.
 
-Row parameters are chosen so that the family spans tiers S to XL; see CASES.
+Row parameters are chosen so that the family spans tiers XS to XL; see cases() and XL.
 """
 
 from __future__ import annotations
 
 from .. import engines as E
 
-E.define("""
+DEFINITIONS = """
 TRUE x y -> x
 FALSE x y -> y
 CPAIR x y f -> f x y
@@ -41,7 +41,8 @@ EVEN n -> n NOT TRUE
 NOT b -> b FALSE TRUE
 CSTEP n -> EVEN n (HALF n) (SUCC (MUL C3 n))
 COLLF r n k -> ISZERO (PRED n) k (r (CSTEP n) (SUCC k))
-""")
+"""
+E.define(DEFINITIONS)
 
 
 def numeral(n: int) -> str:
@@ -148,6 +149,7 @@ XL = [
 
 # Rows whose copy-mode run would break the machine rule (one job, < 4 GB).
 NO_COPY = {
+    # Measured 2026-11-25: /usr/bin/time -l avon reduce --strategy=copy --no-jets on this row.
     "c.ack.3.11": "Avon copy peaks at 3.87 GB RSS (626,283,926 contractions, Avon e69cf59)",
 }
 

@@ -96,7 +96,9 @@ def auto_pin(r, prov):
                 return None, ("no engine finished", (st, n))
             r["pin"] = None
             r["engines"] = ["avon-share"]
-            r["note"] += f"; copy mode: {st} at {n if n >= 0 else '?'} (> {COPY_FUEL:.0e} or > {COPY_TIMEOUT} s)"
+            why = {"FUEL": f"out of fuel at {COPY_FUEL:,} contractions",
+                   "TIMEOUT": f"timed out after {COPY_TIMEOUT} s"}.get(st, f"status {st}")
+            r["note"] += f"; copy mode not pinned: {why}"
     steps = r["pin"]["steps"] if r["pin"] else r["share_ref"]
     r["tier"] = tier(steps)
     r["fuel"] = (2 * r["pin"]["steps"] + 1000) if r["pin"] else SHARE_FUEL
@@ -115,6 +117,8 @@ def expected_nf(expect: dict) -> str | None:
     can be megabytes long."""
     if expect.get("numeral") is not None:
         n = expect["numeral"]
+        if not isinstance(n, int) or n < 0:
+            raise ValueError(f"numeral must be a natural number, got {n!r}")
         return "x" if n == 0 else "f (" * (n - 1) + "f x" + ")" * (n - 1)
     return expect.get("nf")
 

@@ -43,10 +43,9 @@ def _avon(strategy, path, fuel):
     cmd = ["/usr/bin/time", "-l", str(E.AVON_BIN), "reduce", f"--strategy={strategy}",
            "--no-jets", f"--fuel={fuel}", f"--budget={E.AVON_PRINT_BUDGET}", path]
     r0 = resource.getrusage(resource.RUSAGE_CHILDREN)
-    try:
-        p = subprocess.run(cmd, capture_output=True, text=True, timeout=TIMEOUT)
-    except subprocess.TimeoutExpired:
-        return {"status": "TIMEOUT"}
+    p, _ = E._avon_batch(cmd, [], TIMEOUT)  # the watchdog: time and memory caps
+    if isinstance(p, E._Killed):
+        return {"status": p.why}
     r1 = resource.getrusage(resource.RUSAGE_CHILDREN)
     # CPU from getrusage (microsecond resolution; /usr/bin/time prints only
     # hundredths). It covers avon and the small `time` wrapper around it.
@@ -63,13 +62,15 @@ def _avon(strategy, path, fuel):
 
 
 def _mini(term, fuel):
-    t = mini.parse(term)
+    # Parse, reduce and print are all timed, like Avon's whole process; printing
+    # is bounded exactly as in bench.check.
     r0 = resource.getrusage(resource.RUSAGE_SELF)
     w0 = time.perf_counter()
-    status, steps, nf = mini.reduce(t, fuel)
+    status, steps, nf = mini.reduce(mini.parse(term), fuel)
+    nf = mini.show(nf, budget=E.AVON_PRINT_BUDGET)
     w1 = time.perf_counter()
     r1 = resource.getrusage(resource.RUSAGE_SELF)
-    return {"status": status, "steps": steps, "nf": mini.show(nf), "wall": w1 - w0,
+    return {"status": status, "steps": steps, "nf": nf, "wall": w1 - w0,
             "cpu": (r1.ru_utime - r0.ru_utime) + (r1.ru_stime - r0.ru_stime), "rss_mb": None}
 
 

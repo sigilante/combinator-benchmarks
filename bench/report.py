@@ -27,7 +27,12 @@ def _src(pin):
 
 def _family_c(rows):
     base = [r for r in rows if r["expect_src"] != "fuel-edge"]
-    out = ["Church arithmetic, read back by applying the result to `f x`. `copy` is the",
+    from .families import c_church
+    defs = [l.strip() for l in c_church.DEFINITIONS.strip().splitlines()]
+    out = ["Definitions (aviary rules, expanded to SKI or BCKW by aviary; `Y` is aviary's",
+           "built-in sage bird, `C<n>` the Church numeral n):", "", "```"] + defs + ["```", "",
+           "A tier marked (share) comes from the share-mode count, because copy mode was not pinned.", "",
+           "Church arithmetic, read back by applying the result to `f x`. `copy` is the",
            "pinned normal-order count (asserted); `share` is Avon's graph-reduction count",
            "(recorded, not asserted). Size is the SKI or BCKW term in leaves.", "",
            "| row | tier | value | size | copy | share | copy / share | pinned by |",
@@ -38,7 +43,8 @@ def _family_c(rows):
         share = r.get("share_ref")
         ratio = f"{copy / share:,.1f}" if copy and share else ""
         note = "" if r["pin"] or ";" not in r["note"] else " (" + r["note"].split("; ", 1)[1] + ")"
-        out.append(f"| `{r['id']}` | {r['tier']} | {int(val):,} | {r['size']:,} | "
+        tier = r["tier"] + ("" if r["pin"] else " (share)")
+        out.append(f"| `{r['id']}` | {tier} | {int(val):,} | {r['size']:,} | "
                    f"{'' if copy is None else f'{copy:,}'} | {'' if share is None else f'{share:,}'} | "
                    f"{ratio} | {_src(r['pin'])}{note} |")
     out.append("")
@@ -56,7 +62,10 @@ def _timing():
                 f"{head['runs']} interleaved runs per engine; CPU = user + sys seconds of the whole",
                 "process for Avon (parse, reduce, print), of the reduction alone for mini.",
                 f"Avon `{prov['avon_bin'].get('version')}` sha256 `{prov['avon_bin'].get('sha256')}`.",
-                "Rate = contractions / median CPU second. Single machine, not a controlled lab.", "",
+                "Rate = contractions / median CPU second, shown only for rows of at least 10^6",
+                "contractions (below that, process start and parsing dominate). For Avon, CPU",
+                "covers the avon process and the `/usr/bin/time` wrapper that reports peak RSS.",
+                "Single machine, not a controlled lab.", "",
                 "| row | engine | contractions | median CPU s | min CPU s | peak RSS MB | Mcontr/s | wrong |",
                 "|---|---|---:|---:|---:|---:|---:|---:|"]
         groups = defaultdict(list)
@@ -72,11 +81,13 @@ def _timing():
             cpus = [r["cpu"] for r in good]
             med = statistics.median(cpus)
             rss = max((r["rss_mb"] or 0) for r in good)
-            rate = good[0]["steps"] / med / 1e6 if med else 0
+            # Process start and parsing dominate small rows; a rate there would
+            # mislead, so it is shown only from 10^6 contractions up.
+            rate = good[0]["steps"] / med / 1e6 if med and good[0]["steps"] >= 10**6 else None
             out.append(f"| `{rid}` | {eng} | {good[0]['steps']:,} | {med:.4f} | {min(cpus):.4f} | "
-                       f"{rss:.0f} | {rate:.1f} | {bad} |" if rss else
+                       f"{rss:.0f} | {'—' if rate is None else f'{rate:.1f}'} | {bad} |" if rss else
                        f"| `{rid}` | {eng} | {good[0]['steps']:,} | {med:.4f} | {min(cpus):.4f} | "
-                       f"n/a | {rate:.1f} | {bad} |")
+                       f"n/a | {'—' if rate is None else f'{rate:.1f}'} | {bad} |")
         out.append("")
     return out
 

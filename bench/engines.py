@@ -112,18 +112,71 @@ def run_aviary(jobs, whnf=False, timeout=None):
     return out
 
 
-class _Timeout:
-    returncode = -1
-    stdout = ""
-    stderr = "timeout"
+AVON_MAX_RSS_MB = int(os.environ.get("BENCH_AVON_MAX_RSS_MB", 3000))  # machine rule: < 4 GB
+BIG_FUEL = 10**8  # jobs with at least this much fuel run in their own process
+
+
+class _Killed:
+    """Result of an Avon run stopped by the harness (timeout or memory cap)."""
+
+    def __init__(self, why):
+        self.returncode = -1
+        self.stdout = ""
+        self.stderr = why
+        self.why = why
+
+
+def _rss_mb(pid):
+    """Resident memory of `pid` and all its descendants (Avon may run under a
+    wrapper such as /usr/bin/time), in MB."""
+    out = subprocess.run(["ps", "-A", "-o", "pid=,ppid=,rss="],
+                         capture_output=True, text=True).stdout
+    kids, rss = {}, {}
+    for line in out.splitlines():
+        try:
+            p, pp, r = (int(x) for x in line.split())
+        except ValueError:
+            continue
+        kids.setdefault(pp, []).append(p)
+        rss[p] = r
+    total, stack = 0, [pid]
+    while stack:
+        p = stack.pop()
+        total += rss.get(p, 0)
+        stack.extend(kids.get(p, []))
+    return total / 1024
 
 
 def _avon_batch(cmd, texts, timeout=None):
+    """Run one `avon batch` process with a watchdog: it is killed if it runs
+    past `timeout` seconds (status TIMEOUT) or past AVON_MAX_RSS_MB of resident
+    memory (status MEMORY). --budget bounds what Avon prints, not its heap; a
+    diverging share-mode run can grow by ~500 MB/s."""
+    import tempfile
+    import time
     inp = "".join(t + "\n" for t in texts)
-    try:
-        p = subprocess.run(cmd, input=inp, capture_output=True, text=True, timeout=timeout)
-    except subprocess.TimeoutExpired:
-        return _Timeout(), []
+    with tempfile.TemporaryFile("w+") as fin, tempfile.TemporaryFile("w+") as fout, \
+            tempfile.TemporaryFile("w+") as ferr:
+        fin.write(inp)
+        fin.seek(0)
+        proc = subprocess.Popen(cmd, stdin=fin, stdout=fout, stderr=ferr, text=True)
+        start = time.monotonic()
+        delay = 0.01
+        killed = None
+        while proc.poll() is None:
+            if timeout is not None and time.monotonic() - start > timeout:
+                killed = "TIMEOUT"
+            elif _rss_mb(proc.pid) > AVON_MAX_RSS_MB:
+                killed = "MEMORY"
+            if killed:
+                proc.kill()
+                proc.wait()
+                return _Killed(killed), []
+            time.sleep(delay)
+            delay = min(delay * 2, 0.1)
+        fout.seek(0)
+        ferr.seek(0)
+        p = subprocess.CompletedProcess(cmd, proc.returncode, fout.read(), ferr.read())
     # Split on "\n" only: str.splitlines() also splits on \v, \x1c, U+2028, ...
     lines = p.stdout.split("\n")
     if lines and lines[-1] == "":
@@ -132,18 +185,20 @@ def _avon_batch(cmd, texts, timeout=None):
 
 
 def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
-    """Run jobs through `avon batch`, one process per distinct fuel value.
-    If a batch fails (a term Avon cannot parse stops the whole batch), its
-    jobs are rerun one by one, and a job that still fails is reported with
-    status ERROR and Avon's stderr in place of a normal form."""
+    """Run jobs through `avon batch`, one process per distinct fuel value (and
+    one per job from BIG_FUEL up), each under the watchdog in `_avon_batch`.
+    A batch stopped by the watchdog fails all its jobs (TIMEOUT or MEMORY);
+    it is not rerun. A batch that fails otherwise (a term Avon cannot parse
+    stops the whole batch) is rerun one job at a time, and a job that still
+    fails gets status ERROR with Avon's stderr in place of a normal form."""
     if not AVON_BIN.exists():
         raise SystemExit(f"Avon binary not found at {AVON_BIN} (build it with `make` in ~/avon, "
                          "or set AVON_BIN, or pass --engines without avon-*)")
     out = [None] * len(jobs)
-    by_fuel: dict[int, list[int]] = {}
+    groups: dict[tuple, list[int]] = {}
     for i, (_, fuel) in enumerate(jobs):
-        by_fuel.setdefault(fuel, []).append(i)
-    for fuel, idxs in by_fuel.items():
+        groups.setdefault((fuel, i if fuel >= BIG_FUEL else -1), []).append(i)
+    for (fuel, _), idxs in groups.items():
         # --budget caps the printed result (default 10^6 nodes, cut with " ...").
         # Raised to 10^7 so normal forms such as 2^20's (~2.1M nodes) print whole.
         # Not higher: a FUEL row prints the term where it stopped, and in copy mode
@@ -154,6 +209,10 @@ def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
         if whnf:
             cmd.append("--whnf")
         p, lines = _avon_batch(cmd, [jobs[i][0] for i in idxs], timeout)
+        if isinstance(p, _Killed):
+            for i in idxs:
+                out[i] = (p.why, -1, "")
+            continue
         if p.returncode == 0 and len(lines) == len(idxs):
             per = list(zip(idxs, lines))
         else:
@@ -162,8 +221,8 @@ def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
                 q, ls = _avon_batch(cmd, [jobs[i][0]], timeout)
                 if q.returncode == 0 and len(ls) == 1:
                     per.append((i, ls[0]))
-                elif isinstance(q, _Timeout):
-                    out[i] = ("TIMEOUT", -1, "")
+                elif isinstance(q, _Killed):
+                    out[i] = (q.why, -1, "")
                 else:
                     out[i] = ("ERROR", -1, f"rc={q.returncode}: {q.stderr.strip()[:300]}")
         for i, line in per:
