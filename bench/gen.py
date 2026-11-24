@@ -1,15 +1,18 @@
 """Build manifests/<family>.jsonl.
 
 For each row the family supplies the term and the expected status and normal
-form. This script runs aviary (the reference) once. If aviary disagrees with
-any row's expectation, it prints the disagreements, writes nothing for that
-family, and exits 1. Otherwise it pins aviary's contraction count, and
-adds fuel-edge rows for every row that reaches a normal form in c > 0 steps:
+form. Rows are pinned by aviary (default), by `auto_pin` (pin_policy "auto")
+or by `given_pin` (pin_policy "given"; see README.md, "Where pins come from").
+If an engine that pins or confirms a row disagrees with the row's expectation,
+the disagreements are printed, nothing is written for that family, and the
+exit status is 1. Fuel-edge rows are added for every row that reaches a
+normal form or weak head normal form (status S) in c > 0 steps (for auto and
+given pins, only up to c = EDGE_MAX):
 
     fuel = c - 1  -> FUEL
-    fuel = c      -> FUEL, with the normal form reached (the suite's convention:
+    fuel = c      -> FUEL, with the result reached (the suite's convention:
                      FUEL whenever steps >= fuel)
-    fuel = c + 1  -> NORMAL
+    fuel = c + 1  -> S
 
 Usage: python3 -m bench.gen [A B ...]
 """
@@ -166,7 +169,7 @@ def expected_nf(expect: dict) -> str | None:
 def head_of(text: str) -> str | None:
     """The head atom of a printed term: its first token. Printing puts the
     head first, so this survives a print cut off with " ..."."""
-    tok = text.replace("(", " ").split(maxsplit=1)
+    tok = text.replace("(", " ").replace(")", " ").split(maxsplit=1)
     return tok[0] if tok else None
 
 

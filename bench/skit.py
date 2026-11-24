@@ -15,14 +15,23 @@ from pathlib import Path
 
 
 def decode(data: bytes):
+    """Strict: the container must be exactly header + ceil(nbits / 8) bytes,
+    with zero reserved bytes and zero padding bits; anything else is
+    ValueError."""
+    if len(data) < 20:
+        raise ValueError("SKIT container shorter than its 20-byte header")
     if data[:4] != b"SKIT" or data[4] != 1:
         raise ValueError("not a SKIT v1 container")
+    if data[5:8] != b"\0\0\0":
+        raise ValueError("SKIT reserved bytes are not zero")
     if int.from_bytes(data[8:12], "little") != 0:
         raise ValueError("SKIT atom tables are not supported")
     nbits = int.from_bytes(data[12:20], "little")
     body = data[20:]
-    if len(body) * 8 < nbits:
-        raise ValueError("SKIT body shorter than its bit count")
+    if len(body) != (nbits + 7) // 8:
+        raise ValueError(f"SKIT body is {len(body)} bytes; {nbits} bits need {(nbits + 7) // 8}")
+    if nbits % 8 and body[-1] >> (nbits % 8):
+        raise ValueError("SKIT padding bits are not zero")
 
     def bit(i):
         return (body[i // 8] >> (i % 8)) & 1
