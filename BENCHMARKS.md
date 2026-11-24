@@ -241,7 +241,7 @@ Avon `avon 0.1.0` sha256 `91a03aac2701b9ff`.
 Rate = contractions / median CPU second, shown only for rows of at least 10^6
 contractions (below that, process start and parsing dominate). For Avon, CPU
 covers the avon process and the `/usr/bin/time` wrapper that reports peak RSS.
-Single machine, not a controlled lab.
+Single machine, not a controlled lab. Load average not recorded for this run.
 
 | row | engine | contractions | median CPU s | min CPU s | peak RSS MB | Mcontr/s | wrong |
 |---|---|---:|---:|---:|---:|---:|---:|

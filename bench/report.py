@@ -65,7 +65,9 @@ def _timing():
                 "Rate = contractions / median CPU second, shown only for rows of at least 10^6",
                 "contractions (below that, process start and parsing dominate). For Avon, CPU",
                 "covers the avon process and the `/usr/bin/time` wrapper that reports peak RSS.",
-                "Single machine, not a controlled lab.", "",
+                "Single machine, not a controlled lab."
+                + (f" Load average at start: {head['loadavg_start']}." if "loadavg_start" in head else
+                   " Load average not recorded for this run."), "",
                 "| row | engine | contractions | median CPU s | min CPU s | peak RSS MB | Mcontr/s | wrong |",
                 "|---|---|---:|---:|---:|---:|---:|---:|"]
         groups = defaultdict(list)

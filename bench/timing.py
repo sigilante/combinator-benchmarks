@@ -42,14 +42,13 @@ TIMEOUT = 900
 def _avon(strategy, path, fuel):
     cmd = ["/usr/bin/time", "-l", str(E.AVON_BIN), "reduce", f"--strategy={strategy}",
            "--no-jets", f"--fuel={fuel}", f"--budget={E.AVON_PRINT_BUDGET}", path]
-    r0 = resource.getrusage(resource.RUSAGE_CHILDREN)
     p, _ = E._avon_batch(cmd, [], TIMEOUT)  # the watchdog: time and memory caps
     if isinstance(p, E._Killed):
         return {"status": p.why}
-    r1 = resource.getrusage(resource.RUSAGE_CHILDREN)
-    # CPU from getrusage (microsecond resolution; /usr/bin/time prints only
-    # hundredths). It covers avon and the small `time` wrapper around it.
-    cpu = (r1.ru_utime - r0.ru_utime) + (r1.ru_stime - r0.ru_stime)
+    # CPU from wait4 on this one child (microsecond resolution; /usr/bin/time
+    # prints only hundredths): avon plus the small `time` wrapper around it,
+    # and none of the watchdog's own `ps` processes.
+    cpu = p.cpu
     m = re.search(r"([\d.]+)\s+real\s+([\d.]+)\s+user\s+([\d.]+)\s+sys", p.stderr)
     rss = re.search(r"(\d+)\s+maximum resident set size", p.stderr)
     lines = p.stdout.split("\n")
@@ -91,7 +90,10 @@ def main(argv):
     out_path = ROOT / "results" / f"timing-{fam}.jsonl"
     summary = []
     with out_path.open("w") as fh, tempfile.TemporaryDirectory() as td:
-        fh.write(json.dumps({"provenance": prov, "runs": runs}) + "\n")
+        import os
+        # Other jobs on the machine skew CPU times; record the load average.
+        fh.write(json.dumps({"provenance": prov, "runs": runs,
+                             "loadavg_start": [round(x, 1) for x in os.getloadavg()]}) + "\n")
         for r in rows:
             path = str(Path(td) / "t.ski")
             Path(path).write_text(r["term"] + "\n")
@@ -130,6 +132,9 @@ def main(argv):
                 print(f"{r['id']:24s} {r['tier']:2s} {e:10s} steps={good[0]['steps']:>12,} "
                       f"cpu med={med:9.4f}s min={min(cpus):9.4f}s rss={rss or 0:7.1f}MB "
                       f"rate={(rate or 0) / 1e6:7.1f}M/s bad={len(rs) - len(good)}", flush=True)
+    import os
+    print(f"load average at start {[round(x, 1) for x in json.loads(out_path.open().readline())['loadavg_start']]}, "
+          f"at end {[round(x, 1) for x in os.getloadavg()]}")
     bad = sum(s[-1] for s in summary)
     print(f"wrote {out_path.relative_to(ROOT)}; {bad} runs gave a wrong answer")
     return 1 if bad else 0

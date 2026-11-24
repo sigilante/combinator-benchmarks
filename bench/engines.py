@@ -163,7 +163,15 @@ def _avon_batch(cmd, texts, timeout=None):
         start = time.monotonic()
         delay = 0.01
         killed = None
-        while proc.poll() is None:
+        usage = None
+        while True:
+            # wait4 reaps the child with its own rusage (it and its descendants,
+            # e.g. avon under /usr/bin/time), excluding the watchdog's `ps` runs.
+            pid, status, ru = os.wait4(proc.pid, os.WNOHANG)
+            if pid:
+                usage = ru
+                proc.returncode = os.waitstatus_to_exitcode(status)
+                break
             if timeout is not None and time.monotonic() - start > timeout:
                 killed = "TIMEOUT"
             elif _rss_mb(proc.pid) > AVON_MAX_RSS_MB:
@@ -177,6 +185,7 @@ def _avon_batch(cmd, texts, timeout=None):
         fout.seek(0)
         ferr.seek(0)
         p = subprocess.CompletedProcess(cmd, proc.returncode, fout.read(), ferr.read())
+        p.cpu = usage.ru_utime + usage.ru_stime
     # Split on "\n" only: str.splitlines() also splits on \v, \x1c, U+2028, ...
     lines = p.stdout.split("\n")
     if lines and lines[-1] == "":
