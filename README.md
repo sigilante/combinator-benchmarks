@@ -113,6 +113,36 @@ target gives two rows (one if the target ends in FUEL, which has no constructor)
 
 The decoded payload (the corpus's last column) is not checked yet.
 
+## Family D1: SKIjack programs and the quine
+
+`data/d1/terms.json` vendors closed SKI terms compiled by skijack 0.2.6 from
+four corpus programs of SKIjack's EXAMPLES.md (`python3 -m bench.vendor_d1`
+regenerates it from `$SKIJACK_REPO`, default `~/Code/ski/skijack/python`;
+checking never needs skijack). Results are Scott numerals or
+booleans:
+
+- A numeral result is read back inside the same reduction by
+  `R = Y SREAD`, `SREAD r n = n x (B f r)`, which turns a Scott numeral into
+  the Church readback `f (f (... x))`; the row then checks `expect.numeral`.
+- A boolean is applied to the atoms `yes` and `no`, as SKIjack's tests do.
+- Expected values are SKIjack's own (`expect_src: "examples"`: the literals,
+  ascii-digits and words-to-numbers rows, as SKIjack's EXAMPLES.md and tests
+  state them) or arithmetic on numerals built here (`"arith"`: the eight
+  `d1.nat.*` rows and `d1.ascii.mul.6.7`; EXAMPLES.md shows only some of these
+  instances, e.g. `add 2 3`).
+- Rows pinned by aviary carry `aviary@bfba908+dirty`: the checkout had an
+  uncommitted notebook edit, so those pins cannot be reproduced from a commit
+  alone; Avon copy and mini reproduce every one of them.
+
+`d1.quine` (its expected normal form is not stored in the manifest; `nf_ref`
+names the function in `bench/families/d1_skijack.py` that computes it) is the
+quine `t = h <h>` of the ski-in-ski appendix, rebuilt from its
+construction in `bench/families/quine.py` (69,268 leaves, as the appendix
+says). Its normal form must equal the normal form of its code `<t>`, which
+the module computes structurally, without reduction (953,226 leaves;
+`expect.nf_ref: "d1.quine"`, `expect_src: "construction"`). The appendix's
+2,855,152 contractions count a probing readback, not this reduction.
+
 ## Timing
 
     python3 -m bench.timing C --runs 3     # tiers M, L, XL
@@ -168,8 +198,9 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.status` | `NORMAL`, `WHNF` or `FUEL` |
 | `expect.nf` | expected normal form, or null (check status and count only) |
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
+| `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
-| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `fuel-edge` (derived from a pin) |
+| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |

@@ -106,6 +106,18 @@ def main():
         zpath.unlink(missing_ok=True)
         (ROOT / "results" / "check-Z.jsonl").unlink(missing_ok=True)
 
+    # D1's readback: R (a Scott numeral n) must normalise to the Church
+    # readback of n, on mini (which shares no code with the term's builder).
+    from .families import d1_skijack as D1
+    from .gen import expected_nf
+    _src, T = D1._terms()
+    for n in range(6):
+        st, _steps, nf = mini.reduce(mini.parse(f"({D1.READ}) ({D1._nat(T, 'sec1-nat', n)})"), 10**6)
+        ok = st == "NORMAL" and mini.show(nf) == expected_nf({"numeral": n})
+        print(f"  {'ok' if ok else 'FAIL':>4}      D1 readback of Scott {n}")
+        if not ok:
+            survivors.append(f"D1 readback of {n} is wrong")
+
     # Leave results/ as a clean run would.
     for f in ("A", "B"):
         check.check_family(f, list(check.E.ENGINES))
