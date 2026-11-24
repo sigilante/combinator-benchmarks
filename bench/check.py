@@ -21,12 +21,15 @@ from pathlib import Path
 from . import engines as E
 # Importing gen imports the families, whose definitions (e.g. NOT, PAIR) must be
 # registered in aviary's environment before avon_can_run/mini_can_run are asked.
-from .gen import same_nf, ROOT
+from .gen import same_nf, expected_nf, ROOT
 
 COUNTED = {"aviary", "avon-copy", "mini"}
+TIMEOUT = 600  # seconds per engine batch; a timeout fails the row
 
 
 def applicable(engine, row):
+    if "engines" in row and engine not in row["engines"]:
+        return False
     if engine == "aviary":
         return True
     if engine == "avon-share" and row["expect_src"] == "fuel-edge":
@@ -48,19 +51,21 @@ def check_family(fam, engines):
             tally[(eng, "skip")] += sum(1 for r in rows if r["mode"] == mode) - len(sel)
             if not sel:
                 continue
-            got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"))
+            got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"),
+                                 timeout=TIMEOUT)
             for r, (status, steps, nf) in zip(sel, got):
                 exp = r["expect"]
                 probs = []
                 if status != exp["status"]:
                     probs.append(f"status {status} != {exp['status']}")
-                if exp["nf"] is not None and not same_nf(nf, exp["nf"]):
-                    probs.append(f"nf {nf!r} != {exp['nf']!r}")
-                if eng in COUNTED and steps != r["pin"]["steps"]:
+                want = expected_nf(exp)
+                if want is not None and not same_nf(nf, want):
+                    probs.append(f"nf {nf[:200]!r} != {want[:200]!r}")
+                if eng in COUNTED and r["pin"] is not None and steps != r["pin"]["steps"]:
                     probs.append(f"steps {steps} != pin {r['pin']['steps']}")
                 tally[(eng, "fail" if probs else "pass")] += 1
                 rec = {"id": r["id"], "engine": eng, "status": status, "steps": steps,
-                       "pin": r["pin"]["steps"], "ok": not probs, "problems": probs}
+                       "pin": r["pin"] and r["pin"]["steps"], "ok": not probs, "problems": probs}
                 results.append(rec)
                 if probs:
                     fails.append(rec)
@@ -74,13 +79,13 @@ def check_family(fam, engines):
             jobs = [(base[x["id"]]["term"], x["steps"] + d) for x in sel for d in (0, 1)]
             if not jobs:
                 continue
-            got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"))
+            got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"), timeout=TIMEOUT)
             for i, x in enumerate(sel):
                 (s0, n0, _), (s1, n1, nf1) = got[2 * i], got[2 * i + 1]
                 probs = []
-                exp_nf = base[x["id"]]["expect"]["nf"]
+                exp_nf = expected_nf(base[x["id"]]["expect"])
                 if exp_nf is not None and not same_nf(nf1, exp_nf):
-                    probs.append(f"share fuel=c+1: nf {nf1!r} != {exp_nf!r}")
+                    probs.append(f"share fuel=c+1: nf {nf1[:200]!r} != {exp_nf[:200]!r}")
                 if s0 != "FUEL":
                     probs.append(f"share fuel=c: {s0} != FUEL")
                 if (s1, n1) != (x["status"], x["steps"]):
@@ -109,7 +114,7 @@ def main(argv):
             engines = next(it).split(",")
         else:
             fams.append(a)
-    fams = fams or ["A", "B"]
+    fams = fams or ["A", "B", "C"]
     unknown = [e for e in engines if e not in E.ENGINES]
     if unknown:
         raise SystemExit(f"unknown engine(s) {unknown}; choose from {sorted(E.ENGINES)}")

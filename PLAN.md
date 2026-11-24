@@ -4,8 +4,8 @@ The goal is a benchmark suite over SKI, BCKW and Smullyan's named birds that mea
 **correctness** (does an engine reach the right normal form, with the right contraction
 count where one is defined?) and **speed** (wall time, peak RSS, contractions per second).
 
-Status: families A and B built and passing on aviary, Avon (copy, share) and mini
-(branch `families-ab`). Families C–F not started.
+Status: families A and B on master (pushed 2026-11-25). Family C built on branch `family-c`
+(84 base rows, 280 with fuel edges; all pass; timed). Families D–G not started.
 
 ## Engines
 
@@ -89,6 +89,9 @@ a family indexed by n, so we can plot how the cost scales.
   - A Scott or binary encoding is a second variant; it is cheaper per step and tests
     a different shape.
 - **Divergence check:** `ack 4 2` with a fuel cap, which must end as FUEL.
+- **Tak** (Takeuchi's function), as in thma/lambda-ski's `benchmark/` set (factorial,
+  fibonacci, ackermann, tak): not yet built. It needs Church comparison (`LEQ`) and Y;
+  a standard Gabriel benchmark that stresses deep non-tail recursion.
 
 ### D. Compiled programs from the corpus (S–XL; correctness with pinned answers)
 - **SKIjack:**
@@ -124,6 +127,19 @@ a family indexed by n, so we can plot how the cost scales.
 Pure-S terms with known exotic behaviour, drawn from unpublished research notes.
 The specific terms and their expected results will be added here after those
 results are published.
+
+### G. Busy-beaver champions (public; bbchallenge wiki)
+From the BusyBeaverWiki page *SKI Calculus* (CC BY 4.0, oldid 10480). Ξ₀(n) is the largest
+normal form, **measured in leaves**, of a terminating SKI term of size n (any reduction order).
+Checked 2026-11-25 on Avon copy and share: every champion below gives exactly the wiki's value.
+- **SKI table, n = 5–11:** values 6, 17, 41, 80, 1561, 1562, 1563, at most 789 copy-mode
+  contractions. Also SK-variant champions (n = 6: 10; n = 9: 169; n = 10–13: 1561–7811).
+- **BCKW table, n = 4–5:** `WW(WB)` → 11 and `W(WW)(WB)` → 47 (aviary and mini only).
+- **Larger n:** values from 2^2^513 up to beyond Graham's number. Not runnable; at most a
+  fuel-capped smoke test, never an expected-value row.
+- Value: an expected answer from an outside source, not from our engines. Cheap in steps,
+  so mostly a correctness family.
+Not yet built.
 
 ### F. Shape stressors (synthetic, parametric)
 - Deep left spines: `S (S (S … ))` and `I^n x`.
@@ -206,3 +222,8 @@ Deferred, because they need changes in the engines or more work:
 - 2026-11-25: Neal decided: results are reported in a BENCHMARKS.md file, not a page.
 - 2026-11-25: families A (309 rows) and B (880 rows) built on branch families-ab; all pass on aviary, avon-copy, avon-share, mini. Fuel convention (FUEL iff steps >= fuel) found and adopted.
 - 2026-11-25: Angel and Gnome reviews of families-ab. Fixed: gen aborts without writing on a disagreement; mini implements the fuel convention itself; provenance records Avon binary version/mtime/hash and dirty trees; iterative parser, ASCII-space tokenising, per-row ERROR instead of batch crash; skipped-row counts; share-edge checks compare normal forms; bench/selftest.py (8 planted bugs + 2 corrupted expectations, all caught).
+- 2026-11-25: thma/lambda-ski cited in README (Related work); tak added to family C's to-do list. Family E's specifics redacted before the first public push, since they are unpublished.
+- 2026-11-25: Read OpenReview BfCwzmyaMO (CombStruct4Lean, withdrawn): 282 Lean 4 combinatorics problems (graphs, colourings, tournaments); no combinatory logic, so not cited. Reference downloads live in refs/, gitignored (public repo).
+
+- 2026-11-25: bbchallenge wiki SKI busy-beaver champions verified on Avon (NF leaf count matches for n = 5-11 and SK n = 6, 9); planned as family G.
+- 2026-11-25: Family C built (branch family-c): Church add/mul/exp/tower/pred/sub/fact (pairs, Y)/fib/Ackermann/Collatz, SKI plus BCKW where aviary pins in time. Pins: aviary when it finishes in 10 s, else avon-copy confirmed by mini (<= 2e7), else share-only. Found and fixed a 35 GB runaway (print budget 1e9 on fuel-edge FUEL terms, in Avon and in mini). Ack(3,11) share-only (copy peaks 3.87 GB). Timing: Avon copy runs 150-270 Mcontr/s, share 50-65 Mcontr/s; share wins by up to 60,000x in contractions on Collatz, but loses wall time on Ackermann(3,10) (2.1 s vs 1.0 s).

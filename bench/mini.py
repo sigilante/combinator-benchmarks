@@ -62,10 +62,15 @@ def parse(text: str):
     return stack[0]
 
 
-def show(t) -> str:
+def show(t, budget: int | None = None) -> str:
     """Printed form: application to the left, parentheses around an argument
-    that is itself an application (the form aviary and Avon both print)."""
+    that is itself an application (the form aviary and Avon both print).
+
+    Terms share subterms, so a small structure can print as an enormous tree.
+    With `budget`, printing stops after that many atoms and ends in " ..."
+    (as Avon does), which never parses as a normal form."""
     out = []
+    atoms = 0
     stack = [("t", t)]
     while stack:
         kind, x = stack.pop()
@@ -74,6 +79,10 @@ def show(t) -> str:
             continue
         if isinstance(x, str):
             out.append(x)
+            atoms += 1
+            if budget is not None and atoms > budget:
+                out.append(" ...")
+                break
             continue
         head, args = x, []
         while isinstance(head, tuple):
@@ -81,6 +90,10 @@ def show(t) -> str:
             head = head[0]
         args.reverse()
         out.append(head)
+        atoms += 1
+        if budget is not None and atoms > budget:
+            out.append(" ...")
+            break
         for a in reversed(args):
             if isinstance(a, tuple):
                 stack.append(("s", ")"))

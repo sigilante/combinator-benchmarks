@@ -14,7 +14,12 @@ import sys
 from pathlib import Path
 
 AVIARY_REPO = Path(os.environ.get("AVIARY_REPO", Path.home() / "Code/urbit/aviary"))
+AVON_PRINT_BUDGET = 10_000_000
 AVON_BIN = Path(os.environ.get("AVON_BIN", Path.home() / "avon/build/avon"))
+
+# aviary's parser, expander and printer recurse on term depth; Church numerals
+# such as C871 nest that deep. 50,000 is enough for every term in the suite.
+sys.setrecursionlimit(max(sys.getrecursionlimit(), 50_000))
 
 if str(AVIARY_REPO) not in sys.path:
     sys.path.insert(0, str(AVIARY_REPO))
@@ -81,19 +86,44 @@ def to_basis(text: str, basis: str) -> str:
     return aviary_pretty(expand(aviary_parse(text), _ENV, BY_KEY[basis]))
 
 
-def run_aviary(jobs, whnf=False):
+class _Deadline:
+    """aviary's interrupt flag, set by the clock (polled between contractions)."""
+
+    def __init__(self, seconds):
+        import time
+        self._t = time.monotonic() + seconds
+        self._now = time.monotonic
+
+    def is_set(self):
+        return self._now() > self._t
+
+
+def run_aviary(jobs, whnf=False, timeout=None):
+    """aviary is tree rewriting at O(term size) per step, so even ~10^4-step
+    rows can take minutes; `timeout` (seconds per job) yields status
+    INTERRUPTED rather than a hang."""
     out = []
     for text, fuel in jobs:
-        # max_size is set far above any XS-S term; a SIZE status would fail the row.
+        # max_size is set far above any term here; a SIZE status would fail the row.
         r = av_reduce(aviary_parse(text), _ENV, whnf_only=whnf,
-                      max_steps=fuel, max_size=10**8)
+                      max_steps=fuel, max_size=10**8,
+                      interrupt=_Deadline(timeout) if timeout else None)
         out.append((r.status.name, r.steps, aviary_pretty(r.term)))
     return out
 
 
-def _avon_batch(cmd, texts):
+class _Timeout:
+    returncode = -1
+    stdout = ""
+    stderr = "timeout"
+
+
+def _avon_batch(cmd, texts, timeout=None):
     inp = "".join(t + "\n" for t in texts)
-    p = subprocess.run(cmd, input=inp, capture_output=True, text=True)
+    try:
+        p = subprocess.run(cmd, input=inp, capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return _Timeout(), []
     # Split on "\n" only: str.splitlines() also splits on \v, \x1c, U+2028, ...
     lines = p.stdout.split("\n")
     if lines and lines[-1] == "":
@@ -101,7 +131,7 @@ def _avon_batch(cmd, texts):
     return p, lines
 
 
-def run_avon(jobs, strategy="copy", whnf=False):
+def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
     """Run jobs through `avon batch`, one process per distinct fuel value.
     If a batch fails (a term Avon cannot parse stops the whole batch), its
     jobs are rerun one by one, and a job that still fails is reported with
@@ -114,18 +144,26 @@ def run_avon(jobs, strategy="copy", whnf=False):
     for i, (_, fuel) in enumerate(jobs):
         by_fuel.setdefault(fuel, []).append(i)
     for fuel, idxs in by_fuel.items():
-        cmd = [str(AVON_BIN), "batch", f"--strategy={strategy}", "--no-jets", f"--fuel={fuel}"]
+        # --budget caps the printed result (default 10^6 nodes, cut with " ...").
+        # Raised to 10^7 so normal forms such as 2^20's (~2.1M nodes) print whole.
+        # Not higher: a FUEL row prints the term where it stopped, and in copy mode
+        # that can hold an enormous discarded argument (10^9 once took this
+        # process to 35 GB). A cut normal form fails the row; it cannot pass.
+        cmd = [str(AVON_BIN), "batch", f"--strategy={strategy}", "--no-jets", f"--fuel={fuel}",
+               f"--budget={AVON_PRINT_BUDGET}"]
         if whnf:
             cmd.append("--whnf")
-        p, lines = _avon_batch(cmd, [jobs[i][0] for i in idxs])
+        p, lines = _avon_batch(cmd, [jobs[i][0] for i in idxs], timeout)
         if p.returncode == 0 and len(lines) == len(idxs):
             per = list(zip(idxs, lines))
         else:
             per = []
             for i in idxs:
-                q, ls = _avon_batch(cmd, [jobs[i][0]])
+                q, ls = _avon_batch(cmd, [jobs[i][0]], timeout)
                 if q.returncode == 0 and len(ls) == 1:
                     per.append((i, ls[0]))
+                elif isinstance(q, _Timeout):
+                    out[i] = ("TIMEOUT", -1, "")
                 else:
                     out[i] = ("ERROR", -1, f"rc={q.returncode}: {q.stderr.strip()[:300]}")
         for i, line in per:
@@ -143,7 +181,7 @@ def run_mini(jobs, whnf=False):
     out = []
     for text, fuel in jobs:
         status, steps, t = mini.reduce(mini.parse(text), fuel)
-        out.append((status, steps, mini.show(t)))
+        out.append((status, steps, mini.show(t, budget=AVON_PRINT_BUDGET)))
     return out
 
 
@@ -160,9 +198,9 @@ def mini_can_run(text: str) -> bool:
 
 ENGINES = {
     "aviary": run_aviary,
-    "avon-copy": lambda jobs, whnf=False: run_avon(jobs, "copy", whnf),
-    "avon-share": lambda jobs, whnf=False: run_avon(jobs, "share", whnf),
-    "mini": run_mini,
+    "avon-copy": lambda jobs, whnf=False, timeout=None: run_avon(jobs, "copy", whnf, timeout),
+    "avon-share": lambda jobs, whnf=False, timeout=None: run_avon(jobs, "share", whnf, timeout),
+    "mini": lambda jobs, whnf=False, timeout=None: run_mini(jobs, whnf),
 }
 
 

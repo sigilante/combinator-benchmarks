@@ -41,11 +41,44 @@ engine skipped:
     python3 -m bench.check     # run every engine, write results/, exit 1 on any failure
     python3 -m bench.report    # rewrite BENCHMARKS.md
     python3 -m bench.selftest  # plant bugs in mini; every one must be caught
+    python3 -m bench.timing C  # CPU time and peak RSS on the larger rows
 
 If aviary disagrees with any row's expected status or normal form, `bench.gen`
 prints the disagreements, writes nothing for that family, and exits 1.
 `bench.check` overwrites `results/`. Both `manifests/` and `results/` are
 tracked in git; commit them together with the code that produced them.
+
+## Where pins come from
+
+Families A and B are pinned by aviary. Family C (`pin_policy: "auto"`) is
+pinned row by row (`bench/gen.py`, `auto_pin`):
+
+1. **aviary**, if it finishes within `BENCH_AVIARY_TIMEOUT` seconds (default
+   10). aviary rewrites the whole tree at every step, so this covers only rows
+   up to a few thousand contractions. All four engines then run the row.
+2. Otherwise **Avon copy mode** (fuel 10^9, 120 s). If the count is at most
+   2x10^7, **mini** must reproduce it exactly; the pin source then reads
+   `avon-copy@<rev>, confirmed by mini`. Above that the pin is Avon's alone and
+   says so.
+3. Otherwise the row is **share-only**: no count is pinned, and the check is
+   the arithmetic answer alone (`pin: null`, `engines: ["avon-share"]`).
+
+In every case the expected normal form comes from arithmetic, not from an
+engine; `gen` rejects the family if any engine that pins a row disagrees with
+it. BCKW rows are kept only where aviary pins them, since Avon cannot run
+them. Each row records `tier` (XS < 10^2 <= S < 10^4 <= M < 10^6 <= L < 10^8
+<= XL, by its pinned count, or by Avon's share count for share-only rows) and
+`share_ref`, Avon's share-mode count when the manifest was built (recorded,
+not asserted). Fuel-edge rows are added only for pins up to 10^5.
+
+## Timing
+
+    python3 -m bench.timing C --runs 3     # tiers M, L, XL
+
+Times `avon reduce` (whole process: parse, reduce, print) under
+`/usr/bin/time -l` for CPU and peak RSS, and mini in-process for rows up to
+5x10^6 contractions. Runs are interleaved across engines. A run whose answer
+is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 
 ## Conventions
 
@@ -71,3 +104,19 @@ note, pin{steps, source}, size`. `expect_src` says where the expectation comes
 from: `hand` (worked from the rules), `aviary-rule` (aviary's bird table),
 or `fuel-edge` (derived from a pinned count; ids end in `.fuel-1`, `.fuel+0`,
 `.fuel+1`). Rows whose expected `nf` is null check status and count only.
+
+## Related work
+
+- thma, *lambda-ski: Implementing a small functional language with a
+  combinator based graph-reduction machine*, GitHub repository (Apache-2.0),
+  <https://github.com/thma/lambda-ski>, accessed 2026-11-25. A Haskell
+  compiler from a small λ-language to combinators (SKI plus B, C, Y and
+  arithmetic primitives) with graph reduction. Its `benchmark/` directory
+  times factorial, fibonacci, ackermann and tak under several abstraction
+  and reduction variants (Criterion wall-clock times; no contraction counts).
+  Our Church-numeral family C covers the first three in pure SKI, without
+  primitives; tak is planned.
+- *SKI Calculus*, BusyBeaverWiki, <https://wiki.bbchallenge.org/wiki/SKI_Calculus>
+  (oldid 10480, CC BY 4.0), accessed 2026-11-25. Busy-beaver champions for SKI,
+  SK and BCKW terms: the largest normal form (in leaves) of a terminating term of
+  each size. Planned as family G.
