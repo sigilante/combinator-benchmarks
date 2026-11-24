@@ -37,7 +37,7 @@ engine skipped:
 
 ## Usage
 
-    python3 -m bench.gen       # build manifests/*.jsonl, pinning aviary's counts
+    python3 -m bench.gen       # build manifests/*.jsonl and pin each row's count
     python3 -m bench.check     # run every engine, write results/, exit 1 on any failure
     python3 -m bench.report    # rewrite BENCHMARKS.md
     python3 -m bench.selftest  # plant bugs in mini; every one must be caught
@@ -50,8 +50,12 @@ tracked in git; commit them together with the code that produced them.
 
 ## Where pins come from
 
-Families A and B are pinned by aviary. Family C (`pin_policy: "auto"`) is
-pinned row by row (`bench/gen.py`, `auto_pin`):
+Families A and B are pinned by aviary. Rows with `pin_policy: "given"` (D0)
+carry a pin from an outside source, which `given_pin` keeps only if every
+engine that can run the row in time (Avon copy, mini, aviary within its
+timeout) reproduces it and the expectation exactly. Family C and D0's
+constructor rows (`pin_policy: "auto"`) are pinned row by row (`bench/gen.py`,
+`auto_pin`):
 
 1. **aviary**, if it finishes within `BENCH_AVIARY_TIMEOUT` seconds (default
    10). aviary rewrites the whole tree at every step, so its reach depends on
@@ -81,13 +85,33 @@ the family excluded it (`copy: false`, with the measured reason).
 can be tier M although copy mode needs more than 10^9 contractions
 (`c.collatz.9`). BENCHMARKS.md marks these rows.
 
-In every case the expected normal form comes from arithmetic, not from an
-engine; `gen` rejects the family if any engine that pins a row disagrees with
+For family C the expected normal form comes from arithmetic, and for D0 the
+expected status and constructor come from the corpus; never from an engine; `gen` rejects the family if any engine that pins a row disagrees with
 it. BCKW rows are kept only where aviary pins them, since Avon cannot run
 them. Each row records `tier` (XS < 10^2 <= S < 10^4 <= M < 10^6 <= L < 10^8
 <= XL, by its pinned count, or by Avon's share count for share-only rows) and
 `share_ref`, Avon's share-mode count when the manifest was built (recorded,
 not asserted). Fuel-edge rows are added only for pins up to 10^5.
+
+## Family D0: Avon's conformance corpus
+
+`data/d0/` vendors Avon's `tests/conformance` corpus (MIT; see `data/d0/SOURCE`):
+45 closed SKIjack level-1 executables (self-interpreter towers, the T3 table,
+parsers, scry programs) as SKIT files (`bench/skit.py` decodes them; it is
+written from the format description, not from Avon's or skijack's code). Each
+target gives two rows (one if the target ends in FUEL, which has no constructor):
+
+- `d0.<id>`: reduce to weak head normal form under the corpus's cap; the
+  status and copy count come from the corpus (`pin_policy: "given"`, made by
+  skijack on aviary), and `bench.gen` keeps a row only if every engine that
+  can run it in time (Avon copy, mini, aviary within its timeout) reproduces
+  that count exactly.
+- `d0.<id>.ctor`: the target applied to one marker atom per result
+  constructor (`r_Nothing r_Just`, ...). Its weak head normal form must have the
+  expected constructor's marker as its head (`expect.head`). This checks the
+  answer, not only the cost. Pinned by the auto policy.
+
+The decoded payload (the corpus's last column) is not checked yet.
 
 ## Timing
 
@@ -128,6 +152,8 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
   every NORMAL row, `pin: null` only on share-only rows, a natural `numeral`.
   A row that fails validation, or that no engine runs when all engines are
   selected, is a failure, not a skip.
+  WHNF rows may legitimately carry no expected term (status and count only,
+  as for D0's targets); their constructor rows carry an `expect.head`.
 - avon-share's count is held to `share_ref` where a row records one. This is a
   regression pin on Avon's own share-mode count, not a correctness claim.
 
@@ -142,11 +168,13 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.status` | `NORMAL`, `WHNF` or `FUEL` |
 | `expect.nf` | expected normal form, or null (check status and count only) |
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
-| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `fuel-edge` (derived from a pin) |
+| `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
+| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
-| `pin_policy`, `require_aviary`, `copy` | family C inputs to `auto_pin`: `auto`; drop unless aviary pins; `false` = never run copy mode |
+| `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
+| `require_aviary`, `copy` | `auto_pin` inputs: drop the row unless aviary pins it; `false` = never run copy mode |
 | `note` | free text, including why a row is share-only |
 
 ## Related work

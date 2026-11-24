@@ -21,7 +21,7 @@ from pathlib import Path
 from . import engines as E
 # Importing gen imports the families, whose definitions (e.g. NOT, PAIR) must be
 # registered in aviary's environment before avon_can_run/mini_can_run are asked.
-from .gen import same_nf, expected_nf, ROOT
+from .gen import same_nf, expected_nf, outcome_problems, ROOT
 
 COUNTED = {"aviary", "avon-copy", "mini"}
 TIMEOUT = 600  # seconds per engine batch; a timeout fails the row
@@ -37,7 +37,7 @@ def applicable(engine, row):
     if engine.startswith("avon"):
         return E.avon_can_run(row["term"])
     if engine == "mini":
-        return row["mode"] == "nf" and E.mini_can_run(row["term"])
+        return E.mini_can_run(row["term"])
     return False
 
 
@@ -104,12 +104,7 @@ def check_family(fam, engines):
                                  timeout=TIMEOUT)
             for r, (status, steps, nf) in zip(sel, got):
                 exp = r["expect"]
-                probs = []
-                if status != exp["status"]:
-                    probs.append(f"status {status} != {exp['status']}")
-                want = expected_nf(exp)
-                if want is not None and not same_nf(nf, want):
-                    probs.append(f"nf {nf[:200]!r} != {want[:200]!r}")
+                probs = outcome_problems(exp, status, nf)
                 if eng in COUNTED and r["pin"] is not None and steps != r["pin"]["steps"]:
                     probs.append(f"steps {steps} != pin {r['pin']['steps']}")
                 if eng == "avon-share" and r.get("share_ref") is not None and steps != r["share_ref"]:
@@ -177,7 +172,7 @@ def main(argv):
             engines = next(it).split(",")
         else:
             fams.append(a)
-    fams = fams or ["A", "B", "C"]
+    fams = fams or ["A", "B", "C"] + sorted(p.stem for p in (ROOT / "manifests").glob("D*.jsonl"))
     unknown = [e for e in engines if e not in E.ENGINES]
     if unknown:
         raise SystemExit(f"unknown engine(s) {unknown}; choose from {sorted(E.ENGINES)}")

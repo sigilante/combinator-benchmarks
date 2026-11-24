@@ -244,11 +244,12 @@ def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
 
 
 def run_mini(jobs, whnf=False):
-    if whnf:
-        raise NotImplementedError("mini reduces to full normal form only")
     out = []
     for text, fuel in jobs:
-        status, steps, t = mini.reduce(mini.parse(text), fuel)
+        if whnf:
+            status, steps, t = mini.reduce_whnf(mini.parse(text), fuel)
+        else:
+            status, steps, t = mini.reduce(mini.parse(text), fuel)
         out.append((status, steps, mini.show(t, budget=AVON_PRINT_BUDGET)))
     return out
 

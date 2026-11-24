@@ -1,0 +1,6 @@
+Vendored from sigilante/avon (MIT, see LICENSE.avon), tests/conformance at commit e69cf59
+(last change to that directory: b7c26c2). Generated there by skijack.export; the counts in
+manifest.tsv are aviary copy-mode contractions to weak head normal form.
+Only the 45 targets listed in manifest.tsv (and manifest.tsv itself) are vendored. Left out:
+the scry-namespace inputs (ns.*.skit, namespaces.tsv, ns.*.resolution.tsv), interpreters.tsv,
+dictionary.tsv and dictionary_names.tsv, which drive Avon's jets and scry stage, not pure reduction.
