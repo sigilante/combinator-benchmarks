@@ -338,6 +338,43 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 | `d0.t3.omega.wf5Omg` | M | WHNF | 1,171 | 10,130 | 7,463 | 1.36 | avon tests/conformance@b7c26c2 (aviary, via skijack.export); confirmed by avon-copy, mini |
 | `d0.t3.omega.wf5Omg.ctor` | M | WHNF, head `r_RTime` | 1,174 | 10,133 | 7,466 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 
+## Family D1
+
+77 rows (57 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+
+| engine | checks | pass | fail |
+|---|---:|---:|---:|
+| aviary | 48 | 48 | 0 |
+| avon-copy | 77 | 77 | 0 |
+| avon-share | 40 | 40 | 0 |
+| mini | 77 | 77 | 0 |
+
+`copy` is the pinned normal-order count (asserted); `share` is Avon's
+graph-reduction count (held as a regression pin). Size is in leaves.
+
+| row | tier | expected | size | copy | share | copy / share | pinned by |
+|---|---|---|---:|---:|---:|---:|---|
+| `d1.nat.inc.4` | S | NORMAL | 70 | 171 | 134 | 1.28 | aviary@bfba908+dirty |
+| `d1.nat.dec.3` | XS | NORMAL | 61 | 88 | 78 | 1.13 | aviary@bfba908+dirty |
+| `d1.nat.dec.0` | XS | NORMAL | 37 | 21 | 21 | 1.00 | aviary@bfba908+dirty |
+| `d1.nat.add.2.3` | S | NORMAL | 113 | 303 | 252 | 1.20 | aviary@bfba908+dirty |
+| `d1.nat.add.20.30` | S | NORMAL | 473 | 4,227 | 2,151 | 1.97 | avon-copy@e69cf59, confirmed by mini |
+| `d1.nat.sub.5.2` | S | NORMAL | 130 | 230 | 204 | 1.13 | aviary@bfba908+dirty |
+| `d1.nat.sub.2.5` | S | NORMAL | 130 | 278 | 249 | 1.12 | aviary@bfba908+dirty |
+| `d1.nat.sub.40.15` | S | NORMAL | 514 | 1,932 | 1,321 | 1.46 | aviary@bfba908+dirty |
+| `d1.ascii.mul.6.7` | S | NORMAL | 212 | 8,644 | 4,388 | 1.97 | avon-copy@e69cf59, confirmed by mini |
+| `d1.literals.three` | S | NORMAL | 90 | 114 | 96 | 1.19 | aviary@bfba908+dirty |
+| `d1.literals.answer` | S | NORMAL | 452 | 4,343 | 2,294 | 1.89 | avon-copy@e69cf59, confirmed by mini |
+| `d1.literals.five` | S | NORMAL | 85 | 184 | 147 | 1.25 | aviary@bfba908+dirty |
+| `d1.literals.isSix.five` | S | NORMAL | 257 | 753 | 724 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d1.literals.isSix.six` | S | NORMAL | 265 | 873 | 835 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d1.ascii.twelve` | M | NORMAL | 1,634 | 14,604 | 3,216 | 4.54 | avon-copy@e69cf59, confirmed by mini |
+| `d1.ascii.fortyTwo` | M | NORMAL | 1,628 | 24,279 | 7,227 | 3.36 | avon-copy@e69cf59, confirmed by mini |
+| `d1.ascii.yes` | S | NORMAL | 774 | 400 | 400 | 1.00 | aviary@bfba908+dirty |
+| `d1.ascii.no` | S | NORMAL | 754 | 381 | 381 | 1.00 | aviary@bfba908+dirty |
+| `d1.words.three` | S | NORMAL | 90 | 114 | 96 | 1.19 | aviary@bfba908+dirty |
+| `d1.quine` | L | NORMAL | 69,268 | 1,901,926 | 169,436 | 11.23 | avon-copy@e69cf59, confirmed by mini |
+
 ## Timing, family C
 
 3 interleaved runs per engine; CPU = user + sys seconds of the whole

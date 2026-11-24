@@ -27,9 +27,9 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack
 
-FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon}
+FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack}
 
 # Auto-pinning policy (rows with pin_policy == "auto"):
 AVIARY_TIMEOUT = float(os.environ.get("BENCH_AVIARY_TIMEOUT", 10))  # s per row
@@ -158,6 +158,8 @@ def expected_nf(expect: dict) -> str | None:
     """The expected normal form of a row. Family C stores `numeral: n` instead
     of the text, meaning the Church readback `f (f (... x))` with n f's, which
     can be megabytes long."""
+    if expect.get("nf_ref") is not None:
+        return _nf_ref(expect["nf_ref"])
     if expect.get("numeral") is not None:
         n = expect["numeral"]
         if not isinstance(n, int) or n < 0:
@@ -185,6 +187,21 @@ def outcome_problems(expect: dict, status: str, nf: str) -> list:
     if expect.get("head") is not None and head_of(nf) != expect["head"]:
         probs.append(f"head {head_of(nf)!r} != {expect['head']!r}")
     return probs
+
+
+_NF_REF_CACHE: dict = {}
+
+
+def _nf_ref(name: str) -> str:
+    """Expected normal forms too large to store in a manifest, computed from
+    their construction by the family that defines them."""
+    if name not in _NF_REF_CACHE:
+        if name == "d1.quine":
+            from .families import d1_skijack
+            _NF_REF_CACHE[name] = d1_skijack.quine_nf()
+        else:
+            raise ValueError(f"unknown nf_ref {name!r}")
+    return _NF_REF_CACHE[name]
 
 
 def same_nf(got: str, expected: str) -> bool:
