@@ -117,17 +117,26 @@ The decoded payload (the corpus's last column) is not checked yet.
 
 `data/d1/terms.json` vendors closed SKI terms compiled by skijack 0.2.6 from
 four corpus programs of SKIjack's EXAMPLES.md (`python3 -m bench.vendor_d1`
-regenerates it; checking never needs skijack). Results are Scott numerals or
+regenerates it from `$SKIJACK_REPO`, default `~/Code/ski/skijack/python`;
+checking never needs skijack). Results are Scott numerals or
 booleans:
 
 - A numeral result is read back inside the same reduction by
   `R = Y SREAD`, `SREAD r n = n x (B f r)`, which turns a Scott numeral into
   the Church readback `f (f (... x))`; the row then checks `expect.numeral`.
 - A boolean is applied to the atoms `yes` and `no`, as SKIjack's tests do.
-- Expected values are SKIjack's own (`expect_src: "examples"`) or arithmetic on
-  numerals built here (`"arith"`).
+- Expected values are SKIjack's own (`expect_src: "examples"`: the literals,
+  ascii-digits and words-to-numbers rows, as SKIjack's EXAMPLES.md and tests
+  state them) or arithmetic on numerals built here (`"arith"`: the eight
+  `d1.nat.*` rows and `d1.ascii.mul.6.7`; EXAMPLES.md shows only some of these
+  instances, e.g. `add 2 3`).
+- Rows pinned by aviary carry `aviary@bfba908+dirty`: the checkout had an
+  uncommitted notebook edit, so those pins cannot be reproduced from a commit
+  alone; Avon copy and mini reproduce every one of them.
 
-`d1.quine` is the quine `t = h <h>` of the ski-in-ski appendix, rebuilt from its
+`d1.quine` (its expected normal form is not stored in the manifest; `nf_ref`
+names the function in `bench/families/d1_skijack.py` that computes it) is the
+quine `t = h <h>` of the ski-in-ski appendix, rebuilt from its
 construction in `bench/families/quine.py` (69,268 leaves, as the appendix
 says). Its normal form must equal the normal form of its code `<t>`, which
 the module computes structurally, without reduction (953,226 leaves;

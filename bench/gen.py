@@ -155,9 +155,10 @@ def canon(text: str | None) -> str | None:
 
 
 def expected_nf(expect: dict) -> str | None:
-    """The expected normal form of a row. Family C stores `numeral: n` instead
-    of the text, meaning the Church readback `f (f (... x))` with n f's, which
-    can be megabytes long."""
+    """The expected normal form of a row: `nf_ref` (a name resolved by
+    `_nf_ref`, for forms too large to store, e.g. "d1.quine"), else `numeral: n`
+    (family C, D1: the Church readback `f (f (... x))` with n f's, which can be
+    megabytes long), else the literal `nf`, else None."""
     if expect.get("nf_ref") is not None:
         return _nf_ref(expect["nf_ref"])
     if expect.get("numeral") is not None:
@@ -197,7 +198,7 @@ def _nf_ref(name: str) -> str:
     their construction by the family that defines them."""
     if name not in _NF_REF_CACHE:
         if name == "d1.quine":
-            from .families import d1_skijack
+            from .families import d1_skijack  # deferred: the families import gen
             _NF_REF_CACHE[name] = d1_skijack.quine_nf()
         else:
             raise ValueError(f"unknown nf_ref {name!r}")

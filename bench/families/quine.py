@@ -1,7 +1,7 @@
 r"""The quine of ski-in-ski's appendix, rebuilt from its construction
 (ski-in-ski appendix, Prop. ifix; reference script notes/checks/quine.py in
 the research tree): Scott codes over S|K|I|App with four continuations,
-Turing's fixed point, the requoter R, and t = h <h> with h = \\y. App' y (R y).
+Turing's fixed point, the requoter R, and t = h <h> with h = \y. App' y (R y).
 
 t reduces to <t>. <t> itself is not a normal form: the code of an
 application is App m n with App = \m n a b c d. d m n, and its SKI form
@@ -10,6 +10,11 @@ structurally (`normal_code`): a leaf's code is already normal, and
 [a][b][c][d] (d M N) = K (K (K (S (S I (K M)) (K N)))) for normal M, N.
 So the normal form of t must be exactly normal_code(t), an expected answer
 derived from the construction and the abstraction rules, not from an engine.
+
+Premise, not checked here: t ->> <t> (the appendix's Prop. ifix, mechanized in
+lean-ski as Ifix.quine; the reference script checks it only observationally,
+by decoding). The engines reaching exactly normal_code(t) is the empirical
+check of the whole chain.
 Terms are mini terms (str atoms, (fn, arg) tuples).
 """
 
@@ -61,7 +66,8 @@ APP_C = _lam("mnabcd", _app("d", "m", "n"))
 
 
 def enc(t):
-    """The Scott code <t> (iterative over the spine of nested applications)."""
+    """The Scott code <t>, by an iterative post-order walk. Memoized by node
+    identity, so equal but distinct subterms are encoded again (harmless)."""
     if isinstance(t, str):
         return {"S": ENC_S, "K": ENC_K, "I": ENC_I}[t]
     # post-order without recursion
