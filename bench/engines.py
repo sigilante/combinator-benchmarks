@@ -37,8 +37,35 @@ def git_rev(path: Path) -> str:
         return "unknown"
 
 
+def _dirty(path: Path) -> bool:
+    try:
+        out = subprocess.run(["git", "-C", str(path), "status", "--porcelain", "--untracked-files=no"],
+                             capture_output=True, text=True, check=True).stdout
+        return bool(out.strip())
+    except Exception:
+        return True
+
+
+def avon_identity() -> dict:
+    """What was actually run: the binary's version line, mtime and hash. The
+    repo revision alone does not say whether the binary was rebuilt from it."""
+    import datetime
+    import hashlib
+    if not AVON_BIN.exists():
+        return {"bin": str(AVON_BIN), "missing": True}
+    v = subprocess.run([str(AVON_BIN), "--version"], capture_output=True, text=True).stdout.strip()
+    st = AVON_BIN.stat()
+    return {"bin": str(AVON_BIN), "version": v,
+            "mtime": datetime.datetime.fromtimestamp(st.st_mtime).isoformat(timespec="seconds"),
+            "sha256": hashlib.sha256(AVON_BIN.read_bytes()).hexdigest()[:16]}
+
+
 def provenance() -> dict:
-    return {"aviary": git_rev(AVIARY_REPO), "avon": git_rev(AVON_BIN.parent.parent)}
+    av = git_rev(AVIARY_REPO) + ("+dirty" if _dirty(AVIARY_REPO) else "")
+    avon_repo = AVON_BIN.parent.parent
+    return {"aviary": av,
+            "avon": git_rev(avon_repo) + ("+dirty" if _dirty(avon_repo) else ""),
+            "avon_bin": avon_identity()}
 
 
 def aviary_parse(text: str):
@@ -57,14 +84,31 @@ def to_basis(text: str, basis: str) -> str:
 def run_aviary(jobs, whnf=False):
     out = []
     for text, fuel in jobs:
+        # max_size is set far above any XS-S term; a SIZE status would fail the row.
         r = av_reduce(aviary_parse(text), _ENV, whnf_only=whnf,
                       max_steps=fuel, max_size=10**8)
         out.append((r.status.name, r.steps, aviary_pretty(r.term)))
     return out
 
 
+def _avon_batch(cmd, texts):
+    inp = "".join(t + "\n" for t in texts)
+    p = subprocess.run(cmd, input=inp, capture_output=True, text=True)
+    # Split on "\n" only: str.splitlines() also splits on \v, \x1c, U+2028, ...
+    lines = p.stdout.split("\n")
+    if lines and lines[-1] == "":
+        lines.pop()
+    return p, lines
+
+
 def run_avon(jobs, strategy="copy", whnf=False):
-    """Run jobs through `avon batch`, one process per distinct fuel value."""
+    """Run jobs through `avon batch`, one process per distinct fuel value.
+    If a batch fails (a term Avon cannot parse stops the whole batch), its
+    jobs are rerun one by one, and a job that still fails is reported with
+    status ERROR and Avon's stderr in place of a normal form."""
+    if not AVON_BIN.exists():
+        raise SystemExit(f"Avon binary not found at {AVON_BIN} (build it with `make` in ~/avon, "
+                         "or set AVON_BIN, or pass --engines without avon-*)")
     out = [None] * len(jobs)
     by_fuel: dict[int, list[int]] = {}
     for i, (_, fuel) in enumerate(jobs):
@@ -73,14 +117,23 @@ def run_avon(jobs, strategy="copy", whnf=False):
         cmd = [str(AVON_BIN), "batch", f"--strategy={strategy}", "--no-jets", f"--fuel={fuel}"]
         if whnf:
             cmd.append("--whnf")
-        inp = "".join(jobs[i][0] + "\n" for i in idxs)
-        p = subprocess.run(cmd, input=inp, capture_output=True, text=True)
-        lines = p.stdout.splitlines()
-        if p.returncode != 0 or len(lines) != len(idxs):
-            raise RuntimeError(f"avon batch failed (rc={p.returncode}): {p.stderr[:500]}")
-        for i, line in zip(idxs, lines):
+        p, lines = _avon_batch(cmd, [jobs[i][0] for i in idxs])
+        if p.returncode == 0 and len(lines) == len(idxs):
+            per = list(zip(idxs, lines))
+        else:
+            per = []
+            for i in idxs:
+                q, ls = _avon_batch(cmd, [jobs[i][0]])
+                if q.returncode == 0 and len(ls) == 1:
+                    per.append((i, ls[0]))
+                else:
+                    out[i] = ("ERROR", -1, f"rc={q.returncode}: {q.stderr.strip()[:300]}")
+        for i, line in per:
             parts = line.split(" ", 2)
-            out[i] = (parts[0], int(parts[1]), parts[2] if len(parts) > 2 else "")
+            try:
+                out[i] = (parts[0], int(parts[1]), parts[2] if len(parts) > 2 else "")
+            except (IndexError, ValueError):
+                out[i] = ("ERROR", -1, f"unparseable output line: {line[:300]!r}")
     return out
 
 
@@ -90,10 +143,6 @@ def run_mini(jobs, whnf=False):
     out = []
     for text, fuel in jobs:
         status, steps, t = mini.reduce(mini.parse(text), fuel)
-        # The suite's fuel convention (aviary's and Avon's): FUEL whenever
-        # steps >= fuel, even if the term reached is normal.
-        if steps >= fuel:
-            status = "FUEL"
         out.append((status, steps, mini.show(t)))
     return out
 

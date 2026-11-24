@@ -5,7 +5,7 @@ Do not edit by hand.
 
 ## Family A
 
-309 rows (225 of them fuel-edge rows). aviary `bfba908`, Avon `e69cf59`.
+309 rows (225 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
 
 | engine | checks | pass | fail |
 |---|---:|---:|---:|
@@ -25,7 +25,7 @@ Rows where share mode contracts fewer redexes than copy mode:
 
 ## Family B
 
-880 rows (660 of them fuel-edge rows). aviary `bfba908`, Avon `e69cf59`.
+880 rows (660 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
 
 | engine | checks | pass | fail |
 |---|---:|---:|---:|

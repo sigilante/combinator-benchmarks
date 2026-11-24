@@ -18,7 +18,8 @@ Status: families A and B built and passing on aviary, Avon (copy, share) and min
 Consequences:
 - Bird and BCKW benchmarks run natively on aviary and vine-aviary. For Avon they are first
   expanded to SKI with `aviary_kernel.abstraction.expand(term, env, 'ski')`.
-- Contraction counts are asserted only for aviary and Avon in copy mode. Share-mode counts
+- Contraction counts are asserted for aviary, Avon in copy mode, and mini (the
+  independent reducer added after the Poet pass). Share-mode counts
   and wall times are recorded but never asserted.
 - Above about 10^6 contractions aviary is too slow to run as the reference. For those rows,
   the pinned count comes from Avon in copy mode, which is held to aviary's counts on every
@@ -49,6 +50,7 @@ but numbers from it are not counted as pure-SKI results.
   - `K I Ω` must reach I.
 - **Divergence:** Ω = `S I I (S I I)` and `Y` with no argument must end with status FUEL at a set fuel.
 - **Booleans and pairs:** Church and Scott encodings, with the expected normal forms pinned.
+  *Built:* Church only; Scott encodings not yet built.
 
 ### B. The aviary: every bird, every basis (XS–S; correctness)
 - For each of aviary's 50 birds, apply it to enough fresh atoms to fire it. Reduce it:
@@ -57,7 +59,8 @@ but numbers from it are not counted as pure-SKI results.
   3. as its SK expansion;
   4. as its BCKW expansion.
 - All four must agree on the normal form.
-- This gives 200 rows, plus vine-aviary's 49 native birds. It is the "basis translation is
+- Built: 49 birds plus 6 sage constructions, each in 4 forms (220 base rows, Y
+  among the sages). vine-aviary rows are not yet built. It is the "basis translation is
   correct" test.
 - Record the term size and count under each basis. This feeds an expansion-cost table: BCKW
   is usually smaller.
@@ -66,6 +69,8 @@ but numbers from it are not counted as pure-SKI results.
     applied to `K` and to a fuel-bounded body.
   - Mockingbird and lark constructions.
   - Check `x (Y x) =β Y x` to a set depth, not by running to a normal form.
+    *Not yet built:* sages are checked only by `X (K x) -> x`; Curry's and
+    Turing's fixed points are not yet separate cases.
 
 ### C. Church-numeral arithmetic, parametric (S–XL; speed with known answers)
 These are generated from λ-terms by bracket abstraction into SKI, SK and BCKW. Each one is
@@ -144,7 +149,7 @@ hashes and small terms go in git.
 Every claim of an expected value cites its source: a proved theorem, a pinned upstream
 test, or a cross-engine agreement. Agreement alone is marked as such.
 
-## Harness (sketch)
+## Harness (as built: `bench/gen.py`, `check.py`, `report.py`, `selftest.py`, `engines.py`, `mini.py`, `families/`; timing not yet built)
 - `bench/run.py`:
   - Drives aviary in-process, Avon (copy and share) through `batch` or `reduce`, and
     vine-aviary optionally.
@@ -200,3 +205,4 @@ Deferred, because they need changes in the engines or more work:
 - 2026-11-25: Neal decided: vine-aviary is optional for now; aviary's abstraction is canonical.
 - 2026-11-25: Neal decided: results are reported in a BENCHMARKS.md file, not a page.
 - 2026-11-25: families A (309 rows) and B (880 rows) built on branch families-ab; all pass on aviary, avon-copy, avon-share, mini. Fuel convention (FUEL iff steps >= fuel) found and adopted.
+- 2026-11-25: Angel and Gnome reviews of families-ab. Fixed: gen aborts without writing on a disagreement; mini implements the fuel convention itself; provenance records Avon binary version/mtime/hash and dirty trees; iterative parser, ASCII-space tokenising, per-row ERROR instead of batch crash; skipped-row counts; share-edge checks compare normal forms; bench/selftest.py (8 planted bugs + 2 corrupted expectations, all caught).

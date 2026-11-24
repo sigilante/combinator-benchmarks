@@ -31,7 +31,9 @@ def main():
         res = res[1:]
         lines += [f"## Family {fam}", "",
                   f"{len(rows)} rows ({sum(r['expect_src'] == 'fuel-edge' for r in rows)} of them fuel-edge rows). "
-                  f"aviary `{prov['aviary']}`, Avon `{prov['avon']}`.", "",
+                  f"aviary `{prov['aviary']}`, Avon repo `{prov['avon']}`, "
+                  f"binary `{prov['avon_bin'].get('version')}` built {prov['avon_bin'].get('mtime')} "
+                  f"(sha256 `{prov['avon_bin'].get('sha256')}`).", "",
                   "| engine | checks | pass | fail |", "|---|---:|---:|---:|"]
         t = Counter((r["engine"], r["ok"]) for r in res)
         for eng in ("aviary", "avon-copy", "avon-share", "mini"):

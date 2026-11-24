@@ -19,7 +19,9 @@ from collections import Counter
 from pathlib import Path
 
 from . import engines as E
-from .gen import canon, ROOT
+# Importing gen imports the families, whose definitions (e.g. NOT, PAIR) must be
+# registered in aviary's environment before avon_can_run/mini_can_run are asked.
+from .gen import same_nf, ROOT
 
 COUNTED = {"aviary", "avon-copy", "mini"}
 
@@ -43,6 +45,7 @@ def check_family(fam, engines):
     for eng in engines:
         for mode in ("nf", "whnf"):
             sel = [r for r in rows if r["mode"] == mode and applicable(eng, r)]
+            tally[(eng, "skip")] += sum(1 for r in rows if r["mode"] == mode) - len(sel)
             if not sel:
                 continue
             got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"))
@@ -51,7 +54,7 @@ def check_family(fam, engines):
                 probs = []
                 if status != exp["status"]:
                     probs.append(f"status {status} != {exp['status']}")
-                if exp["nf"] is not None and canon(nf) != canon(exp["nf"]):
+                if exp["nf"] is not None and not same_nf(nf, exp["nf"]):
                     probs.append(f"nf {nf!r} != {exp['nf']!r}")
                 if eng in COUNTED and steps != r["pin"]["steps"]:
                     probs.append(f"steps {steps} != pin {r['pin']['steps']}")
@@ -73,8 +76,11 @@ def check_family(fam, engines):
                 continue
             got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"))
             for i, x in enumerate(sel):
-                (s0, n0, _), (s1, n1, _) = got[2 * i], got[2 * i + 1]
+                (s0, n0, _), (s1, n1, nf1) = got[2 * i], got[2 * i + 1]
                 probs = []
+                exp_nf = base[x["id"]]["expect"]["nf"]
+                if exp_nf is not None and not same_nf(nf1, exp_nf):
+                    probs.append(f"share fuel=c+1: nf {nf1!r} != {exp_nf!r}")
                 if s0 != "FUEL":
                     probs.append(f"share fuel=c: {s0} != FUEL")
                 if (s1, n1) != (x["status"], x["steps"]):
@@ -85,9 +91,10 @@ def check_family(fam, engines):
                 results.append(rec)
                 if probs:
                     fails.append(rec)
+    skipped = {eng: tally[(eng, "skip")] for eng in engines}
     out = ROOT / "results" / f"check-{fam}.jsonl"
     with out.open("w") as fh:
-        fh.write(json.dumps({"provenance": E.provenance()}) + "\n")
+        fh.write(json.dumps({"provenance": E.provenance(), "not_applicable": skipped}) + "\n")
         for rec in results:
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
     return rows, tally, fails
@@ -103,13 +110,16 @@ def main(argv):
         else:
             fams.append(a)
     fams = fams or ["A", "B"]
+    unknown = [e for e in engines if e not in E.ENGINES]
+    if unknown:
+        raise SystemExit(f"unknown engine(s) {unknown}; choose from {sorted(E.ENGINES)}")
     rc = 0
     for fam in fams:
         rows, tally, fails = check_family(fam, engines)
         print(f"== {fam}: {len(rows)} rows")
         for eng in engines:
-            p, f = tally[(eng, "pass")], tally[(eng, "fail")]
-            print(f"   {eng:11s} {p:5d} pass {f:4d} fail")
+            p, f, k = tally[(eng, "pass")], tally[(eng, "fail")], tally[(eng, "skip")]
+            print(f"   {eng:11s} {p:5d} pass {f:4d} fail {k:5d} rows not applicable")
         for rec in fails[:40]:
             print(f"   FAIL {rec['engine']}: {rec['id']}: {'; '.join(rec['problems'])}")
         if len(fails) > 40:

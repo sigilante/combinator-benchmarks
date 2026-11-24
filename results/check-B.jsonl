@@ -1,4 +1,4 @@
-{"provenance": {"aviary": "bfba908", "avon": "e69cf59"}}
+{"provenance": {"aviary": "bfba908+dirty", "avon": "e69cf59", "avon_bin": {"bin": "/Users/neal/avon/build/avon", "version": "avon 0.1.0", "mtime": "2026-11-06T17:09:27", "sha256": "91a03aac2701b9ff"}}, "not_applicable": {"aviary": 0, "avon-copy": 424, "avon-share": 766, "mini": 196}}
 {"id": "b.B.native", "engine": "aviary", "status": "NORMAL", "steps": 1, "pin": 1, "ok": true, "problems": []}
 {"id": "b.B.native.fuel-1", "engine": "aviary", "status": "FUEL", "steps": 0, "pin": 0, "ok": true, "problems": []}
 {"id": "b.B.native.fuel+0", "engine": "aviary", "status": "FUEL", "steps": 1, "pin": 1, "ok": true, "problems": []}

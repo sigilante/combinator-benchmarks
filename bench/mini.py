@@ -7,8 +7,10 @@ Terms are tuples: an atom is a str, an application is (fn, arg).
 Strategy: normal order (leftmost-outermost) to full normal form, counting one
 step per contraction. This is the order aviary and Avon's copy mode use.
 
-Fuel semantics: at most `fuel` contractions are performed. A term that needs
-exactly `fuel` contractions reports NORMAL; one that needs more reports FUEL.
+Fuel semantics (the suite's convention, shared with aviary and Avon): at most
+`fuel` contractions are performed, and the status is FUEL whenever
+steps >= fuel, even if the term reached is normal. So a term needing exactly c
+contractions reports NORMAL only when fuel >= c + 1.
 """
 
 from __future__ import annotations
@@ -28,32 +30,36 @@ RULES = {
 
 # --- parsing and printing -------------------------------------------------
 
+_TOKEN = None
+
+
 def parse(text: str):
-    toks = text.replace("(", " ( ").replace(")", " ) ").split()
-    pos = 0
-
-    def seq():
-        nonlocal pos
-        acc = None
-        while pos < len(toks) and toks[pos] != ")":
-            t = toks[pos]
-            pos += 1
-            if t == "(":
-                item = seq()
-                if pos >= len(toks) or toks[pos] != ")":
-                    raise ValueError("unbalanced parentheses")
-                pos += 1
-            else:
-                item = t
-            acc = item if acc is None else (acc, item)
-        if acc is None:
-            raise ValueError("empty term")
-        return acc
-
-    t = seq()
-    if pos != len(toks):
-        raise ValueError("trailing input")
-    return t
+    """Parse the printed form. Only ASCII space separates tokens; any other
+    character that is not a parenthesis is part of an atom (as in Avon and
+    aviary, where `x<U+00A0>y` is one atom). Iterative, so deep nesting is fine.
+    Raises ValueError on an empty term or unbalanced parentheses."""
+    import re
+    global _TOKEN
+    if _TOKEN is None:
+        _TOKEN = re.compile(r"\(|\)|[^ ()]+")
+    stack = [None]          # accumulators, one per open parenthesis level
+    for tok in _TOKEN.findall(text):
+        if tok == "(":
+            stack.append(None)
+        elif tok == ")":
+            if len(stack) == 1:
+                raise ValueError("unbalanced parentheses")
+            item = stack.pop()
+            if item is None:
+                raise ValueError("empty parentheses")
+            stack[-1] = item if stack[-1] is None else (stack[-1], item)
+        else:
+            stack[-1] = tok if stack[-1] is None else (stack[-1], tok)
+    if len(stack) != 1:
+        raise ValueError("unbalanced parentheses")
+    if stack[0] is None:
+        raise ValueError("empty term")
+    return stack[0]
 
 
 def show(t) -> str:
@@ -135,6 +141,13 @@ def _whnf(t, budget):
 
 def reduce(t, fuel: int):
     """Normal-order reduction to full normal form. Returns (status, steps, term)."""
+    status, steps, t = _reduce(t, fuel)
+    if steps >= fuel:
+        status = "FUEL"
+    return status, steps, t
+
+
+def _reduce(t, fuel: int):
     steps = 0
     t, s = _whnf(t, fuel)
     steps += s
