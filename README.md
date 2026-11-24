@@ -41,11 +41,65 @@ engine skipped:
     python3 -m bench.check     # run every engine, write results/, exit 1 on any failure
     python3 -m bench.report    # rewrite BENCHMARKS.md
     python3 -m bench.selftest  # plant bugs in mini; every one must be caught
+    python3 -m bench.timing C  # CPU time and peak RSS on the larger rows
 
 If aviary disagrees with any row's expected status or normal form, `bench.gen`
 prints the disagreements, writes nothing for that family, and exits 1.
 `bench.check` overwrites `results/`. Both `manifests/` and `results/` are
 tracked in git; commit them together with the code that produced them.
+
+## Where pins come from
+
+Families A and B are pinned by aviary. Family C (`pin_policy: "auto"`) is
+pinned row by row (`bench/gen.py`, `auto_pin`):
+
+1. **aviary**, if it finishes within `BENCH_AVIARY_TIMEOUT` seconds (default
+   10). aviary rewrites the whole tree at every step, so its reach depends on
+   the term's size as well as its count: in the current manifest it pins rows
+   of up to 21,542 contractions, but times out on some of under 5,000. All four
+   engines then run the row.
+2. Otherwise **Avon copy mode** (fuel 10^9, 120 s). If the count is at most
+   2x10^7, **mini** must reproduce it exactly; the pin source then reads
+   `avon-copy@<rev>, confirmed by mini`. Above that the pin is Avon's alone and
+   says so.
+3. Otherwise the row is **share-only**: no count is pinned, and the check is
+   the arithmetic answer alone (`pin: null`, `engines: ["avon-share"]`).
+
+**Pins depend on the machine.** Which step pins a row, and so the row's
+`pin.source` and `engines`, depends on whether aviary beats the timeout on the
+machine that ran `bench.gen`; so does whether a BCKW row is kept at all. The
+pinned *counts* do not depend on it: every source is held to the same count.
+A row's `pin.source` says which engine pinned it, and a `+dirty` suffix marks
+an aviary checkout with uncommitted changes (currently only its demo notebook).
+
+**Fuel.** Pinned rows run at fuel 2 × pin + 1000. Share-only rows run at fuel
+4×10^9 with a 300 s timeout. A share-only row's note says why copy mode was not
+pinned: it ran out of fuel at 10^9 (`FUEL`), timed out at 120 s (`TIMEOUT`), or
+the family excluded it (`copy: false`, with the measured reason).
+
+**Tiers of share-only rows** come from Avon's share-mode count, so such a row
+can be tier M although copy mode needs more than 10^9 contractions
+(`c.collatz.9`). BENCHMARKS.md marks these rows.
+
+In every case the expected normal form comes from arithmetic, not from an
+engine; `gen` rejects the family if any engine that pins a row disagrees with
+it. BCKW rows are kept only where aviary pins them, since Avon cannot run
+them. Each row records `tier` (XS < 10^2 <= S < 10^4 <= M < 10^6 <= L < 10^8
+<= XL, by its pinned count, or by Avon's share count for share-only rows) and
+`share_ref`, Avon's share-mode count when the manifest was built (recorded,
+not asserted). Fuel-edge rows are added only for pins up to 10^5.
+
+## Timing
+
+    python3 -m bench.timing C --runs 3     # tiers M, L, XL
+
+Times `avon reduce` (parse, reduce and print: the whole process) and mini
+(in-process, rows up to 5x10^6 contractions). CPU time is the only time metric:
+user + system seconds from `getrusage`, which for Avon covers the avon process
+and the small `/usr/bin/time` wrapper that reports its peak RSS. Process start
+and parsing dominate small rows, so contractions per second are reported only
+for rows of at least 10^6 contractions. Runs are interleaved across engines. A run whose answer
+is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 
 ## Conventions
 
@@ -63,11 +117,50 @@ tracked in git; commit them together with the code that produced them.
   non-printable characters.
 - An Avon line that cannot be parsed, or a term Avon rejects, gives that row
   status ERROR (a failure), not a crash of the whole batch.
+- **Every Avon run is watched.** It is killed at `BENCH_AVON_MAX_RSS_MB`
+  (default 3000) of resident memory, summed over its process tree, giving
+  status MEMORY, or at its timeout, giving status TIMEOUT. `--budget` bounds
+  only what Avon prints; a diverging share-mode run can otherwise grow by
+  ~500 MB/s. A batch the watchdog stops fails all its rows and is not rerun.
+  Jobs with fuel of at least 10^8 run in their own process.
+- **Manifests are validated** before anything runs: required fields, a known
+  `mode` and `expect.status`, known engine names, an expected normal form on
+  every NORMAL row, `pin: null` only on share-only rows, a natural `numeral`.
+  A row that fails validation, or that no engine runs when all engines are
+  selected, is a failure, not a skip.
+- avon-share's count is held to `share_ref` where a row records one. This is a
+  regression pin on Avon's own share-mode count, not a correctness claim.
 
 ## Manifest rows
 
-`id, family, basis, term, source, fuel, mode, expect{status, nf}, expect_src,
-note, pin{steps, source}, size`. `expect_src` says where the expectation comes
-from: `hand` (worked from the rules), `aviary-rule` (aviary's bird table),
-or `fuel-edge` (derived from a pinned count; ids end in `.fuel-1`, `.fuel+0`,
-`.fuel+1`). Rows whose expected `nf` is null check status and count only.
+| field | meaning |
+|---|---|
+| `id` | unique; fuel-edge rows end in `.fuel-1`, `.fuel+0`, `.fuel+1` |
+| `family`, `basis` | family letter; `ski`, `sk`, `bckw` or `native` |
+| `term`, `source` | the term run, and the source it was expanded from |
+| `fuel`, `mode` | fuel; `nf` (full normal form) or `whnf` |
+| `expect.status` | `NORMAL`, `WHNF` or `FUEL` |
+| `expect.nf` | expected normal form, or null (check status and count only) |
+| `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
+| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `fuel-edge` (derived from a pin) |
+| `pin` | `{steps, source}`, or null for a share-only row |
+| `engines` | engines that run the row (absent: all that can read it) |
+| `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
+| `pin_policy`, `require_aviary`, `copy` | family C inputs to `auto_pin`: `auto`; drop unless aviary pins; `false` = never run copy mode |
+| `note` | free text, including why a row is share-only |
+
+## Related work
+
+- thma, *lambda-ski: Implementing a small functional language with a
+  combinator based graph-reduction machine*, GitHub repository (Apache-2.0),
+  <https://github.com/thma/lambda-ski>, accessed 2026-11-25. A Haskell
+  compiler from a small λ-language to combinators (SKI plus B, C, Y and
+  arithmetic primitives) with graph reduction. Its `benchmark/` directory
+  times factorial, fibonacci, ackermann and tak under several abstraction
+  and reduction variants (Criterion wall-clock times; no contraction counts).
+  Our Church-numeral family C covers the first three in pure SKI, without
+  primitives; tak is planned.
+- *SKI Calculus*, BusyBeaverWiki, <https://wiki.bbchallenge.org/wiki/SKI_Calculus>
+  (oldid 10480, CC BY 4.0), accessed 2026-11-25. Busy-beaver champions for SKI,
+  SK and BCKW terms: the largest normal form (in leaves) of a terminating term of
+  each size. Planned as family G.

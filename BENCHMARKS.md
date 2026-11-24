@@ -95,3 +95,216 @@ to normal form, per basis. Sizes include the argument atoms.
 | sage.sll | 5 / 3 | 21 / 7 | 29 / 7 | 18 / 9 |
 | sage.theta | 4 / 2 | 16 / 5 | 28 / 6 | 22 / 8 |
 | **total** | **242 / 68** | **1009 / 786** | **1123 / 820** | **533 / 310** |
+
+## Family C
+
+280 rows (195 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+
+| engine | checks | pass | fail |
+|---|---:|---:|---:|
+| aviary | 232 | 232 | 0 |
+| avon-copy | 151 | 151 | 0 |
+| avon-share | 108 | 108 | 0 |
+| mini | 271 | 271 | 0 |
+
+Definitions (aviary rules, expanded to SKI or BCKW by aviary; `Y` is aviary's
+built-in sage bird, `C<n>` the Church numeral n):
+
+```
+TRUE x y -> x
+FALSE x y -> y
+CPAIR x y f -> f x y
+CFST p -> p TRUE
+CSND p -> p FALSE
+ISZERO n -> n (K FALSE) TRUE
+SUCC n f x -> f (n f x)
+ADD m n f x -> m f (n f x)
+MUL m n f -> m (n f)
+EXP m n -> n m
+PSTEP f g h -> h (g f)
+PRED n f x -> n (PSTEP f) (K x) I
+SUB m n -> n PRED m
+FSTEP p -> CPAIR (SUCC (CFST p)) (MUL (SUCC (CFST p)) (CSND p))
+FACT n -> CSND (n FSTEP (CPAIR C0 C1))
+FACTF r n -> ISZERO n C1 (MUL n (r (PRED n)))
+FIBSTEP p -> CPAIR (CSND p) (ADD (CFST p) (CSND p))
+FIB n -> CFST (n FIBSTEP (CPAIR C0 C1))
+ACKSTEP g n -> n g (g C1)
+ACK m -> m ACKSTEP SUCC
+HSTEP p -> CPAIR (CSND p) (SUCC (CFST p))
+HALF n -> CFST (n HSTEP (CPAIR C0 C0))
+EVEN n -> n NOT TRUE
+NOT b -> b FALSE TRUE
+CSTEP n -> EVEN n (HALF n) (SUCC (MUL C3 n))
+COLLF r n k -> ISZERO (PRED n) k (r (CSTEP n) (SUCC k))
+```
+
+A tier marked (share) comes from the share-mode count, because copy mode was not pinned.
+
+Church arithmetic, read back by applying the result to `f x`. `copy` is the
+pinned normal-order count (asserted); `share` is Avon's graph-reduction count
+(recorded, not asserted). Size is the SKI or BCKW term in leaves.
+
+| row | tier | value | size | copy | share | copy / share | pinned by |
+|---|---|---:|---:|---:|---:|---:|---|
+| `c.add.3.4.ski` | XS | 7 | 40 | 38 | 38 | 1.0 | aviary |
+| `c.add.3.4.bckw` | XS | 7 | 27 | 25 |  |  | aviary |
+| `c.add.10.10.ski` | S | 20 | 105 | 103 | 103 | 1.0 | aviary |
+| `c.add.10.10.bckw` | XS | 20 | 79 | 77 |  |  | aviary |
+| `c.add.100.100.ski` | S | 200 | 1,005 | 1,003 | 1,003 | 1.0 | aviary |
+| `c.add.100.100.bckw` | S | 200 | 799 | 797 |  |  | aviary |
+| `c.add.1000.1000.ski` | M | 2,000 | 10,005 | 10,003 | 10,003 | 1.0 | avon-copy + mini |
+| `c.add.1000.1000.bckw` | S | 2,000 | 7,999 | 7,997 |  |  | aviary |
+| `c.mul.3.4.ski` | XS | 12 | 33 | 63 | 43 | 1.5 | aviary |
+| `c.mul.3.4.bckw` | XS | 12 | 19 | 37 |  |  | aviary |
+| `c.mul.10.10.ski` | S | 100 | 98 | 510 | 258 | 2.0 | aviary |
+| `c.mul.10.10.bckw` | S | 100 | 71 | 375 |  |  | aviary |
+| `c.mul.30.30.ski` | S | 900 | 298 | 4,530 | 1,978 | 2.3 | aviary |
+| `c.mul.30.30.bckw` | S | 900 | 231 | 3,535 |  |  | aviary |
+| `c.mul.100.100.ski` | M | 10,000 | 998 | 50,100 | 20,598 | 2.4 | avon-copy + mini |
+| `c.exp.2.3.ski` | XS | 8 | 24 | 72 | 42 | 1.7 | aviary |
+| `c.exp.2.3.bckw` | XS | 8 | 13 | 25 |  |  | aviary |
+| `c.exp.2.8.ski` | S | 256 | 49 | 2,552 | 583 | 4.4 | aviary |
+| `c.exp.2.8.bckw` | S | 256 | 33 | 893 |  |  | aviary |
+| `c.exp.3.5.ski` | S | 243 | 39 | 1,737 | 545 | 3.2 | aviary |
+| `c.exp.3.5.bckw` | S | 243 | 25 | 835 |  |  | aviary |
+| `c.exp.2.12.ski` | M | 4,096 | 69 | 40,952 | 8,299 | 4.9 | avon-copy + mini |
+| `c.exp.2.16.ski` | M | 65,536 | 89 | 655,352 | 131,215 | 5.0 | avon-copy + mini |
+| `c.tower.2.ski` | XS | 4 | 14 | 25 | 20 | 1.2 | aviary |
+| `c.tower.2.bckw` | XS | 4 | 6 | 8 |  |  | aviary |
+| `c.tower.3.ski` | S | 16 | 20 | 144 | 66 | 2.2 | aviary |
+| `c.tower.3.bckw` | XS | 16 | 8 | 44 |  |  | aviary |
+| `c.tower.4.ski` | M | 65,536 | 26 | 643,805 | 131,200 | 4.9 | avon-copy + mini |
+| `c.pred.3.ski` | XS | 2 | 65 | 96 | 82 | 1.2 | aviary |
+| `c.pred.3.bckw` | XS | 2 | 33 | 47 |  |  | aviary |
+| `c.pred.10.ski` | S | 9 | 100 | 250 | 187 | 1.3 | aviary |
+| `c.pred.10.bckw` | S | 9 | 61 | 131 |  |  | aviary |
+| `c.pred.30.ski` | S | 29 | 200 | 690 | 487 | 1.4 | aviary |
+| `c.pred.30.bckw` | S | 29 | 141 | 371 |  |  | aviary |
+| `c.pred.100.ski` | S | 99 | 550 | 2,230 | 1,537 | 1.5 | aviary |
+| `c.pred.100.bckw` | S | 99 | 421 | 1,211 |  |  | aviary |
+| `c.sub.10.3.ski` | S | 7 | 118 | 627 | 457 | 1.4 | aviary |
+| `c.sub.10.3.bckw` | S | 7 | 71 | 311 |  |  | aviary |
+| `c.sub.30.10.ski` | S | 20 | 253 | 4,883 | 3,159 | 1.5 | avon-copy + mini |
+| `c.sub.30.10.bckw` | S | 20 | 179 | 2,362 |  |  | aviary |
+| `c.sub.100.30.ski` | M | 70 | 703 | 45,303 | 27,529 | 1.6 | avon-copy + mini |
+| `c.sub.100.30.bckw` | M | 70 | 539 | 21,542 |  |  | aviary |
+| `c.fact.pairs.3.ski` | S | 6 | 99 | 938 | 244 | 3.8 | aviary |
+| `c.fact.pairs.3.bckw` | S | 6 | 69 | 570 |  |  | aviary |
+| `c.fact.pairs.5.ski` | M | 120 | 109 | 19,702 | 1,201 | 16.4 | aviary |
+| `c.fact.pairs.5.bckw` | M | 120 | 77 | 11,958 |  |  | aviary |
+| `c.fact.pairs.7.ski` | M | 5,040 | 119 | 829,210 | 36,556 | 22.7 | avon-copy + mini |
+| `c.fact.y.3.ski` | S | 6 | 107 | 4,147 | 1,026 | 4.0 | aviary |
+| `c.fact.y.3.bckw` | S | 6 | 106 | 2,642 |  |  | aviary |
+| `c.fact.y.5.ski` | M | 120 | 117 | 197,873 | 32,541 | 6.1 | avon-copy + mini |
+| `c.fact.y.7.ski` | L | 5,040 | 127 | 14,688,233 | 2,560,450 | 5.7 | avon-copy + mini |
+| `c.fib.5.ski` | S | 5 | 102 | 614 | 314 | 2.0 | aviary |
+| `c.fib.5.bckw` | S | 5 | 73 | 389 |  |  | aviary |
+| `c.fib.10.ski` | S | 55 | 127 | 7,210 | 1,258 | 5.7 | aviary |
+| `c.fib.10.bckw` | S | 55 | 93 | 4,591 |  |  | aviary |
+| `c.fib.20.ski` | M | 6,765 | 177 | 891,522 | 92,791 | 9.6 | avon-copy + mini |
+| `c.ack.1.2.ski` | XS | 4 | 35 | 46 | 43 | 1.1 | aviary |
+| `c.ack.1.2.bckw` | XS | 4 | 28 | 36 |  |  | aviary |
+| `c.ack.2.2.ski` | S | 7 | 40 | 164 | 121 | 1.4 | aviary |
+| `c.ack.2.2.bckw` | S | 7 | 28 | 120 |  |  | aviary |
+| `c.ack.2.10.ski` | S | 23 | 80 | 1,180 | 809 | 1.5 | aviary |
+| `c.ack.2.10.bckw` | S | 23 | 60 | 856 |  |  | aviary |
+| `c.ack.3.1.ski` | S | 13 | 40 | 538 | 347 | 1.6 | aviary |
+| `c.ack.3.1.bckw` | S | 13 | 32 | 397 |  |  | aviary |
+| `c.ack.3.3.ski` | S | 61 | 50 | 9,318 | 6,321 | 1.5 | avon-copy + mini |
+| `c.ack.3.3.bckw` | S | 61 | 36 | 6,703 |  |  | aviary |
+| `c.ack.3.5.ski` | M | 253 | 60 | 151,922 | 106,999 | 1.4 | avon-copy + mini |
+| `c.ack.3.7.ski` | L | 1,021 | 70 | 2,442,622 | 1,738,493 | 1.4 | avon-copy + mini |
+| `c.collatz.1.ski` | XS | 0 | 221 | 76 | 76 | 1.0 | aviary |
+| `c.collatz.1.bckw` | XS | 0 | 192 | 83 |  |  | aviary |
+| `c.collatz.2.ski` | S | 1 | 226 | 302 | 294 | 1.0 | aviary |
+| `c.collatz.2.bckw` | S | 1 | 192 | 255 |  |  | aviary |
+| `c.collatz.3.ski` | M | 7 | 231 | 80,193 | 2,638 | 30.4 | avon-copy + mini |
+| `c.collatz.6.ski` | M | 8 | 246 | 347,482 | 3,030 | 114.7 | avon-copy + mini |
+| `c.collatz.7.ski` | XL | 16 | 251 | 690,875,589 | 11,534 | 59,899.0 | avon-copy alone |
+| `c.collatz.9.ski` | M (share) | 19 | 261 |  | 13,613 |  | none (share only) (copy mode not pinned: out of fuel at 1,000,000,000 contractions) |
+| `c.collatz.27.ski` | L (share) | 111 | 351 |  | 3,192,335 |  | none (share only) (copy mode not pinned: out of fuel at 1,000,000,000 contractions) |
+| `c.exp.2.20.ski` | L | 1,048,576 | 109 | 10,485,752 | 2,097,331 | 5.0 | avon-copy + mini |
+| `c.fact.y.8.ski` | XL | 40,320 | 132 | 147,581,780 | 26,493,775 | 5.6 | avon-copy alone |
+| `c.fib.25.ski` | L | 75,025 | 202 | 9,887,524 | 1,018,819 | 9.7 | avon-copy + mini |
+| `c.ack.3.9.ski` | L | 4,093 | 80 | 39,130,506 | 27,925,251 | 1.4 | avon-copy alone |
+| `c.ack.3.10.ski` | XL | 8,189 | 85 | 156,554,640 | 111,774,470 | 1.4 | avon-copy alone |
+| `c.ack.3.11.ski` | XL (share) | 16,381 | 90 |  | 447,245,065 |  | none (share only) (copy mode not run: Avon copy peaks at 3.87 GB RSS (626,283,926 contractions, Avon e69cf59)) |
+| `c.collatz.97.ski` | L (share) | 118 | 701 |  | 3,251,298 |  | none (share only) (copy mode not pinned: out of fuel at 1,000,000,000 contractions) |
+| `c.collatz.871.ski` | L (share) | 178 | 4,571 |  | 51,197,186 |  | none (share only) (copy mode not pinned: out of fuel at 1,000,000,000 contractions) |
+
+## Timing, family C
+
+3 interleaved runs per engine; CPU = user + sys seconds of the whole
+process for Avon (parse, reduce, print), of the reduction alone for mini.
+Avon `avon 0.1.0` sha256 `91a03aac2701b9ff`.
+Rate = contractions / median CPU second, shown only for rows of at least 10^6
+contractions (below that, process start and parsing dominate). For Avon, CPU
+covers the avon process and the `/usr/bin/time` wrapper that reports peak RSS.
+Single machine, not a controlled lab. Load average not recorded for this run.
+
+| row | engine | contractions | median CPU s | min CPU s | peak RSS MB | Mcontr/s | wrong |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `c.add.1000.1000.ski` | avon-share | 10,003 | 0.0228 | 0.0210 | 2 | — | 0 |
+| `c.add.1000.1000.ski` | avon-copy | 10,003 | 0.0222 | 0.0220 | 2 | — | 0 |
+| `c.add.1000.1000.ski` | mini | 10,003 | 0.0084 | 0.0082 | n/a | — | 0 |
+| `c.mul.100.100.ski` | avon-share | 20,598 | 0.0214 | 0.0200 | 2 | — | 0 |
+| `c.mul.100.100.ski` | avon-copy | 50,100 | 0.0216 | 0.0205 | 3 | — | 0 |
+| `c.mul.100.100.ski` | mini | 50,100 | 0.0322 | 0.0314 | n/a | — | 0 |
+| `c.exp.2.12.ski` | avon-share | 8,299 | 0.0211 | 0.0210 | 2 | — | 0 |
+| `c.exp.2.12.ski` | avon-copy | 40,952 | 0.0210 | 0.0208 | 2 | — | 0 |
+| `c.exp.2.12.ski` | mini | 40,952 | 0.0228 | 0.0227 | n/a | — | 0 |
+| `c.exp.2.16.ski` | avon-share | 131,215 | 0.0257 | 0.0251 | 4 | — | 0 |
+| `c.exp.2.16.ski` | avon-copy | 655,352 | 0.0270 | 0.0263 | 11 | — | 0 |
+| `c.exp.2.16.ski` | mini | 655,352 | 0.3723 | 0.3715 | n/a | — | 0 |
+| `c.tower.4.ski` | avon-share | 131,200 | 0.0257 | 0.0247 | 4 | — | 0 |
+| `c.tower.4.ski` | avon-copy | 643,805 | 0.0255 | 0.0253 | 11 | — | 0 |
+| `c.tower.4.ski` | mini | 643,805 | 0.3638 | 0.3578 | n/a | — | 0 |
+| `c.sub.100.30.ski` | avon-share | 27,529 | 0.0219 | 0.0216 | 2 | — | 0 |
+| `c.sub.100.30.ski` | avon-copy | 45,303 | 0.0213 | 0.0211 | 2 | — | 0 |
+| `c.sub.100.30.ski` | mini | 45,303 | 0.0536 | 0.0528 | n/a | — | 0 |
+| `c.sub.100.30.bckw` | mini | 21,542 | 0.0244 | 0.0238 | n/a | — | 0 |
+| `c.fact.pairs.5.ski` | avon-share | 1,201 | 0.0202 | 0.0199 | 2 | — | 0 |
+| `c.fact.pairs.5.ski` | avon-copy | 19,702 | 0.0197 | 0.0196 | 2 | — | 0 |
+| `c.fact.pairs.5.ski` | mini | 19,702 | 0.0105 | 0.0104 | n/a | — | 0 |
+| `c.fact.pairs.5.bckw` | mini | 11,958 | 0.0059 | 0.0058 | n/a | — | 0 |
+| `c.fact.pairs.7.ski` | avon-share | 36,556 | 0.0219 | 0.0211 | 2 | — | 0 |
+| `c.fact.pairs.7.ski` | avon-copy | 829,210 | 0.0252 | 0.0248 | 4 | — | 0 |
+| `c.fact.pairs.7.ski` | mini | 829,210 | 0.4465 | 0.4393 | n/a | — | 0 |
+| `c.fact.y.5.ski` | avon-share | 32,541 | 0.0202 | 0.0198 | 2 | — | 0 |
+| `c.fact.y.5.ski` | avon-copy | 197,873 | 0.0210 | 0.0206 | 2 | — | 0 |
+| `c.fact.y.5.ski` | mini | 197,873 | 0.1275 | 0.1256 | n/a | — | 0 |
+| `c.fact.y.7.ski` | avon-share | 2,560,450 | 0.0835 | 0.0800 | 4 | 30.7 | 0 |
+| `c.fact.y.7.ski` | avon-copy | 14,688,233 | 0.1292 | 0.1107 | 72 | 113.7 | 0 |
+| `c.fib.20.ski` | avon-share | 92,791 | 0.0222 | 0.0220 | 2 | — | 0 |
+| `c.fib.20.ski` | avon-copy | 891,522 | 0.0245 | 0.0241 | 3 | — | 0 |
+| `c.fib.20.ski` | mini | 891,522 | 0.4639 | 0.4617 | n/a | — | 0 |
+| `c.ack.3.5.ski` | avon-share | 106,999 | 0.0223 | 0.0215 | 3 | — | 0 |
+| `c.ack.3.5.ski` | avon-copy | 151,922 | 0.0209 | 0.0208 | 2 | — | 0 |
+| `c.ack.3.5.ski` | mini | 151,922 | 0.6970 | 0.6961 | n/a | — | 0 |
+| `c.ack.3.7.ski` | avon-share | 1,738,493 | 0.0707 | 0.0646 | 15 | 24.6 | 0 |
+| `c.ack.3.7.ski` | avon-copy | 2,442,622 | 0.0326 | 0.0304 | 18 | 75.0 | 0 |
+| `c.ack.3.7.ski` | mini | 2,442,622 | 44.2044 | 43.9845 | n/a | 0.1 | 0 |
+| `c.collatz.3.ski` | avon-share | 2,638 | 0.0186 | 0.0185 | 2 | — | 0 |
+| `c.collatz.3.ski` | avon-copy | 80,193 | 0.0189 | 0.0187 | 2 | — | 0 |
+| `c.collatz.3.ski` | mini | 80,193 | 0.1245 | 0.1223 | n/a | — | 0 |
+| `c.collatz.6.ski` | avon-share | 3,030 | 0.0186 | 0.0182 | 2 | — | 0 |
+| `c.collatz.6.ski` | avon-copy | 347,482 | 0.0197 | 0.0196 | 3 | — | 0 |
+| `c.collatz.6.ski` | mini | 347,482 | 0.6321 | 0.6273 | n/a | — | 0 |
+| `c.collatz.7.ski` | avon-share | 11,534 | 0.0187 | 0.0184 | 2 | — | 0 |
+| `c.collatz.7.ski` | avon-copy | 690,875,589 | 2.8651 | 2.8564 | 4 | 241.1 | 0 |
+| `c.collatz.9.ski` | avon-share | 13,613 | 0.0197 | 0.0193 | 2 | — | 0 |
+| `c.collatz.27.ski` | avon-share | 3,192,335 | 0.0869 | 0.0865 | 7 | 36.7 | 0 |
+| `c.exp.2.20.ski` | avon-share | 2,097,331 | 0.1020 | 0.1013 | 42 | 20.6 | 0 |
+| `c.exp.2.20.ski` | avon-copy | 10,485,752 | 0.1361 | 0.1347 | 160 | 77.1 | 0 |
+| `c.fact.y.8.ski` | avon-share | 26,493,775 | 0.5494 | 0.5456 | 6 | 48.2 | 0 |
+| `c.fact.y.8.ski` | avon-copy | 147,581,780 | 0.8047 | 0.7804 | 677 | 183.4 | 0 |
+| `c.fib.25.ski` | avon-share | 1,018,819 | 0.0440 | 0.0414 | 7 | 23.2 | 0 |
+| `c.fib.25.ski` | avon-copy | 9,887,524 | 0.0882 | 0.0834 | 33 | 112.1 | 0 |
+| `c.ack.3.9.ski` | avon-share | 27,925,251 | 0.7362 | 0.6899 | 122 | 37.9 | 0 |
+| `c.ack.3.9.ski` | avon-copy | 39,130,506 | 0.3661 | 0.3169 | 234 | 106.9 | 0 |
+| `c.ack.3.10.ski` | avon-share | 111,774,470 | 2.3524 | 2.3512 | 445 | 47.5 | 0 |
+| `c.ack.3.10.ski` | avon-copy | 156,554,640 | 1.1168 | 1.1079 | 925 | 140.2 | 0 |
+| `c.ack.3.11.ski` | avon-share | 447,245,065 | 11.8046 | 10.6175 | 1724 | 37.9 | 0 |
+| `c.collatz.97.ski` | avon-share | 3,251,298 | 0.1103 | 0.1053 | 8 | 29.5 | 0 |
+| `c.collatz.871.ski` | avon-share | 51,197,186 | 1.4070 | 1.2000 | 61 | 36.4 | 0 |

@@ -21,12 +21,15 @@ from pathlib import Path
 from . import engines as E
 # Importing gen imports the families, whose definitions (e.g. NOT, PAIR) must be
 # registered in aviary's environment before avon_can_run/mini_can_run are asked.
-from .gen import same_nf, ROOT
+from .gen import same_nf, expected_nf, ROOT
 
 COUNTED = {"aviary", "avon-copy", "mini"}
+TIMEOUT = 600  # seconds per engine batch; a timeout fails the row
 
 
 def applicable(engine, row):
+    if "engines" in row and engine not in row["engines"]:
+        return False
     if engine == "aviary":
         return True
     if engine == "avon-share" and row["expect_src"] == "fuel-edge":
@@ -38,32 +41,97 @@ def applicable(engine, row):
     return False
 
 
+def validate(row):
+    """Problems with a manifest row itself; any problem fails the row."""
+    probs = []
+    for key in ("id", "term", "fuel", "mode", "expect", "expect_src", "pin"):
+        if key not in row:
+            probs.append(f"missing field {key!r}")
+    if probs:
+        return probs
+    if row["mode"] not in ("nf", "whnf"):
+        probs.append(f"mode {row['mode']!r} is not nf or whnf")
+    exp = row["expect"]
+    if exp.get("status") not in ("NORMAL", "WHNF", "FUEL"):
+        probs.append(f"expected status {exp.get('status')!r}")
+    try:
+        want = expected_nf(exp)
+    except ValueError as e:
+        probs.append(str(e))
+        want = None
+    if exp.get("status") == "NORMAL" and want is None:
+        probs.append("NORMAL row without an expected normal form")
+    if "engines" in row:
+        bad = [e for e in row["engines"] if e not in E.ENGINES]
+        if bad or not row["engines"]:
+            probs.append(f"engines {row['engines']!r} (known: {sorted(E.ENGINES)})")
+    if row["pin"] is None and row.get("engines") != ["avon-share"]:
+        probs.append("pin is null but the row is not share-only")
+    if not isinstance(row["fuel"], int) or row["fuel"] < 0:
+        probs.append(f"fuel {row['fuel']!r}")
+    return probs
+
+
 def check_family(fam, engines):
-    rows = [json.loads(l) for l in (ROOT / "manifests" / f"{fam}.jsonl").open()]
+    rows = []
     results, fails = [], []
     tally = Counter()
+    for n, line in enumerate((ROOT / "manifests" / f"{fam}.jsonl").open(), 1):
+        try:
+            r = json.loads(line)
+        except json.JSONDecodeError as e:
+            rec = {"id": f"{fam}:line{n}", "engine": "manifest", "ok": False,
+                   "problems": [f"bad JSON: {e}"]}
+            results.append(rec)
+            fails.append(rec)
+            continue
+        probs = validate(r)
+        if probs:
+            rec = {"id": r.get("id", f"{fam}:line{n}"), "engine": "manifest", "ok": False,
+                   "problems": probs}
+            results.append(rec)
+            fails.append(rec)
+            tally[("manifest", "fail")] += 1
+            continue
+        rows.append(r)
     for eng in engines:
         for mode in ("nf", "whnf"):
             sel = [r for r in rows if r["mode"] == mode and applicable(eng, r)]
             tally[(eng, "skip")] += sum(1 for r in rows if r["mode"] == mode) - len(sel)
             if not sel:
                 continue
-            got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"))
+            got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"),
+                                 timeout=TIMEOUT)
             for r, (status, steps, nf) in zip(sel, got):
                 exp = r["expect"]
                 probs = []
                 if status != exp["status"]:
                     probs.append(f"status {status} != {exp['status']}")
-                if exp["nf"] is not None and not same_nf(nf, exp["nf"]):
-                    probs.append(f"nf {nf!r} != {exp['nf']!r}")
-                if eng in COUNTED and steps != r["pin"]["steps"]:
+                want = expected_nf(exp)
+                if want is not None and not same_nf(nf, want):
+                    probs.append(f"nf {nf[:200]!r} != {want[:200]!r}")
+                if eng in COUNTED and r["pin"] is not None and steps != r["pin"]["steps"]:
                     probs.append(f"steps {steps} != pin {r['pin']['steps']}")
+                if eng == "avon-share" and r.get("share_ref") is not None and steps != r["share_ref"]:
+                    # A regression pin on Avon's own share count, not a correctness claim.
+                    probs.append(f"share steps {steps} != share_ref {r['share_ref']} (regression)")
                 tally[(eng, "fail" if probs else "pass")] += 1
                 rec = {"id": r["id"], "engine": eng, "status": status, "steps": steps,
-                       "pin": r["pin"]["steps"], "ok": not probs, "problems": probs}
+                       "pin": r["pin"] and r["pin"]["steps"], "ok": not probs, "problems": probs}
                 results.append(rec)
                 if probs:
                     fails.append(rec)
+    # A row that none of the selected engines ran was checked by nothing; when
+    # every engine is selected, that is a failure, not a skip.
+    if set(engines) == set(E.ENGINES):
+        ran = {x["id"] for x in results}
+        for r in rows:
+            if r["id"] not in ran:
+                rec = {"id": r["id"], "engine": "none", "ok": False,
+                       "problems": ["no engine can run this row"]}
+                results.append(rec)
+                fails.append(rec)
+                tally[("none", "fail")] += 1
     if "avon-share" in engines:
         # Fuel edges on share mode's own counts: c -> FUEL, c + 1 -> its status.
         base = {r["id"]: r for r in rows}
@@ -74,13 +142,13 @@ def check_family(fam, engines):
             jobs = [(base[x["id"]]["term"], x["steps"] + d) for x in sel for d in (0, 1)]
             if not jobs:
                 continue
-            got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"))
+            got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"), timeout=TIMEOUT)
             for i, x in enumerate(sel):
                 (s0, n0, _), (s1, n1, nf1) = got[2 * i], got[2 * i + 1]
                 probs = []
-                exp_nf = base[x["id"]]["expect"]["nf"]
+                exp_nf = expected_nf(base[x["id"]]["expect"])
                 if exp_nf is not None and not same_nf(nf1, exp_nf):
-                    probs.append(f"share fuel=c+1: nf {nf1!r} != {exp_nf!r}")
+                    probs.append(f"share fuel=c+1: nf {nf1[:200]!r} != {exp_nf[:200]!r}")
                 if s0 != "FUEL":
                     probs.append(f"share fuel=c: {s0} != FUEL")
                 if (s1, n1) != (x["status"], x["steps"]):
@@ -109,7 +177,7 @@ def main(argv):
             engines = next(it).split(",")
         else:
             fams.append(a)
-    fams = fams or ["A", "B"]
+    fams = fams or ["A", "B", "C"]
     unknown = [e for e in engines if e not in E.ENGINES]
     if unknown:
         raise SystemExit(f"unknown engine(s) {unknown}; choose from {sorted(E.ENGINES)}")
@@ -120,6 +188,9 @@ def main(argv):
         for eng in engines:
             p, f, k = tally[(eng, "pass")], tally[(eng, "fail")], tally[(eng, "skip")]
             print(f"   {eng:11s} {p:5d} pass {f:4d} fail {k:5d} rows not applicable")
+        for extra in ("manifest", "none"):
+            if tally[(extra, "fail")]:
+                print(f"   {extra:11s} {tally[(extra, 'fail')]:4d} rows failed before any engine ran them")
         for rec in fails[:40]:
             print(f"   FAIL {rec['engine']}: {rec['id']}: {'; '.join(rec['problems'])}")
         if len(fails) > 40:
