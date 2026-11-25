@@ -60,8 +60,13 @@ def validate(row):
     except ValueError as e:
         probs.append(str(e))
         want = None
-    if exp.get("status") == "NORMAL" and want is None:
-        probs.append("NORMAL row without an expected normal form")
+    if exp.get("status") == "NORMAL" and want is None and exp.get("leaves") is None:
+        probs.append("NORMAL row without an expected normal form or leaf count")
+    lv = exp.get("leaves")
+    if lv is not None and (not isinstance(lv, int) or isinstance(lv, bool) or lv < 1):
+        probs.append(f"leaves must be a positive integer, got {lv!r}")
+    if lv is not None and row["mode"] != "nf":
+        probs.append("a leaf count is of a normal form: mode must be nf")
     if "engines" in row:
         bad = [e for e in row["engines"] if e not in E.ENGINES]
         if bad or not row["engines"]:
