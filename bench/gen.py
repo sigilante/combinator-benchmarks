@@ -27,10 +27,10 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d4_reduceron, d5_own, g_busybeaver
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d3_skinock, d4_reduceron, d5_own, g_busybeaver
 
 FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack,
-            "D2": d2_skilark, "D4": d4_reduceron,
+            "D2": d2_skilark, "D3": d3_skinock, "D4": d4_reduceron,
             "G": g_busybeaver}
 if (Path(__file__).resolve().parent.parent / "data" / "d5").exists():
     FAMILIES["D5"] = d5_own  # only once vendored: python3 -m bench.vendor_d2 --own

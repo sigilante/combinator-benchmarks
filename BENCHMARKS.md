@@ -2280,6 +2280,34 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 | `d2.symbols.s9.c` | S | WHNF | 69,281 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s9.c.ctor` | S | WHNF, head `r_RVal` | 69,284 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 
+## Family D3
+
+24 rows (12 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+
+| engine | checks | pass | fail |
+|---|---:|---:|---:|
+| avon-copy | 24 | 24 | 0 |
+| avon-share | 24 | 24 | 0 |
+| mini | 20 | 20 | 0 |
+
+`copy` is the pinned normal-order count (asserted); `share` is Avon's
+graph-reduction count (held as a regression pin). Size is in leaves.
+
+| row | tier | expected | size | copy | share | copy / share | pinned by |
+|---|---|---|---:|---:|---:|---:|---|
+| `d3.dec.5` | M | NORMAL | 3,594,212 | 13,085 | 10,240 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d3.dec.20` | M | NORMAL | 3,594,260 | 49,506 | 35,614 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d3.dec.100` | M | NORMAL | 3,594,307 | 264,327 | 170,765 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d3.add.3_4` | M | NORMAL | 5,659,815 | 26,666 | 20,727 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d3.add.20_30` | M | NORMAL | 5,659,932 | 566,024 | 400,482 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d3.factorial.3` | M | NORMAL | 45,990,563 | 142,451 | 106,482 | 1.34 | avon-copy@e69cf59 |
+| `d3.factorial.5` | L | NORMAL | 45,990,587 | 7,356,413 | 5,106,727 | 1.44 | avon-copy@e69cf59 |
+| `d3.fibonacci.5` | M | NORMAL | 21,270,981 | 186,837 | 137,698 | 1.36 | avon-copy@e69cf59 |
+| `d3.fibonacci.8` | L | NORMAL | 21,271,006 | 1,408,277 | 1,018,192 | 1.38 | avon-copy@e69cf59 |
+| `d3.ackermann.1_2` | M | NORMAL | 4,899,864 | 29,626 | 22,830 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d3.ackermann.2_2` | M | NORMAL | 4,899,793 | 174,388 | 129,356 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d3.bigslot.0` | L | NORMAL | 10,651,157 | 13,275,695 | 8,772,363 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+
 ## Family D4
 
 20 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).

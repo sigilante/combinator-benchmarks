@@ -344,6 +344,11 @@ def run_mini(jobs, whnf=False):
 #: more than AVIARY_MAX_LEAVES leaves (gen and check both).
 AVIARY_MAX_LEAVES = 1_500_000
 
+#: mini parses the whole term into Python tuples in its child process: D2's
+#: largest, 19.5M leaves, ran with the check at a 2.5 GB peak. Larger terms
+#: (D3's factorial and fibonacci, 21M to 46M leaves) are not run on mini.
+MINI_MAX_LEAVES = 20_000_000
+
 
 def leaves(text: str) -> int:
     """Leaf count of a printed term (its atoms), without parsing it."""
@@ -357,7 +362,10 @@ def aviary_can_run(size: int | None) -> bool:
 
 
 def mini_can_run(text: str) -> bool:
-    """mini knows S K I B C W; other bird names would be silently free atoms."""
+    """mini knows S K I B C W; other bird names would be silently free atoms.
+    Terms of more than MINI_MAX_LEAVES leaves are refused too."""
+    if len(text) > 2 * MINI_MAX_LEAVES and leaves(text) > MINI_MAX_LEAVES:
+        return False  # (a leaf takes at least two characters, so short texts skip the count)
     from aviary_kernel.birds import BY_NAME
     for tok in text.replace("(", " ").replace(")", " ").split():
         if tok in mini.RULES:

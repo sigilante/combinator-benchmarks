@@ -58,6 +58,21 @@ class Compressor:
     def add(self, name, text):
         self.roots[name] = _parse_interned(text, self.table)
 
+    def node(self, f, a):
+        """The interned application of two interned nodes (or leaf names):
+        for building a term from a graph without printing it."""
+        f, a = self.table.setdefault(f, f) if isinstance(f, str) else f, \
+            self.table.setdefault(a, a) if isinstance(a, str) else a
+        key = (id(f), id(a))
+        n = self.table.get(key)
+        if n is None:
+            n = self.table[key] = (f, a)
+        return n
+
+    def add_node(self, name, root):
+        """Add a term already interned through `node` (or `add`'s table)."""
+        self.roots[name] = root
+
     def finish(self):
         return _compress_roots(self.roots)
 
