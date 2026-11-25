@@ -20,8 +20,10 @@ SKIlark pin: both rows are pinned by the auto policy, and their expected
 outcome comes from SKIlark's Joy reference model (`expect_src: "joyref"`).
 
 aviary is skipped (`skip_aviary`) for interpreted runs and for compiled runs
-of over 20,000 contractions: it rewrites the whole tree per step and cannot
-finish them in time.
+of over 20,000 contractions (in D5, interpreted runs only: its compiled runs
+have no count to go by, so aviary is tried within its timeout): it rewrites
+the whole tree per step and cannot finish them in time. D5 rows' fuel is then
+set by gen from the pin, not CAP.
 """
 
 from __future__ import annotations
