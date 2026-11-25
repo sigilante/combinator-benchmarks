@@ -181,6 +181,27 @@ marker head. The stack an `RVal` carries is recorded in `note`, not checked.
 aviary is skipped (`skip_aviary`) on interpreted runs and on compiled runs of
 over 20,000 contractions.
 
+## Family D3: Hoon programs through Nock (SKInock)
+
+urbit/benchmark's Hoon-compiled programs (dec, add, factorial, fibonacci,
+ackermann, bigslot; MIT), compiled from Nock to SKI by SKInock (MIT) at the
+scaled-down subjects of SKInock's own benchmark (`skinock.bench.SCALED`): 12
+runs. `python3 -m bench.vendor_d3` builds each run's term straight from
+SKInock's term graph into the shared-subterm store (`data/d3/`, about 16 KB
+compressed), since printed the terms run from 12 to 162 MB (3.6M to 46M
+leaves). Each row reduces `show main` to normal form: `main` is the compiled
+program on its subject, and SKInock's `show` rebuilds the product noun as a
+first-order term (`matom`, `mcell`, and bits as `mcons mt|mf ... mnil`, least
+significant first), so the row compares the whole product. The expected normal
+form is printed from the product of SKInock's Python Nock evaluator
+(`expect_src: "nock-oracle"`). The evaluator and the compiler share SKInock's
+`nock` module (noun types, formula checks) and take the same formula and
+subject; what is independent is the evaluation, Nock's step rules against SKI
+reduction of the compiled term. Rows are pinned by
+the auto policy: avon-copy pins all 12 (13k to 13.3M contractions), mini
+confirms the 8 within its size limit (all but factorial and fibonacci), and
+aviary runs none (all are past its limit).
+
 ## Family D4: the Reduceron benchmarks
 
 Naylor and Runciman's OrdList, Queens2, Taut, Clausify and PermSort (*The
@@ -305,7 +326,9 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
   as for D0's targets); their constructor rows carry an `expect.head`.
 - **Size limits.** aviary is not run on terms of more than 1,500,000 leaves
   (`engines.AVIARY_MAX_LEAVES`; a 5.2M-leaf term passed 2.8 GB), in `gen` or
-  `check`; this is separate from a family's `skip_aviary`. mini and aviary
+  `check`; this is separate from a family's `skip_aviary`. mini is not run on
+  terms of more than 20,000,000 leaves (`engines.MINI_MAX_LEAVES`; D2's largest,
+  19.5M, ran at a 2.5 GB peak). mini and aviary
   reduce terms of more than 100,000 characters in a child process
   (`engines.ISOLATE_ABOVE`), whose memory is freed when it exits; a child
   that fails gives status CRASHED, a failure. `bench.timing` leaves mini out
@@ -331,7 +354,7 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.leaves` | family G: the normal form must print whole and have exactly this many leaves (mode nf; also on `.fuel+0` rows, whose FUEL result is that normal form) |
 | `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
-| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `fuel-edge` (derived from a pin) |
+| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `nock-oracle` (SKInock's Python Nock evaluator, by Nock's step rules; D3), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
