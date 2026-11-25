@@ -60,8 +60,8 @@ def validate(row):
     except ValueError as e:
         probs.append(str(e))
         want = None
-    if exp.get("status") == "NORMAL" and want is None:
-        probs.append("NORMAL row without an expected normal form")
+    if exp.get("status") == "NORMAL" and want is None and exp.get("leaves") is None:
+        probs.append("NORMAL row without an expected normal form or leaf count")
     if "engines" in row:
         bad = [e for e in row["engines"] if e not in E.ENGINES]
         if bad or not row["engines"]:

@@ -243,6 +243,23 @@ alone runs them, and its count is the row's share reference. Their `.ctor` rows 
 certify the value (head `r_RVal`), on that one engine. `collatz5` is small enough
 for copy mode and mini.
 
+## Family G: busy-beaver champions
+
+The champion terms of the BusyBeaverWiki page *SKI Calculus*
+(<https://wiki.bbchallenge.org/wiki/SKI_Calculus>, oldid 10480, CC BY 4.0;
+`CHAMPIONS` in `bench/families/g_busybeaver.py`). For each n the page gives the
+largest normal form Xi_0(n) of a terminating term of n combinators and a term
+that reaches it. The page does not say how it measures a normal form; the leaf
+count matches every value checked here, so each row expects the champion's
+normal form to have exactly the page's value in leaves (`expect.leaves`,
+`expect_src: "corpus"`). This is an expected value from outside the suite: no
+engine of ours produced it. Rows: the S, K, I table for n = 5 to 11 (6 to 1,563
+leaves), the S-and-K table where it differs, n = 6 and 9 to 13 (10 to 7,811),
+and the BCKW table for n = 4 and 5 (11 and 47; aviary and mini only). The
+champions for n <= 4 are already normal; beyond the listed n the values
+(2^2^513 and up) cannot be reached. All rows are cheap (at most 1,561 copy-mode
+contractions), so this is a correctness family.
+
 ## Timing
 
     python3 -m bench.timing C --runs 3     # tiers M, L, XL
@@ -309,6 +326,7 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.status` | `NORMAL`, `WHNF` or `FUEL` |
 | `expect.nf` | expected normal form, or null (check status and count only) |
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
+| `expect.leaves` | family G: the normal form must print whole and have exactly this many leaves |
 | `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
 | `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `fuel-edge` (derived from a pin) |

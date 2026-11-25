@@ -27,10 +27,11 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d4_reduceron, d5_own
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d4_reduceron, d5_own, g_busybeaver
 
 FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack,
-            "D2": d2_skilark, "D4": d4_reduceron}
+            "D2": d2_skilark, "D4": d4_reduceron,
+            "G": g_busybeaver}
 if (Path(__file__).resolve().parent.parent / "data" / "d5").exists():
     FAMILIES["D5"] = d5_own  # only once vendored: python3 -m bench.vendor_d2 --own
 
@@ -53,8 +54,9 @@ def tier(steps):
 
 def print_budget(r):
     """How much of a result a row needs printed: all of it to compare a normal
-    form, else only enough for the status line and the head."""
-    return E.AVON_PRINT_BUDGET if expected_nf(r["expect"]) is not None else E.SMALL_PRINT_BUDGET
+    form or count its leaves, else only enough for the status line and the head."""
+    whole = expected_nf(r["expect"]) is not None or r["expect"].get("leaves") is not None
+    return E.AVON_PRINT_BUDGET if whole else E.SMALL_PRINT_BUDGET
 
 
 def run1(engine, r, fuel, timeout=None):
@@ -201,6 +203,11 @@ def outcome_problems(expect: dict, status: str, nf: str) -> list:
         probs.append(f"nf {nf[:200]!r} != {want[:200]!r}")
     if expect.get("head") is not None and head_of(nf) != expect["head"]:
         probs.append(f"head {head_of(nf)!r} != {expect['head']!r}")
+    if expect.get("leaves") is not None:  # the size of the result, not the result (family G)
+        if nf is None or nf.endswith("..."):
+            probs.append("result not printed whole, so its leaves cannot be counted")
+        elif E.leaves(nf) != expect["leaves"]:
+            probs.append(f"leaves {E.leaves(nf)} != {expect['leaves']}")
     return probs
 
 

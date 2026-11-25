@@ -166,6 +166,17 @@ def main():
         if not ok:
             survivors.append(label)
 
+    # Family G's expectation is a leaf count: a wrong count, or a result cut
+    # off before it could be counted, must fail.
+    from .gen import outcome_problems
+    lv = {"status": "NORMAL", "nf": None, "leaves": 6}
+    for ok, label in ((not outcome_problems(lv, "NORMAL", "S S (S S) (S S)"), "leaf count 6 passes"),
+                      (bool(outcome_problems(lv, "NORMAL", "S S (S S) S")), "leaf count 5 != 6 fails"),
+                      (bool(outcome_problems(lv, "NORMAL", "S S (S S) ...")), "a cut result fails")):
+        print(f"  {'ok' if ok else 'FAIL':>4}      {label}")
+        if not ok:
+            survivors.append(label)
+
     # Leave results/ as a clean run would.
     for f in ("A", "B"):
         check.check_family(f, list(check.E.ENGINES))
