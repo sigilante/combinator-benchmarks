@@ -2280,6 +2280,74 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 | `d2.symbols.s9.c` | S | WHNF | 69,281 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s9.c.ctor` | S | WHNF, head `r_RVal` | 69,284 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 
+## Family D5
+
+52 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+
+| engine | checks | pass | fail |
+|---|---:|---:|---:|
+| avon-copy | 36 | 36 | 0 |
+| avon-share | 104 | 104 | 0 |
+| mini | 24 | 24 | 0 |
+
+`copy` is the pinned normal-order count (asserted); `share` is Avon's
+graph-reduction count (held as a regression pin). Size is in leaves.
+
+| row | tier | expected | size | copy | share | copy / share | pinned by |
+|---|---|---|---:|---:|---:|---:|---|
+| `d5.own.ack11.i` | M | WHNF | 110,749 | 366,259 | 256,462 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack11.i.ctor` | M | WHNF, head `r_RVal` | 110,753 | 366,276 | 256,479 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack11.c` | M | WHNF | 231,375 | 128,509 | 96,413 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack11.c.ctor` | M | WHNF, head `r_RVal` | 231,378 | 128,521 | 96,425 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.i` | L | WHNF | 110,797 | 3,493,983 | 1,439,218 | 2.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.i.ctor` | L | WHNF, head `r_RVal` | 110,801 | 3,494,000 | 1,439,235 | 2.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.c` | M | WHNF | 231,423 | 875,554 | 495,567 | 1.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.c.ctor` | M | WHNF, head `r_RVal` | 231,426 | 875,566 | 495,579 | 1.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.i` | L | WHNF | 110,821 | 7,262,863 | 2,311,404 | 3.14 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.i.ctor` | L | WHNF, head `r_RVal` | 110,825 | 7,262,880 | 2,311,421 | 3.14 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.c` | L | WHNF | 231,447 | 1,500,677 | 773,684 | 1.94 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.c.ctor` | L | WHNF, head `r_RVal` | 231,450 | 1,500,689 | 773,696 | 1.94 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack32.i` | XL | WHNF | 110,981 | 680,063,388 | 27,793,952 | 24.47 | avon-copy@e69cf59 |
+| `d5.own.ack32.i.ctor` | XL | WHNF, head `r_RVal` | 110,985 | 680,063,405 | 27,793,969 | 24.47 | avon-copy@e69cf59 |
+| `d5.own.ack32.c` | L | WHNF | 231,607 | 59,516,399 | 8,529,021 | 6.98 | avon-copy@e69cf59 |
+| `d5.own.ack32.c.ctor` | L | WHNF, head `r_RVal` | 231,610 | 59,516,411 | 8,529,033 | 6.98 | avon-copy@e69cf59 |
+| `d5.own.collatz27.i` | L | WHNF | 103,237 |  | 34,290,950 |  | none (share only) |
+| `d5.own.collatz27.i.ctor` | L | WHNF, head `r_RVal` | 103,241 |  | 34,290,967 |  | none (share only) |
+| `d5.own.collatz27.c` | L | WHNF | 41,085 |  | 26,841,318 |  | none (share only) |
+| `d5.own.collatz27.c.ctor` | L | WHNF, head `r_RVal` | 41,088 |  | 26,841,330 |  | none (share only) |
+| `d5.own.collatz5.i` | L | WHNF | 102,213 | 2,265,139 | 474,523 | 4.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz5.i.ctor` | L | WHNF, head `r_RVal` | 102,217 | 2,265,156 | 474,540 | 4.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz5.c` | L | WHNF | 40,061 | 1,295,123 | 74,467 | 17.39 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz5.c.ctor` | L | WHNF, head `r_RVal` | 40,064 | 1,295,135 | 74,479 | 17.39 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz6.i` | L | WHNF | 102,245 | 40,048,782 | 708,511 | 56.53 | avon-copy@e69cf59 |
+| `d5.own.collatz6.i.ctor` | L | WHNF, head `r_RVal` | 102,249 | 40,048,799 | 708,528 | 56.52 | avon-copy@e69cf59 |
+| `d5.own.collatz6.c` | L | WHNF | 40,093 | 31,830,446 | 110,033 | 289.28 | avon-copy@e69cf59 |
+| `d5.own.collatz6.c.ctor` | L | WHNF, head `r_RVal` | 40,096 | 31,830,458 | 110,045 | 289.25 | avon-copy@e69cf59 |
+| `d5.own.collatz7.i` | L | WHNF | 102,317 |  | 1,382,530 |  | none (share only) |
+| `d5.own.collatz7.i.ctor` | L | WHNF, head `r_RVal` | 102,321 |  | 1,382,547 |  | none (share only) |
+| `d5.own.collatz7.c` | M | WHNF | 40,165 |  | 252,174 |  | none (share only) |
+| `d5.own.collatz7.c.ctor` | M | WHNF, head `r_RVal` | 40,168 |  | 252,186 |  | none (share only) |
+| `d5.own.collatz9.i` | L | WHNF | 102,357 |  | 1,624,637 |  | none (share only) |
+| `d5.own.collatz9.i.ctor` | L | WHNF, head `r_RVal` | 102,361 |  | 1,624,654 |  | none (share only) |
+| `d5.own.collatz9.c` | M | WHNF | 40,205 |  | 295,763 |  | none (share only) |
+| `d5.own.collatz9.c.ctor` | M | WHNF, head `r_RVal` | 40,208 |  | 295,775 |  | none (share only) |
+| `d5.own.tak1284.i` | XL | WHNF | 120,928 |  | 114,113,213 |  | none (share only) |
+| `d5.own.tak1284.i.ctor` | XL | WHNF, head `r_RVal` | 120,932 |  | 114,113,230 |  | none (share only) |
+| `d5.own.tak1284.c` | L | WHNF | 1,086,465 | 90,757,450 | 37,514,773 | 2.42 | avon-copy@e69cf59 |
+| `d5.own.tak1284.c.ctor` | L | WHNF, head `r_RVal` | 1,086,468 | 90,757,462 | 37,514,785 | 2.42 | avon-copy@e69cf59 |
+| `d5.own.tak321.i` | M | WHNF | 120,760 | 574,857 | 371,491 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak321.i.ctor` | M | WHNF, head `r_RVal` | 120,764 | 574,874 | 371,508 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak321.c` | M | WHNF | 1,086,297 | 211,485 | 136,265 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak321.c.ctor` | M | WHNF, head `r_RVal` | 1,086,300 | 211,497 | 136,277 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.i` | L | WHNF | 120,816 | 14,964,963 | 3,512,099 | 4.26 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.i.ctor` | L | WHNF, head `r_RVal` | 120,820 | 14,964,980 | 3,512,116 | 4.26 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.c` | L | WHNF | 1,086,353 | 2,311,022 | 1,219,574 | 1.89 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.c.ctor` | L | WHNF, head `r_RVal` | 1,086,356 | 2,311,034 | 1,219,586 | 1.89 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak840.i` | XL | WHNF | 120,800 |  | 112,593,215 |  | none (share only) |
+| `d5.own.tak840.i.ctor` | XL | WHNF, head `r_RVal` | 120,804 |  | 112,593,232 |  | none (share only) |
+| `d5.own.tak840.c` | L | WHNF | 1,086,337 | 90,226,020 | 37,186,647 | 2.43 | avon-copy@e69cf59 |
+| `d5.own.tak840.c.ctor` | L | WHNF, head `r_RVal` | 1,086,340 | 90,226,032 | 37,186,659 | 2.43 | avon-copy@e69cf59 |
+
 ## Timing, family C
 
 3 interleaved runs per engine; CPU = user + sys seconds of the whole

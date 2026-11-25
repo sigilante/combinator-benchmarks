@@ -183,12 +183,14 @@ over 20,000 contractions.
 
 ## Family D5: Joy programs of our own
 
-**Not yet vendored:** `data/d5/` does not exist yet, and `bench.gen` lists D5
-only once it does. It is to hold Joy programs written for this suite and
-compiled by SKIlark the same way (`python3 -m bench.vendor_d2 --own`; definitions and programs in
-`OWN` and `OWN_DEFS` of `bench/vendor_d2.py`): Ackermann (`ack`, (1,1) to
+Joy programs written for this suite (`data/d5/`, from
+`python3 -m bench.vendor_d2 --own`; definitions and programs in
+`OWN` and `OWN_DEFS` of `bench/vendor_d2.py`), compiled by SKIlark the same
+way as D2's: Ackermann (`ack`, (1,1) to
 (3,2)), Collatz step counts (`collatz`, from 6, 7, 9 and 27) and Takeuchi's
-`tak` ((3,2,1) to (12,8,4)). Each program checks its own answer:
+`tak` ((3,2,1) to (12,8,4)). SKIlark inlines definitions, so none calls
+itself: Collatz loops with `while`, and Ackermann and tak recurse through
+`genrec`. Each program checks its own answer:
 `<expr> <value> = [] [0 0 /] branch` ends with an empty stack when the value is
 right and errs (division by zero) when it is not. So the `.ctor` row, whose
 head must be `r_RVal`, certifies the computed value, given that SKIlark's
@@ -199,6 +201,17 @@ the Joy reference (`tests/joyref.py`; `expect_src: "joyref"`); there is no
 outside pin, so both rows are pinned by the auto policy. Rows are built as
 D2's (`d5.own.<name>.<i|c>`), except that aviary is tried (within its timeout)
 on every compiled run, since no count says in advance which are too long.
+In the current build none finishes within aviary's 10 s, so no D5 row runs on
+aviary; pins come from avon-copy, confirmed by mini where mini can run.
+
+Copy mode is the weak point here. In Collatz, `dup` copies a number not yet
+computed, and each copy recomputes it, so copy-mode counts grow exponentially with
+the step count (`collatz6.c`: 31.8M contractions copying, 110k sharing). The
+runs of collatz 7, 9 and 27 in both forms, and tak (8,4,0) and (12,8,4)
+interpreted, pass 10^9 contractions in copy mode and are not pinned; avon-share
+alone runs them, and its count is the row's share reference. Their `.ctor` rows still
+certify the value (head `r_RVal`), on that one engine. `collatz5` is small enough
+for copy mode and mini.
 
 ## Timing
 

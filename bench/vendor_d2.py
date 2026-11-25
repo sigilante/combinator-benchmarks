@@ -47,20 +47,28 @@ SET_COMPILED = {"test_words", "test_modes"}
 #: when the answer is right and errs (RErr, division by zero) when it is not,
 #: so the result constructor certifies the value. Expected outcomes come from
 #: SKIlark's model of the Joy reference, tests/joyref.py.
+#:
+#: SKIlark inlines every definition, so none may call itself: recursion is by
+#: Joy's combinators. Collatz counts steps with `while`; Ackermann and tak use
+#: `genrec`, whose fourth quotation finds the recursion `G` on top of the stack
+#: and calls it once per `dup [i] dip` (G kept) and finally by `i`.
 _DIP2 = "[[pred] dip] dip"
+_CALL = "dup [i] dip"
 OWN_DEFS = {
-    "ack": "[[[pop null] popd succ] [[null] pop pred 1 ack] "
-           "[[dup pred swap] dip pred ack ack]] cond",
-    "collatz": "[1 =] [pop 0] [[2 rem 0 =] [2 /] [3 * succ] ifte collatz succ] ifte",
+    "ack": "[pop null] [popd succ] [] "
+           f"[[pop null] [[pop pred 1] dip i] [[[dup pred swap] dip pred] dip {_CALL} i] ifte] genrec",
+    "collatz": "0 swap [1 >] [[succ] dip dup 2 rem 0 = [2 /] [3 * succ] branch] while pop",
     "tl": "[] cons cons cons",
     "tu": "uncons uncons first",
-    "tak": f"[pop >] [tl dup tu {_DIP2} tak swap dup tu rolldown {_DIP2} tak "
-           f"swap tu rollup {_DIP2} tak tak] [popd popd] ifte",
+    "tak": "[pop <=] [popd popd] [] "
+           f"[[tl dup tu {_DIP2}] dip {_CALL} [swap dup tu rolldown {_DIP2}] dip {_CALL} "
+           f"[swap tu rollup {_DIP2}] dip {_CALL} i] genrec",
 }
 OWN = {  # name: (expression, value)
     "ack11": ("1 1 ack", 3), "ack22": ("2 2 ack", 7), "ack23": ("2 3 ack", 9),
     "ack32": ("3 2 ack", 29),
-    "collatz6": ("6 collatz", 8), "collatz7": ("7 collatz", 16),
+    "collatz5": ("5 collatz", 5), "collatz6": ("6 collatz", 8),
+    "collatz7": ("7 collatz", 16),
     "collatz9": ("9 collatz", 19), "collatz27": ("27 collatz", 111),
     "tak321": ("3 2 1 tak", 2), "tak642": ("6 4 2 tak", 3),
     "tak840": ("8 4 0 tak", 1), "tak1284": ("12 8 4 tak", 5),
