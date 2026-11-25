@@ -51,7 +51,8 @@ SET_COMPILED = {"test_words", "test_modes"}
 #: SKIlark inlines every definition, so none may call itself: recursion is by
 #: Joy's combinators. Collatz counts steps with `while`; Ackermann and tak use
 #: `genrec`, whose fourth quotation finds the recursion `G` on top of the stack
-#: and calls it once per `dup [i] dip` (G kept) and finally by `i`.
+#: and calls it once per `dup [i] dip` (G kept) and finally by `i`. _DIP2 and
+#: _CALL are used only by ack and tak.
 _DIP2 = "[[pred] dip] dip"
 _CALL = "dup [i] dip"
 OWN_DEFS = {

@@ -187,8 +187,9 @@ Joy programs written for this suite (`data/d5/`, from
 `python3 -m bench.vendor_d2 --own`; definitions and programs in
 `OWN` and `OWN_DEFS` of `bench/vendor_d2.py`), compiled by SKIlark the same
 way as D2's: Ackermann (`ack`, (1,1) to
-(3,2)), Collatz step counts (`collatz`, from 6, 7, 9 and 27) and Takeuchi's
-`tak` ((3,2,1) to (12,8,4)). SKIlark inlines definitions, so none calls
+(3,2)), Collatz step counts (`collatz`, from 5, 6, 7, 9 and 27) and Takeuchi's
+`tak` ((3,2,1) to (12,8,4)). `bench.gen` lists D5 only when `data/d5/`
+exists. SKIlark inlines definitions, so none calls
 itself: Collatz loops with `while`, and Ackermann and tak recurse through
 `genrec`. Each program checks its own answer:
 `<expr> <value> = [] [0 0 /] branch` ends with an empty stack when the value is
@@ -201,14 +202,15 @@ the Joy reference (`tests/joyref.py`; `expect_src: "joyref"`); there is no
 outside pin, so both rows are pinned by the auto policy. Rows are built as
 D2's (`d5.own.<name>.<i|c>`), except that aviary is tried (within its timeout)
 on every compiled run, since no count says in advance which are too long.
-In the current build none finishes within aviary's 10 s, so no D5 row runs on
-aviary; pins come from avon-copy, confirmed by mini where mini can run.
+Interpreted runs are skipped; of the compiled runs, none finished on aviary
+within its 10 s in the current build, so no D5 row runs on aviary; pins come from avon-copy, confirmed by mini where mini can run.
 
 Copy mode is the weak point here. In Collatz, `dup` copies a number not yet
 computed, and each copy recomputes it, so copy-mode counts grow exponentially with
 the step count (`collatz6.c`: 31.8M contractions copying, 110k sharing). The
 runs of collatz 7, 9 and 27 in both forms, and tak (8,4,0) and (12,8,4)
-interpreted, pass 10^9 contractions in copy mode and are not pinned; avon-share
+interpreted, ran out of copy-mode fuel (10^9 contractions, as each row's note
+records) and are not pinned; avon-share
 alone runs them, and its count is the row's share reference. Their `.ctor` rows still
 certify the value (head `r_RVal`), on that one engine. `collatz5` is small enough
 for copy mode and mini.
@@ -285,7 +287,7 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
-| `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2) |
+| `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2, D5) |
 | `skip_aviary` | aviary cannot finish the row in time; it is not run there |
 | `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
 | `require_aviary`, `copy` | `auto_pin` inputs: drop the row unless aviary pins it; `false` = never run copy mode |
