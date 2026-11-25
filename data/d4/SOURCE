@@ -1,0 +1,4 @@
+src/*.ascii.ski: copied from Avon (github.com/sigilante/avon, MIT, LICENSE.avon)
+tests/workloads/reduceron/ at e69cf59: skijack ports of Naylor and Runciman's
+Reduceron benchmarks (JFP 2012). terms.json: compiled from them by
+bench/vendor_d4.py with skijack at ab14074.

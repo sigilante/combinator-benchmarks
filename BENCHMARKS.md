@@ -2280,6 +2280,42 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 | `d2.symbols.s9.c` | S | WHNF | 69,281 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s9.c.ctor` | S | WHNF, head `r_RVal` | 69,284 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 
+## Family D4
+
+20 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+
+| engine | checks | pass | fail |
+|---|---:|---:|---:|
+| avon-copy | 10 | 10 | 0 |
+| avon-share | 40 | 40 | 0 |
+| mini | 8 | 8 | 0 |
+
+`copy` is the pinned normal-order count (asserted); `share` is Avon's
+graph-reduction count (held as a regression pin). Size is in leaves.
+
+| row | tier | expected | size | copy | share | copy / share | pinned by |
+|---|---|---|---:|---:|---:|---:|---|
+| `d4.clausify.full.inl` | XL | WHNF | 8,346 |  | 1,104,706,541 |  | none (share only) |
+| `d4.clausify.full.noinl` | XL | WHNF | 7,466 |  | 1,101,162,615 |  | none (share only) |
+| `d4.clausify.small.inl` | XL | WHNF | 7,413 | 448,287,577 | 13,815,772 | 32.45 | avon-copy@e69cf59 |
+| `d4.clausify.small.noinl` | XL | WHNF | 6,533 | 448,934,870 | 13,771,011 | 32.60 | avon-copy@e69cf59 |
+| `d4.ordlist.full.inl` | XL | WHNF | 2,747 |  | 1,052,304,895 |  | none (share only) |
+| `d4.ordlist.full.noinl` | XL | WHNF | 1,827 |  | 1,030,065,841 |  | none (share only) |
+| `d4.ordlist.small.inl` | L | WHNF | 2,699 | 3,891,519 | 1,079,269 | 3.61 | avon-copy@e69cf59, confirmed by mini |
+| `d4.ordlist.small.noinl` | L | WHNF | 1,779 | 3,820,833 | 1,046,443 | 3.65 | avon-copy@e69cf59, confirmed by mini |
+| `d4.permsort.full.inl` | XL | WHNF | 1,463 |  | 3,992,011,852 |  | none (share only) |
+| `d4.permsort.full.noinl` | XL | WHNF | 1,474 |  | 4,000,853,681 |  | none (share only) |
+| `d4.permsort.small.inl` | M | WHNF | 1,383 | 150,708 | 94,918 | 1.59 | avon-copy@e69cf59, confirmed by mini |
+| `d4.permsort.small.noinl` | M | WHNF | 1,394 | 151,017 | 95,227 | 1.59 | avon-copy@e69cf59, confirmed by mini |
+| `d4.queens2.full.inl` | XL | WHNF | 3,170 |  | 979,586,983 |  | none (share only) |
+| `d4.queens2.full.noinl` | XL | WHNF | 3,182 |  | 979,586,993 |  | none (share only) |
+| `d4.queens2.small.inl` | L | WHNF | 2,362 | 3,357,173 | 475,857 | 7.06 | avon-copy@e69cf59, confirmed by mini |
+| `d4.queens2.small.noinl` | L | WHNF | 2,242 | 3,357,186 | 475,610 | 7.06 | avon-copy@e69cf59, confirmed by mini |
+| `d4.taut.full.inl` | XL | WHNF | 13,599 |  | 1,049,061,719 |  | none (share only) |
+| `d4.taut.full.noinl` | XL | WHNF | 7,863 |  | 1,047,965,671 |  | none (share only) |
+| `d4.taut.small.inl` | M | WHNF | 6,383 | 520,761 | 138,986 | 3.75 | avon-copy@e69cf59, confirmed by mini |
+| `d4.taut.small.noinl` | M | WHNF | 4,255 | 521,361 | 136,373 | 3.82 | avon-copy@e69cf59, confirmed by mini |
+
 ## Family D5
 
 52 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).

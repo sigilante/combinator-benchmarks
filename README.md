@@ -181,6 +181,34 @@ marker head. The stack an `RVal` carries is recorded in `note`, not checked.
 aviary is skipped (`skip_aviary`) on interpreted runs and on compiled runs of
 over 20,000 contractions.
 
+## Family D4: the Reduceron benchmarks
+
+Naylor and Runciman's OrdList, Queens2, Taut, Clausify and PermSort (*The
+Reduceron reconfigured and re-evaluated*, JFP 2012), as ported to skijack in
+Avon's `tests/workloads/reduceron/`. `python3 -m bench.vendor_d4` copies the
+sources to `data/d4/src/` and compiles them into `data/d4/terms.json`. Each
+port's `main` checks its own answer and returns True, so a row reduces
+`main Tt Ff` to weak head normal form and expects the atom `Ff`
+(`expect_src: "self-check"`). Each program has four rows: full size and
+small, each compiled with and without skijack's inlining pass
+(`d4.<program>.<full|small>.<inl|noinl>`).
+
+- **Full** is the port as Avon has it: boolean lists of 12, 11 queens, 16
+  names, 80 conjuncts, 10 numbers. Each run takes about 10^9 contractions
+  even with sharing (PermSort about 4 x 10^9), so these rows are share-only
+  (`copy: false`, `share_fuel` 10^10).
+- **Small** replaces one line (`SMALL` in `bench/vendor_d4.py`, recorded in
+  each row's `source`) and keeps `main` a check whose answer is True:
+  OrdList at length 6, 6 queens (4 solutions), Taut over 4 names, Clausify
+  of 1 conjunct (the answer is one clause for any count, by Avon's
+  `clausify_ref.py`), PermSort from 5. Small rows are pinned by the auto policy.
+  Clausify stays costly: one conjunct takes ~4.5 x 10^8 contractions copying, too
+  many for mini; with two, copy mode passes 10^9.
+
+aviary is tried on the small rows and finishes none within its 10 s, so their
+pins come from avon-copy, confirmed by mini for all but Clausify; it is not
+run on the full rows (`skip_aviary`).
+
 ## Family D5: Joy programs of our own
 
 Joy programs written for this suite (`data/d5/`, from
@@ -283,12 +311,13 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
 | `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
-| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `fuel-edge` (derived from a pin) |
+| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
 | `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2, D5) |
 | `skip_aviary` | aviary cannot finish the row in time; it is not run there |
+| `share_fuel` | the share-mode fuel `auto_pin` uses, and a share-only row's `fuel` (default 4 x 10^9) |
 | `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
 | `require_aviary`, `copy` | `auto_pin` inputs: drop the row unless aviary pins it; `false` = never run copy mode |
 | `note` | free text, including why a row is share-only |
