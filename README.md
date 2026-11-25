@@ -45,6 +45,14 @@ engine skipped:
 
 If aviary disagrees with any row's expected status or normal form, `bench.gen`
 prints the disagreements, writes nothing for that family, and exits 1.
+While it runs, `bench.gen` appends each pinned row to
+`manifests/.<family>.partial.jsonl` (untracked), one line per row with its
+fuel edges; a rerun takes rows from there instead of running them again, so a
+killed build resumes. A line cut off by the kill is dropped, and a row whose
+definition (term, expectation, fuel, mode, policy) has changed is run again.
+The file is removed once the manifest is written. It does not notice a
+changed engine: delete it to rebuild from scratch after updating Avon or
+aviary.
 `bench.check` overwrites `results/`. Both `manifests/` and `results/` are
 tracked in git; commit them together with the code that produced them.
 
@@ -53,7 +61,11 @@ tracked in git; commit them together with the code that produced them.
 Families A and B are pinned by aviary. Rows with `pin_policy: "given"` (D0)
 carry a pin from an outside source, which `given_pin` keeps only if every
 engine that can run the row in time (Avon copy, mini, aviary within its
-timeout) reproduces it and the expectation exactly. Family C and D0's
+timeout) reproduces it and the expectation exactly. Its source then ends
+"confirmed by" and the engines that reproduced it in this build; the count
+itself remains the outside source's (for D2, SKIlark's own aviary run, which
+this build does not repeat on rows marked `skip_aviary` or too large for
+aviary). Family C and D0's
 constructor rows (`pin_policy: "auto"`) are pinned row by row (`bench/gen.py`,
 `auto_pin`):
 
@@ -143,6 +155,51 @@ the module computes structurally, without reduction (953,226 leaves;
 `expect.nf_ref: "d1.quine"`, `expect_src: "construction"`). The appendix's
 2,855,152 contractions count a probing readback, not this reduction.
 
+## Family D2: SKIlark's pinned Joy programs
+
+`data/d2/` vendors every pinned run of ten SKIlark test modules (`words`,
+`modes`, `combinators`, `text`, `types`, `sets`, `library`, `pure`, `numtext`,
+`symbols`): 472 Joy programs, each interpreted and compiled, 944 runs. Not
+vendored: `test_io` (its I/O words need a host) and `test_variants` (its own
+loop variants). `python3 -m bench.vendor_d2` rebuilds the data from
+`$SKILARK_REPO` and `$SKIJACK_REPO`, compiling each module in its own process
+exactly as that module's fixtures do (interpreted as one set; compiled one
+program at a time, except `words` and `modes`, which compile as one set); the
+pins depend on this.
+
+Every interpreted run carries the same ~77k-leaf interpreter, so the terms are
+stored through `bench/termstore.py`: subterms of at least 1,000 leaves shared
+in the hash-consed graph of all runs are kept once (`store.json.gz`) and
+referenced as `@<hash>`; manifest rows name their run by key (`term_from`)
+instead of embedding it. Plain text would be ~800 MB; the gzipped data is
+~0.7 MB. Engines always receive the plain printed term.
+
+Rows mirror D0: `d2.<module>.<name>.<i|c>` checks the status and SKIlark's
+pinned unfuelled count (aviary, to weak head normal form, cap 5,000,000) as a
+given pin; `.ctor` checks the result constructor (`RVal`, `RErr`, ...) by
+marker head. The stack an `RVal` carries is recorded in `note`, not checked.
+aviary is skipped (`skip_aviary`) on interpreted runs and on compiled runs of
+over 20,000 contractions.
+
+## Family D5: Joy programs of our own
+
+**Not yet vendored:** `data/d5/` does not exist yet, and `bench.gen` lists D5
+only once it does. It is to hold Joy programs written for this suite and
+compiled by SKIlark the same way (`python3 -m bench.vendor_d2 --own`; definitions and programs in
+`OWN` and `OWN_DEFS` of `bench/vendor_d2.py`): Ackermann (`ack`, (1,1) to
+(3,2)), Collatz step counts (`collatz`, from 6, 7, 9 and 27) and Takeuchi's
+`tak` ((3,2,1) to (12,8,4)). Each program checks its own answer:
+`<expr> <value> = [] [0 0 /] branch` ends with an empty stack when the value is
+right and errs (division by zero) when it is not. So the `.ctor` row, whose
+head must be `r_RVal`, certifies the computed value, given that SKIlark's
+`=`, `branch` and `/` behave as Joy's do (checked in joyref, not here). The
+plain `.i`/`.c` rows check only status and count; their note records the
+expected outcome. The expected outcome, `RVal []`, comes from SKIlark's model of
+the Joy reference (`tests/joyref.py`; `expect_src: "joyref"`); there is no
+outside pin, so both rows are pinned by the auto policy. Rows are built as
+D2's (`d5.own.<name>.<i|c>`), except that aviary is tried (within its timeout)
+on every compiled run, since no count says in advance which are too long.
+
 ## Timing
 
     python3 -m bench.timing C --runs 3     # tiers M, L, XL
@@ -184,6 +241,17 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
   selected, is a failure, not a skip.
   WHNF rows may legitimately carry no expected term (status and count only,
   as for D0's targets); their constructor rows carry an `expect.head`.
+- **Size limits.** aviary is not run on terms of more than 1,500,000 leaves
+  (`engines.AVIARY_MAX_LEAVES`; a 5.2M-leaf term passed 2.8 GB), in `gen` or
+  `check`; this is separate from a family's `skip_aviary`. mini and aviary
+  reduce terms of more than 100,000 characters in a child process
+  (`engines.ISOLATE_ABOVE`), whose memory is freed when it exits; a child
+  that fails gives status CRASHED, a failure. `bench.timing` leaves mini out
+  on such terms, since it times mini in-process.
+- **Printing is bounded per row** (`gen.print_budget`), in all three engines:
+  10^7 atoms where a normal form is compared, 64 where only status, count or
+  head is checked.
+  Output cut off by the budget never matches a normal form.
 - avon-share's count is held to `share_ref` where a row records one. This is a
   regression pin on Avon's own share-mode count, not a correctness claim.
 
@@ -200,10 +268,12 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
 | `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
-| `expect_src` | `hand` (worked from the rules), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `fuel-edge` (derived from a pin) |
+| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
+| `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2) |
+| `skip_aviary` | aviary cannot finish the row in time; it is not run there |
 | `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
 | `require_aviary`, `copy` | `auto_pin` inputs: drop the row unless aviary pins it; `false` = never run copy mode |
 | `note` | free text, including why a row is share-only |

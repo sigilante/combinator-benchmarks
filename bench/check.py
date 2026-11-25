@@ -21,7 +21,7 @@ from pathlib import Path
 from . import engines as E
 # Importing gen imports the families, whose definitions (e.g. NOT, PAIR) must be
 # registered in aviary's environment before avon_can_run/mini_can_run are asked.
-from .gen import same_nf, expected_nf, outcome_problems, ROOT
+from .gen import same_nf, expected_nf, outcome_problems, materialize, print_budget, ROOT
 
 COUNTED = {"aviary", "avon-copy", "mini"}
 TIMEOUT = 600  # seconds per engine batch; a timeout fails the row
@@ -31,13 +31,14 @@ def applicable(engine, row):
     if "engines" in row and engine not in row["engines"]:
         return False
     if engine == "aviary":
-        return True
+        return E.aviary_can_run(row.get("size"))
     if engine == "avon-share" and row["expect_src"] == "fuel-edge":
         return False  # edges come from copy counts; share is edge-checked on its own counts
+    can = row.get("_can")  # set by check_family from the expanded term
     if engine.startswith("avon"):
-        return E.avon_can_run(row["term"])
+        return can["avon"] if can else E.avon_can_run(row["term"])
     if engine == "mini":
-        return E.mini_can_run(row["term"])
+        return can["mini"] if can else E.mini_can_run(row["term"])
     return False
 
 
@@ -72,6 +73,30 @@ def validate(row):
     return probs
 
 
+CHUNK = 64                 # rows expanded at a time, at most
+CHUNK_CHARS = 32_000_000   # and at most this much expanded text (one row may exceed it)
+
+
+def _expanded(rows):
+    """Yield the rows in chunks with their terms expanded, packing each chunk
+    again after use, so a family's terms are never all expanded at once. A
+    row on a store can expand to tens of MB (D2's largest: ~60 MB)."""
+    chunk, packed, chars = [], [], 0
+    rows = list(rows)
+    for k, r in enumerate(rows):
+        packed.append(materialize(r))
+        chunk.append(r)
+        chars += len(r["term"])
+        if len(chunk) >= CHUNK or chars >= CHUNK_CHARS or k == len(rows) - 1:
+            try:
+                yield chunk
+            finally:
+                for x, p in zip(chunk, packed):
+                    if p is not None:
+                        x["term"] = p
+            chunk, packed, chars = [], [], 0
+
+
 def check_family(fam, engines):
     rows = []
     results, fails = [], []
@@ -85,7 +110,17 @@ def check_family(fam, engines):
             results.append(rec)
             fails.append(rec)
             continue
-        probs = validate(r)
+        try:
+            packed = materialize(r)
+        except (KeyError, OSError, ValueError) as e:
+            probs = [f"cannot expand shared subterms: {e!r}"]
+        else:
+            probs = validate(r)
+            # applicable() reads the expanded term; decided now, while it is.
+            t = r.get("term", "")  # a missing term is a validation failure, not a crash
+            r["_can"] = {"avon": E.avon_can_run(t), "mini": E.mini_can_run(t)}
+            if packed is not None:  # expanded again chunk by chunk (_expanded)
+                r["term"] = packed
         if probs:
             rec = {"id": r.get("id", f"{fam}:line{n}"), "engine": "manifest", "ok": False,
                    "problems": probs}
@@ -100,8 +135,10 @@ def check_family(fam, engines):
             tally[(eng, "skip")] += sum(1 for r in rows if r["mode"] == mode) - len(sel)
             if not sel:
                 continue
-            got = E.ENGINES[eng]([(r["term"], r["fuel"]) for r in sel], whnf=(mode == "whnf"),
-                                 timeout=TIMEOUT)
+            got = []
+            for chunk in _expanded(sel):
+                got += E.ENGINES[eng]([(r["term"], r["fuel"], print_budget(r)) for r in chunk],
+                                      whnf=(mode == "whnf"), timeout=TIMEOUT)
             for r, (status, steps, nf) in zip(sel, got):
                 exp = r["expect"]
                 probs = outcome_problems(exp, status, nf)
@@ -134,10 +171,15 @@ def check_family(fam, engines):
                 and x["status"] in ("NORMAL", "WHNF") and x["steps"] > 0]
         for mode in ("nf", "whnf"):
             sel = [x for x in done if base[x["id"]]["mode"] == mode]
-            jobs = [(base[x["id"]]["term"], x["steps"] + d) for x in sel for d in (0, 1)]
-            if not jobs:
+            if not sel:
                 continue
-            got = E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"), timeout=TIMEOUT)
+            got, done_n = [], 0
+            for part in _expanded([base[x["id"]] for x in sel]):  # chunks in sel's order
+                res = sel[done_n:done_n + len(part)]
+                done_n += len(part)
+                jobs = [(b["term"], x["steps"] + d, print_budget(b))
+                        for b, x in zip(part, res) for d in (0, 1)]
+                got += E.ENGINES["avon-share"](jobs, whnf=(mode == "whnf"), timeout=TIMEOUT)
             for i, x in enumerate(sel):
                 (s0, n0, _), (s1, n1, nf1) = got[2 * i], got[2 * i + 1]
                 probs = []

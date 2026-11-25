@@ -98,18 +98,63 @@ class _Deadline:
         return self._now() > self._t
 
 
+#: Print budget for rows that check only status, count or head: the head is
+#: the first token, which any budget keeps.
+SMALL_PRINT_BUDGET = 64
+
+
+def _budget(job):
+    """A job is (term, fuel) or (term, fuel, print_budget). Printing a large
+    result (a WHNF can unfold to millions of nodes) costs far more than the
+    reduction, so rows that need no full result pass a small budget."""
+    return job[2] if len(job) > 2 and job[2] else AVON_PRINT_BUDGET
+
+
+def aviary_show(term, budget=None) -> str:
+    """aviary's printed form, cut off after `budget` atoms with " ..." (as
+    mini.show and Avon's --budget do); without a budget, aviary's own printer."""
+    from aviary_kernel.terms import App
+    if budget is None:
+        return aviary_pretty(term)
+    out, atoms, stack = [], 0, [("t", term)]
+    while stack:
+        kind, x = stack.pop()
+        if kind == "s":
+            out.append(x)
+            continue
+        head, args = x, []
+        while isinstance(head, App):
+            args.append(head.arg)
+            head = head.fn
+        out.append(aviary_pretty(head))
+        atoms += 1
+        if atoms > budget:
+            out.append(" ...")
+            break
+        for a in args:  # args were collected last first: push so the first prints first
+            if isinstance(a, App):
+                stack += [("s", ")"), ("t", a), ("s", " (")]
+            else:
+                stack += [("t", a), ("s", " ")]
+    return "".join(out)
+
+
+def _aviary_one(job, whnf, timeout):
+    text, fuel = job[0], job[1]
+    # max_size is set far above any term here; a SIZE status would fail the row.
+    r = av_reduce(aviary_parse(text), _ENV, whnf_only=whnf,
+                  max_steps=fuel, max_size=10**8,
+                  interrupt=_Deadline(timeout) if timeout else None)
+    return r.status.name, r.steps, aviary_show(r.term, _budget(job))
+
+
 def run_aviary(jobs, whnf=False, timeout=None):
     """aviary is tree rewriting at O(term size) per step, so even ~10^4-step
     rows can take minutes; `timeout` (seconds per job) yields status
-    INTERRUPTED rather than a hang."""
-    out = []
-    for text, fuel in jobs:
-        # max_size is set far above any term here; a SIZE status would fail the row.
-        r = av_reduce(aviary_parse(text), _ENV, whnf_only=whnf,
-                      max_steps=fuel, max_size=10**8,
-                      interrupt=_Deadline(timeout) if timeout else None)
-        out.append((r.status.name, r.steps, aviary_pretty(r.term)))
-    return out
+    INTERRUPTED rather than a hang. Terms over ISOLATE_ABOVE characters run in
+    a child process (see _child)."""
+    return [_child("aviary", job, whnf, timeout) if len(job[0]) > ISOLATE_ABOVE
+            else _aviary_one(job, whnf, timeout) for job in jobs]
 
 
 AVON_MAX_RSS_MB = int(os.environ.get("BENCH_AVON_MAX_RSS_MB", 3000))  # machine rule: < 4 GB
@@ -205,16 +250,17 @@ def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
                          "or set AVON_BIN, or pass --engines without avon-*)")
     out = [None] * len(jobs)
     groups: dict[tuple, list[int]] = {}
-    for i, (_, fuel) in enumerate(jobs):
-        groups.setdefault((fuel, i if fuel >= BIG_FUEL else -1), []).append(i)
-    for (fuel, _), idxs in groups.items():
+    for i, job in enumerate(jobs):
+        fuel, budget = job[1], _budget(job)
+        groups.setdefault((fuel, budget, i if fuel >= BIG_FUEL else -1), []).append(i)
+    for (fuel, budget, _), idxs in groups.items():
         # --budget caps the printed result (default 10^6 nodes, cut with " ...").
         # Raised to 10^7 so normal forms such as 2^20's (~2.1M nodes) print whole.
         # Not higher: a FUEL row prints the term where it stopped, and in copy mode
         # that can hold an enormous discarded argument (10^9 once took this
         # process to 35 GB). A cut normal form fails the row; it cannot pass.
         cmd = [str(AVON_BIN), "batch", f"--strategy={strategy}", "--no-jets", f"--fuel={fuel}",
-               f"--budget={AVON_PRINT_BUDGET}"]
+               f"--budget={budget}"]
         if whnf:
             cmd.append("--whnf")
         p, lines = _avon_batch(cmd, [jobs[i][0] for i in idxs], timeout)
@@ -243,15 +289,71 @@ def run_avon(jobs, strategy="copy", whnf=False, timeout=None):
     return out
 
 
+#: Terms longer than this (characters) are reduced by mini and by aviary in a
+#: child process: on SKIlark's multi-million-step runs mini's term grows by
+#: ~2 GB, and aviary holds ~550 bytes a leaf, which CPython keeps after the
+#: run, so in the caller it would pile up. Smaller terms stay in-process
+#: (bench.selftest patches mini's rules in-process).
+ISOLATE_ABOVE = 100_000
+
+
+def _mini_one(job, whnf):
+    text, fuel = job[0], job[1]
+    if whnf:
+        status, steps, t = mini.reduce_whnf(mini.parse(text), fuel)
+    else:
+        status, steps, t = mini.reduce(mini.parse(text), fuel)
+    return status, steps, mini.show(t, budget=_budget(job))
+
+
+def _child(engine, job, whnf, timeout=None):
+    """One mini or aviary job in a fresh interpreter (python3 -m bench.engines
+    --child), whose memory is freed when it exits."""
+    import json
+    p = subprocess.run([sys.executable, "-m", "bench.engines", "--child"],
+                       input=json.dumps({"engine": engine, "job": list(job), "whnf": whnf,
+                                         "timeout": timeout}),
+                       capture_output=True, text=True,
+                       cwd=Path(__file__).resolve().parent.parent)
+    try:
+        if p.returncode == 0:
+            return tuple(json.loads(p.stdout))
+    except ValueError:
+        pass
+    # Status CRASHED (stderr's tail in place of the normal form): never an
+    # expected status, so the row fails and the error is reported.
+    return ("CRASHED", 0, p.stderr[-500:])
+
+
+def _mini_safe(job, whnf):
+    """In-process mini, failing as the child does: CRASHED, not an exception."""
+    try:
+        return _mini_one(job, whnf)
+    except (ValueError, RecursionError) as e:
+        return ("CRASHED", 0, repr(e)[-500:])
+
+
 def run_mini(jobs, whnf=False):
-    out = []
-    for text, fuel in jobs:
-        if whnf:
-            status, steps, t = mini.reduce_whnf(mini.parse(text), fuel)
-        else:
-            status, steps, t = mini.reduce(mini.parse(text), fuel)
-        out.append((status, steps, mini.show(t, budget=AVON_PRINT_BUDGET)))
-    return out
+    return [_child("mini", job, whnf) if len(job[0]) > ISOLATE_ABOVE else _mini_safe(job, whnf)
+            for job in jobs]
+
+
+#: aviary holds the whole tree as Python objects, ~550 bytes a leaf: a
+#: 5.2M-leaf SKIlark term passed 2.8 GB, while terms of up to 1.13M leaves ran
+#: within the 3 GB cap (D2's compiled `words` runs). It is not run on terms of
+#: more than AVIARY_MAX_LEAVES leaves (gen and check both).
+AVIARY_MAX_LEAVES = 1_500_000
+
+
+def leaves(text: str) -> int:
+    """Leaf count of a printed term (its atoms), without parsing it."""
+    import re
+    return sum(1 for _ in re.finditer(r"[^ ()]+", text))
+
+
+def aviary_can_run(size: int | None) -> bool:
+    """Whether a term of `size` leaves fits aviary (None: size unknown, yes)."""
+    return size is None or size <= AVIARY_MAX_LEAVES
 
 
 def mini_can_run(text: str) -> bool:
@@ -300,3 +402,12 @@ def avon_can_run(text: str) -> bool:
         if tok in BY_NAME or tok in ("Θ", "Theta") or tok in _ENV.definitions:
             return False
     return True
+
+
+if __name__ == "__main__" and sys.argv[1:] == ["--child"]:
+    import json
+    req = json.loads(sys.stdin.read())
+    job = tuple(req["job"])
+    res = (_mini_one(job, req["whnf"]) if req["engine"] == "mini"
+           else _aviary_one(job, req["whnf"], req["timeout"]))
+    print(json.dumps(res))

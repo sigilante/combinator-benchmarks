@@ -106,6 +106,22 @@ def main():
         zpath.unlink(missing_ok=True)
         (ROOT / "results" / "check-Z.jsonl").unlink(missing_ok=True)
 
+    # mini's stack-based head reducer against the original spine-rebuilding one.
+    import random
+    rng = random.Random(7)
+
+    def rnd(d):
+        if d == 0 or rng.random() < 0.3:
+            return rng.choice(["S", "K", "I", "B", "C", "W", "x", "y"])
+        return (rnd(d - 1), rnd(d - 1))
+    diffs = 0
+    for _ in range(5000):
+        t, f = rnd(7), rng.choice([0, 1, 2, 3, 5, 8, 20, 100, 1000])
+        diffs += mini._whnf(t, f) != mini._whnf_reference(t, f)
+    print(f"  {'ok' if not diffs else 'FAIL':>4}      mini head reducer = reference on 5000 random terms ({diffs} differ)")
+    if diffs:
+        survivors.append("mini head reducer differs from its reference")
+
     # D1's readback: R (a Scott numeral n) must normalise to the Church
     # readback of n, on mini (which shares no code with the term's builder).
     from .families import d1_skijack as D1
@@ -117,6 +133,38 @@ def main():
         print(f"  {'ok' if ok else 'FAIL':>4}      D1 readback of Scott {n}")
         if not ok:
             survivors.append(f"D1 readback of {n} is wrong")
+
+    # gen's checkpoint: a resume after a torn last line, or after a row was
+    # changed, must give what an uninterrupted run gives.
+    import json, tempfile
+    from pathlib import Path
+    from . import gen
+
+    def ck_rows(t1):
+        return [{"id": f"t.{i}", "family": "T", "basis": "ski",
+                 "term": t1 if i == 1 else f"K x{i} (I x9)", "fuel": None, "mode": "nf",
+                 "expect": {"status": "NORMAL", "nf": f"x{i}"}, "expect_src": "hand",
+                 "pin_policy": "auto", "note": ""} for i in range(3)]
+
+    def canon(rs):
+        return [json.dumps(gen._packed_row(r), sort_keys=True) for r in rs]
+
+    import contextlib, io
+    with tempfile.TemporaryDirectory() as td, contextlib.redirect_stdout(io.StringIO()):
+        ckp = Path(td) / "ck.jsonl"
+        full, _ = gen.pin(ck_rows("K x1 (I x9)"))
+        gen.pin(ck_rows("K x1 (I x9)"), ckp)
+        lines = ckp.read_text().splitlines()
+        ckp.write_text(lines[0] + "\n" + lines[1][: len(lines[1]) // 2])  # a kill mid-line
+        torn_ok = (canon(gen.pin(ck_rows("K x1 (I x9)"), ckp)[0]) == canon(full)
+                   and canon(gen.pin(ck_rows("K x1 (I x9)"), ckp)[0]) == canon(full))
+        changed = gen.pin(ck_rows("I (K x1 (I x9))"), ckp)[0]
+        stale_ok = [r["pin"]["steps"] for r in changed if r["id"] == "t.1"] == [2]
+    for ok, label in ((torn_ok, "gen checkpoint resumes after a torn line"),
+                      (stale_ok, "gen checkpoint re-runs a changed row")):
+        print(f"  {'ok' if ok else 'FAIL':>4}      {label}")
+        if not ok:
+            survivors.append(label)
 
     # Leave results/ as a clean run would.
     for f in ("A", "B"):

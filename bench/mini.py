@@ -140,7 +140,31 @@ def _rebuild(head, args):
 
 def _whnf(t, budget):
     """Contract head redexes until none remains or budget runs out.
-    Returns (term, steps)."""
+    Returns (term, steps).
+
+    The spine's arguments are kept on a stack (top = first argument), so a
+    contraction costs O(its arity), not O(spine length): unwinding the
+    contractum pushes its own arguments and the rest stay in place."""
+    steps = 0
+    stack = []                      # arguments, last element = first argument
+    while True:
+        while isinstance(t, tuple):  # unwind the head's spine onto the stack
+            stack.append(t[1])
+            t = t[0]
+        rule = RULES.get(t) if isinstance(t, str) else None
+        if rule is None or len(stack) < rule[0] or steps >= budget:
+            break
+        n, build = rule
+        args = [stack.pop() for _ in range(n)]
+        t = build(args)
+        steps += 1
+    while stack:                    # rebuild the term from the head and its arguments
+        t = (t, stack.pop())
+    return t, steps
+
+
+def _whnf_reference(t, budget):
+    """The original spine-rebuilding loop, kept for selftest to compare."""
     steps = 0
     while True:
         head, args = _spine(t)
