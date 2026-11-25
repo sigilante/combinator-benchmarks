@@ -81,6 +81,12 @@ def main():
                               "changed": SMALL[prog][1] if size == "small" else None}
     meta = {"source": f"Avon tests/workloads/reduceron @ {_rev(AVON)}, compiled by skijack "
                       f"@ {_rev(SKIJACK)}", "terms": terms}
+    (OUT / "LICENSE.avon").write_text((AVON / "LICENSE").read_text())
+    (OUT / "SOURCE").write_text(
+        f"src/*.ascii.ski: copied from Avon (github.com/sigilante/avon, MIT, LICENSE.avon)\n"
+        f"tests/workloads/reduceron/ at {_rev(AVON)}: skijack ports of Naylor and Runciman's\n"
+        f"Reduceron benchmarks (JFP 2012). terms.json: compiled from them by\n"
+        f"bench/vendor_d4.py with skijack at {_rev(SKIJACK)}.\n")
     (OUT / "terms.json").write_text(json.dumps(meta, indent=1, sort_keys=True) + "\n")
     print(f"wrote {len(terms)} terms ({meta['source']})")
 
