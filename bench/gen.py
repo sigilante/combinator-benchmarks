@@ -27,9 +27,12 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d5_own
 
-FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack}
+FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack,
+            "D2": d2_skilark}
+if (Path(__file__).resolve().parent.parent / "data" / "d5").exists():
+    FAMILIES["D5"] = d5_own  # only once vendored: python3 -m bench.vendor_d2 --own
 
 # Auto-pinning policy (rows with pin_policy == "auto"):
 AVIARY_TIMEOUT = float(os.environ.get("BENCH_AVIARY_TIMEOUT", 10))  # s per row
@@ -48,9 +51,15 @@ def tier(steps):
     return "XL"
 
 
+def print_budget(r):
+    """How much of a result a row needs printed: all of it to compare a normal
+    form, else only enough for the status line and the head."""
+    return E.AVON_PRINT_BUDGET if expected_nf(r["expect"]) is not None else E.SMALL_PRINT_BUDGET
+
+
 def run1(engine, r, fuel, timeout=None):
     """Run one row on one engine at the given fuel, in the row's mode."""
-    return E.ENGINES[engine]([(r["term"], fuel)], whnf=(r["mode"] == "whnf"),
+    return E.ENGINES[engine]([(r["term"], fuel, print_budget(r))], whnf=(r["mode"] == "whnf"),
                              timeout=timeout)[0]
 
 
@@ -67,6 +76,8 @@ def given_pin(r, prov):
             continue
         if eng == "mini" and (want > MINI_MAX or not E.mini_can_run(r["term"])):
             continue
+        if eng == "aviary" and (r.get("skip_aviary") or not E.aviary_can_run(r["size"])):
+            continue  # family says aviary cannot finish this row in time
         st, n, nf = run1(eng, r, r["fuel"], AVIARY_TIMEOUT if eng == "aviary" else COPY_TIMEOUT)
         if eng == "aviary" and st == "INTERRUPTED":
             continue  # too slow to confirm here; not run by check either
@@ -105,6 +116,8 @@ def auto_pin(r, prov):
 
     if r.get("copy") is False:
         st = "SKIPPED"  # family says copy mode is too costly here; share only
+    elif r.get("skip_aviary") or not E.aviary_can_run(r["size"]):
+        st = "INTERRUPTED"  # family says aviary cannot finish in time: next source
     else:
         st, n, nf = run1("aviary", r, COPY_FUEL, AVIARY_TIMEOUT)
     if st == "SKIPPED":
@@ -222,13 +235,107 @@ def _check_term_text(r):
             raise ValueError(f"{r['id']}: term contains {bad[0]!r}")
 
 
-def pin(rows):
+_STORES: dict = {}
+CACHE_MAX = 200_000_000
+
+
+def materialize(r):
+    """A row whose term uses shared subterms (`store`: a termstore file,
+    relative to the repo) gets its plain printed term; returns the packed text
+    to write back, or None. Engines only ever see plain terms."""
+    if not r.get("store"):
+        return None
+    from . import termstore
+    if r.get("term_from"):
+        # The term lives in a vendored file, not the manifest: `term_from` names
+        # the file, the key, and a wrapper in which "%T" stands for the term.
+        src = r["term_from"]
+        if src["file"] not in _STORES:
+            _STORES[src["file"]] = termstore.load(ROOT / src["file"])
+        files = _STORES[src["file"]]
+        index = files.setdefault("_index", {p["key"]: p for p in files.get("programs", [])})
+        r["term"] = src.get("wrap", "%T").replace("%T", index[src["key"]]["term"])
+    if r["store"] not in _STORES:
+        _STORES[r["store"]] = (termstore.load(ROOT / r["store"]), {})
+    store, cache = _STORES[r["store"]]
+    packed = r["term"]
+    r["term"] = termstore.expand(packed, store, cache)
+    # The cache holds each shared subterm fully expanded; across a family's
+    # rows that can reach gigabytes, so it is dropped past CACHE_MAX bytes.
+    if sum(map(len, cache.values())) > CACHE_MAX:
+        cache.clear()
+    return packed
+
+
+def _release(rows):
+    """Put back the packed term of rows built on a store: an expanded term can
+    be ~1 MB, and a family keeps all its rows until it writes them."""
+    for r in rows:
+        if r.get("packed_term") is not None:
+            r["term"] = r["packed_term"]
+
+
+def _packed_row(r):
+    """The row as written: the term packed, or empty when it is in a vendored file."""
+    if r.get("term_from"):
+        r = {**r, "term": ""}
+    elif r.get("packed_term") is not None:
+        r = {**r, "term": r["packed_term"]}
+    return {k: v for k, v in r.items() if k != "packed_term"}
+
+
+def _row_key(r):
+    """A hash of what defines a row before pinning (its packed term or vendored
+    key, expectation, fuel, mode, policy and any given pin): a checkpointed
+    row is reused only if its definition is unchanged."""
+    import hashlib
+    fields = {k: r.get(k) for k in ("term", "term_from", "store", "expect", "fuel", "mode",
+                                    "pin_policy", "pin", "skip_aviary", "copy", "engines")}
+    return hashlib.sha256(json.dumps(fields, sort_keys=True).encode()).hexdigest()[:16]
+
+
+def _save(ck, key, group):
+    """Checkpoint a row with its fuel edges as one line, so a kill leaves the
+    group whole or (a cut-off last line) absent, never a row without edges."""
+    if ck is not None and group:
+        rows = [_packed_row(x) for x in group]
+        ck.write(json.dumps({"key": key, "rows": rows}, ensure_ascii=False) + "\n")
+        ck.flush()
+
+
+def pin(rows, checkpoint=None):
+    """Pin rows. With `checkpoint` (a path), every pinned row and its fuel
+    edges are appended there as they are made, and a row already in it is
+    taken from it instead of run again, so a killed run resumes. A row is
+    checkpointed only once all its runs agreed; rejected rows are run again."""
     prov = E.provenance()
     bad = []
     out = []
+    done = {}
+    if checkpoint is not None and checkpoint.exists():
+        good = []
+        for line in checkpoint.read_text().splitlines():
+            try:
+                group = json.loads(line)
+            except json.JSONDecodeError:
+                continue  # a line cut off by a kill: that row is run again
+            good.append(line)
+            done[group["rows"][0]["id"]] = group  # a row, then its fuel edges
+        # Keep only whole lines, so what is appended next starts a line.
+        checkpoint.write_text("".join(x + "\n" for x in good))
+        print(f"   resuming: {len(done)} row groups from {checkpoint.name}", flush=True)
+    ck = checkpoint.open("a") if checkpoint is not None else None
     for r in rows:
+        key = _row_key(r)
+        if r["id"] in done and done[r["id"]]["key"] == key:
+            out.extend(done[r["id"]]["rows"])
+            continue  # a group whose row changed since is run again
+        n_before = len(out)
+        packed = materialize(r)
         _check_term_text(r)
-        r["size"] = mini.size(mini.parse(r["term"]))
+        r["size"] = E.leaves(r["term"])
+        if packed is not None:
+            r["packed_term"] = packed
         if r.get("pin_policy") in ("auto", "given"):
             got, problem = (auto_pin if r["pin_policy"] == "auto" else given_pin)(r, prov)
             if problem:
@@ -241,6 +348,8 @@ def pin(rows):
                 out.extend(_edges(got, got["expect"]["status"]))
             print(f"   {got['id']:24s} {got['tier']:2s} pin={got['pin'] and got['pin']['steps']} "
                   f"share={got.get('share_ref')} via {got['pin'] and got['pin']['source']}", flush=True)
+            _release(out[n_before:])
+            _save(ck, key, out[n_before:])
             continue
         whnf = r["mode"] == "whnf"
         status, steps, nf = E.run_aviary([(r["term"], r["fuel"])], whnf=whnf)[0]
@@ -252,6 +361,10 @@ def pin(rows):
         out.append(r)
         if status in ("NORMAL", "WHNF") and steps > 0:
             out.extend(_edges(r, status))
+        _release(out[n_before:])
+        _save(ck, key, out[n_before:])
+    if ck is not None:
+        ck.close()
     return out, bad
 
 
@@ -277,7 +390,8 @@ def main(argv):
     fams = argv or list(FAMILIES)
     status = 0
     for f in fams:
-        rows, bad = pin(FAMILIES[f].rows())
+        checkpoint = ROOT / "manifests" / f".{f}.partial.jsonl"
+        rows, bad = pin(FAMILIES[f].rows(), checkpoint)
         for rid, exp, got in bad:
             print(f"[{f}] an engine disagrees with expectation: {rid}: expected {exp}, got {got}")
         if bad:
@@ -287,7 +401,8 @@ def main(argv):
         path = ROOT / "manifests" / f"{f}.jsonl"
         with path.open("w") as fh:
             for r in rows:
-                fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+                fh.write(json.dumps(_packed_row(r), ensure_ascii=False) + "\n")
+        checkpoint.unlink(missing_ok=True)
         print(f"[{f}] wrote {len(rows)} rows to {path.relative_to(ROOT)}")
     return status
 

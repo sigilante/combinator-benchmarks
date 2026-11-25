@@ -33,15 +33,16 @@ from pathlib import Path
 from . import engines as E
 from . import mini
 from .check import applicable
-from .gen import ROOT, outcome_problems
+from .gen import ROOT, outcome_problems, materialize, print_budget
 
 MINI_MAX = 5_000_000
 TIMEOUT = 900
 
 
-def _avon(strategy, path, fuel):
-    cmd = ["/usr/bin/time", "-l", str(E.AVON_BIN), "reduce", f"--strategy={strategy}",
-           "--no-jets", f"--fuel={fuel}", f"--budget={E.AVON_PRINT_BUDGET}", path]
+def _avon(strategy, path, fuel, whnf, budget):
+    cmd = (["/usr/bin/time", "-l", str(E.AVON_BIN), "reduce", f"--strategy={strategy}",
+            "--no-jets", f"--fuel={fuel}", f"--budget={budget}"]
+           + (["--whnf"] if whnf else []) + [path])
     p, _ = E._avon_batch(cmd, [], TIMEOUT)  # the watchdog: time and memory caps
     if isinstance(p, E._Killed):
         return {"status": p.why}
@@ -60,13 +61,13 @@ def _avon(strategy, path, fuel):
             "rss_mb": int(rss.group(1)) / 2**20 if rss else None}
 
 
-def _mini(term, fuel):
+def _mini(term, fuel, whnf, budget):
     # Parse, reduce and print are all timed, like Avon's whole process; printing
-    # is bounded exactly as in bench.check.
+    # is bounded by the row's print budget, as in bench.check (gen.print_budget).
     r0 = resource.getrusage(resource.RUSAGE_SELF)
     w0 = time.perf_counter()
-    status, steps, nf = mini.reduce(mini.parse(term), fuel)
-    nf = mini.show(nf, budget=E.AVON_PRINT_BUDGET)
+    status, steps, nf = (mini.reduce_whnf if whnf else mini.reduce)(mini.parse(term), fuel)
+    nf = mini.show(nf, budget=budget)
     w1 = time.perf_counter()
     r1 = resource.getrusage(resource.RUSAGE_SELF)
     return {"status": status, "steps": steps, "nf": nf, "wall": w1 - w0,
@@ -95,19 +96,24 @@ def main(argv):
         fh.write(json.dumps({"provenance": prov, "runs": runs,
                              "loadavg_start": [round(x, 1) for x in os.getloadavg()]}) + "\n")
         for r in rows:
+            packed = materialize(r)  # one row expanded at a time; packed again below
             path = str(Path(td) / "t.ski")
             Path(path).write_text(r["term"] + "\n")
             engines = [e for e in ("avon-share", "avon-copy", "mini") if applicable(e, r)]
-            if "mini" in engines and (r["pin"] is None or r["pin"]["steps"] > MINI_MAX):
+            if "mini" in engines and (r["pin"] is None or r["pin"]["steps"] > MINI_MAX
+                                      or len(r["term"]) > E.ISOLATE_ABOVE):
+                # mini is timed in this process; on terms bench.check isolates
+                # (engines.ISOLATE_ABOVE) its memory would pile up here.
                 engines.remove("mini")
+            whnf, budget = r["mode"] == "whnf", print_budget(r)
             got = {e: [] for e in engines}
             for k in range(runs):
                 order = engines[k % len(engines):] + engines[:k % len(engines)] if engines else []
                 for e in order:
                     if e == "mini":
-                        res = _mini(r["term"], r["fuel"])
+                        res = _mini(r["term"], r["fuel"], whnf, budget)
                     else:
-                        res = _avon(e.split("-")[1], path, r["fuel"])
+                        res = _avon(e.split("-")[1], path, r["fuel"], whnf, budget)
                     ok = not outcome_problems(r["expect"], res.get("status"), res.get("nf", ""))
                     if e != "avon-share" and r["pin"] is not None:
                         ok = ok and res.get("steps") == r["pin"]["steps"]
@@ -116,6 +122,8 @@ def main(argv):
                     fh.write(json.dumps(res) + "\n")
                     fh.flush()
                     got[e].append(res)
+            if packed is not None:
+                r["term"] = packed
             for e, rs in got.items():
                 good = [x for x in rs if x["ok"]]
                 if not good:
