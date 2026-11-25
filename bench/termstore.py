@@ -60,7 +60,9 @@ class Compressor:
 
     def node(self, f, a):
         """The interned application of two interned nodes (or leaf names):
-        for building a term from a graph without printing it."""
+        for building a term from a graph without printing it. A tuple
+        argument must itself come from this Compressor (`node` or `add`);
+        any other tuple would be accepted but not shared."""
         f, a = self.table.setdefault(f, f) if isinstance(f, str) else f, \
             self.table.setdefault(a, a) if isinstance(a, str) else a
         key = (id(f), id(a))

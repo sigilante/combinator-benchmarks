@@ -193,8 +193,11 @@ leaves). Each row reduces `show main` to normal form: `main` is the compiled
 program on its subject, and SKInock's `show` rebuilds the product noun as a
 first-order term (`matom`, `mcell`, and bits as `mcons mt|mf ... mnil`, least
 significant first), so the row compares the whole product. The expected normal
-form is printed from the product of SKInock's Python Nock evaluator, which shares
-no code with the compiled term (`expect_src: "nock-oracle"`). Rows are pinned by
+form is printed from the product of SKInock's Python Nock evaluator
+(`expect_src: "nock-oracle"`). The evaluator and the compiler share SKInock's
+`nock` module (noun types, formula checks) and take the same formula and
+subject; what is independent is the evaluation, Nock's step rules against SKI
+reduction of the compiled term. Rows are pinned by
 the auto policy: avon-copy pins all 12 (13k to 13.3M contractions), mini
 confirms the 8 within its size limit (all but factorial and fibonacci), and
 aviary runs none (all are past its limit).
@@ -351,7 +354,7 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.leaves` | family G: the normal form must print whole and have exactly this many leaves (mode nf; also on `.fuel+0` rows, whose FUEL result is that normal form) |
 | `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
-| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `nock-oracle` (SKInock's Python Nock evaluator; D3), `fuel-edge` (derived from a pin) |
+| `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `nock-oracle` (SKInock's Python Nock evaluator, by Nock's step rules; D3), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |

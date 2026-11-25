@@ -7,8 +7,10 @@ from 12 to 162 MB, 3.6M to 46M leaves). Each row reduces `show main` to
 normal form: `main` is the compiled program on its subject, and `show`
 rebuilds the product noun as a first-order term (matom, mcell, mnil, mcons,
 mt, mf), so the row compares the whole product. The expected normal form is
-printed from the product of SKInock's Python Nock evaluator, an evaluator
-independent of the compiled term (`expect_src: "nock-oracle"`). Rows are
+printed from the product of SKInock's Python Nock evaluator
+(`expect_src: "nock-oracle"`), which evaluates by Nock's step rules rather
+than by reducing the compiled term (it shares SKInock's `nock` module, the
+noun types and formula checks, with the compiler). Rows are
 pinned by the auto policy; aviary and mini are left out by their size limits
 where the terms are too large for them.
 """

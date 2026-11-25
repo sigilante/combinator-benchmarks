@@ -365,7 +365,7 @@ def mini_can_run(text: str) -> bool:
     """mini knows S K I B C W; other bird names would be silently free atoms.
     Terms of more than MINI_MAX_LEAVES leaves are refused too."""
     if len(text) > 2 * MINI_MAX_LEAVES and leaves(text) > MINI_MAX_LEAVES:
-        return False  # (a leaf takes at least two characters, so short texts skip the count)
+        return False  # (n leaves need at least 2n - 1 characters, so short texts skip the count)
     from aviary_kernel.birds import BY_NAME
     for tok in text.replace("(", " ").replace(")", " ").split():
         if tok in mini.RULES:
