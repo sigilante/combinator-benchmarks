@@ -27,10 +27,10 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d5_own
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d4_reduceron, d5_own
 
 FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack,
-            "D2": d2_skilark}
+            "D2": d2_skilark, "D4": d4_reduceron}
 if (Path(__file__).resolve().parent.parent / "data" / "d5").exists():
     FAMILIES["D5"] = d5_own  # only once vendored: python3 -m bench.vendor_d2 --own
 
@@ -108,7 +108,8 @@ def auto_pin(r, prov):
     def matches(status, nf):
         return not outcome_problems(exp, status, nf)
 
-    share = run1("avon-share", r, SHARE_FUEL, SHARE_TIMEOUT) if E.avon_can_run(r["term"]) else None
+    share_fuel = r.get("share_fuel", SHARE_FUEL)  # a family may raise it for one row
+    share = run1("avon-share", r, share_fuel, SHARE_TIMEOUT) if E.avon_can_run(r["term"]) else None
     if share is not None:
         if not matches(share[0], share[2]):
             return None, ("avon-share", share[:2])
@@ -157,7 +158,7 @@ def auto_pin(r, prov):
             r["note"] += f"; copy mode not pinned: {why}"
     steps = r["pin"]["steps"] if r["pin"] else r["share_ref"]
     r["tier"] = tier(steps)
-    r["fuel"] = (2 * r["pin"]["steps"] + 1000) if r["pin"] else SHARE_FUEL
+    r["fuel"] = (2 * r["pin"]["steps"] + 1000) if r["pin"] else share_fuel
     return r, None
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -290,7 +291,8 @@ def _row_key(r):
     row is reused only if its definition is unchanged."""
     import hashlib
     fields = {k: r.get(k) for k in ("term", "term_from", "store", "expect", "fuel", "mode",
-                                    "pin_policy", "pin", "skip_aviary", "copy", "engines")}
+                                    "pin_policy", "pin", "skip_aviary", "copy", "engines",
+                                    "share_fuel")}
     return hashlib.sha256(json.dumps(fields, sort_keys=True).encode()).hexdigest()[:16]
 
 
