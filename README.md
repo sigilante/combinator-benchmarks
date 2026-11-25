@@ -317,7 +317,7 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
 | `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2, D5) |
 | `skip_aviary` | aviary cannot finish the row in time; it is not run there |
-| `copy`, `share_fuel` | `copy: false`: copy mode too costly, the row is share-only; `share_fuel`: the share-mode fuel `auto_pin` uses, and a share-only row's `fuel` (default 4 x 10^9) |
+| `share_fuel` | the share-mode fuel `auto_pin` uses, and a share-only row's `fuel` (default 4 x 10^9) |
 | `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
 | `require_aviary`, `copy` | `auto_pin` inputs: drop the row unless aviary pins it; `false` = never run copy mode |
 | `note` | free text, including why a row is share-only |

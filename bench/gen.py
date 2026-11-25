@@ -287,7 +287,8 @@ def _packed_row(r):
 
 def _row_key(r):
     """A hash of what defines a row before pinning (its packed term or vendored
-    key, expectation, fuel, mode, policy and any given pin): a checkpointed
+    key, expectation, fuel and share_fuel, mode, policy and any given pin;
+    share_fuel joined the key on 2026-11-26, so checkpoints from before re-run once): a checkpointed
     row is reused only if its definition is unchanged."""
     import hashlib
     fields = {k: r.get(k) for k in ("term", "term_from", "store", "expect", "fuel", "mode",

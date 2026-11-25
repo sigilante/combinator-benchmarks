@@ -34,7 +34,8 @@ def rows():
                "fuel": None, "mode": "whnf",
                "expect": {"status": "WHNF", "nf": "Ff"}, "expect_src": "self-check",
                "note": f"Reduceron {prog}, {size} size, "
-                       f"{'inlined' if inl == 'inl' else 'not inlined'}: main checks its answer",
+                       f"{'inlined' if inl == 'inl' else 'not inlined'}: main checks its answer"
+                       + ("; share-only: copy mode too costly (~10^9 contractions sharing)" if full else ""),
                "pin_policy": "auto"}
         if full:
             row.update({"copy": False, "skip_aviary": True, "share_fuel": 10_000_000_000})
