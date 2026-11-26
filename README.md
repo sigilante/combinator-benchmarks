@@ -4,6 +4,27 @@ Correctness and speed benchmarks for combinator reducers over SKI, BCKW and
 Smullyan's named birds. See `PLAN.md` for the scope and `BENCHMARKS.md` for the
 current results.
 
+## Families
+
+| family | what it is | rows | source of the terms |
+|---|---|---:|---|
+| A | Semantics micro-suite: each rule on fresh atoms, laziness traps (`K x Ω`), divergence, partial application, Church booleans and pairs | 309 | written by hand |
+| B | The aviary: Smullyan's birds (49, plus 6 sages) natively and as SKI, SK and BCKW expansions, which must agree | 880 | aviary's birds and bracket abstraction |
+| C | Church-numeral arithmetic, parametric in n: add, mul, exp, towers of twos, pred, sub, factorial, Fibonacci, Ackermann, Collatz | 280 | λ-terms by aviary's bracket abstraction |
+| D | Compiled programs, one sub-family per corpus: | | |
+| [D0](#family-d0-avons-conformance-corpus) | Avon's conformance corpus: SKIjack executables (self-interpreter towers, parsers, scry programs) | 340 | Avon's SKIT files |
+| [D1](#family-d1-skijack-programs-and-the-quine) | SKIjack programs and the quine | 77 | SKIjack |
+| [D2](#family-d2-skilarks-pinned-joy-programs) | SKIlark's pinned Joy programs, results read back | 9,522 | SKIlark (Joy to SKI) |
+| [D3](#family-d3-hoon-programs-through-nock-skinock) | Hoon programs through Nock | 24 | SKInock (urbit/benchmark) |
+| [D4](#family-d4-the-reduceron-benchmarks) | The Reduceron benchmarks (OrdList, Queens2, Taut, Clausify, PermSort) | 20 | Avon's SKIjack ports of Naylor and Runciman's suite |
+| [D5](#family-d5-joy-programs-of-our-own) | Joy programs of our own (Collatz, Ackermann, tak) | 78 | SKIlark |
+| E | Pure S: terms with exotic behaviour (cold engines, busy beavers) | planned | [paper-combinators](https://github.com/sigilante/paper-combinators) |
+| [F](#family-f-shape-stressors) | Shape stressors: deep, long, wide and exponential terms | 90 | built by the suite |
+| [G](#family-g-busy-beaver-champions) | Busy-beaver champions | 60 | BusyBeaverWiki *SKI Calculus* |
+
+Rows include fuel-edge variants. Each family's terms and expected results are in
+`manifests/<family>.jsonl`; large terms live under `data/` (see the family's section).
+
 ## Engines
 
 | name | what | counts asserted? |
@@ -18,7 +39,7 @@ engine skipped:
 - Avon reads only S, K and I (it refuses bird-named atoms), so it runs a row
   only when the term contains no bird or defined name.
 - mini runs a row only when the term uses no bird outside S K I B C W, and
-  only in `nf` mode (it has no WHNF mode).
+  of at most 20,000,000 leaves.
 - avon-share skips the fuel-edge rows, which are derived from copy-mode
   counts. Instead, for each row it passes, it is rerun at its own count c
   (must report FUEL) and at c + 1 (must reproduce its status, count and normal
@@ -178,9 +199,33 @@ instead of embedding it. Plain text would be ~800 MB; the gzipped data is
 Rows mirror D0: `d2.<module>.<name>.<i|c>` checks the status and SKIlark's
 pinned unfuelled count (aviary, to weak head normal form, cap 5,000,000) as a
 given pin; `.ctor` checks the result constructor (`RVal`, `RErr`, ...) by
-marker head. The stack an `RVal` carries is recorded in `note`, not checked.
+marker head; `.val` checks the result itself, payload included (except
+quotations and symbols, read only by kind: see below).
 aviary is skipped (`skip_aviary`) on interpreted runs and on compiled runs of
-over 20,000 contractions.
+over 20,000 contractions (`.val` rows too).
+
+**Reading results back (`.val`).** `bench/joyshow.py` builds, for a run's type
+table, a closed S, K, I term `show` that turns a Scott-encoded result into a
+first-order term over free atoms: `v_val` of the stack as `v_push <item>
+<rest>` ... `v_nil` (top first), items as `v_num` with an integer `v_pos` /
+`v_neg` of a unary natural (`v_s` ... `v_z`; `Neg m` is -(m+1)), `v_bool
+v_true|v_false`, `v_char`, `v_str` of `v_tcons` codes, `v_set` of `v_scons`
+members; `v_err` and `v_time` for the other ends. The `.val` row reduces `show
+(run)` to full normal form (mode `nf`), which must equal the pinned outcome
+written that way (`expect.nf`, from SKIlark's own reading in its test tables).
+The compiled form keeps only the constructors a program uses, so each run's
+type table is recorded with it (`python3 -m bench.vendor_d2 --types`, read
+from the SKIjack source SKIlark generates, at the vendored revisions; the
+result constructors' names, order and arities are checked against the
+vendored ones, the other tables are not checked against the compiled term,
+but a wrong one would misread by position and fail). Vendoring rewrites
+`programs.json.gz` without the tables: run `--types` after it, or `bench.gen`
+refuses to build D2 and D5. Quotations and
+symbols are not read: they print as the bare atoms `v_quot` and `v_sym`, so
+for the 92 runs whose result holds one, the stack's shape and its other items
+are checked and that item only by kind (the row's note says so). Reading the
+payload forces work the weak head normal form leaves undone, so `.val` rows
+are pinned afresh by the auto policy.
 
 ## Family D3: Hoon programs through Nock (SKInock)
 
@@ -247,9 +292,10 @@ right and errs (division by zero) when it is not. So the `.ctor` row, whose
 head must be `r_RVal`, certifies the computed value, given that SKIlark's
 `=`, `branch` and `/` behave as Joy's do (checked in joyref, not here). The
 plain `.i`/`.c` rows check only status and count; their note records the
-expected outcome. The expected outcome, `RVal []`, comes from SKIlark's model of
+expected outcome. The `.val` rows read the result back as D2's do: it must be
+`v_val v_nil`, the empty stack. The expected outcome, `RVal []`, comes from SKIlark's model of
 the Joy reference (`tests/joyref.py`; `expect_src: "joyref"`); there is no
-outside pin, so both rows are pinned by the auto policy. Rows are built as
+outside pin, so all three rows are pinned by the auto policy. Rows are built as
 D2's (`d5.own.<name>.<i|c>`), except that aviary is tried (within its timeout)
 on every compiled run, since no count says in advance which are too long.
 Interpreted runs are skipped; of the compiled runs, none finished on aviary
@@ -261,8 +307,9 @@ the step count (`collatz6.c`: 31.8M contractions copying, 110k sharing). The
 runs of collatz 7, 9 and 27 in both forms, and tak (8,4,0) and (12,8,4)
 interpreted, ran out of copy-mode fuel (10^9 contractions, as each row's note
 records) and are not pinned; avon-share
-alone runs them, and its count is the row's share reference. Their `.ctor` rows still
-certify the value (head `r_RVal`), on that one engine. `collatz5` is small enough
+alone runs them, and its count is the row's share reference. Their `.ctor` and `.val` rows still
+certify the value (head `r_RVal`; the empty stack), on that one engine, and
+are likewise share-only. `collatz5` is small enough
 for copy mode and mini.
 
 ## Family F: shape stressors

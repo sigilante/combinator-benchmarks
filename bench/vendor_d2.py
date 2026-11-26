@@ -17,7 +17,10 @@ words) and test_variants (its own loop variants).
 With --own, vendors instead this suite's own Joy programs (OWN below) into
 data/d5/ for family D5, compiled the same way.
 
-Usage: python3 -m bench.vendor_d2 [--own]   (needs $SKILARK_REPO and $SKIJACK_REPO)
+With --types, records each run's type table in data/d2 and data/d5 (for bench.joyshow;
+see add_types).
+
+Usage: python3 -m bench.vendor_d2 [--own | --types]   (needs $SKILARK_REPO and $SKIJACK_REPO)
 """
 
 from __future__ import annotations
@@ -190,6 +193,57 @@ def compile_module(modname, form_only=None, chunk=None):
     tmp.replace(cache)
 
 
+#: the types bench.joyshow reads a result through
+SHOW_TYPES = ("result", "stack", "item", "int", "nat", "logical", "text", "set")
+
+
+def add_types(out=OUT):
+    """Record each vendored run's type table (`types`, for bench.joyshow) in
+    out/programs.json.gz, from the SKIjack source SKIlark generates for it,
+    without compiling it again: the compiled form keeps only the
+    constructors a program uses. Refuses unless SKIlark and skijack are at
+    the revisions the runs were vendored from."""
+    sys.path.insert(1, str(SKIJACK))
+    sys.path.insert(1, str(SKILARK))
+    sys.path.insert(1, str(SKILARK / "tests"))
+    from skilark import joy
+    from skijack.parser import parse
+    import skijack.ast as A
+    path = out / "programs.json.gz"
+    meta = termstore.load(path)
+    for repo, label in ((SKILARK, "SKIlark"), (SKIJACK, "skijack")):
+        if f"@ {_rev(repo)}" not in meta["source"].split(label, 1)[1].split(",")[0]:
+            raise SystemExit(f"{label} is at {_rev(repo)}, not the vendored revision: {meta['source']}")
+    sources = {}
+    for p in meta["programs"]:
+        mod = p["module"]
+        if mod == "test_own":
+            P, _ = _own_tables()
+            defs = {**joy.DEFINITIONS, **OWN_DEFS}
+        else:
+            P, defs = importlib.import_module(mod).PROGRAMS, joy.DEFINITIONS
+        if p["form"] == "interpreted":
+            key = (mod, "interpreted")
+            make = lambda: joy.interpreted(P, defs)
+        elif mod in SET_COMPILED:
+            key = (mod, "compiled")
+            make = lambda: joy.compiled(P, defs)
+        else:
+            key = (mod, "compiled", p["name"])
+            make = lambda: joy.compiled({p["name"]: P[p["name"]]}, defs)
+        if key not in sources:
+            decls = parse(make(), "ascii").decls
+            sources[key] = {d.name: [[c.name, len(c.fields)] for c in d.ctors]
+                            for d in decls if isinstance(d, A.TypeDecl) and d.name in SHOW_TYPES}
+        t = sources[key]
+        if [f"{c}/{a}" for c, a in t["result"]] != p["result_ctors"]:
+            raise SystemExit(f"{p['key']}: result type {t['result']} differs from the vendored "
+                             f"{p['result_ctors']}")
+        p["types"] = t
+    termstore.save(path, meta)
+    print(f"{path}: types for {len(meta['programs'])} runs ({len(sources)} sources)")
+
+
 def merge_parts(modname):
     """Join a module's part files into its cache file."""
     cache_dir = Path(os.environ.get("D2_CACHE", OUT / ".cache"))
@@ -211,6 +265,9 @@ if __name__ == "__main__":
     elif sys.argv[1:2] == ["--compile"]:
         args = sys.argv[2:]
         compile_module(args[0], *(args[1:3] + [None] * (2 - len(args[1:3]))))
+    elif sys.argv[1:2] == ["--types"]:
+        add_types(OUT)
+        add_types(OUT_OWN)
     elif sys.argv[1:2] == ["--own"]:
         main(["test_own"], OUT_OWN)
     else:

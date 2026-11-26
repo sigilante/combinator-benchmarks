@@ -87,6 +87,19 @@ def validate(row):
 
 CHUNK = 64                 # rows expanded at a time, at most
 CHUNK_CHARS = 32_000_000   # and at most this much expanded text (one row may exceed it)
+BIG_CHUNK = 10_000_000     # a chunk this large drops gen's expansion cache first
+
+
+def _drop_cache():
+    """Empty gen's expansion cache (up to gen.CACHE_MAX of text): left full
+    between passes, it sat under the engine children's memory, and with D2's
+    largest mini child (~1.5 GB) the check passed the 3 GB cap."""
+    import gc
+    from . import gen
+    for v in gen._STORES.values():
+        if isinstance(v, tuple):
+            v[1].clear()
+    gc.collect()
 
 
 def _expanded(rows):
@@ -100,6 +113,8 @@ def _expanded(rows):
         chunk.append(r)
         chars += len(r["term"])
         if len(chunk) >= CHUNK or chars >= CHUNK_CHARS or k == len(rows) - 1:
+            if chars >= BIG_CHUNK:
+                _drop_cache()  # a big term goes to an engine child next: make room
             try:
                 yield chunk
             finally:
@@ -147,10 +162,12 @@ def check_family(fam, engines):
             tally[(eng, "skip")] += sum(1 for r in rows if r["mode"] == mode) - len(sel)
             if not sel:
                 continue
+            print(f"  [{fam}] {eng} {mode}: {len(sel)} rows", file=sys.stderr, flush=True)
             got = []
             for chunk in _expanded(sel):
                 got += E.ENGINES[eng]([(r["term"], r["fuel"], print_budget(r)) for r in chunk],
                                       whnf=(mode == "whnf"), timeout=TIMEOUT)
+            _drop_cache()  # what a pass expanded is not needed by the next
             for r, (status, steps, nf) in zip(sel, got):
                 exp = r["expect"]
                 probs = outcome_problems(exp, status, nf)

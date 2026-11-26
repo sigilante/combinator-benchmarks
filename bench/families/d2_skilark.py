@@ -2,15 +2,20 @@
 bench/vendor_d2.py: programs.json and the shared-subterm store store.json).
 
 Each pinned program gives up to two runs (interpreted, compiled), and each
-run two rows, as in D0:
+run three rows (the first two as in D0):
 
 - `d2.<module>.<name>.<i|c>`: the unfuelled run term reduced to weak head
   normal form under SKIlark's cap (5,000,000); the count is SKIlark's pinned
   one (aviary), a given pin every engine that runs the row must reproduce.
 - `... .ctor`: the run applied to one marker atom per constructor of its
   result type; the head must be the marker of the pinned outcome's
-  constructor (RVal, RErr, ...). The stack an RVal carries (the pinned
-  outcome's payload, recorded in `note`) is not checked yet.
+  constructor (RVal, RErr, ...).
+- `... .val`: the result read back (bench.joyshow): `show (run)` reduced to
+  full normal form, which must be the pinned outcome itself, the stack an
+  RVal carries included, item by item (integers, truth values, characters,
+  strings, sets; quotations and symbols only as the atoms v_quot and v_sym,
+  noted on the row). Pinned by the auto policy: reading the payload forces
+  work the weak head normal form leaves undone.
 
 Family D5 (bench/families/d5_own.py) builds its rows here too, from
 data/d5: Joy programs of this suite (bench/vendor_d2.py OWN: Ackermann,
@@ -35,7 +40,7 @@ CAP = 5_000_000
 
 
 def rows(family="D2", data="data/d2"):
-    from .. import termstore
+    from .. import joyshow, termstore
     STORE, PROGRAMS = f"{data}/store.json.gz", f"{data}/programs.json.gz"
     prefix = family.lower()
     meta = termstore.load(ROOT / PROGRAMS)
@@ -63,4 +68,17 @@ def rows(family="D2", data="data/d2"):
                                              "head": "r_" + p["outcome"][0]},
                     "expect_src": src_kind, "pin_policy": "auto",
                     "note": f"result constructor {p['outcome'][0]} of {' '.join(p['result_ctors'])}"})
+        if "types" not in p:  # vendoring rewrites programs.json.gz without them
+            raise SystemExit(f"{p['key']}: no type table; run `python3 -m bench.vendor_d2 --types`")
+        want = joyshow.expected_nf(p["outcome"], p["types"])
+        unread = joyshow.unread(want)
+        out.append({**base, "id": f"{prefix}.{p['key']}.val", "term": "",
+                    "term_from": {"file": PROGRAMS, "key": p["key"],
+                                  "wrap": f"({joyshow.show_term(p['types'])}) (%T)"},
+                    "mode": "nf", "fuel": None,
+                    "expect": {"status": "NORMAL", "nf": want},
+                    "expect_src": src_kind, "pin_policy": "auto",
+                    "note": f"result read back by bench.joyshow: {p['outcome'][0]} "
+                            f"{p['outcome'][1]}"
+                            + (f" ({', '.join(unread)} shown, not read)" if unread else "")})
     return out

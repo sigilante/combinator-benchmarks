@@ -205,6 +205,38 @@ def main():
         if not ok:
             survivors.append(label)
 
+    # D2/D5 payloads are read back by bench.joyshow: on a Scott result built
+    # here by hand (not by SKIlark), the right payload must pass and a wrong
+    # number, sign, truth value or order must fail.
+    from . import joyshow, engines as E
+    ty = {"result": [["RVal", 1], ["RErr", 0], ["RTime", 0]], "stack": [["Empty", 0], ["Push", 2]],
+          "item": [["Num", 1], ["Quot", 1], ["Logical", 1]], "int": [["Pos", 1], ["Neg", 1]],
+          "nat": [["Zero", 0], ["Suc", 1]], "logical": [["False", 0], ["True", 0]]}
+    E.define("""
+    TstRVal s a b c -> a s
+    TstEmpty e p -> e
+    TstPush i r e p -> p i r
+    TstNum n a b c -> a n
+    TstLog l a b c -> c l
+    TstTrue f t -> t
+    TstNeg m p n -> n m
+    TstZero z s -> z
+    TstSuc k z s -> s k
+    """)
+    # the stack [-2, true], bottom first: Push (Logical True) (Push (Num (Neg 1)) Empty)
+    val = E.to_basis("TstRVal (TstPush (TstLog TstTrue) (TstPush (TstNum (TstNeg (TstSuc TstZero))) TstEmpty))", "ski")
+    st, _n, got = check.E.run_mini([(f"({joyshow.show_term(ty)}) ({val})", 10**6, 10**6)])[0]
+    def payload_ok(payload):
+        exp = {"status": "NORMAL", "nf": joyshow.expected_nf(["RVal", payload], ty)}
+        return not outcome_problems(exp, st, got)
+    cases = [(payload_ok("[-2, True]"), "joyshow reads back [-2, True]")]
+    cases += [(not payload_ok(wrong), f"joyshow: payload {wrong} fails")
+              for wrong in ("[-1, True]", "[2, True]", "[-2, False]", "[True, -2]", "[-2]")]
+    for ok, label in cases:
+        print(f"  {'ok' if ok else 'FAIL':>4}      {label}")
+        if not ok:
+            survivors.append(label)
+
     # Leave results/ as a clean run would.
     for f in ("A", "B"):
         check.check_family(f, list(check.E.ENGINES))
