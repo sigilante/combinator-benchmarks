@@ -27,11 +27,11 @@ from . import engines as E
 from . import mini
 import os
 
-from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d3_skinock, d4_reduceron, d5_own, g_busybeaver
+from .families import a_semantics, b_birds, c_church, d0_avon, d1_skijack, d2_skilark, d3_skinock, d4_reduceron, d5_own, f_shapes, g_busybeaver
 
 FAMILIES = {"A": a_semantics, "B": b_birds, "C": c_church, "D0": d0_avon, "D1": d1_skijack,
             "D2": d2_skilark, "D3": d3_skinock, "D4": d4_reduceron,
-            "G": g_busybeaver}
+            "F": f_shapes, "G": g_busybeaver}
 if (Path(__file__).resolve().parent.parent / "data" / "d5").exists():
     FAMILIES["D5"] = d5_own  # only once vendored: python3 -m bench.vendor_d2 --own
 
@@ -221,6 +221,8 @@ def _nf_ref(name: str) -> str:
         if name == "d1.quine":
             from .families import d1_skijack  # deferred: the families import gen
             _NF_REF_CACHE[name] = d1_skijack.quine_nf()
+        elif name.startswith("f."):
+            _NF_REF_CACHE[name] = f_shapes.nf(name)
         else:
             raise ValueError(f"unknown nf_ref {name!r}")
     return _NF_REF_CACHE[name]
@@ -250,7 +252,16 @@ CACHE_MAX = 200_000_000
 def materialize(r):
     """A row whose term uses shared subterms (`store`: a termstore file,
     relative to the repo) gets its plain printed term; returns the packed text
-    to write back, or None. Engines only ever see plain terms."""
+    to write back, or None. Engines only ever see plain terms.
+
+    A row with `term_ref` (family F) stores no term at all: the name is
+    rebuilt by its family, and the empty manifest term is what is written back."""
+    if r.get("term_ref"):
+        if not r["term_ref"].startswith("f."):
+            raise ValueError(f"unknown term_ref {r['term_ref']!r}")
+        packed = r["term"]
+        r["term"] = f_shapes.term(r["term_ref"])
+        return packed
     if not r.get("store"):
         return None
     from . import termstore
@@ -301,6 +312,10 @@ def _row_key(r):
     fields = {k: r.get(k) for k in ("term", "term_from", "store", "expect", "fuel", "mode",
                                     "pin_policy", "pin", "skip_aviary", "copy", "engines",
                                     "share_fuel")}
+    if r.get("term_ref"):  # only when present, so other rows' keys are unchanged
+        # Keyed by name only: after changing how family F builds a term, delete
+        # manifests/.F.partial.jsonl before resuming.
+        fields["term_ref"] = r["term_ref"]
     return hashlib.sha256(json.dumps(fields, sort_keys=True).encode()).hexdigest()[:16]
 
 

@@ -177,6 +177,34 @@ def main():
         if not ok:
             survivors.append(label)
 
+    # Family F stores big terms by name (term_ref): materialize must rebuild
+    # exactly the named term and give back the empty manifest term, an
+    # unknown name must be refused, and a wrong normal form must still fail.
+    ref = {"id": "f.right.3", "term": "", "term_ref": "f.right.3", "expect": {}}
+    back = gen.materialize(ref)
+    bad_ref = {"id": "x", "term": "", "term_ref": "g.right.3", "expect": {}}
+    try:
+        gen.materialize(bad_ref)
+        refused = False
+    except ValueError:
+        refused = True
+    fx = {"status": "NORMAL", "nf_ref": "f.dup.2"}
+    for ok, label in ((back == "" and ref["term"] == "I (I (I x))", "term_ref rebuilds its term"),
+                      (refused, "an unknown term_ref is refused"),
+                      (not outcome_problems(fx, "NORMAL", "x x (x x)"), "nf_ref f.dup.2 passes"),
+                      (bool(outcome_problems(fx, "NORMAL", "x x (x x) x")), "a wrong nf against nf_ref fails"),
+                      (bool(check.validate({"id": "f.left.5.fuel+1", "term": "", "term_ref": "f.right.5",
+                                            "fuel": 6, "mode": "nf", "expect": {"status": "NORMAL", "nf": "x"},
+                                            "expect_src": "fuel-edge", "pin": {"steps": 5, "source": "t"}})),
+                       "a swapped term_ref fails validation"),
+                      (not check.validate({"id": "f.left.5.fuel+1", "term": "", "term_ref": "f.left.5",
+                                           "fuel": 6, "mode": "nf", "expect": {"status": "NORMAL", "nf": "x"},
+                                           "expect_src": "fuel-edge", "pin": {"steps": 5, "source": "t"}}),
+                       "a row's own term_ref validates")):
+        print(f"  {'ok' if ok else 'FAIL':>4}      {label}")
+        if not ok:
+            survivors.append(label)
+
     # Leave results/ as a clean run would.
     for f in ("A", "B"):
         check.check_family(f, list(check.E.ENGINES))

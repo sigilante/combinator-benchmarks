@@ -58,8 +58,9 @@ tracked in git; commit them together with the code that produced them.
 
 ## Where pins come from
 
-Families A and B are pinned by aviary. Rows with `pin_policy: "given"` (D0)
-carry a pin from an outside source, which `given_pin` keeps only if every
+Families A and B are pinned by aviary. Rows with `pin_policy: "given"` (D0, F)
+carry a pin from an outside source (D0's corpus; for F, a closed form in the
+term's size), which `given_pin` keeps only if every
 engine that can run the row in time (Avon copy, mini, aviary within its
 timeout) reproduces it and the expectation exactly. Its source then ends
 "confirmed by" and the engines that reproduced it in this build; the count
@@ -264,6 +265,46 @@ alone runs them, and its count is the row's share reference. Their `.ctor` rows 
 certify the value (head `r_RVal`), on that one engine. `collatz5` is small enough
 for copy mode and mini.
 
+## Family F: shape stressors
+
+Synthetic terms built to a shape (`bench/families/f_shapes.py`), each with a
+normal form and a copy-mode count that follow from the shape by the rules
+(`expect_src: "construction"`, `pin_policy: "given"`, the pin's source naming
+the closed form), so every engine that can run a row must reproduce both:
+
+| shape | term | sizes n | normal form | copy-mode count |
+|---|---|---|---|---|
+| `left` | `I I ... I x` | 10^3 to 10^7 | `x` | n |
+| `right` | `I (I (... (I x)))` | 10^3 to 10^7 | `x` | n |
+| `snorm` | `S (S (... (S K)))` | 10^3 to 10^6 | the term itself | 0 |
+| `wide` | `x (I y) ... (I y)` | 10^3 to 10^6 | `x y ... y` | n |
+| `dup` | `D (D (... (D x)))`, D = `S I I` | 4 to 20 | binary tree of 2^n `x`s | 3 (2^n - 1) |
+| `dupki` | the same on `K I` | 4 to 28 | `I` | 7 · 2^(n-1) - 4 |
+| `wi` (BCKW) | the same with D = `W I` | 4 to 16 | as `dup` | 2 (2^n - 1) |
+
+Deep nesting tests recursion in parsers, reducers and printers; `snorm` has
+nothing to reduce and only tests printing a deep normal form. `dup` and
+`dupki` are sensitive to sharing: copy mode copies the unreduced argument and
+reduces it twice, so its count doubles with each D, while Avon's share mode
+counts 3n and 4n - 1 (recorded as `share_ref`, not asserted). `dupki.32` and
+`dupki.64` (about 1.5 × 10^10 and 6.5 × 10^19 copy-mode contractions) are
+share-only (`pin_policy: "auto"`, `pin: null`; their normal form `I` is by
+construction and checked by Avon share mode alone). Terms and normal forms over 10,000 characters are not stored in
+the manifest: the row names them (`term_ref`, `expect.nf_ref`) and the family
+rebuilds them.
+
+aviary is not run past limits measured on it (aviary bfba908): its parser
+recurses once per level of nesting and exceeds Python's recursion limit
+between depth 2 × 10^4 and 3 × 10^4 (and right nesting is already slow: about
+13 s at 2 × 10^4); on long spines its time grows quadratically (left spine:
+1.3 s at n = 3,000, 15.5 s at 10^4; `wide`: 35 s at 10^4). Beyond those
+`skip_aviary` rows, aviary also drops out of any row it cannot finish within
+gen's aviary timeout (e.g. `dup` from n = 16, `dupki` from 20, `wi.16`). Avon
+copy runs every S, K, I row except the two share-only ones; mini runs all but
+`dupki.24` and `dupki.28` (past its 2 × 10^7 confirmation limit); the `wi`
+rows run on mini and aviary only. Not built: normal forms too large to print
+whole (the harness compares printed normal forms; there is no hash check).
+
 ## Family G: busy-beaver champions
 
 The champion terms of the BusyBeaverWiki page *SKI Calculus*
@@ -352,13 +393,14 @@ is wrong is reported and not timed. Results go to `results/timing-<fam>.jsonl`.
 | `expect.nf` | expected normal form, or null (check status and count only) |
 | `expect.numeral` | family C: expected Church readback `f (f (... x))` with this many `f` |
 | `expect.leaves` | family G: the normal form must print whole and have exactly this many leaves (mode nf; also on `.fuel+0` rows, whose FUEL result is that normal form) |
-| `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`) |
+| `expect.nf_ref` | expected normal form too large to store, computed by its family (`d1.quine`; `f.<shape>.<n>`) |
 | `expect.head` | expected head atom of the result (D0 constructor rows: the marker `r_<ctor>`) |
 | `expect_src` | `hand` (worked from the rules), `joyref` (SKIlark's model of the Joy reference), `aviary-rule` (aviary's bird table), `arith` (arithmetic), `corpus` (an outside corpus's recorded outcome), `examples` (SKIjack's stated results), `construction` (derived from how the term was built), `self-check` (the program checks its own answer; D4), `nock-oracle` (SKInock's Python Nock evaluator, by Nock's step rules; D3), `fuel-edge` (derived from a pin) |
 | `pin` | `{steps, source}`, or null for a share-only row |
 | `engines` | engines that run the row (absent: all that can read it) |
 | `tier`, `size`, `share_ref` | tier; term size in leaves; Avon share count when built (recorded, not asserted) |
 | `store`, `term_from` | shared-subterm store the term's `@` references resolve in; vendored file, key and wrapper (`%T` = the term) the term is read from (D2, D5) |
+| `term_ref` | family F: the term is not stored (`term` is empty); its family rebuilds it from this name, `f.<shape>.<n>` |
 | `skip_aviary` | aviary cannot finish the row in time; it is not run there |
 | `share_fuel` | the share-mode fuel `auto_pin` uses, and a share-only row's `fuel` (default 4 x 10^9) |
 | `pin_policy` | absent: aviary pins the row; `auto`: `auto_pin` (see below); `given`: the pin comes with the row from an outside source and must be reproduced (`given_pin`) |
