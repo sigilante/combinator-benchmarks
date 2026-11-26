@@ -288,15 +288,21 @@ nothing to reduce and only tests printing a deep normal form. `dup` and
 reduces it twice, so its count doubles with each D, while Avon's share mode
 counts 3n and 4n - 1 (recorded as `share_ref`, not asserted). `dupki.32` and
 `dupki.64` (about 1.5 × 10^10 and 6.5 × 10^19 copy-mode contractions) are
-share-only. Terms and normal forms over 10,000 characters are not stored in
+share-only (`pin_policy: "auto"`, `pin: null`; their normal form `I` is by
+construction and checked by Avon share mode alone). Terms and normal forms over 10,000 characters are not stored in
 the manifest: the row names them (`term_ref`, `expect.nf_ref`) and the family
 rebuilds them.
 
 aviary is not run past limits measured on it (aviary bfba908): its parser
 recurses once per level of nesting and exceeds Python's recursion limit
-between depth 10^4 and 3 × 10^4; on long spines its time grows quadratically
-(left spine: 1.3 s at n = 3,000, 15.5 s at 10^4; `wide`: 35 s at 10^4). mini
-and Avon run every size listed. Not built: normal forms too large to print
+between depth 2 × 10^4 and 3 × 10^4 (and right nesting is already slow: about
+13 s at 2 × 10^4); on long spines its time grows quadratically (left spine:
+1.3 s at n = 3,000, 15.5 s at 10^4; `wide`: 35 s at 10^4). Beyond those
+`skip_aviary` rows, aviary also drops out of any row it cannot finish within
+gen's aviary timeout (e.g. `dup` from n = 16, `dupki` from 20, `wi.16`). Avon
+copy runs every S, K, I row except the two share-only ones; mini runs all but
+`dupki.24` and `dupki.28` (past its 2 × 10^7 confirmation limit); the `wi`
+rows run on mini and aviary only. Not built: normal forms too large to print
 whole (the harness compares printed normal forms; there is no hash check).
 
 ## Family G: busy-beaver champions

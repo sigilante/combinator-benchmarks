@@ -28,14 +28,20 @@ engine that can run a row must reproduce both:
   finish, and the rows are share-only (`copy: False`; share mode counts 4n - 1).
 - `f.wi.<n>` (BCKW): the chain with D = W I: W I t -> I t t -> t t, two
   contractions, 2 (2^n - 1) in all; same normal form as f.dup. Avon reads only
-  S, K and I, so aviary and mini run these.
+  S, K and I, so only aviary and mini can run these (aviary where it finishes
+  within gen's timeout: not wi.16).
 
 aviary, a reference interpreter, is not run on rows past its measured limits
 (2026-11-26, aviary bfba908): its parser recurses per level of nesting and
-exceeds Python's recursion limit between depth 10^4 and 3 * 10^4 (right,
-snorm); its time grows quadratically on long spines (left: 1.3 s at n = 3,000,
+exceeds Python's recursion limit between depth 2 * 10^4 and 3 * 10^4 (right,
+snorm; right is already ~13 s at 2 * 10^4); its time grows quadratically on long spines (left: 1.3 s at n = 3,000,
 15.5 s at 10^4; wide: 35 s at 10^4). Rows it cannot finish within gen's
-aviary timeout are left to the other engines either way.
+aviary timeout (e.g. dup from n = 16, dupki from 20) are left to the other
+engines either way. Every row is pin_policy "given" with a closed-form pin,
+except the two share-only dupki rows (pin_policy "auto", no pin).
+
+A row's term_ref, and its nf_ref if any, must be the row's own id (less any
+fuel-edge suffix); check.validate enforces this.
 
 Terms and normal forms over INLINE_MAX characters are not stored in the
 manifest: the row names them (`term_ref`, `expect.nf_ref`, both "f.<shape>.<n>")

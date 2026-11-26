@@ -73,6 +73,13 @@ def validate(row):
             probs.append(f"engines {row['engines']!r} (known: {sorted(E.ENGINES)})")
     if row["pin"] is None and row.get("engines") != ["avon-share"]:
         probs.append("pin is null but the row is not share-only")
+    if row.get("term_ref") is not None:  # family F: the name must be the row's own
+        base = row["id"].split(".fuel")[0]
+        if row["term_ref"] != base:
+            probs.append(f"term_ref {row['term_ref']!r} is not the row's own name {base!r}")
+        ref = exp.get("nf_ref")
+        if ref is not None and ref.startswith("f.") and ref != base:
+            probs.append(f"nf_ref {ref!r} is not the row's own name {base!r}")
     if not isinstance(row["fuel"], int) or row["fuel"] < 0:
         probs.append(f"fuel {row['fuel']!r}")
     return probs

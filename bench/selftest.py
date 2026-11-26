@@ -192,7 +192,15 @@ def main():
     for ok, label in ((back == "" and ref["term"] == "I (I (I x))", "term_ref rebuilds its term"),
                       (refused, "an unknown term_ref is refused"),
                       (not outcome_problems(fx, "NORMAL", "x x (x x)"), "nf_ref f.dup.2 passes"),
-                      (bool(outcome_problems(fx, "NORMAL", "x x (x x) x")), "a wrong nf against nf_ref fails")):
+                      (bool(outcome_problems(fx, "NORMAL", "x x (x x) x")), "a wrong nf against nf_ref fails"),
+                      (bool(check.validate({"id": "f.left.5.fuel+1", "term": "", "term_ref": "f.right.5",
+                                            "fuel": 6, "mode": "nf", "expect": {"status": "NORMAL", "nf": "x"},
+                                            "expect_src": "fuel-edge", "pin": {"steps": 5, "source": "t"}})),
+                       "a swapped term_ref fails validation"),
+                      (not check.validate({"id": "f.left.5.fuel+1", "term": "", "term_ref": "f.left.5",
+                                           "fuel": 6, "mode": "nf", "expect": {"status": "NORMAL", "nf": "x"},
+                                           "expect_src": "fuel-edge", "pin": {"steps": 5, "source": "t"}}),
+                       "a row's own term_ref validates")):
         print(f"  {'ok' if ok else 'FAIL':>4}      {label}")
         if not ok:
             survivors.append(label)
