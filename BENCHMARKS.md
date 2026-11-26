@@ -377,14 +377,14 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 
 ## Family D2
 
-6484 rows (4596 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+9522 rows (6690 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
 
 | engine | checks | pass | fail |
 |---|---:|---:|---:|
-| aviary | 1072 | 1072 | 0 |
-| avon-copy | 6484 | 6484 | 0 |
-| avon-share | 3776 | 3776 | 0 |
-| mini | 6484 | 6484 | 0 |
+| aviary | 1272 | 1272 | 0 |
+| avon-copy | 9522 | 9522 | 0 |
+| avon-share | 5664 | 5664 | 0 |
+| mini | 9522 | 9522 | 0 |
 
 `copy` is the pinned normal-order count (asserted); `share` is Avon's
 graph-reduction count (held as a regression pin). Size is in leaves.
@@ -393,1892 +393,2836 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 |---|---|---|---:|---:|---:|---:|---|
 | `d2.words.w1.i` | S | WHNF | 77,239 | 3,114 | 2,826 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w1.i.ctor` | S | WHNF, head `r_RVal` | 77,243 | 3,131 | 2,843 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w1.i.val` | S | NORMAL | 77,631 | 4,772 | 4,059 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w1.c` | S | WHNF | 1,019,202 | 343 | 343 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w1.c.ctor` | S | WHNF, head `r_RVal` | 1,019,205 | 355 | 355 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w1.c.val` | S | NORMAL | 1,019,342 | 1,965 | 1,540 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w10.i` | M | WHNF | 84,744 | 45,899 | 37,493 | 1.22 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w10.i.ctor` | M | WHNF, head `r_RVal` | 84,748 | 45,916 | 37,510 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w10.i.val` | M | NORMAL | 85,136 | 46,063 | 37,654 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w10.c` | S | WHNF | 1,028,520 | 6,593 | 5,279 | 1.25 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w10.c.ctor` | S | WHNF, head `r_RVal` | 1,028,523 | 6,605 | 5,291 | 1.25 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w10.c.val` | S | NORMAL | 1,028,660 | 6,716 | 5,399 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w11.i` | M | WHNF | 79,146 | 16,548 | 14,016 | 1.18 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w11.i.ctor` | M | WHNF, head `r_RVal` | 79,150 | 16,565 | 14,033 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w11.i.val` | M | NORMAL | 79,538 | 17,574 | 14,758 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w11.c` | S | WHNF | 1,028,520 | 6,543 | 5,223 | 1.25 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w11.c.ctor` | S | WHNF, head `r_RVal` | 1,028,523 | 6,555 | 5,235 | 1.25 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w11.c.val` | S | NORMAL | 1,028,660 | 7,077 | 5,670 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w12.i` | M | WHNF | 83,255 | 28,052 | 23,199 | 1.21 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w12.i.ctor` | M | WHNF, head `r_RVal` | 83,259 | 28,069 | 23,216 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w12.i.val` | M | NORMAL | 83,647 | 29,206 | 24,065 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w12.c` | S | WHNF | 1,024,969 | 280 | 280 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w12.c.ctor` | S | WHNF, head `r_RVal` | 1,024,972 | 292 | 292 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w12.c.val` | S | NORMAL | 1,025,109 | 815 | 781 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w13.i` | S | WHNF | 77,270 | 3,487 | 3,055 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w13.i.ctor` | S | WHNF, head `r_RVal` | 77,274 | 3,504 | 3,072 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w13.i.val` | S | NORMAL | 77,662 | 4,656 | 4,153 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w13.c` | S | WHNF | 1,024,961 | 280 | 280 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w13.c.ctor` | S | WHNF, head `r_RVal` | 1,024,964 | 292 | 292 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w13.c.val` | S | NORMAL | 1,025,101 | 768 | 740 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w14.i` | M | WHNF | 85,553 | 47,856 | 38,893 | 1.23 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w14.i.ctor` | M | WHNF, head `r_RVal` | 85,557 | 47,873 | 38,910 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w14.i.val` | M | NORMAL | 85,945 | 48,018 | 39,052 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w14.c` | M | WHNF | 1,045,091 | 14,411 | 10,952 | 1.32 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w14.c.ctor` | M | WHNF, head `r_RVal` | 1,045,094 | 14,423 | 10,964 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w14.c.val` | M | NORMAL | 1,045,231 | 14,534 | 11,072 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w15.i` | M | WHNF | 85,290 | 50,267 | 40,857 | 1.23 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w15.i.ctor` | M | WHNF, head `r_RVal` | 85,294 | 50,284 | 40,874 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w15.i.val` | M | NORMAL | 85,682 | 50,430 | 41,017 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w15.c` | M | WHNF | 1,045,075 | 16,169 | 12,698 | 1.27 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w15.c.ctor` | M | WHNF, head `r_RVal` | 1,045,078 | 16,181 | 12,710 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w15.c.val` | M | NORMAL | 1,045,215 | 16,292 | 12,818 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w16.i` | S | WHNF | 76,936 | 1,771 | 1,626 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w16.i.ctor` | S | WHNF, head `r_RVal` | 76,940 | 1,788 | 1,643 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w16.i.val` | S | NORMAL | 77,328 | 1,936 | 1,788 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w16.c` | S | WHNF | 1,018,317 | 116 | 116 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w16.c.ctor` | S | WHNF, head `r_RVal` | 1,018,320 | 128 | 128 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w16.c.val` | S | NORMAL | 1,018,457 | 249 | 246 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w17.i` | M | WHNF | 91,118 | 45,674 | 37,165 | 1.23 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w17.i.ctor` | M | WHNF, head `r_RVal` | 91,122 | 45,691 | 37,182 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w17.i.val` | M | NORMAL | 91,510 | 46,429 | 37,787 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w17.c` | M | WHNF | 1,049,704 | 12,593 | 9,787 | 1.29 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w17.c.ctor` | M | WHNF, head `r_RVal` | 1,049,707 | 12,605 | 9,799 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w17.c.val` | M | NORMAL | 1,049,844 | 13,015 | 10,172 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w18.i` | S | WHNF | 77,150 | 2,558 | 2,270 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w18.i.ctor` | S | WHNF, head `r_RVal` | 77,154 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w18.i.val` | S | NORMAL | 77,542 | 3,091 | 2,784 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w18.c` | S | WHNF | 1,024,662 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w18.c.ctor` | S | WHNF, head `r_RVal` | 1,024,665 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w18.c.val` | S | NORMAL | 1,024,802 | 532 | 520 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w19.i` | S | WHNF | 77,766 | 4,755 | 4,175 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w19.i.ctor` | S | WHNF, head `r_RVal` | 77,770 | 4,772 | 4,192 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w19.i.val` | S | NORMAL | 78,158 | 4,973 | 4,387 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w19.c` | S | WHNF | 1,020,158 | 1,959 | 1,959 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w19.c.ctor` | S | WHNF, head `r_RVal` | 1,020,161 | 1,971 | 1,971 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w19.c.val` | S | NORMAL | 1,020,298 | 2,137 | 2,131 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w2.i` | M | WHNF | 79,032 | 11,103 | 9,608 | 1.16 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w2.i.ctor` | M | WHNF, head `r_RVal` | 79,036 | 11,120 | 9,625 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w2.i.val` | M | NORMAL | 79,424 | 11,648 | 10,099 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w2.c` | S | WHNF | 1,029,442 | 3,183 | 3,106 | 1.02 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w2.c.ctor` | S | WHNF, head `r_RVal` | 1,029,445 | 3,195 | 3,118 | 1.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w2.c.val` | S | NORMAL | 1,029,582 | 3,690 | 3,559 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w20.i` | S | WHNF | 77,765 | 4,749 | 4,169 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w20.i.ctor` | S | WHNF, head `r_RVal` | 77,769 | 4,766 | 4,186 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w20.i.val` | S | NORMAL | 78,157 | 4,995 | 4,404 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w20.c` | S | WHNF | 1,020,157 | 1,953 | 1,953 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w20.c.ctor` | S | WHNF, head `r_RVal` | 1,020,160 | 1,965 | 1,965 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w20.c.val` | S | NORMAL | 1,020,297 | 2,159 | 2,148 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w21.i` | S | WHNF | 78,283 | 9,131 | 7,953 | 1.15 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w21.i.ctor` | S | WHNF, head `r_RVal` | 78,287 | 9,148 | 7,970 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w21.i.val` | S | NORMAL | 78,675 | 9,551 | 8,305 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w21.c` | S | WHNF | 1,020,824 | 3,804 | 3,163 | 1.20 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w21.c.ctor` | S | WHNF, head `r_RVal` | 1,020,827 | 3,816 | 3,175 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w21.c.val` | S | NORMAL | 1,020,964 | 4,152 | 3,451 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w22.i` | M | WHNF | 78,302 | 10,596 | 9,292 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w22.i.ctor` | M | WHNF, head `r_RVal` | 78,306 | 10,613 | 9,309 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w22.i.val` | M | NORMAL | 78,694 | 11,100 | 9,666 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w22.c` | S | WHNF | 1,020,844 | 4,255 | 3,583 | 1.19 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w22.c.ctor` | S | WHNF, head `r_RVal` | 1,020,847 | 4,267 | 3,595 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w22.c.val` | S | NORMAL | 1,020,984 | 4,690 | 3,903 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w23.i` | M | WHNF | 82,976 | 210,359 | 145,858 | 1.44 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w23.i.ctor` | M | WHNF, head `r_RVal` | 82,980 | 210,376 | 145,875 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w23.i.val` | M | NORMAL | 83,368 | 514,654 | 156,675 | 3.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w23.c` | M | WHNF | 1,021,503 | 120,411 | 87,474 | 1.38 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w23.c.ctor` | M | WHNF, head `r_RVal` | 1,021,506 | 120,423 | 87,486 | 1.38 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w23.c.val` | M | NORMAL | 1,021,643 | 424,585 | 98,254 | 4.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w24.i` | S | WHNF | 77,172 | 2,558 | 2,270 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w24.i.ctor` | S | WHNF, head `r_RVal` | 77,176 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w24.i.val` | S | NORMAL | 77,564 | 3,323 | 2,995 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w24.c` | S | WHNF | 1,024,684 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w24.c.ctor` | S | WHNF, head `r_RVal` | 1,024,687 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w24.c.val` | S | NORMAL | 1,024,824 | 591 | 568 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w25.i` | S | WHNF | 77,803 | 4,791 | 4,211 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w25.i.ctor` | S | WHNF, head `r_RVal` | 77,807 | 4,808 | 4,228 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w25.i.val` | S | NORMAL | 78,195 | 5,037 | 4,446 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w25.c` | S | WHNF | 1,020,175 | 1,993 | 1,993 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w25.c.ctor` | S | WHNF, head `r_RVal` | 1,020,178 | 2,005 | 2,005 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w25.c.val` | S | NORMAL | 1,020,315 | 2,199 | 2,188 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w26.i` | S | WHNF | 77,178 | 3,048 | 2,766 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w26.i.ctor` | S | WHNF, head `r_RErr` | 77,182 | 3,053 | 2,771 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w26.i.val` | S | NORMAL | 77,570 | 3,059 | 2,777 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w26.c` | S | WHNF | 1,019,141 | 331 | 331 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w26.c.ctor` | S | WHNF, head `r_RErr` | 1,019,144 | 333 | 333 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w26.c.val` | S | NORMAL | 1,019,281 | 338 | 338 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w27.i` | S | WHNF | 77,249 | 3,116 | 2,828 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w27.i.ctor` | S | WHNF, head `r_RVal` | 77,253 | 3,133 | 2,845 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w27.i.val` | S | NORMAL | 77,641 | 4,117 | 3,753 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w27.c` | S | WHNF | 1,019,543 | 343 | 343 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w27.c.ctor` | S | WHNF, head `r_RVal` | 1,019,546 | 355 | 355 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w27.c.val` | S | NORMAL | 1,019,683 | 1,306 | 1,230 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w28.i` | S | WHNF | 77,304 | 4,000 | 3,568 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w28.i.ctor` | S | WHNF, head `r_RVal` | 77,308 | 4,017 | 3,585 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w28.i.val` | S | NORMAL | 77,696 | 4,384 | 3,935 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w28.c` | S | WHNF | 1,019,630 | 461 | 461 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w28.c.ctor` | S | WHNF, head `r_RVal` | 1,019,633 | 473 | 473 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w28.c.val` | S | NORMAL | 1,019,770 | 807 | 790 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w29.i` | M | WHNF | 78,642 | 14,188 | 12,156 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w29.i.ctor` | M | WHNF, head `r_RVal` | 78,646 | 14,205 | 12,173 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w29.i.val` | M | NORMAL | 79,034 | 14,576 | 12,523 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w29.c` | S | WHNF | 1,028,157 | 3,325 | 3,291 | 1.01 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w29.c.ctor` | S | WHNF, head `r_RVal` | 1,028,160 | 3,337 | 3,303 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w29.c.val` | S | NORMAL | 1,028,297 | 3,675 | 3,620 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w3.i` | M | WHNF | 79,030 | 11,101 | 9,606 | 1.16 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w3.i.ctor` | M | WHNF, head `r_RVal` | 79,034 | 11,118 | 9,623 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w3.i.val` | M | NORMAL | 79,422 | 11,805 | 10,258 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w3.c` | S | WHNF | 1,029,499 | 3,183 | 3,106 | 1.02 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w3.c.ctor` | S | WHNF, head `r_RVal` | 1,029,502 | 3,195 | 3,118 | 1.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w3.c.val` | S | NORMAL | 1,029,639 | 3,849 | 3,720 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w30.i` | M | WHNF | 79,699 | 12,603 | 10,748 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w30.i.ctor` | M | WHNF, head `r_RVal` | 79,703 | 12,620 | 10,765 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w30.i.val` | M | NORMAL | 80,091 | 12,796 | 10,938 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w30.c` | S | WHNF | 1,028,113 | 2,988 | 2,964 | 1.01 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w30.c.ctor` | S | WHNF, head `r_RVal` | 1,028,116 | 3,000 | 2,976 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w30.c.val` | S | NORMAL | 1,028,253 | 3,142 | 3,115 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w31.i` | M | WHNF | 79,685 | 16,846 | 14,345 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w31.i.ctor` | M | WHNF, head `r_RVal` | 79,689 | 16,863 | 14,362 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w31.i.val` | M | NORMAL | 80,077 | 17,043 | 14,539 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w31.c` | S | WHNF | 1,028,099 | 5,002 | 4,976 | 1.01 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w31.c.ctor` | S | WHNF, head `r_RVal` | 1,028,102 | 5,014 | 4,988 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w31.c.val` | S | NORMAL | 1,028,239 | 5,159 | 5,130 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w32.i` | M | WHNF | 79,717 | 17,242 | 14,597 | 1.18 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w32.i.ctor` | M | WHNF, head `r_RVal` | 79,721 | 17,259 | 14,614 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w32.i.val` | M | NORMAL | 80,109 | 17,466 | 14,815 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w32.c` | S | WHNF | 1,028,131 | 5,290 | 5,222 | 1.01 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w32.c.ctor` | S | WHNF, head `r_RVal` | 1,028,134 | 5,302 | 5,234 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w32.c.val` | S | NORMAL | 1,028,271 | 5,474 | 5,400 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w33.i` | S | WHNF | 77,253 | 3,164 | 2,876 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w33.i.ctor` | S | WHNF, head `r_RVal` | 77,257 | 3,181 | 2,893 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w33.i.val` | S | NORMAL | 77,645 | 5,609 | 4,427 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w33.c` | S | WHNF | 1,019,924 | 387 | 387 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w33.c.ctor` | S | WHNF, head `r_RVal` | 1,019,927 | 399 | 399 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w33.c.val` | S | NORMAL | 1,020,064 | 2,796 | 1,902 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w34.i` | S | WHNF | 77,243 | 3,164 | 2,876 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w34.i.ctor` | S | WHNF, head `r_RVal` | 77,247 | 3,181 | 2,893 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w34.i.val` | S | NORMAL | 77,635 | 5,589 | 4,414 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w34.c` | S | WHNF | 1,019,914 | 387 | 387 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w34.c.ctor` | S | WHNF, head `r_RVal` | 1,019,917 | 399 | 399 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w34.c.val` | S | NORMAL | 1,020,054 | 2,776 | 1,889 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w35.i` | S | WHNF | 77,243 | 3,160 | 2,872 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w35.i.ctor` | S | WHNF, head `r_RVal` | 77,247 | 3,177 | 2,889 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w35.i.val` | S | NORMAL | 77,635 | 5,601 | 4,420 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w35.c` | S | WHNF | 1,019,914 | 383 | 383 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w35.c.ctor` | S | WHNF, head `r_RVal` | 1,019,917 | 395 | 395 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w35.c.val` | S | NORMAL | 1,020,054 | 2,788 | 1,895 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w36.i` | S | WHNF | 77,241 | 3,162 | 2,874 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w36.i.ctor` | S | WHNF, head `r_RVal` | 77,245 | 3,179 | 2,891 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w36.i.val` | S | NORMAL | 77,633 | 5,916 | 4,357 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w36.c` | S | WHNF | 1,019,866 | 387 | 387 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w36.c.ctor` | S | WHNF, head `r_RVal` | 1,019,869 | 399 | 399 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w36.c.val` | S | NORMAL | 1,020,006 | 3,105 | 1,834 | 1.69 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w37.i` | S | WHNF | 77,241 | 3,158 | 2,870 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w37.i.ctor` | S | WHNF, head `r_RVal` | 77,245 | 3,175 | 2,887 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w37.i.val` | S | NORMAL | 77,633 | 5,948 | 4,377 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w37.c` | S | WHNF | 1,019,866 | 383 | 383 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w37.c.ctor` | S | WHNF, head `r_RVal` | 1,019,869 | 395 | 395 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w37.c.val` | S | NORMAL | 1,020,006 | 3,137 | 1,854 | 1.69 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w38.i` | S | WHNF | 77,237 | 3,084 | 2,802 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w38.i.ctor` | S | WHNF, head `r_RErr` | 77,241 | 3,089 | 2,807 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w38.i.val` | S | NORMAL | 77,629 | 3,095 | 2,813 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w38.c` | S | WHNF | 1,019,908 | 363 | 363 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w38.c.ctor` | S | WHNF, head `r_RErr` | 1,019,911 | 365 | 365 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w38.c.val` | S | NORMAL | 1,020,048 | 370 | 370 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w39.i` | S | WHNF | 77,213 | 3,114 | 2,826 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w39.i.ctor` | S | WHNF, head `r_RVal` | 77,217 | 3,131 | 2,843 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w39.i.val` | S | NORMAL | 77,605 | 3,996 | 3,565 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w39.c` | S | WHNF | 1,019,176 | 343 | 343 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w39.c.ctor` | S | WHNF, head `r_RVal` | 1,019,179 | 355 | 355 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w39.c.val` | S | NORMAL | 1,019,316 | 1,189 | 1,046 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w4.i` | M | WHNF | 78,990 | 11,101 | 9,606 | 1.16 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w4.i.ctor` | M | WHNF, head `r_RVal` | 78,994 | 11,118 | 9,623 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w4.i.val` | M | NORMAL | 79,382 | 11,433 | 9,935 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w4.c` | S | WHNF | 1,029,459 | 3,183 | 3,106 | 1.02 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w4.c.ctor` | S | WHNF, head `r_RVal` | 1,029,462 | 3,195 | 3,118 | 1.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w4.c.val` | S | NORMAL | 1,029,599 | 3,477 | 3,397 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w40.i` | S | WHNF | 77,203 | 3,114 | 2,826 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w40.i.ctor` | S | WHNF, head `r_RVal` | 77,207 | 3,131 | 2,843 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w40.i.val` | S | NORMAL | 77,595 | 4,024 | 3,584 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w40.c` | S | WHNF | 1,019,166 | 343 | 343 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w40.c.ctor` | S | WHNF, head `r_RVal` | 1,019,169 | 355 | 355 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w40.c.val` | S | NORMAL | 1,019,306 | 1,217 | 1,065 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w41.i` | S | WHNF | 77,205 | 2,556 | 2,268 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w41.i.ctor` | S | WHNF, head `r_RVal` | 77,209 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w41.i.val` | S | NORMAL | 77,597 | 3,180 | 2,835 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w41.c` | S | WHNF | 1,024,719 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w41.c.ctor` | S | WHNF, head `r_RVal` | 1,024,722 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w41.c.val` | S | NORMAL | 1,024,859 | 485 | 469 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w42.i` | S | WHNF | 77,195 | 2,556 | 2,268 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w42.i.ctor` | S | WHNF, head `r_RVal` | 77,199 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w42.i.val` | S | NORMAL | 77,587 | 3,588 | 3,215 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w42.c` | S | WHNF | 1,024,709 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w42.c.ctor` | S | WHNF, head `r_RVal` | 1,024,712 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w42.c.val` | S | NORMAL | 1,024,849 | 576 | 557 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w43.i` | M | WHNF | 78,990 | 11,103 | 9,608 | 1.16 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w43.i.ctor` | M | WHNF, head `r_RVal` | 78,994 | 11,120 | 9,625 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w43.i.val` | M | NORMAL | 79,382 | 11,660 | 10,131 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w43.c` | S | WHNF | 1,029,400 | 3,183 | 3,106 | 1.02 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w43.c.ctor` | S | WHNF, head `r_RVal` | 1,029,403 | 3,195 | 3,118 | 1.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w43.c.val` | S | NORMAL | 1,029,540 | 3,702 | 3,591 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w44.i` | S | WHNF | 77,237 | 2,558 | 2,270 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w44.i.ctor` | S | WHNF, head `r_RVal` | 77,241 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w44.i.val` | S | NORMAL | 77,629 | 3,696 | 3,353 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w44.c` | S | WHNF | 1,024,749 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w44.c.ctor` | S | WHNF, head `r_RVal` | 1,024,752 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w44.c.val` | S | NORMAL | 1,024,889 | 735 | 698 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w45.i` | M | WHNF | 85,527 | 58,537 | 47,216 | 1.24 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w45.i.ctor` | M | WHNF, head `r_RVal` | 85,531 | 58,554 | 47,233 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w45.i.val` | M | NORMAL | 85,919 | 58,767 | 47,410 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w45.c` | M | WHNF | 1,063,269 | 21,854 | 16,299 | 1.34 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w45.c.ctor` | M | WHNF, head `r_RVal` | 1,063,272 | 21,866 | 16,311 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w45.c.val` | M | NORMAL | 1,063,409 | 22,051 | 16,469 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w46.i` | S | WHNF | 77,201 | 3,118 | 2,830 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w46.i.ctor` | S | WHNF, head `r_RVal` | 77,205 | 3,135 | 2,847 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w46.i.val` | S | NORMAL | 77,593 | 3,717 | 3,395 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w46.c` | S | WHNF | 1,019,436 | 343 | 343 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w46.c.ctor` | S | WHNF, head `r_RVal` | 1,019,439 | 355 | 355 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w46.c.val` | S | NORMAL | 1,019,576 | 904 | 870 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w47.i` | S | WHNF | 76,991 | 1,672 | 1,527 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w47.i.ctor` | S | WHNF, head `r_RVal` | 76,995 | 1,689 | 1,544 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w47.i.val` | S | NORMAL | 77,383 | 1,821 | 1,673 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w47.c` | XS | WHNF | 1,018,593 | 82 | 82 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w47.c.ctor` | XS | WHNF, head `r_RVal` | 1,018,596 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w47.c.val` | S | NORMAL | 1,018,733 | 199 | 196 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w48.i` | M | WHNF | 82,964 | 168,017 | 120,840 | 1.39 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w48.i.ctor` | M | WHNF, head `r_RVal` | 82,968 | 168,034 | 120,857 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w48.i.val` | M | NORMAL | 83,356 | 174,065 | 121,828 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w48.c` | M | WHNF | 1,021,485 | 95,830 | 72,450 | 1.32 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w48.c.ctor` | M | WHNF, head `r_RVal` | 1,021,488 | 95,842 | 72,462 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w48.c.val` | M | NORMAL | 1,021,625 | 101,763 | 73,387 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w49.i` | S | WHNF | 77,712 | 2,633 | 2,345 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w49.i.ctor` | S | WHNF, head `r_RVal` | 77,716 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w49.i.val` | S | NORMAL | 78,104 | 3,020 | 2,726 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w49.c` | S | WHNF | 1,072,349 | 698 | 698 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w49.c.ctor` | S | WHNF, head `r_RVal` | 1,072,352 | 710 | 710 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w49.c.val` | S | NORMAL | 1,072,489 | 886 | 880 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w5.i` | M | WHNF | 85,601 | 59,455 | 47,850 | 1.24 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w5.i.ctor` | M | WHNF, head `r_RVal` | 85,605 | 59,472 | 47,867 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w5.i.val` | M | NORMAL | 85,993 | 59,868 | 48,166 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w5.c` | M | WHNF | 1,063,343 | 22,070 | 16,497 | 1.34 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w5.c.ctor` | M | WHNF, head `r_RVal` | 1,063,346 | 22,082 | 16,509 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w5.c.val` | M | NORMAL | 1,063,483 | 22,450 | 16,789 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w50.i` | S | WHNF | 77,817 | 3,522 | 3,090 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w50.i.ctor` | S | WHNF, head `r_RVal` | 77,821 | 3,539 | 3,107 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w50.i.val` | S | NORMAL | 78,209 | 3,674 | 3,239 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w50.c` | S | WHNF | 1,072,486 | 819 | 819 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w50.c.ctor` | S | WHNF, head `r_RVal` | 1,072,489 | 831 | 831 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w50.c.val` | S | NORMAL | 1,072,626 | 941 | 938 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w51.i` | S | WHNF | 77,609 | 1,825 | 1,680 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w51.i.ctor` | S | WHNF, head `r_RVal` | 77,613 | 1,842 | 1,697 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w51.i.val` | S | NORMAL | 78,001 | 2,313 | 2,157 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w51.c` | S | WHNF | 1,072,284 | 621 | 621 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w51.c.ctor` | S | WHNF, head `r_RVal` | 1,072,287 | 633 | 633 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w51.c.val` | S | NORMAL | 1,072,424 | 890 | 879 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w52.i` | S | WHNF | 77,714 | 2,711 | 2,423 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w52.i.ctor` | S | WHNF, head `r_RVal` | 77,718 | 2,728 | 2,440 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w52.i.val` | S | NORMAL | 78,106 | 3,198 | 2,899 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w52.c` | S | WHNF | 1,072,421 | 740 | 740 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w52.c.ctor` | S | WHNF, head `r_RVal` | 1,072,424 | 752 | 752 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w52.c.val` | S | NORMAL | 1,072,561 | 1,010 | 999 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w53.i` | S | WHNF | 76,953 | 1,645 | 1,500 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w53.i.ctor` | S | WHNF, head `r_RVal` | 76,957 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w53.i.val` | S | NORMAL | 77,345 | 1,849 | 1,701 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w53.c` | XS | WHNF | 1,019,470 | 82 | 82 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w53.c.ctor` | XS | WHNF, head `r_RVal` | 1,019,473 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w53.c.val` | S | NORMAL | 1,019,610 | 750 | 747 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w54.i` | S | WHNF | 77,163 | 1,645 | 1,500 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w54.i.ctor` | S | WHNF, head `r_RVal` | 77,167 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w54.i.val` | S | NORMAL | 77,555 | 1,868 | 1,720 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w54.c` | XS | WHNF | 1,019,444 | 82 | 82 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w54.c.ctor` | XS | WHNF, head `r_RVal` | 1,019,447 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w54.c.val` | S | NORMAL | 1,019,584 | 723 | 720 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w55.i` | S | WHNF | 76,965 | 1,645 | 1,500 | 1.10 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w55.i.ctor` | S | WHNF, head `r_RVal` | 76,969 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w55.i.val` | S | NORMAL | 77,357 | 1,865 | 1,717 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w55.c` | XS | WHNF | 1,019,109 | 82 | 82 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w55.c.ctor` | XS | WHNF, head `r_RVal` | 1,019,112 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w55.c.val` | S | NORMAL | 1,019,249 | 251 | 248 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w56.i` | S | WHNF | 77,161 | 1,787 | 1,642 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w56.i.ctor` | S | WHNF, head `r_RVal` | 77,165 | 1,804 | 1,659 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w56.i.val` | S | NORMAL | 77,553 | 1,978 | 1,830 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w56.c` | S | WHNF | 1,126,099 | 118 | 118 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w56.c.ctor` | S | WHNF, head `r_RVal` | 1,126,102 | 130 | 130 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w56.c.val` | S | NORMAL | 1,126,239 | 1,289 | 1,286 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w57.i` | S | WHNF | 77,379 | 1,787 | 1,642 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w57.i.ctor` | S | WHNF, head `r_RVal` | 77,383 | 1,804 | 1,659 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w57.i.val` | S | NORMAL | 77,771 | 1,997 | 1,849 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w57.c` | S | WHNF | 1,126,077 | 118 | 118 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w57.c.ctor` | S | WHNF, head `r_RVal` | 1,126,080 | 130 | 130 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w57.c.val` | S | NORMAL | 1,126,217 | 1,258 | 1,255 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w58.i` | S | WHNF | 76,971 | 1,789 | 1,644 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w58.i.ctor` | S | WHNF, head `r_RVal` | 76,975 | 1,806 | 1,661 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w58.i.val` | S | NORMAL | 77,363 | 1,980 | 1,832 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w58.c` | S | WHNF | 1,125,772 | 120 | 120 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w58.c.ctor` | S | WHNF, head `r_RVal` | 1,125,775 | 132 | 132 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w58.c.val` | S | NORMAL | 1,125,912 | 279 | 276 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w59.i` | S | WHNF | 76,979 | 1,789 | 1,644 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w59.i.ctor` | S | WHNF, head `r_RVal` | 76,983 | 1,806 | 1,661 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w59.i.val` | S | NORMAL | 77,371 | 1,986 | 1,838 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w59.c` | S | WHNF | 1,125,780 | 120 | 120 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w59.c.ctor` | S | WHNF, head `r_RVal` | 1,125,783 | 132 | 132 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w59.c.val` | S | NORMAL | 1,125,920 | 285 | 282 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w6.i` | M | WHNF | 85,601 | 58,441 | 47,070 | 1.24 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w6.i.ctor` | M | WHNF, head `r_RVal` | 85,605 | 58,458 | 47,087 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w6.i.val` | M | NORMAL | 85,993 | 58,718 | 47,296 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w6.c` | M | WHNF | 1,063,343 | 21,940 | 16,378 | 1.34 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w6.c.ctor` | M | WHNF, head `r_RVal` | 1,063,346 | 21,952 | 16,390 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w6.c.val` | M | NORMAL | 1,063,483 | 22,186 | 16,580 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w60.i` | S | WHNF | 77,674 | 2,115 | 1,970 | 1.07 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w60.i.ctor` | S | WHNF, head `r_RVal` | 77,678 | 2,132 | 1,987 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w60.i.val` | S | NORMAL | 78,066 | 2,539 | 2,363 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w60.c` | M | WHNF | 1,023,356 | 57,574 | 48,469 | 1.19 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w60.c.ctor` | M | WHNF, head `r_RVal` | 1,023,359 | 57,586 | 48,481 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w60.c.val` | M | NORMAL | 1,023,496 | 58,293 | 49,006 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w61.i` | S | WHNF | 77,020 | 2,115 | 1,970 | 1.07 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w61.i.ctor` | S | WHNF, head `r_RVal` | 77,024 | 2,132 | 1,987 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w61.i.val` | S | NORMAL | 77,412 | 2,323 | 2,175 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w61.c` | M | WHNF | 1,023,402 | 14,397 | 13,006 | 1.11 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w61.c.ctor` | M | WHNF, head `r_RVal` | 1,023,405 | 14,409 | 13,018 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w61.c.val` | M | NORMAL | 1,023,542 | 14,553 | 13,159 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w62.i` | S | WHNF | 77,254 | 2,633 | 2,345 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w62.i.ctor` | S | WHNF, head `r_RVal` | 77,258 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w62.i.val` | S | NORMAL | 77,646 | 2,902 | 2,611 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w62.c` | S | WHNF | 1,072,343 | 692 | 692 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w62.c.ctor` | S | WHNF, head `r_RVal` | 1,072,346 | 704 | 704 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w62.c.val` | S | NORMAL | 1,072,483 | 813 | 810 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w63.i` | S | WHNF | 77,670 | 6,343 | 5,469 | 1.16 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w63.i.ctor` | S | WHNF, head `r_RVal` | 77,674 | 6,360 | 5,486 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w63.i.val` | S | NORMAL | 78,062 | 6,833 | 5,852 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w63.c` | S | WHNF | 1,073,100 | 4,360 | 4,357 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w63.c.ctor` | S | WHNF, head `r_RVal` | 1,073,103 | 4,372 | 4,369 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w63.c.val` | S | NORMAL | 1,073,240 | 4,799 | 4,696 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w64.i` | S | WHNF | 78,197 | 4,156 | 3,724 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w64.i.ctor` | S | WHNF, head `r_RVal` | 78,201 | 4,173 | 3,741 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w64.i.val` | S | NORMAL | 78,589 | 4,807 | 4,322 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w64.c` | M | WHNF | 1,025,064 | 82,927 | 68,478 | 1.21 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w64.c.ctor` | M | WHNF, head `r_RVal` | 1,025,067 | 82,939 | 68,490 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w64.c.val` | M | NORMAL | 1,025,204 | 83,981 | 69,150 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w65.i` | S | WHNF | 78,413 | 6,013 | 5,304 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w65.i.ctor` | S | WHNF, head `r_RVal` | 78,417 | 6,030 | 5,321 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w65.i.val` | S | NORMAL | 78,805 | 6,902 | 5,964 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w65.c` | M | WHNF | 1,109,129 | 90,899 | 69,811 | 1.30 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w65.c.ctor` | M | WHNF, head `r_RVal` | 1,109,132 | 90,911 | 69,823 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w65.c.val` | M | NORMAL | 1,109,269 | 91,160 | 70,055 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w66.i` | M | WHNF | 106,996 | 354,186 | 249,118 | 1.42 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w66.i.ctor` | M | WHNF, head `r_RVal` | 107,000 | 354,203 | 249,135 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w66.i.val` | M | NORMAL | 107,388 | 354,344 | 249,273 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w66.c` | M | WHNF | 1,053,461 | 207,809 | 148,592 | 1.40 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w66.c.ctor` | M | WHNF, head `r_RVal` | 1,053,464 | 207,821 | 148,604 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w66.c.val` | M | NORMAL | 1,053,601 | 207,935 | 148,715 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w67.i` | M | WHNF | 92,461 | 165,874 | 125,165 | 1.33 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w67.i.ctor` | M | WHNF, head `r_RVal` | 92,465 | 165,891 | 125,182 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w67.i.val` | M | NORMAL | 92,853 | 166,043 | 125,302 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w67.c` | M | WHNF | 1,053,465 | 80,919 | 61,567 | 1.31 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w67.c.ctor` | M | WHNF, head `r_RVal` | 1,053,468 | 80,931 | 61,579 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w67.c.val` | M | NORMAL | 1,053,605 | 81,053 | 61,674 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w68.i` | M | WHNF | 106,560 | 243,478 | 179,263 | 1.36 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w68.i.ctor` | M | WHNF, head `r_RVal` | 106,564 | 243,495 | 179,280 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w68.i.val` | M | NORMAL | 106,952 | 243,636 | 179,418 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w68.c` | M | WHNF | 1,053,499 | 127,631 | 95,508 | 1.34 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w68.c.ctor` | M | WHNF, head `r_RVal` | 1,053,502 | 127,643 | 95,520 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w68.c.val` | M | NORMAL | 1,053,639 | 127,757 | 95,631 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w69.i` | M | WHNF | 92,025 | 164,970 | 123,856 | 1.33 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w69.i.ctor` | M | WHNF, head `r_RVal` | 92,029 | 164,987 | 123,873 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w69.i.val` | M | NORMAL | 92,417 | 165,139 | 123,978 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w69.c` | M | WHNF | 1,053,503 | 82,659 | 62,364 | 1.33 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w69.c.ctor` | M | WHNF, head `r_RVal` | 1,053,506 | 82,671 | 62,376 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w69.c.val` | M | NORMAL | 1,053,643 | 82,793 | 62,462 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w7.i` | S | WHNF | 77,241 | 2,558 | 2,270 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w7.i.ctor` | S | WHNF, head `r_RVal` | 77,245 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w7.i.val` | S | NORMAL | 77,633 | 3,709 | 3,363 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w7.c` | S | WHNF | 1,024,753 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w7.c.ctor` | S | WHNF, head `r_RVal` | 1,024,756 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w7.c.val` | S | NORMAL | 1,024,893 | 749 | 708 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w70.i` | S | WHNF | 77,058 | 1,742 | 1,602 | 1.09 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w70.i.ctor` | S | WHNF, head `r_RErr` | 77,062 | 1,747 | 1,607 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w70.i.val` | S | NORMAL | 77,450 | 1,753 | 1,613 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w70.c` | S | WHNF | 1,072,395 | 670 | 670 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w70.c.ctor` | S | WHNF, head `r_RErr` | 1,072,398 | 672 | 672 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w70.c.val` | S | NORMAL | 1,072,535 | 677 | 677 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w71.i` | S | WHNF | 77,715 | 6,141 | 5,270 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w71.i.ctor` | S | WHNF, head `r_RVal` | 77,719 | 6,158 | 5,287 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w71.i.val` | M | NORMAL | 78,107 | 13,773 | 11,336 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w71.c` | S | WHNF | 1,133,279 | 1,654 | 1,654 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w71.c.ctor` | S | WHNF, head `r_RVal` | 1,133,282 | 1,666 | 1,666 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w71.c.val` | S | NORMAL | 1,133,419 | 2,709 | 2,598 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w72.i` | S | WHNF | 77,713 | 6,141 | 5,270 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w72.i.ctor` | S | WHNF, head `r_RVal` | 77,717 | 6,158 | 5,287 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w72.i.val` | S | NORMAL | 78,105 | 8,522 | 7,428 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w72.c` | S | WHNF | 1,133,215 | 1,590 | 1,590 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w72.c.ctor` | S | WHNF, head `r_RVal` | 1,133,218 | 1,602 | 1,602 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w72.c.val` | S | NORMAL | 1,133,355 | 2,637 | 2,526 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w73.i` | S | WHNF | 77,720 | 3,585 | 3,153 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w73.i.ctor` | S | WHNF, head `r_RVal` | 77,724 | 3,602 | 3,170 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w73.i.val` | S | NORMAL | 78,112 | 3,740 | 3,305 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w73.c` | S | WHNF | 1,019,482 | 320 | 320 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w73.c.ctor` | S | WHNF, head `r_RVal` | 1,019,485 | 332 | 332 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w73.c.val` | S | NORMAL | 1,019,622 | 443 | 440 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w74.i` | S | WHNF | 78,038 | 4,068 | 3,636 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w74.i.ctor` | S | WHNF, head `r_RVal` | 78,042 | 4,085 | 3,653 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w74.i.val` | S | NORMAL | 78,430 | 4,421 | 3,970 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w74.c` | M | WHNF | 1,077,274 | 43,857 | 37,437 | 1.17 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w74.c.ctor` | M | WHNF, head `r_RVal` | 1,077,277 | 43,869 | 37,449 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w74.c.val` | M | NORMAL | 1,077,414 | 44,321 | 37,846 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w75.i` | S | WHNF | 77,777 | 4,496 | 4,001 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w75.i.ctor` | S | WHNF, head `r_RVal` | 77,781 | 4,513 | 4,018 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w75.i.val` | S | NORMAL | 78,169 | 5,129 | 4,577 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w75.c` | M | WHNF | 1,107,528 | 56,110 | 44,424 | 1.26 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w75.c.ctor` | M | WHNF, head `r_RVal` | 1,107,531 | 56,122 | 44,436 | 1.26 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w75.c.val` | M | NORMAL | 1,107,668 | 56,364 | 44,661 | 1.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w76.i` | S | WHNF | 77,672 | 3,612 | 3,261 | 1.11 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w76.i.ctor` | S | WHNF, head `r_RVal` | 77,676 | 3,629 | 3,278 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w76.i.val` | S | NORMAL | 78,064 | 4,243 | 3,835 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w76.c` | M | WHNF | 1,107,389 | 55,975 | 44,304 | 1.26 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w76.c.ctor` | M | WHNF, head `r_RVal` | 1,107,392 | 55,987 | 44,316 | 1.26 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w76.c.val` | M | NORMAL | 1,107,529 | 56,227 | 44,539 | 1.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w77.i` | S | WHNF | 77,898 | 3,916 | 3,484 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w77.i.ctor` | S | WHNF, head `r_RVal` | 77,902 | 3,933 | 3,501 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w77.i.val` | S | NORMAL | 78,290 | 4,409 | 3,966 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w77.c` | S | WHNF | 1,074,012 | 2,707 | 2,704 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w77.c.ctor` | S | WHNF, head `r_RVal` | 1,074,015 | 2,719 | 2,716 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w77.c.val` | S | NORMAL | 1,074,152 | 2,981 | 2,967 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w78.i` | S | WHNF | 77,457 | 2,633 | 2,345 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w78.i.ctor` | S | WHNF, head `r_RVal` | 77,461 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w78.i.val` | S | NORMAL | 77,849 | 2,963 | 2,672 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w78.c` | S | WHNF | 1,072,323 | 672 | 672 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w78.c.ctor` | S | WHNF, head `r_RVal` | 1,072,326 | 684 | 684 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w78.c.val` | S | NORMAL | 1,072,463 | 803 | 800 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w79.i` | S | WHNF | 77,557 | 4,696 | 4,119 | 1.14 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w79.i.ctor` | S | WHNF, head `r_RVal` | 77,561 | 4,713 | 4,136 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w79.i.val` | S | NORMAL | 77,949 | 5,087 | 4,504 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w79.c` | S | WHNF | 1,074,129 | 3,300 | 3,280 | 1.01 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w79.c.ctor` | S | WHNF, head `r_RVal` | 1,074,132 | 3,312 | 3,292 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w79.c.val` | S | NORMAL | 1,074,269 | 3,492 | 3,466 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w8.i` | S | WHNF | 77,215 | 2,556 | 2,268 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w8.i.ctor` | S | WHNF, head `r_RVal` | 77,219 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w8.i.val` | S | NORMAL | 77,607 | 3,848 | 3,455 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w8.c` | S | WHNF | 1,024,729 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w8.c.ctor` | S | WHNF, head `r_RVal` | 1,024,732 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w8.c.val` | S | NORMAL | 1,024,869 | 645 | 617 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w80.i` | S | WHNF | 77,737 | 4,156 | 3,724 | 1.12 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w80.i.ctor` | S | WHNF, head `r_RVal` | 77,741 | 4,173 | 3,741 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w80.i.val` | S | NORMAL | 78,129 | 4,657 | 4,198 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w80.c` | M | WHNF | 1,025,118 | 51,820 | 43,650 | 1.19 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w80.c.ctor` | M | WHNF, head `r_RVal` | 1,025,121 | 51,832 | 43,662 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w80.c.val` | M | NORMAL | 1,025,258 | 52,285 | 44,060 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w9.i` | S | WHNF | 77,215 | 2,556 | 2,268 | 1.13 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini |
 | `d2.words.w9.i.ctor` | S | WHNF, head `r_RVal` | 77,219 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.words.w9.i.val` | S | NORMAL | 77,607 | 3,886 | 3,489 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.words.w9.c` | S | WHNF | 1,024,729 | 165 | 165 | 1.00 | SKIlark test_words.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.words.w9.c.ctor` | S | WHNF, head `r_RVal` | 1,024,732 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.words.w9.c.val` | S | NORMAL | 1,024,869 | 652 | 624 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p1.i` | S | WHNF | 77,407 | 5,404 | 4,656 | 1.16 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p1.i.ctor` | S | WHNF, head `r_RVal` | 77,411 | 5,421 | 4,673 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p1.i.val` | S | NORMAL | 77,799 | 6,547 | 5,316 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p1.c` | S | WHNF | 14,703 | 668 | 649 | 1.03 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p1.c.ctor` | S | WHNF, head `r_RVal` | 14,706 | 680 | 661 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p1.c.val` | S | NORMAL | 14,839 | 1,751 | 1,311 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p2.i` | S | WHNF | 77,399 | 5,056 | 4,455 | 1.13 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p2.i.ctor` | S | WHNF, head `r_RVal` | 77,403 | 5,073 | 4,472 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p2.i.val` | S | NORMAL | 77,791 | 5,676 | 4,994 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p2.c` | S | WHNF | 12,405 | 684 | 677 | 1.01 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p2.c.ctor` | S | WHNF, head `r_RVal` | 12,408 | 696 | 689 | 1.01 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p2.c.val` | S | NORMAL | 12,541 | 1,260 | 1,172 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p3.i` | S | WHNF | 77,619 | 6,179 | 5,306 | 1.16 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p3.i.ctor` | S | WHNF, head `r_RVal` | 77,623 | 6,196 | 5,323 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p3.i.val` | S | NORMAL | 78,011 | 6,753 | 5,786 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p3.c` | S | WHNF | 12,772 | 700 | 700 | 1.00 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p3.c.ctor` | S | WHNF, head `r_RVal` | 12,775 | 712 | 712 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p3.c.val` | S | NORMAL | 12,908 | 1,184 | 1,099 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p4.i` | S | WHNF | 78,209 | 7,987 | 6,814 | 1.17 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p4.i.ctor` | S | WHNF, head `r_RVal` | 78,213 | 8,004 | 6,831 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p4.i.val` | S | NORMAL | 78,601 | 8,442 | 7,223 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p4.c` | S | WHNF | 12,883 | 968 | 872 | 1.11 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p4.c.ctor` | S | WHNF, head `r_RVal` | 12,886 | 980 | 884 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p4.c.val` | S | NORMAL | 13,019 | 1,338 | 1,196 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p5.i` | S | WHNF | 77,320 | 3,522 | 3,090 | 1.14 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p5.i.ctor` | S | WHNF, head `r_RVal` | 77,324 | 3,539 | 3,107 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p5.i.val` | S | NORMAL | 77,712 | 3,675 | 3,240 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p5.c` | S | WHNF | 12,694 | 273 | 273 | 1.00 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.modes.p5.c.ctor` | S | WHNF, head `r_RVal` | 12,697 | 285 | 285 | 1.00 | aviary@bfba908+dirty |
+| `d2.modes.p5.c.val` | S | NORMAL | 12,830 | 388 | 385 | 1.01 | aviary@bfba908+dirty |
 | `d2.modes.p6.i` | S | WHNF | 76,783 | 758 | 758 | 1.00 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p6.i.ctor` | S | WHNF, head `r_RErr` | 76,787 | 763 | 763 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p6.i.val` | S | NORMAL | 77,175 | 769 | 769 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p6.c` | XS | WHNF | 13,181 | 8 | 8 | 1.00 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.modes.p6.c.ctor` | XS | WHNF, head `r_RErr` | 13,184 | 10 | 10 | 1.00 | aviary@bfba908+dirty |
+| `d2.modes.p6.c.val` | XS | NORMAL | 13,317 | 15 | 15 | 1.00 | aviary@bfba908+dirty |
 | `d2.modes.p7.i` | M | WHNF | 82,956 | 128,332 | 95,817 | 1.34 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p7.i.ctor` | M | WHNF, head `r_RVal` | 82,960 | 128,349 | 95,834 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p7.i.val` | M | NORMAL | 83,348 | 131,110 | 96,536 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p7.c` | M | WHNF | 13,432 | 26,304 | 18,864 | 1.39 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p7.c.ctor` | M | WHNF, head `r_RVal` | 13,435 | 26,316 | 18,876 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p7.c.val` | M | NORMAL | 13,568 | 28,993 | 19,529 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p8.i` | M | WHNF | 82,972 | 210,355 | 145,863 | 1.44 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p8.i.ctor` | M | WHNF, head `r_RVal` | 82,976 | 210,372 | 145,880 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p8.i.val` | M | NORMAL | 83,364 | 221,657 | 147,162 | 1.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.modes.p8.c` | M | WHNF | 13,448 | 48,507 | 28,588 | 1.70 | SKIlark test_modes.py (aviary); confirmed by avon-copy, mini |
 | `d2.modes.p8.c.ctor` | M | WHNF, head `r_RVal` | 13,451 | 48,519 | 28,600 | 1.70 | avon-copy@e69cf59, confirmed by mini |
+| `d2.modes.p8.c.val` | M | NORMAL | 13,584 | 59,648 | 29,827 | 2.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c1.i` | S | WHNF | 77,413 | 3,259 | 2,827 | 1.15 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c1.i.ctor` | S | WHNF, head `r_RVal` | 77,417 | 3,276 | 2,844 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c1.i.val` | S | NORMAL | 77,805 | 4,002 | 3,473 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c1.c` | S | WHNF | 1,407 | 152 | 152 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.combinators.c1.c.ctor` | S | WHNF, head `r_RVal` | 1,410 | 164 | 164 | 1.00 | aviary@bfba908+dirty |
+| `d2.combinators.c1.c.val` | S | NORMAL | 1,509 | 735 | 638 | 1.15 | aviary@bfba908+dirty |
 | `d2.combinators.c10.i` | M | WHNF | 104,925 | 405,871 | 278,449 | 1.46 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c10.i.ctor` | M | WHNF, head `r_RVal` | 104,929 | 405,888 | 278,466 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c10.i.val` | M | NORMAL | 105,317 | 409,961 | 279,268 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c10.c` | M | WHNF | 304,112 | 156,139 | 117,435 | 1.33 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c10.c.ctor` | M | WHNF, head `r_RVal` | 304,115 | 156,151 | 117,447 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c10.c.val` | M | NORMAL | 304,252 | 160,169 | 118,222 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c11.i` | M | WHNF | 105,313 | 303,650 | 218,205 | 1.39 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c11.i.ctor` | M | WHNF, head `r_RVal` | 105,317 | 303,667 | 218,222 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c11.i.val` | M | NORMAL | 105,705 | 304,252 | 218,716 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c11.c` | M | WHNF | 296,587 | 118,503 | 92,155 | 1.29 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c11.c.ctor` | M | WHNF, head `r_RVal` | 296,590 | 118,515 | 92,167 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c11.c.val` | M | NORMAL | 296,727 | 119,059 | 92,626 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c12.i` | M | WHNF | 117,120 | 378,772 | 265,473 | 1.43 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c12.i.ctor` | M | WHNF, head `r_RVal` | 117,124 | 378,789 | 265,490 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c12.i.val` | M | NORMAL | 117,512 | 379,032 | 265,700 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c12.c` | M | WHNF | 287,808 | 153,440 | 112,901 | 1.36 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c12.c.ctor` | M | WHNF, head `r_RVal` | 287,811 | 153,452 | 112,913 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c12.c.val` | M | NORMAL | 287,910 | 154,156 | 113,266 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c13.i` | M | WHNF | 117,299 | 376,676 | 264,901 | 1.42 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c13.i.ctor` | M | WHNF, head `r_RVal` | 117,303 | 376,693 | 264,918 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c13.i.val` | M | NORMAL | 117,691 | 378,245 | 266,004 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c13.c` | M | WHNF | 274,041 | 152,715 | 112,086 | 1.36 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c13.c.ctor` | M | WHNF, head `r_RVal` | 274,044 | 152,727 | 112,098 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c13.c.val` | M | NORMAL | 274,143 | 155,920 | 113,576 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c14.i` | M | WHNF | 105,495 | 501,685 | 335,267 | 1.50 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c14.i.ctor` | M | WHNF, head `r_RVal` | 105,499 | 501,702 | 335,284 | 1.50 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c14.i.val` | M | NORMAL | 105,887 | 501,985 | 335,497 | 1.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c14.c` | M | WHNF | 384,642 | 267,019 | 182,585 | 1.46 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c14.c.ctor` | M | WHNF, head `r_RVal` | 384,645 | 267,031 | 182,597 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c14.c.val` | M | NORMAL | 384,782 | 268,133 | 182,985 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c15.i` | M | WHNF | 93,683 | 246,606 | 179,685 | 1.37 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c15.i.ctor` | M | WHNF, head `r_RVal` | 93,687 | 246,623 | 179,702 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c15.i.val` | M | NORMAL | 94,075 | 247,577 | 180,430 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c15.c` | M | WHNF | 105,047 | 76,792 | 58,723 | 1.31 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c15.c.ctor` | M | WHNF, head `r_RVal` | 105,050 | 76,804 | 58,735 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c15.c.val` | M | NORMAL | 105,149 | 77,355 | 59,196 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c16.i` | M | WHNF | 93,109 | 238,654 | 173,890 | 1.37 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c16.i.ctor` | M | WHNF, head `r_RVal` | 93,113 | 238,671 | 173,907 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c16.i.val` | M | NORMAL | 93,501 | 240,907 | 175,329 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c16.c` | M | WHNF | 106,089 | 76,240 | 58,205 | 1.31 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c16.c.ctor` | M | WHNF, head `r_RVal` | 106,092 | 76,252 | 58,217 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c16.c.val` | M | NORMAL | 106,191 | 77,254 | 58,936 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c17.i` | M | WHNF | 100,124 | 222,029 | 165,109 | 1.34 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c17.i.ctor` | M | WHNF, head `r_RVal` | 100,128 | 222,046 | 165,126 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c17.i.val` | M | NORMAL | 100,516 | 223,706 | 165,421 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c17.c` | M | WHNF | 276,659 | 82,698 | 62,144 | 1.33 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c17.c.ctor` | M | WHNF, head `r_RVal` | 276,662 | 82,710 | 62,156 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c17.c.val` | M | NORMAL | 276,799 | 84,313 | 62,419 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c18.i` | M | WHNF | 100,100 | 314,826 | 222,617 | 1.41 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c18.i.ctor` | M | WHNF, head `r_RVal` | 100,104 | 314,843 | 222,634 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c18.i.val` | M | NORMAL | 100,492 | 322,171 | 223,487 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c18.c` | M | WHNF | 142,342 | 102,460 | 79,249 | 1.29 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c18.c.ctor` | M | WHNF, head `r_RVal` | 142,345 | 102,472 | 79,261 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c18.c.val` | M | NORMAL | 142,482 | 109,713 | 80,079 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c19.i` | M | WHNF | 91,436 | 208,517 | 152,413 | 1.37 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c19.i.ctor` | M | WHNF, head `r_RVal` | 91,440 | 208,534 | 152,430 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c19.i.val` | M | NORMAL | 91,828 | 208,735 | 152,626 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c19.c` | M | WHNF | 78,867 | 59,686 | 44,899 | 1.33 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c19.c.ctor` | M | WHNF, head `r_RVal` | 78,870 | 59,698 | 44,911 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c19.c.val` | M | NORMAL | 79,007 | 59,865 | 45,073 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c2.i` | S | WHNF | 77,407 | 1,727 | 1,582 | 1.09 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c2.i.ctor` | S | WHNF, head `r_RVal` | 77,411 | 1,744 | 1,599 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c2.i.val` | S | NORMAL | 77,799 | 2,682 | 2,447 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c2.c` | S | WHNF | 2,162 | 107 | 107 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.combinators.c2.c.ctor` | S | WHNF, head `r_RVal` | 2,165 | 119 | 119 | 1.00 | aviary@bfba908+dirty |
+| `d2.combinators.c2.c.val` | S | NORMAL | 2,264 | 753 | 629 | 1.20 | aviary@bfba908+dirty |
 | `d2.combinators.c20.i` | S | WHNF | 77,660 | 6,242 | 5,369 | 1.16 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c20.i.ctor` | S | WHNF, head `r_RVal` | 77,664 | 6,259 | 5,386 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c20.i.val` | S | NORMAL | 78,052 | 6,683 | 5,799 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c20.c` | S | WHNF | 2,513 | 642 | 642 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c20.c.ctor` | S | WHNF, head `r_RVal` | 2,516 | 654 | 654 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c20.c.val` | S | NORMAL | 2,615 | 882 | 871 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c21.i` | S | WHNF | 77,194 | 2,633 | 2,345 | 1.12 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c21.i.ctor` | S | WHNF, head `r_RVal` | 77,198 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c21.i.val` | S | NORMAL | 77,586 | 2,911 | 2,620 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c21.c` | S | WHNF | 32,350 | 322 | 322 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.combinators.c21.c.ctor` | S | WHNF, head `r_RVal` | 32,353 | 334 | 334 | 1.00 | aviary@bfba908+dirty |
+| `d2.combinators.c21.c.val` | S | NORMAL | 32,452 | 443 | 440 | 1.01 | aviary@bfba908+dirty |
 | `d2.combinators.c22.i` | S | WHNF | 77,773 | 6,141 | 5,270 | 1.17 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c22.i.ctor` | S | WHNF, head `r_RVal` | 77,777 | 6,158 | 5,287 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c22.i.val` | M | NORMAL | 78,165 | 16,724 | 13,344 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c22.c` | S | WHNF | 37,542 | 814 | 814 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c22.c.ctor` | S | WHNF, head `r_RVal` | 37,545 | 826 | 826 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c22.c.val` | S | NORMAL | 37,644 | 1,604 | 1,532 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c23.i` | S | WHNF | 77,711 | 6,139 | 5,268 | 1.17 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c23.i.ctor` | S | WHNF, head `r_RVal` | 77,715 | 6,156 | 5,285 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c23.i.val` | S | NORMAL | 78,103 | 8,862 | 7,504 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c23.c` | S | WHNF | 4,403 | 692 | 692 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c23.c.ctor` | S | WHNF, head `r_RVal` | 4,406 | 704 | 704 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c23.c.val` | S | NORMAL | 4,505 | 1,000 | 987 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c24.i` | S | WHNF | 77,512 | 4,460 | 3,875 | 1.15 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c24.i.ctor` | S | WHNF, head `r_RVal` | 77,516 | 4,477 | 3,892 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c24.i.val` | S | NORMAL | 77,904 | 4,977 | 4,330 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c24.c` | S | WHNF | 691 | 304 | 304 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.combinators.c24.c.ctor` | S | WHNF, head `r_RVal` | 694 | 316 | 316 | 1.00 | aviary@bfba908+dirty |
+| `d2.combinators.c24.c.val` | S | NORMAL | 777 | 666 | 615 | 1.08 | aviary@bfba908+dirty |
 | `d2.combinators.c25.i` | S | WHNF | 77,843 | 7,070 | 6,049 | 1.17 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c25.i.ctor` | S | WHNF, head `r_RVal` | 77,847 | 7,087 | 6,066 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c25.i.val` | S | NORMAL | 78,235 | 7,710 | 6,599 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c25.c` | S | WHNF | 1,087 | 609 | 609 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c25.c.ctor` | S | WHNF, head `r_RVal` | 1,090 | 621 | 621 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c25.c.val` | S | NORMAL | 1,173 | 1,083 | 993 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c26.i` | S | WHNF | 77,843 | 7,076 | 6,055 | 1.17 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c26.i.ctor` | S | WHNF, head `r_RVal` | 77,847 | 7,093 | 6,072 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c26.i.val` | S | NORMAL | 78,235 | 7,710 | 6,599 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c26.c` | S | WHNF | 1,089 | 607 | 607 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c26.c.ctor` | S | WHNF, head `r_RVal` | 1,092 | 619 | 619 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c26.c.val` | S | NORMAL | 1,175 | 1,085 | 995 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c27.i` | S | WHNF | 77,948 | 7,965 | 6,795 | 1.17 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c27.i.ctor` | S | WHNF, head `r_RVal` | 77,952 | 7,982 | 6,812 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c27.i.val` | S | NORMAL | 78,340 | 8,601 | 7,341 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c27.c` | S | WHNF | 1,228 | 727 | 727 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c27.c.ctor` | S | WHNF, head `r_RVal` | 1,231 | 739 | 739 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c27.c.val` | S | NORMAL | 1,314 | 1,207 | 1,117 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c28.i` | M | WHNF | 105,729 | 638,508 | 408,249 | 1.56 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c28.i.ctor` | M | WHNF, head `r_RVal` | 105,733 | 638,525 | 408,266 | 1.56 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c28.i.val` | M | NORMAL | 106,121 | 638,859 | 408,495 | 1.56 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c28.c` | M | WHNF | 390,924 | 369,636 | 236,051 | 1.57 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c28.c.ctor` | M | WHNF, head `r_RVal` | 390,927 | 369,648 | 236,063 | 1.57 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c28.c.val` | M | NORMAL | 391,064 | 371,100 | 236,455 | 1.57 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c29.i` | M | WHNF | 80,282 | 29,958 | 24,926 | 1.20 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c29.i.ctor` | M | WHNF, head `r_RVal` | 80,286 | 29,975 | 24,943 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c29.i.val` | M | NORMAL | 80,674 | 30,415 | 25,337 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c29.c` | S | WHNF | 13,673 | 6,698 | 5,978 | 1.12 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c29.c.ctor` | S | WHNF, head `r_RVal` | 13,676 | 6,710 | 5,990 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c29.c.val` | S | NORMAL | 13,775 | 7,179 | 6,414 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c3.i` | S | WHNF | 77,601 | 3,396 | 2,964 | 1.15 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c3.i.ctor` | S | WHNF, head `r_RVal` | 77,605 | 3,413 | 2,981 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c3.i.val` | S | NORMAL | 77,993 | 3,888 | 3,436 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c3.c` | S | WHNF | 2,019 | 205 | 205 | 1.00 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.combinators.c3.c.ctor` | S | WHNF, head `r_RVal` | 2,022 | 217 | 217 | 1.00 | aviary@bfba908+dirty |
+| `d2.combinators.c3.c.val` | S | NORMAL | 2,121 | 550 | 513 | 1.07 | aviary@bfba908+dirty |
 | `d2.combinators.c30.i` | M | WHNF | 105,313 | 302,456 | 217,161 | 1.39 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c30.i.ctor` | M | WHNF, head `r_RVal` | 105,317 | 302,473 | 217,178 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c30.i.val` | M | NORMAL | 105,705 | 302,616 | 217,318 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c30.c` | M | WHNF | 297,383 | 118,191 | 91,903 | 1.29 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c30.c.ctor` | M | WHNF, head `r_RVal` | 297,386 | 118,203 | 91,915 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c30.c.val` | M | NORMAL | 297,523 | 118,319 | 92,028 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c4.i` | M | WHNF | 80,725 | 37,573 | 31,264 | 1.20 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c4.i.ctor` | M | WHNF, head `r_RVal` | 80,729 | 37,590 | 31,281 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c4.i.val` | M | NORMAL | 81,117 | 39,965 | 33,206 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c4.c` | S | WHNF | 14,191 | 8,486 | 7,507 | 1.13 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c4.c.ctor` | S | WHNF, head `r_RVal` | 14,194 | 8,498 | 7,519 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c4.c.val` | M | NORMAL | 14,293 | 10,482 | 8,770 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c5.i` | M | WHNF | 80,815 | 30,672 | 25,705 | 1.19 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c5.i.ctor` | M | WHNF, head `r_RVal` | 80,819 | 30,689 | 25,722 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c5.i.val` | M | NORMAL | 81,207 | 31,550 | 26,504 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c5.c` | S | WHNF | 15,498 | 7,003 | 6,243 | 1.12 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c5.c.ctor` | S | WHNF, head `r_RVal` | 15,501 | 7,015 | 6,255 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c5.c.val` | S | NORMAL | 15,600 | 8,014 | 7,055 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c6.i` | M | WHNF | 83,794 | 103,788 | 80,812 | 1.28 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c6.i.ctor` | M | WHNF, head `r_RVal` | 83,798 | 103,805 | 80,829 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c6.i.val` | M | NORMAL | 84,186 | 104,781 | 81,469 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c6.c` | M | WHNF | 13,688 | 18,584 | 14,666 | 1.27 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c6.c.ctor` | M | WHNF, head `r_RVal` | 13,691 | 18,596 | 14,678 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c6.c.val` | M | NORMAL | 13,824 | 19,485 | 15,225 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c7.i` | M | WHNF | 83,776 | 40,629 | 34,028 | 1.19 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c7.i.ctor` | M | WHNF, head `r_RVal` | 83,780 | 40,646 | 34,045 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c7.i.val` | M | NORMAL | 84,168 | 40,683 | 34,082 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c7.c` | S | WHNF | 13,670 | 6,651 | 6,120 | 1.09 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c7.c.ctor` | S | WHNF, head `r_RVal` | 13,673 | 6,663 | 6,132 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c7.c.val` | S | NORMAL | 13,806 | 6,693 | 6,162 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c8.i` | M | WHNF | 87,681 | 132,116 | 100,956 | 1.31 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c8.i.ctor` | M | WHNF, head `r_RVal` | 87,685 | 132,133 | 100,973 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c8.i.val` | M | NORMAL | 88,073 | 132,635 | 101,154 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c8.c` | M | WHNF | 14,883 | 23,288 | 18,871 | 1.23 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c8.c.ctor` | M | WHNF, head `r_RVal` | 14,886 | 23,300 | 18,883 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c8.c.val` | M | NORMAL | 14,981 | 23,592 | 19,028 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c9.i` | M | WHNF | 98,572 | 234,103 | 172,428 | 1.36 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c9.i.ctor` | M | WHNF, head `r_RVal` | 98,576 | 234,120 | 172,445 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c9.i.val` | M | NORMAL | 98,964 | 236,849 | 172,978 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.combinators.c9.c` | M | WHNF | 139,925 | 78,544 | 62,076 | 1.27 | SKIlark test_combinators.py (aviary); confirmed by avon-copy, mini |
 | `d2.combinators.c9.c.ctor` | M | WHNF, head `r_RVal` | 139,928 | 78,556 | 62,088 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.combinators.c9.c.val` | M | NORMAL | 140,065 | 81,222 | 62,586 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t1.i` | S | WHNF | 77,408 | 856 | 853 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t1.i.ctor` | S | WHNF, head `r_RVal` | 77,412 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t1.i.val` | S | NORMAL | 77,800 | 4,866 | 2,521 | 1.93 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t1.c` | XS | WHNF | 853 | 7 | 7 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t1.c.ctor` | XS | WHNF, head `r_RVal` | 856 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t1.c.val` | S | NORMAL | 1,040 | 3,971 | 1,629 | 2.44 | aviary@bfba908+dirty |
 | `d2.text.t10.i` | S | WHNF | 76,940 | 1,775 | 1,630 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t10.i.ctor` | S | WHNF, head `r_RVal` | 76,944 | 1,792 | 1,647 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t10.i.val` | S | NORMAL | 77,332 | 1,990 | 1,839 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t10.c` | S | WHNF | 652 | 125 | 125 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t10.c.ctor` | S | WHNF, head `r_RVal` | 655 | 137 | 137 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t10.c.val` | S | NORMAL | 851 | 300 | 294 | 1.02 | aviary@bfba908+dirty |
 | `d2.text.t11.i` | S | WHNF | 76,943 | 1,730 | 1,590 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t11.i.ctor` | S | WHNF, head `r_RErr` | 76,947 | 1,735 | 1,595 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t11.i.val` | S | NORMAL | 77,335 | 1,741 | 1,601 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t11.c` | S | WHNF | 581 | 114 | 114 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t11.c.ctor` | S | WHNF, head `r_RErr` | 584 | 116 | 116 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t11.c.val` | S | NORMAL | 768 | 121 | 121 | 1.00 | aviary@bfba908+dirty |
 | `d2.text.t12.i` | S | WHNF | 77,711 | 3,044 | 2,762 | 1.10 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t12.i.ctor` | S | WHNF, head `r_RErr` | 77,715 | 3,049 | 2,767 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t12.i.val` | S | NORMAL | 78,103 | 3,055 | 2,773 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t12.c` | S | WHNF | 1,395 | 331 | 331 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t12.c.ctor` | S | WHNF, head `r_RErr` | 1,398 | 333 | 333 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t12.c.val` | S | NORMAL | 1,582 | 338 | 338 | 1.00 | aviary@bfba908+dirty |
 | `d2.text.t13.i` | S | WHNF | 79,327 | 856 | 853 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t13.i.ctor` | S | WHNF, head `r_RVal` | 79,331 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t13.i.val` | M | NORMAL | 79,719 | 23,463 | 6,231 | 3.77 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t13.c` | XS | WHNF | 2,752 | 7 | 7 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t13.c.ctor` | XS | WHNF, head `r_RVal` | 2,755 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t13.c.val` | M | NORMAL | 2,939 | 22,536 | 5,307 | 4.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t14.i` | S | WHNF | 79,501 | 2,625 | 2,337 | 1.12 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t14.i.ctor` | S | WHNF, head `r_RVal` | 79,505 | 2,642 | 2,354 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t14.i.val` | M | NORMAL | 79,893 | 10,085 | 4,751 | 2.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t14.c` | S | WHNF | 4,670 | 235 | 235 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t14.c.ctor` | S | WHNF, head `r_RVal` | 4,673 | 247 | 247 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t14.c.val` | S | NORMAL | 4,873 | 7,661 | 2,615 | 2.93 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t15.i` | S | WHNF | 79,606 | 3,514 | 3,082 | 1.14 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t15.i.ctor` | S | WHNF, head `r_RVal` | 79,610 | 3,531 | 3,099 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t15.i.val` | M | NORMAL | 79,998 | 18,768 | 7,041 | 2.67 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t15.c` | S | WHNF | 4,807 | 358 | 358 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t15.c.ctor` | S | WHNF, head `r_RVal` | 4,810 | 370 | 370 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t15.c.val` | M | NORMAL | 5,010 | 15,562 | 4,267 | 3.65 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t16.i` | S | WHNF | 79,463 | 2,107 | 1,962 | 1.07 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t16.i.ctor` | S | WHNF, head `r_RVal` | 79,467 | 2,124 | 1,979 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t16.i.val` | S | NORMAL | 79,855 | 2,531 | 2,355 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t16.c` | M | WHNF | 33,094 | 19,095 | 16,248 | 1.18 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t16.c.ctor` | M | WHNF, head `r_RVal` | 33,097 | 19,107 | 16,260 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t16.c.val` | M | NORMAL | 33,297 | 19,551 | 16,636 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t17.i` | S | WHNF | 79,757 | 2,797 | 2,509 | 1.11 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t17.i.ctor` | S | WHNF, head `r_RVal` | 79,761 | 2,814 | 2,526 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t17.i.val` | M | NORMAL | 80,149 | 28,284 | 8,394 | 3.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t17.c` | S | WHNF | 3,347 | 239 | 239 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t17.c.ctor` | S | WHNF, head `r_RVal` | 3,350 | 251 | 251 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t17.c.val` | M | NORMAL | 3,534 | 25,650 | 6,048 | 4.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t18.i` | S | WHNF | 78,813 | 2,740 | 2,458 | 1.11 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t18.i.ctor` | S | WHNF, head `r_RErr` | 78,817 | 2,745 | 2,463 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t18.i.val` | S | NORMAL | 79,205 | 2,751 | 2,469 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t18.c` | S | WHNF | 2,399 | 234 | 234 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t18.c.ctor` | S | WHNF, head `r_RErr` | 2,402 | 236 | 236 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t18.c.val` | S | NORMAL | 2,586 | 241 | 241 | 1.00 | aviary@bfba908+dirty |
 | `d2.text.t19.i` | S | WHNF | 80,441 | 2,769 | 2,481 | 1.12 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t19.i.ctor` | S | WHNF, head `r_RVal` | 80,445 | 2,786 | 2,498 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t19.i.val` | M | NORMAL | 80,833 | 33,279 | 9,495 | 3.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t19.c` | S | WHNF | 4,153 | 229 | 229 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t19.c.ctor` | S | WHNF, head `r_RVal` | 4,156 | 241 | 241 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t19.c.val` | M | NORMAL | 4,340 | 30,647 | 7,151 | 4.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t2.i` | S | WHNF | 77,467 | 1,773 | 1,628 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t2.i.ctor` | S | WHNF, head `r_RVal` | 77,471 | 1,790 | 1,645 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t2.i.val` | S | NORMAL | 77,859 | 5,796 | 3,309 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t2.c` | S | WHNF | 1,065 | 116 | 116 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t2.c.ctor` | S | WHNF, head `r_RVal` | 1,068 | 128 | 128 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t2.c.val` | S | NORMAL | 1,252 | 4,091 | 1,749 | 2.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t20.i` | S | WHNF | 79,001 | 2,812 | 2,530 | 1.11 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t20.i.ctor` | S | WHNF, head `r_RErr` | 79,005 | 2,817 | 2,535 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t20.i.val` | S | NORMAL | 79,393 | 2,823 | 2,541 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t20.c` | S | WHNF | 2,618 | 242 | 242 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t20.c.ctor` | S | WHNF, head `r_RErr` | 2,621 | 244 | 244 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t20.c.val` | S | NORMAL | 2,805 | 249 | 249 | 1.00 | aviary@bfba908+dirty |
 | `d2.text.t21.i` | S | WHNF | 79,671 | 3,604 | 3,253 | 1.11 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t21.i.ctor` | S | WHNF, head `r_RVal` | 79,675 | 3,621 | 3,270 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t21.i.val` | M | NORMAL | 80,063 | 11,375 | 5,837 | 1.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t21.c` | M | WHNF | 1,295,462 | 31,092 | 25,953 | 1.20 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t21.c.ctor` | M | WHNF, head `r_RVal` | 1,295,465 | 31,104 | 25,965 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t21.c.val` | M | NORMAL | 1,295,779 | 38,665 | 28,379 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t22.i` | M | WHNF | 108,551 | 297,935 | 215,283 | 1.38 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t22.i.ctor` | M | WHNF, head `r_RVal` | 108,555 | 297,952 | 215,300 | 1.38 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t22.i.val` | M | NORMAL | 108,943 | 312,972 | 219,236 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t22.c` | M | WHNF | 4,379,509 | 115,242 | 87,149 | 1.32 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t22.c.ctor` | M | WHNF, head `r_RVal` | 4,379,512 | 115,254 | 87,161 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t22.c.val` | M | NORMAL | 4,379,826 | 130,259 | 91,082 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t23.i` | M | WHNF | 94,008 | 116,056 | 91,310 | 1.27 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t23.i.ctor` | M | WHNF, head `r_RVal` | 94,012 | 116,073 | 91,327 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t23.i.val` | M | NORMAL | 94,400 | 131,322 | 95,252 | 1.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t23.c` | M | WHNF | 1,285,504 | 30,849 | 25,734 | 1.20 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t23.c.ctor` | M | WHNF, head `r_RVal` | 1,285,507 | 30,861 | 25,746 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t23.c.val` | M | NORMAL | 1,285,821 | 46,092 | 29,658 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t24.i` | S | WHNF | 80,389 | 2,558 | 2,270 | 1.13 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t24.i.ctor` | S | WHNF, head `r_RVal` | 80,393 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t24.i.val` | M | NORMAL | 80,781 | 38,394 | 24,741 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t24.c` | S | WHNF | 5,234 | 165 | 165 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t24.c.ctor` | S | WHNF, head `r_RVal` | 5,237 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t24.c.val` | M | NORMAL | 5,433 | 20,769 | 9,175 | 2.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t25.i` | S | WHNF | 79,578 | 2,556 | 2,268 | 1.13 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t25.i.ctor` | S | WHNF, head `r_RVal` | 79,582 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t25.i.val` | M | NORMAL | 79,970 | 36,631 | 25,401 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t25.c` | S | WHNF | 4,435 | 165 | 165 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t25.c.ctor` | S | WHNF, head `r_RVal` | 4,438 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t25.c.val` | M | NORMAL | 4,634 | 10,526 | 5,454 | 1.93 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t26.i` | S | WHNF | 80,157 | 4,349 | 3,772 | 1.15 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t26.i.ctor` | S | WHNF, head `r_RVal` | 80,161 | 4,366 | 3,789 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t26.i.val` | M | NORMAL | 80,549 | 207,309 | 60,246 | 3.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t26.c` | S | WHNF | 12,995 | 445 | 445 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t26.c.ctor` | S | WHNF, head `r_RVal` | 12,998 | 457 | 457 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t26.c.val` | M | NORMAL | 13,198 | 37,047 | 14,745 | 2.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t27.i` | S | WHNF | 76,945 | 1,645 | 1,500 | 1.10 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t27.i.ctor` | S | WHNF, head `r_RVal` | 76,949 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t27.i.val` | S | NORMAL | 77,337 | 1,841 | 1,693 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t27.c` | XS | WHNF | 1,599 | 82 | 82 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t27.c.ctor` | XS | WHNF, head `r_RVal` | 1,602 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t27.c.val` | S | NORMAL | 1,802 | 251 | 248 | 1.01 | aviary@bfba908+dirty |
 | `d2.text.t28.i` | S | WHNF | 77,752 | 1,779 | 1,634 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t28.i.ctor` | S | WHNF, head `r_RVal` | 77,756 | 1,796 | 1,651 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t28.i.val` | S | NORMAL | 78,144 | 1,970 | 1,822 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t28.c` | S | WHNF | 3,715 | 128 | 128 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t28.c.ctor` | S | WHNF, head `r_RVal` | 3,718 | 140 | 140 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t28.c.val` | S | NORMAL | 3,918 | 299 | 296 | 1.01 | aviary@bfba908+dirty |
 | `d2.text.t29.i` | M | WHNF | 121,691 | 636,226 | 412,048 | 1.54 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t29.i.ctor` | M | WHNF, head `r_RVal` | 121,695 | 636,243 | 412,065 | 1.54 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t29.i.val` | L | NORMAL | 122,083 | 9,023,061 | 706,775 | 12.77 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t29.c` | M | WHNF | 2,240,876 | 314,435 | 222,495 | 1.41 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t29.c.ctor` | M | WHNF, head `r_RVal` | 2,240,879 | 314,447 | 222,507 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t29.c.val` | L | NORMAL | 2,241,193 | 8,702,261 | 528,317 | 16.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t3.i` | S | WHNF | 77,481 | 1,779 | 1,634 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t3.i.ctor` | S | WHNF, head `r_RVal` | 77,485 | 1,796 | 1,651 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t3.i.val` | S | NORMAL | 77,873 | 5,886 | 3,330 | 1.77 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t3.c` | S | WHNF | 1,069 | 120 | 120 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t3.c.ctor` | S | WHNF, head `r_RVal` | 1,072 | 132 | 132 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t3.c.val` | S | NORMAL | 1,256 | 4,183 | 1,772 | 2.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t30.i` | L | WHNF | 116,699 | 1,098,844 | 641,565 | 1.71 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t30.i.ctor` | L | WHNF, head `r_RVal` | 116,703 | 1,098,861 | 641,582 | 1.71 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t30.i.val` | L | NORMAL | 117,091 | 1,114,564 | 644,870 | 1.73 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t30.c` | M | WHNF | 2,246,596 | 456,176 | 274,417 | 1.66 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t30.c.ctor` | M | WHNF, head `r_RVal` | 2,246,599 | 456,188 | 274,429 | 1.66 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t30.c.val` | M | NORMAL | 2,246,799 | 472,981 | 277,866 | 1.70 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t31.i` | M | WHNF | 94,706 | 197,035 | 147,229 | 1.34 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t31.i.ctor` | M | WHNF, head `r_RVal` | 94,710 | 197,052 | 147,246 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t31.i.val` | M | NORMAL | 95,098 | 229,913 | 155,227 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t31.c` | M | WHNF | 642,192 | 60,661 | 47,504 | 1.28 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t31.c.ctor` | M | WHNF, head `r_RVal` | 642,195 | 60,673 | 47,516 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t31.c.val` | M | NORMAL | 642,395 | 93,215 | 55,307 | 1.69 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t32.i` | M | WHNF | 112,851 | 616,466 | 400,610 | 1.54 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t32.i.ctor` | M | WHNF, head `r_RVal` | 112,855 | 616,483 | 400,627 | 1.54 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t32.i.val` | M | NORMAL | 113,243 | 616,852 | 400,926 | 1.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t32.c` | M | WHNF | 1,598,648 | 290,188 | 191,231 | 1.52 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t32.c.ctor` | M | WHNF, head `r_RVal` | 1,598,651 | 290,200 | 191,243 | 1.52 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t32.c.val` | M | NORMAL | 1,598,851 | 291,336 | 191,701 | 1.52 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t33.i` | M | WHNF | 112,948 | 617,734 | 401,318 | 1.54 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t33.i.ctor` | M | WHNF, head `r_RVal` | 112,952 | 617,751 | 401,335 | 1.54 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t33.i.val` | M | NORMAL | 113,340 | 618,122 | 401,636 | 1.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t33.c` | M | WHNF | 1,598,779 | 290,315 | 191,329 | 1.52 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t33.c.ctor` | M | WHNF, head `r_RVal` | 1,598,782 | 290,327 | 191,341 | 1.52 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t33.c.val` | M | NORMAL | 1,598,982 | 291,465 | 191,799 | 1.52 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t34.i` | M | WHNF | 110,068 | 404,152 | 280,716 | 1.44 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t34.i.ctor` | M | WHNF, head `r_RVal` | 110,072 | 404,169 | 280,733 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t34.i.val` | M | NORMAL | 110,460 | 404,501 | 281,026 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t34.c` | M | WHNF | 354,941 | 179,558 | 130,413 | 1.38 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t34.c.ctor` | M | WHNF, head `r_RVal` | 354,944 | 179,570 | 130,425 | 1.38 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t34.c.val` | M | NORMAL | 355,043 | 181,052 | 131,533 | 1.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t35.i` | S | WHNF | 77,461 | 1,767 | 1,622 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t35.i.ctor` | S | WHNF, head `r_RVal` | 77,465 | 1,784 | 1,639 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t35.i.val` | S | NORMAL | 77,853 | 1,952 | 1,804 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t35.c` | S | WHNF | 1,190 | 123 | 123 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t35.c.ctor` | S | WHNF, head `r_RVal` | 1,193 | 135 | 135 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t35.c.val` | S | NORMAL | 1,389 | 268 | 265 | 1.01 | aviary@bfba908+dirty |
 | `d2.text.t36.i` | S | WHNF | 78,752 | 4,773 | 4,193 | 1.14 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t36.i.ctor` | S | WHNF, head `r_RVal` | 78,756 | 4,790 | 4,210 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t36.i.val` | S | NORMAL | 79,144 | 4,991 | 4,405 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t36.c` | S | WHNF | 2,267 | 584 | 584 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t36.c.ctor` | S | WHNF, head `r_RVal` | 2,270 | 596 | 596 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t36.c.val` | S | NORMAL | 2,466 | 752 | 746 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t37.i` | S | WHNF | 77,759 | 4,747 | 4,167 | 1.14 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t37.i.ctor` | S | WHNF, head `r_RVal` | 77,763 | 4,764 | 4,184 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t37.i.val` | S | NORMAL | 78,151 | 4,993 | 4,402 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t37.c` | S | WHNF | 1,284 | 558 | 558 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t37.c.ctor` | S | WHNF, head `r_RVal` | 1,287 | 570 | 570 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t37.c.val` | S | NORMAL | 1,483 | 754 | 743 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t38.i` | S | WHNF | 79,027 | 2,633 | 2,345 | 1.12 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t38.i.ctor` | S | WHNF, head `r_RVal` | 79,031 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t38.i.val` | M | NORMAL | 79,419 | 10,260 | 4,926 | 2.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t38.c` | S | WHNF | 6,692 | 280 | 280 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t38.c.ctor` | S | WHNF, head `r_RVal` | 6,695 | 292 | 292 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t38.c.val` | S | NORMAL | 6,895 | 7,704 | 2,658 | 2.90 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t39.i` | S | WHNF | 78,728 | 2,424 | 2,136 | 1.13 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t39.i.ctor` | S | WHNF, head `r_RVal` | 78,732 | 2,441 | 2,153 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t39.i.val` | M | NORMAL | 79,120 | 17,580 | 7,088 | 2.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t39.c` | S | WHNF | 3,154 | 103 | 103 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t39.c.ctor` | S | WHNF, head `r_RVal` | 3,157 | 115 | 115 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t39.c.val` | M | NORMAL | 3,357 | 15,178 | 4,974 | 3.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t4.i` | S | WHNF | 77,707 | 3,110 | 2,822 | 1.10 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t4.i.ctor` | S | WHNF, head `r_RVal` | 77,711 | 3,127 | 2,839 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t4.i.val` | S | NORMAL | 78,099 | 7,395 | 4,683 | 1.58 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t4.c` | S | WHNF | 1,378 | 279 | 279 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t4.c.ctor` | S | WHNF, head `r_RVal` | 1,381 | 291 | 291 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t4.c.val` | S | NORMAL | 1,565 | 8,796 | 4,046 | 2.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t40.i` | S | WHNF | 78,751 | 2,107 | 1,962 | 1.07 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t40.i.ctor` | S | WHNF, head `r_RVal` | 78,755 | 2,124 | 1,979 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t40.i.val` | S | NORMAL | 79,143 | 2,531 | 2,355 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t40.c` | M | WHNF | 32,382 | 19,095 | 16,248 | 1.18 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t40.c.ctor` | M | WHNF, head `r_RVal` | 32,385 | 19,107 | 16,260 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t40.c.val` | M | NORMAL | 32,585 | 19,551 | 16,636 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t41.i` | S | WHNF | 77,408 | 856 | 853 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t41.i.ctor` | S | WHNF, head `r_RVal` | 77,412 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t41.i.val` | S | NORMAL | 77,800 | 4,866 | 2,521 | 1.93 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t41.c` | XS | WHNF | 853 | 7 | 7 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t41.c.ctor` | XS | WHNF, head `r_RVal` | 856 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t41.c.val` | S | NORMAL | 1,040 | 3,971 | 1,629 | 2.44 | aviary@bfba908+dirty |
 | `d2.text.t42.i` | S | WHNF | 78,573 | 1,817 | 1,672 | 1.09 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t42.i.ctor` | S | WHNF, head `r_RVal` | 78,577 | 1,834 | 1,689 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t42.i.val` | M | NORMAL | 78,965 | 16,872 | 6,529 | 2.58 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t42.c` | S | WHNF | 3,790 | 158 | 158 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t42.c.ctor` | S | WHNF, head `r_RVal` | 3,793 | 170 | 170 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t42.c.val` | M | NORMAL | 3,993 | 15,155 | 4,957 | 3.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t43.i` | M | WHNF | 106,847 | 312,897 | 224,019 | 1.40 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t43.i.ctor` | M | WHNF, head `r_RVal` | 106,851 | 312,914 | 224,036 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t43.i.val` | M | NORMAL | 107,239 | 345,810 | 232,025 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t43.c` | M | WHNF | 2,979,695 | 125,564 | 97,624 | 1.29 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t43.c.ctor` | M | WHNF, head `r_RVal` | 2,979,698 | 125,576 | 97,636 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t43.c.val` | M | NORMAL | 2,980,012 | 158,453 | 105,610 | 1.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t5.i` | S | WHNF | 77,969 | 3,108 | 2,820 | 1.10 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t5.i.ctor` | S | WHNF, head `r_RVal` | 77,973 | 3,125 | 2,837 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t5.i.val` | M | NORMAL | 78,361 | 10,963 | 5,601 | 1.96 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t5.c` | S | WHNF | 2,617 | 339 | 339 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t5.c.ctor` | S | WHNF, head `r_RVal` | 2,620 | 351 | 351 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t5.c.val` | S | NORMAL | 2,918 | 8,162 | 3,088 | 2.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t6.i` | M | WHNF | 79,504 | 11,079 | 9,592 | 1.16 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t6.i.ctor` | M | WHNF, head `r_RVal` | 79,508 | 11,096 | 9,609 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t6.i.val` | M | NORMAL | 79,896 | 15,366 | 11,455 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t6.c` | S | WHNF | 5,434 | 1,716 | 1,639 | 1.05 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t6.c.ctor` | S | WHNF, head `r_RVal` | 5,437 | 1,728 | 1,651 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t6.c.val` | M | NORMAL | 5,633 | 10,239 | 5,412 | 1.89 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t7.i` | M | WHNF | 87,065 | 91,391 | 69,300 | 1.32 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t7.i.ctor` | M | WHNF, head `r_RVal` | 87,069 | 91,408 | 69,317 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t7.i.val` | M | NORMAL | 87,457 | 98,985 | 71,325 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t7.c` | M | WHNF | 21,405 | 19,482 | 13,462 | 1.45 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t7.c.ctor` | M | WHNF, head `r_RVal` | 21,408 | 19,494 | 13,474 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t7.c.val` | M | NORMAL | 21,604 | 27,035 | 15,457 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t8.i` | S | WHNF | 78,209 | 2,558 | 2,270 | 1.13 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t8.i.ctor` | S | WHNF, head `r_RVal` | 78,213 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t8.i.val` | M | NORMAL | 78,601 | 13,698 | 11,034 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t8.c` | S | WHNF | 3,072 | 165 | 165 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t8.c.ctor` | S | WHNF, head `r_RVal` | 3,075 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t8.c.val` | S | NORMAL | 3,271 | 6,081 | 3,724 | 1.63 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t9.i` | S | WHNF | 78,719 | 2,556 | 2,268 | 1.13 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini |
 | `d2.text.t9.i.ctor` | S | WHNF, head `r_RVal` | 78,723 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.text.t9.i.val` | M | NORMAL | 79,111 | 36,489 | 25,266 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.text.t9.c` | S | WHNF | 3,586 | 165 | 165 | 1.00 | SKIlark test_text.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.text.t9.c.ctor` | S | WHNF, head `r_RVal` | 3,589 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.text.t9.c.val` | M | NORMAL | 3,785 | 10,388 | 5,327 | 1.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y1.i` | S | WHNF | 76,991 | 1,631 | 1,486 | 1.10 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y1.i.ctor` | S | WHNF, head `r_RVal` | 76,995 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y1.i.val` | S | NORMAL | 77,383 | 2,039 | 1,853 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y1.c` | XS | WHNF | 570 | 82 | 82 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y1.c.ctor` | XS | WHNF, head `r_RVal` | 573 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y1.c.val` | S | NORMAL | 656 | 399 | 358 | 1.11 | aviary@bfba908+dirty |
 | `d2.types.y10.i` | M | WHNF | 81,399 | 27,130 | 22,323 | 1.22 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y10.i.ctor` | M | WHNF, head `r_RVal` | 81,403 | 27,147 | 22,340 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y10.i.val` | M | NORMAL | 81,791 | 29,519 | 24,155 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y10.c` | S | WHNF | 38,146 | 4,227 | 3,977 | 1.06 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y10.c.ctor` | S | WHNF, head `r_RVal` | 38,149 | 4,239 | 3,989 | 1.06 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y10.c.val` | S | NORMAL | 38,248 | 4,675 | 4,383 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y11.i` | M | WHNF | 80,887 | 13,015 | 11,067 | 1.18 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y11.i.ctor` | M | WHNF, head `r_RVal` | 80,891 | 13,032 | 11,084 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y11.i.val` | M | NORMAL | 81,279 | 14,583 | 12,265 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y11.c` | S | WHNF | 7,455 | 1,612 | 1,563 | 1.03 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y11.c.ctor` | S | WHNF, head `r_RVal` | 7,458 | 1,624 | 1,575 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y11.c.val` | S | NORMAL | 7,553 | 2,305 | 2,172 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y12.i` | M | WHNF | 80,858 | 13,007 | 11,063 | 1.18 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y12.i.ctor` | M | WHNF, head `r_RVal` | 80,862 | 13,024 | 11,080 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y12.i.val` | M | NORMAL | 81,250 | 14,817 | 12,385 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y12.c` | S | WHNF | 7,436 | 1,604 | 1,559 | 1.03 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y12.c.ctor` | S | WHNF, head `r_RVal` | 7,439 | 1,616 | 1,571 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y12.c.val` | S | NORMAL | 7,534 | 2,180 | 2,072 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y13.i` | M | WHNF | 82,888 | 16,934 | 14,033 | 1.21 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y13.i.ctor` | M | WHNF, head `r_RVal` | 82,892 | 16,951 | 14,050 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y13.i.val` | M | NORMAL | 83,280 | 18,850 | 15,101 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y13.c` | S | WHNF | 44,808 | 2,496 | 2,423 | 1.03 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y13.c.ctor` | S | WHNF, head `r_RVal` | 44,811 | 2,508 | 2,435 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y13.c.val` | S | NORMAL | 44,910 | 3,074 | 2,914 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y14.i` | M | WHNF | 78,979 | 14,670 | 12,579 | 1.17 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y14.i.ctor` | M | WHNF, head `r_RVal` | 78,983 | 14,687 | 12,596 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y14.i.val` | M | NORMAL | 79,371 | 15,101 | 12,986 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y14.c` | S | WHNF | 3,456 | 1,952 | 1,890 | 1.03 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y14.c.ctor` | S | WHNF, head `r_RVal` | 3,459 | 1,964 | 1,902 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y14.c.val` | S | NORMAL | 3,554 | 2,215 | 2,139 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y15.i` | M | WHNF | 79,760 | 11,079 | 9,592 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y15.i.ctor` | M | WHNF, head `r_RVal` | 79,764 | 11,096 | 9,609 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y15.i.val` | M | NORMAL | 80,152 | 18,838 | 12,191 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y15.c` | S | WHNF | 5,690 | 1,716 | 1,639 | 1.05 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y15.c.ctor` | S | WHNF, head `r_RVal` | 5,693 | 1,728 | 1,651 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y15.c.val` | M | NORMAL | 5,889 | 17,439 | 7,172 | 2.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y16.i` | M | WHNF | 78,977 | 14,668 | 12,577 | 1.17 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y16.i.ctor` | M | WHNF, head `r_RVal` | 78,981 | 14,685 | 12,594 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y16.i.val` | M | NORMAL | 79,369 | 15,266 | 13,144 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y16.c` | S | WHNF | 5,014 | 2,052 | 1,986 | 1.03 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y16.c.ctor` | S | WHNF, head `r_RVal` | 5,017 | 2,064 | 1,998 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y16.c.val` | S | NORMAL | 5,150 | 2,600 | 2,503 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y17.i` | M | WHNF | 85,494 | 60,486 | 48,901 | 1.24 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y17.i.ctor` | M | WHNF, head `r_RVal` | 85,498 | 60,503 | 48,918 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y17.i.val` | M | NORMAL | 85,886 | 60,710 | 49,119 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y17.c` | S | WHNF | 14,153 | 9,014 | 8,139 | 1.11 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y17.c.ctor` | S | WHNF, head `r_RVal` | 14,156 | 9,026 | 8,151 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y17.c.val` | S | NORMAL | 14,251 | 9,176 | 8,295 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y18.i` | M | WHNF | 85,532 | 20,835 | 17,614 | 1.18 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y18.i.ctor` | M | WHNF, head `r_RErr` | 85,536 | 20,840 | 17,619 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y18.i.val` | M | NORMAL | 85,924 | 20,846 | 17,625 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y18.c` | S | WHNF | 14,181 | 2,781 | 2,577 | 1.08 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y18.c.ctor` | S | WHNF, head `r_RErr` | 14,184 | 2,783 | 2,579 | 1.08 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y18.c.val` | S | NORMAL | 14,279 | 2,788 | 2,584 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y19.i` | M | WHNF | 87,065 | 91,391 | 69,300 | 1.32 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y19.i.ctor` | M | WHNF, head `r_RVal` | 87,069 | 91,408 | 69,317 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y19.i.val` | M | NORMAL | 87,457 | 98,985 | 71,325 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y19.c` | M | WHNF | 21,405 | 19,482 | 13,462 | 1.45 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y19.c.ctor` | M | WHNF, head `r_RVal` | 21,408 | 19,494 | 13,474 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y19.c.val` | M | NORMAL | 21,604 | 27,035 | 15,457 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y2.i` | S | WHNF | 77,220 | 3,417 | 2,985 | 1.14 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y2.i.ctor` | S | WHNF, head `r_RVal` | 77,224 | 3,434 | 3,002 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y2.i.val` | S | NORMAL | 77,612 | 3,963 | 3,513 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y2.c` | S | WHNF | 2,288 | 341 | 341 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y2.c.ctor` | S | WHNF, head `r_RVal` | 2,291 | 353 | 353 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y2.c.val` | S | NORMAL | 2,390 | 591 | 574 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y20.i` | M | WHNF | 85,607 | 20,790 | 17,577 | 1.18 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y20.i.ctor` | M | WHNF, head `r_RErr` | 85,611 | 20,795 | 17,582 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y20.i.val` | M | NORMAL | 85,999 | 20,801 | 17,588 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y20.c` | S | WHNF | 9,716 | 2,697 | 2,517 | 1.07 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y20.c.ctor` | S | WHNF, head `r_RErr` | 9,719 | 2,699 | 2,519 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y20.c.val` | S | NORMAL | 9,814 | 2,704 | 2,524 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y21.i` | M | WHNF | 91,139 | 20,790 | 17,577 | 1.18 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y21.i.ctor` | M | WHNF, head `r_RErr` | 91,143 | 20,795 | 17,582 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y21.i.val` | M | NORMAL | 91,531 | 20,801 | 17,588 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y21.c` | S | WHNF | 9,122 | 2,589 | 2,439 | 1.06 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y21.c.ctor` | S | WHNF, head `r_RErr` | 9,125 | 2,591 | 2,441 | 1.06 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y21.c.val` | S | NORMAL | 9,220 | 2,596 | 2,446 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y22.i` | M | WHNF | 91,184 | 46,995 | 38,139 | 1.23 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y22.i.ctor` | M | WHNF, head `r_RVal` | 91,188 | 47,012 | 38,156 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y22.i.val` | M | NORMAL | 91,576 | 48,174 | 38,992 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y22.c` | S | WHNF | 9,157 | 5,291 | 4,863 | 1.09 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y22.c.ctor` | S | WHNF, head `r_RVal` | 9,160 | 5,303 | 4,875 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y22.c.val` | S | NORMAL | 9,255 | 5,703 | 5,235 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y23.i` | M | WHNF | 106,507 | 248,592 | 184,730 | 1.35 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y23.i.ctor` | M | WHNF, head `r_RVal` | 106,511 | 248,609 | 184,747 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y23.i.val` | M | NORMAL | 106,899 | 248,750 | 184,885 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y23.c` | M | WHNF | 509,379 | 96,562 | 74,028 | 1.30 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y23.c.ctor` | M | WHNF, head `r_RVal` | 509,382 | 96,574 | 74,040 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y23.c.val` | M | NORMAL | 509,519 | 96,688 | 74,151 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y24.i` | M | WHNF | 91,971 | 70,684 | 57,714 | 1.22 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y24.i.ctor` | M | WHNF, head `r_RVal` | 91,975 | 70,701 | 57,731 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y24.i.val` | M | NORMAL | 92,363 | 70,847 | 57,826 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y24.c` | M | WHNF | 138,913 | 17,098 | 14,628 | 1.17 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y24.c.ctor` | M | WHNF, head `r_RVal` | 138,916 | 17,110 | 14,640 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y24.c.val` | M | NORMAL | 139,053 | 17,225 | 14,716 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y25.i` | M | WHNF | 108,522 | 303,142 | 218,299 | 1.39 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y25.i.ctor` | M | WHNF, head `r_RVal` | 108,526 | 303,159 | 218,316 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y25.i.val` | M | NORMAL | 108,914 | 310,689 | 220,796 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y25.c` | M | WHNF | 4,379,480 | 126,258 | 92,726 | 1.36 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y25.c.ctor` | M | WHNF, head `r_RVal` | 4,379,483 | 126,270 | 92,738 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y25.c.val` | M | NORMAL | 4,379,797 | 133,785 | 95,203 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y26.i` | M | WHNF | 104,919 | 39,027 | 32,188 | 1.21 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y26.i.ctor` | M | WHNF, head `r_RErr` | 104,923 | 39,032 | 32,193 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y26.i.val` | M | NORMAL | 105,311 | 39,038 | 32,199 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y26.c` | M | WHNF | 2,840,354 | 11,508 | 10,072 | 1.14 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y26.c.ctor` | M | WHNF, head `r_RErr` | 2,840,357 | 11,510 | 10,074 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y26.c.val` | M | NORMAL | 2,840,671 | 11,515 | 10,079 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y27.i` | M | WHNF | 118,177 | 440,295 | 304,122 | 1.45 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y27.i.ctor` | M | WHNF, head `r_RVal` | 118,181 | 440,312 | 304,139 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y27.i.val` | L | NORMAL | 118,569 | 5,997,609 | 508,169 | 11.80 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y27.c` | M | WHNF | 1,676,600 | 210,470 | 154,831 | 1.36 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y27.c.ctor` | M | WHNF, head `r_RVal` | 1,676,603 | 210,482 | 154,843 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y27.c.val` | L | NORMAL | 1,676,917 | 5,768,402 | 369,887 | 15.60 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y28.i` | M | WHNF | 120,866 | 469,246 | 320,675 | 1.46 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y28.i.ctor` | M | WHNF, head `r_RVal` | 120,870 | 469,263 | 320,692 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y28.i.val` | L | NORMAL | 121,258 | 6,053,214 | 525,262 | 11.52 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y28.c` | M | WHNF | 2,240,051 | 223,609 | 164,566 | 1.36 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y28.c.ctor` | M | WHNF, head `r_RVal` | 2,240,054 | 223,621 | 164,578 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y28.c.val` | L | NORMAL | 2,240,368 | 5,808,227 | 380,231 | 15.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y29.i` | M | WHNF | 116,552 | 13,061 | 11,240 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y29.i.ctor` | M | WHNF, head `r_RErr` | 116,556 | 13,066 | 11,245 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y29.i.val` | M | NORMAL | 116,944 | 13,072 | 11,251 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y29.c` | S | WHNF | 264,985 | 2,340 | 2,259 | 1.04 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y29.c.ctor` | S | WHNF, head `r_RErr` | 264,988 | 2,342 | 2,261 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y29.c.val` | S | NORMAL | 265,087 | 2,347 | 2,266 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y3.i` | S | WHNF | 77,249 | 3,417 | 2,985 | 1.14 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y3.i.ctor` | S | WHNF, head `r_RVal` | 77,253 | 3,434 | 3,002 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y3.i.val` | S | NORMAL | 77,641 | 3,979 | 3,469 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y3.c` | S | WHNF | 32,902 | 405 | 405 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y3.c.ctor` | S | WHNF, head `r_RVal` | 32,905 | 417 | 417 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y3.c.val` | S | NORMAL | 33,004 | 672 | 655 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y30.i` | M | WHNF | 83,548 | 13,061 | 11,240 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y30.i.ctor` | M | WHNF, head `r_RErr` | 83,552 | 13,066 | 11,245 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y30.i.val` | M | NORMAL | 83,940 | 13,072 | 11,251 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y30.c` | S | WHNF | 13,456 | 1,824 | 1,747 | 1.04 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y30.c.ctor` | S | WHNF, head `r_RErr` | 13,459 | 1,826 | 1,749 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y30.c.val` | S | NORMAL | 13,592 | 1,831 | 1,754 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y31.i` | M | WHNF | 88,926 | 14,748 | 12,622 | 1.17 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y31.i.ctor` | M | WHNF, head `r_RErr` | 88,930 | 14,753 | 12,627 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y31.i.val` | M | NORMAL | 89,318 | 14,759 | 12,633 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y31.c` | S | WHNF | 12,160 | 1,855 | 1,782 | 1.04 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y31.c.ctor` | S | WHNF, head `r_RErr` | 12,163 | 1,857 | 1,784 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y31.c.val` | S | NORMAL | 12,258 | 1,862 | 1,789 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y32.i` | M | WHNF | 85,179 | 13,904 | 11,931 | 1.17 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y32.i.ctor` | M | WHNF, head `r_RErr` | 85,183 | 13,909 | 11,936 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y32.i.val` | M | NORMAL | 85,571 | 13,915 | 11,942 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y32.c` | S | WHNF | 10,342 | 1,792 | 1,719 | 1.04 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y32.c.ctor` | S | WHNF, head `r_RErr` | 10,345 | 1,794 | 1,721 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y32.c.val` | S | NORMAL | 10,440 | 1,799 | 1,726 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y33.i` | S | WHNF | 77,304 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y33.i.ctor` | S | WHNF, head `r_RVal` | 77,308 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y33.i.val` | S | NORMAL | 77,696 | 4,850 | 4,296 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y33.c` | S | WHNF | 1,576 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y33.c.ctor` | S | WHNF, head `r_RVal` | 1,579 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y33.c.val` | S | NORMAL | 1,674 | 905 | 830 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y34.i` | S | WHNF | 77,288 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y34.i.ctor` | S | WHNF, head `r_RVal` | 77,292 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y34.i.val` | S | NORMAL | 77,680 | 5,141 | 4,545 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y34.c` | S | WHNF | 1,560 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y34.c.ctor` | S | WHNF, head `r_RVal` | 1,563 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y34.c.val` | S | NORMAL | 1,658 | 804 | 746 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y35.i` | S | WHNF | 77,251 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y35.i.ctor` | S | WHNF, head `r_RVal` | 77,255 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y35.i.val` | S | NORMAL | 77,643 | 4,573 | 4,040 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y35.c` | S | WHNF | 1,533 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y35.c.ctor` | S | WHNF, head `r_RVal` | 1,536 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y35.c.val` | S | NORMAL | 1,631 | 780 | 726 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y36.i` | S | WHNF | 78,040 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y36.i.ctor` | S | WHNF, head `r_RVal` | 78,044 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y36.i.val` | S | NORMAL | 78,432 | 4,699 | 4,162 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y36.c` | S | WHNF | 3,244 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y36.c.ctor` | S | WHNF, head `r_RVal` | 3,247 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y36.c.val` | S | NORMAL | 3,443 | 918 | 842 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y37.i` | S | WHNF | 78,085 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y37.i.ctor` | S | WHNF, head `r_RVal` | 78,089 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y37.i.val` | S | NORMAL | 78,477 | 5,103 | 4,538 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y37.c` | S | WHNF | 3,289 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y37.c.ctor` | S | WHNF, head `r_RVal` | 3,292 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y37.c.val` | S | NORMAL | 3,488 | 1,094 | 990 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y38.i` | S | WHNF | 77,292 | 3,334 | 2,902 | 1.15 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y38.i.ctor` | S | WHNF, head `r_RVal` | 77,296 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y38.i.val` | S | NORMAL | 77,684 | 5,257 | 4,672 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y38.c` | S | WHNF | 1,622 | 240 | 240 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y38.c.ctor` | S | WHNF, head `r_RVal` | 1,625 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y38.c.val` | S | NORMAL | 1,720 | 1,084 | 978 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y39.i` | S | WHNF | 77,345 | 4,264 | 3,687 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y39.i.ctor` | S | WHNF, head `r_RVal` | 77,349 | 4,281 | 3,704 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y39.i.val` | S | NORMAL | 77,737 | 6,187 | 5,457 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y39.c` | S | WHNF | 1,828 | 346 | 346 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y39.c.ctor` | S | WHNF, head `r_RVal` | 1,831 | 358 | 358 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y39.c.val` | S | NORMAL | 1,926 | 1,198 | 1,092 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y4.i` | S | WHNF | 78,062 | 3,417 | 2,985 | 1.14 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y4.i.ctor` | S | WHNF, head `r_RVal` | 78,066 | 3,434 | 3,002 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y4.i.val` | S | NORMAL | 78,454 | 3,999 | 3,495 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y4.c` | S | WHNF | 3,166 | 345 | 345 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y4.c.ctor` | S | WHNF, head `r_RVal` | 3,169 | 357 | 357 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y4.c.val` | S | NORMAL | 3,268 | 567 | 556 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y40.i` | S | WHNF | 77,381 | 4,264 | 3,687 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y40.i.ctor` | S | WHNF, head `r_RVal` | 77,385 | 4,281 | 3,704 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y40.i.val` | S | NORMAL | 77,773 | 6,541 | 5,754 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y40.c` | S | WHNF | 1,806 | 346 | 346 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y40.c.ctor` | S | WHNF, head `r_RVal` | 1,809 | 358 | 358 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y40.c.val` | S | NORMAL | 1,904 | 1,028 | 953 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y41.i` | S | WHNF | 77,517 | 5,124 | 4,401 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y41.i.ctor` | S | WHNF, head `r_RVal` | 77,521 | 5,141 | 4,418 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y41.i.val` | S | NORMAL | 77,909 | 6,886 | 5,812 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y41.c` | S | WHNF | 3,419 | 499 | 499 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y41.c.ctor` | S | WHNF, head `r_RVal` | 3,422 | 511 | 511 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y41.c.val` | S | NORMAL | 3,521 | 993 | 941 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y42.i` | S | WHNF | 78,359 | 5,124 | 4,401 | 1.16 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y42.i.ctor` | S | WHNF, head `r_RVal` | 78,363 | 5,141 | 4,418 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y42.i.val` | S | NORMAL | 78,751 | 6,695 | 5,526 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y42.c` | S | WHNF | 4,331 | 503 | 503 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y42.c.ctor` | S | WHNF, head `r_RVal` | 4,334 | 515 | 515 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y42.c.val` | S | NORMAL | 4,433 | 983 | 930 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y43.i` | S | WHNF | 77,211 | 2,493 | 2,205 | 1.13 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y43.i.ctor` | S | WHNF, head `r_RVal` | 77,215 | 2,510 | 2,222 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y43.i.val` | S | NORMAL | 77,603 | 2,653 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y43.c` | S | WHNF | 503 | 128 | 128 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y43.c.ctor` | S | WHNF, head `r_RVal` | 506 | 140 | 140 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y43.c.val` | S | NORMAL | 601 | 243 | 240 | 1.01 | aviary@bfba908+dirty |
 | `d2.types.y44.i` | S | WHNF | 77,211 | 2,493 | 2,205 | 1.13 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y44.i.ctor` | S | WHNF, head `r_RVal` | 77,215 | 2,510 | 2,222 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y44.i.val` | S | NORMAL | 77,603 | 2,653 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y44.c` | S | WHNF | 503 | 128 | 128 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y44.c.ctor` | S | WHNF, head `r_RVal` | 506 | 140 | 140 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y44.c.val` | S | NORMAL | 601 | 243 | 240 | 1.01 | aviary@bfba908+dirty |
 | `d2.types.y45.i` | M | WHNF | 105,210 | 492,585 | 328,796 | 1.50 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y45.i.ctor` | M | WHNF, head `r_RVal` | 105,214 | 492,602 | 328,813 | 1.50 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y45.i.val` | M | NORMAL | 105,602 | 492,884 | 329,025 | 1.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y45.c` | M | WHNF | 341,181 | 256,601 | 176,369 | 1.45 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y45.c.ctor` | M | WHNF, head `r_RVal` | 341,184 | 256,613 | 176,381 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y45.c.val` | M | NORMAL | 341,283 | 257,688 | 176,758 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y46.i` | M | WHNF | 92,009 | 164,970 | 123,856 | 1.33 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y46.i.ctor` | M | WHNF, head `r_RVal` | 92,013 | 164,987 | 123,873 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y46.i.val` | M | NORMAL | 92,401 | 165,139 | 123,978 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y46.c` | M | WHNF | 138,951 | 44,919 | 34,506 | 1.30 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y46.c.ctor` | M | WHNF, head `r_RVal` | 138,954 | 44,931 | 34,518 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y46.c.val` | M | NORMAL | 139,091 | 45,053 | 34,604 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y5.i` | S | WHNF | 76,938 | 1,631 | 1,486 | 1.10 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y5.i.ctor` | S | WHNF, head `r_RVal` | 76,942 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y5.i.val` | S | NORMAL | 77,330 | 1,972 | 1,803 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y5.c` | XS | WHNF | 588 | 82 | 82 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y5.c.ctor` | XS | WHNF, head `r_RVal` | 591 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y5.c.val` | S | NORMAL | 686 | 344 | 320 | 1.07 | aviary@bfba908+dirty |
 | `d2.types.y6.i` | S | WHNF | 77,719 | 1,631 | 1,486 | 1.10 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y6.i.ctor` | S | WHNF, head `r_RVal` | 77,723 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y6.i.val` | S | NORMAL | 78,111 | 1,999 | 1,822 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y6.c` | XS | WHNF | 1,464 | 82 | 82 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y6.c.ctor` | XS | WHNF, head `r_RVal` | 1,467 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y6.c.val` | S | NORMAL | 1,651 | 387 | 355 | 1.09 | aviary@bfba908+dirty |
 | `d2.types.y7.i` | S | WHNF | 78,557 | 1,631 | 1,486 | 1.10 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y7.i.ctor` | S | WHNF, head `r_RVal` | 78,561 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y7.i.val` | S | NORMAL | 78,949 | 2,096 | 1,889 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y7.c` | XS | WHNF | 2,292 | 82 | 82 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y7.c.ctor` | XS | WHNF, head `r_RVal` | 2,295 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y7.c.val` | S | NORMAL | 2,479 | 484 | 422 | 1.15 | aviary@bfba908+dirty |
 | `d2.types.y8.i` | S | WHNF | 77,149 | 1,631 | 1,486 | 1.10 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y8.i.ctor` | S | WHNF, head `r_RVal` | 77,153 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y8.i.val` | S | NORMAL | 77,541 | 2,139 | 1,920 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y8.c` | XS | WHNF | 609 | 82 | 82 | 1.00 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.types.y8.c.ctor` | XS | WHNF, head `r_RVal` | 612 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.types.y8.c.val` | S | NORMAL | 695 | 499 | 425 | 1.17 | aviary@bfba908+dirty |
 | `d2.types.y9.i` | M | WHNF | 81,401 | 27,138 | 22,311 | 1.22 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y9.i.ctor` | M | WHNF, head `r_RVal` | 81,405 | 27,155 | 22,328 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y9.i.val` | M | NORMAL | 81,793 | 34,778 | 28,049 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.types.y9.c` | S | WHNF | 37,533 | 4,201 | 3,950 | 1.06 | SKIlark test_types.py (aviary); confirmed by avon-copy, mini |
 | `d2.types.y9.c.ctor` | S | WHNF, head `r_RVal` | 37,536 | 4,213 | 3,962 | 1.06 | avon-copy@e69cf59, confirmed by mini |
+| `d2.types.y9.c.val` | S | NORMAL | 37,635 | 4,647 | 4,354 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s1.i` | S | WHNF | 76,991 | 856 | 853 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s1.i.ctor` | S | WHNF, head `r_RVal` | 76,995 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s1.i.val` | S | NORMAL | 77,383 | 1,381 | 1,285 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s1.c` | XS | WHNF | 1,233 | 7 | 7 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s1.c.ctor` | XS | WHNF, head `r_RVal` | 1,236 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s1.c.val` | S | NORMAL | 1,404 | 508 | 415 | 1.22 | aviary@bfba908+dirty |
 | `d2.sets.s10.i` | S | WHNF | 77,376 | 6,474 | 4,951 | 1.31 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s10.i.ctor` | S | WHNF, head `r_RVal` | 77,380 | 6,491 | 4,968 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s10.i.val` | S | NORMAL | 77,768 | 8,386 | 6,539 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s10.c` | S | WHNF | 2,387 | 2,031 | 1,603 | 1.27 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s10.c.ctor` | S | WHNF, head `r_RVal` | 2,390 | 2,043 | 1,615 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s10.c.val` | S | NORMAL | 2,558 | 3,020 | 2,401 | 1.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s11.i` | S | WHNF | 77,287 | 6,382 | 4,773 | 1.34 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s11.i.ctor` | S | WHNF, head `r_RVal` | 77,291 | 6,399 | 4,790 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s11.i.val` | S | NORMAL | 77,679 | 8,353 | 6,397 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s11.c` | S | WHNF | 2,266 | 2,595 | 1,939 | 1.34 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s11.c.ctor` | S | WHNF, head `r_RVal` | 2,269 | 2,607 | 1,951 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s11.c.val` | S | NORMAL | 2,437 | 3,643 | 2,773 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s12.i` | M | WHNF | 77,786 | 26,941 | 16,447 | 1.64 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s12.i.ctor` | M | WHNF, head `r_RVal` | 77,790 | 26,958 | 16,464 | 1.64 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s12.i.val` | M | NORMAL | 78,178 | 30,872 | 17,915 | 1.72 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s12.c` | M | WHNF | 2,797 | 19,198 | 9,859 | 1.95 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s12.c.ctor` | M | WHNF, head `r_RVal` | 2,800 | 19,210 | 9,871 | 1.95 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s12.c.val` | M | NORMAL | 2,968 | 23,090 | 11,288 | 2.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s13.i` | M | WHNF | 77,794 | 26,975 | 16,488 | 1.64 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s13.i.ctor` | M | WHNF, head `r_RErr` | 77,798 | 26,980 | 16,493 | 1.64 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s13.i.val` | M | NORMAL | 78,186 | 26,986 | 16,499 | 1.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s13.c` | M | WHNF | 2,805 | 19,290 | 9,884 | 1.95 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s13.c.ctor` | M | WHNF, head `r_RErr` | 2,808 | 19,292 | 9,886 | 1.95 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s13.c.val` | M | NORMAL | 2,976 | 19,297 | 9,891 | 1.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s14.i` | S | WHNF | 77,280 | 3,795 | 3,370 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s14.i.ctor` | S | WHNF, head `r_RErr` | 77,284 | 3,800 | 3,375 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s14.i.val` | S | NORMAL | 77,672 | 3,806 | 3,381 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s14.c` | S | WHNF | 2,364 | 432 | 432 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s14.c.ctor` | S | WHNF, head `r_RErr` | 2,367 | 434 | 434 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s14.c.val` | S | NORMAL | 2,573 | 439 | 439 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s15.i` | M | WHNF | 78,050 | 26,967 | 16,480 | 1.64 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s15.i.ctor` | M | WHNF, head `r_RErr` | 78,054 | 26,972 | 16,485 | 1.64 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s15.i.val` | M | NORMAL | 78,442 | 26,978 | 16,491 | 1.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s15.c` | M | WHNF | 4,269 | 19,324 | 9,918 | 1.95 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s15.c.ctor` | M | WHNF, head `r_RErr` | 4,272 | 19,326 | 9,920 | 1.95 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s15.c.val` | M | NORMAL | 4,541 | 19,331 | 9,925 | 1.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s16.i` | S | WHNF | 77,282 | 5,706 | 4,381 | 1.30 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s16.i.ctor` | S | WHNF, head `r_RVal` | 77,286 | 5,723 | 4,398 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s16.i.val` | S | NORMAL | 77,674 | 6,010 | 4,671 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s16.c` | S | WHNF | 3,501 | 1,415 | 1,183 | 1.20 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s16.c.ctor` | S | WHNF, head `r_RVal` | 3,504 | 1,427 | 1,195 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s16.c.val` | S | NORMAL | 3,773 | 1,688 | 1,442 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s17.i` | S | WHNF | 77,269 | 3,714 | 3,289 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s17.i.ctor` | S | WHNF, head `r_RErr` | 77,273 | 3,719 | 3,294 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s17.i.val` | S | NORMAL | 77,661 | 3,725 | 3,300 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s17.c` | S | WHNF | 2,290 | 384 | 384 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s17.c.ctor` | S | WHNF, head `r_RErr` | 2,293 | 386 | 386 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s17.c.val` | S | NORMAL | 2,461 | 391 | 391 | 1.00 | aviary@bfba908+dirty |
 | `d2.sets.s18.i` | S | WHNF | 77,309 | 2,741 | 2,453 | 1.12 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s18.i.ctor` | S | WHNF, head `r_RVal` | 77,313 | 2,758 | 2,470 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s18.i.val` | S | NORMAL | 77,701 | 4,473 | 3,973 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s18.c` | S | WHNF | 2,248 | 240 | 240 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s18.c.ctor` | S | WHNF, head `r_RVal` | 2,251 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s18.c.val` | S | NORMAL | 2,419 | 1,400 | 1,239 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s19.i` | S | WHNF | 77,459 | 2,810 | 2,528 | 1.11 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s19.i.ctor` | S | WHNF, head `r_RErr` | 77,463 | 2,815 | 2,533 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s19.i.val` | S | NORMAL | 77,851 | 2,821 | 2,539 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s19.c` | S | WHNF | 2,292 | 263 | 263 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s19.c.ctor` | S | WHNF, head `r_RErr` | 2,295 | 265 | 265 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s19.c.val` | S | NORMAL | 2,463 | 270 | 270 | 1.00 | aviary@bfba908+dirty |
 | `d2.sets.s2.i` | S | WHNF | 76,874 | 856 | 853 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s2.i.ctor` | S | WHNF, head `r_RVal` | 76,878 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s2.i.val` | S | NORMAL | 77,266 | 1,011 | 1,005 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s2.c` | XS | WHNF | 1,116 | 7 | 7 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s2.c.ctor` | XS | WHNF, head `r_RVal` | 1,119 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s2.c.val` | S | NORMAL | 1,287 | 138 | 135 | 1.02 | aviary@bfba908+dirty |
 | `d2.sets.s20.i` | S | WHNF | 77,127 | 2,105 | 1,960 | 1.07 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s20.i.ctor` | S | WHNF, head `r_RVal` | 77,131 | 2,122 | 1,977 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s20.i.val` | S | NORMAL | 77,519 | 2,529 | 2,353 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s20.c` | M | WHNF | 31,359 | 18,331 | 15,546 | 1.18 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s20.c.ctor` | M | WHNF, head `r_RVal` | 31,362 | 18,343 | 15,558 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s20.c.val` | M | NORMAL | 31,530 | 18,781 | 15,928 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s21.i` | S | WHNF | 76,943 | 1,645 | 1,500 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s21.i.ctor` | S | WHNF, head `r_RVal` | 76,947 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s21.i.val` | S | NORMAL | 77,335 | 1,839 | 1,691 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s21.c` | XS | WHNF | 1,413 | 82 | 82 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s21.c.ctor` | XS | WHNF, head `r_RVal` | 1,416 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s21.c.val` | S | NORMAL | 1,584 | 241 | 238 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s22.i` | S | WHNF | 76,974 | 1,645 | 1,500 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s22.i.ctor` | S | WHNF, head `r_RVal` | 76,978 | 1,662 | 1,517 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s22.i.val` | S | NORMAL | 77,366 | 1,858 | 1,710 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s22.c` | XS | WHNF | 1,444 | 82 | 82 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s22.c.ctor` | XS | WHNF, head `r_RVal` | 1,447 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s22.c.val` | S | NORMAL | 1,615 | 260 | 257 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s23.i` | S | WHNF | 76,972 | 1,777 | 1,632 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s23.i.ctor` | S | WHNF, head `r_RVal` | 76,976 | 1,794 | 1,649 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s23.i.val` | S | NORMAL | 77,364 | 1,968 | 1,820 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s23.c` | S | WHNF | 2,567 | 121 | 121 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s23.c.ctor` | S | WHNF, head `r_RVal` | 2,570 | 133 | 133 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s23.c.val` | S | NORMAL | 2,738 | 286 | 283 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s24.i` | S | WHNF | 77,011 | 1,777 | 1,632 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s24.i.ctor` | S | WHNF, head `r_RVal` | 77,015 | 1,794 | 1,649 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s24.i.val` | S | NORMAL | 77,403 | 1,987 | 1,839 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s24.c` | S | WHNF | 2,606 | 121 | 121 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s24.c.ctor` | S | WHNF, head `r_RVal` | 2,609 | 133 | 133 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s24.c.val` | S | NORMAL | 2,777 | 305 | 302 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s25.i` | S | WHNF | 77,335 | 3,602 | 3,251 | 1.11 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s25.i.ctor` | S | WHNF, head `r_RVal` | 77,339 | 3,619 | 3,268 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s25.i.val` | S | NORMAL | 77,727 | 4,041 | 3,639 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s25.c` | M | WHNF | 341,807 | 30,224 | 25,147 | 1.20 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s25.c.ctor` | M | WHNF, head `r_RVal` | 341,810 | 30,236 | 25,159 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s25.c.val` | M | NORMAL | 342,016 | 30,457 | 25,369 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s26.i` | S | WHNF | 77,367 | 3,753 | 3,391 | 1.11 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s26.i.ctor` | S | WHNF, head `r_RErr` | 77,371 | 3,758 | 3,396 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s26.i.val` | S | NORMAL | 77,759 | 3,764 | 3,402 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s26.c` | M | WHNF | 341,839 | 60,305 | 43,678 | 1.38 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s26.c.ctor` | M | WHNF, head `r_RErr` | 341,842 | 60,307 | 43,680 | 1.38 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s26.c.val` | M | NORMAL | 342,048 | 60,312 | 43,685 | 1.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s27.i` | M | WHNF | 106,215 | 302,313 | 217,041 | 1.39 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s27.i.ctor` | M | WHNF, head `r_RVal` | 106,219 | 302,330 | 217,058 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s27.i.val` | M | NORMAL | 106,607 | 303,271 | 217,879 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s27.c` | M | WHNF | 1,047,024 | 115,246 | 86,091 | 1.34 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s27.c.ctor` | M | WHNF, head `r_RVal` | 1,047,027 | 115,258 | 86,103 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s27.c.val` | M | NORMAL | 1,047,233 | 115,855 | 86,609 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s28.i` | M | WHNF | 91,680 | 165,694 | 124,985 | 1.33 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s28.i.ctor` | M | WHNF, head `r_RVal` | 91,684 | 165,711 | 125,002 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s28.i.val` | M | NORMAL | 92,072 | 166,024 | 125,266 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s28.c` | M | WHNF | 332,113 | 43,619 | 34,219 | 1.27 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s28.c.ctor` | M | WHNF, head `r_RVal` | 332,116 | 43,631 | 34,231 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s28.c.val` | M | NORMAL | 332,322 | 43,924 | 34,480 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s29.i` | M | WHNF | 106,186 | 305,109 | 219,372 | 1.39 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s29.i.ctor` | M | WHNF, head `r_RVal` | 106,190 | 305,126 | 219,389 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s29.i.val` | M | NORMAL | 106,578 | 305,419 | 219,666 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s29.c` | M | WHNF | 1,046,995 | 124,596 | 91,135 | 1.37 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s29.c.ctor` | M | WHNF, head `r_RVal` | 1,046,998 | 124,608 | 91,147 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s29.c.val` | M | NORMAL | 1,047,204 | 124,883 | 91,406 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s3.i` | S | WHNF | 76,999 | 1,631 | 1,486 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s3.i.ctor` | S | WHNF, head `r_RVal` | 77,003 | 1,648 | 1,503 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s3.i.val` | S | NORMAL | 77,391 | 2,060 | 1,864 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s3.c` | XS | WHNF | 1,560 | 82 | 82 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s3.c.ctor` | XS | WHNF, head `r_RVal` | 1,563 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s3.c.val` | S | NORMAL | 1,731 | 460 | 409 | 1.12 | aviary@bfba908+dirty |
 | `d2.sets.s30.i` | M | WHNF | 85,692 | 31,767 | 26,300 | 1.21 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s30.i.ctor` | M | WHNF, head `r_RVal` | 85,696 | 31,784 | 26,317 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s30.i.val` | M | NORMAL | 86,084 | 743,825 | 425,156 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s30.c` | S | WHNF | 159,448 | 6,257 | 5,485 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s30.c.ctor` | S | WHNF, head `r_RVal` | 159,451 | 6,269 | 5,497 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s30.c.val` | M | NORMAL | 159,619 | 399,741 | 173,588 | 2.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s31.i` | M | WHNF | 85,429 | 27,762 | 23,001 | 1.21 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s31.i.ctor` | M | WHNF, head `r_RVal` | 85,433 | 27,779 | 23,018 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s31.i.val` | M | NORMAL | 85,821 | 29,496 | 24,523 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s31.c` | S | WHNF | 142,723 | 5,621 | 4,894 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s31.c.ctor` | S | WHNF, head `r_RVal` | 142,726 | 5,633 | 4,906 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s31.c.val` | S | NORMAL | 142,894 | 6,783 | 5,895 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s32.i` | M | WHNF | 91,256 | 56,872 | 46,274 | 1.23 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s32.i.ctor` | M | WHNF, head `r_RVal` | 91,260 | 56,889 | 46,291 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s32.i.val` | M | NORMAL | 91,648 | 783,856 | 441,699 | 1.77 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s32.c` | M | WHNF | 316,103 | 10,318 | 8,878 | 1.16 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s32.c.ctor` | M | WHNF, head `r_RVal` | 316,106 | 10,330 | 8,890 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s32.c.val` | M | NORMAL | 316,274 | 417,342 | 183,189 | 2.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s33.i` | S | WHNF | 77,171 | 4,350 | 3,762 | 1.16 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s33.i.ctor` | S | WHNF, head `r_RVal` | 77,175 | 4,367 | 3,779 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s33.i.val` | S | NORMAL | 77,563 | 4,548 | 3,957 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s33.c` | S | WHNF | 2,978 | 1,135 | 987 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s33.c.ctor` | S | WHNF, head `r_RVal` | 2,981 | 1,147 | 999 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s33.c.val` | S | NORMAL | 3,149 | 1,291 | 1,140 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s34.i` | M | WHNF | 110,171 | 45,245 | 31,774 | 1.42 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s34.i.ctor` | M | WHNF, head `r_RVal` | 110,175 | 45,262 | 31,791 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s34.i.val` | L | NORMAL | 110,563 | 1,009,542 | 566,585 | 1.78 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s34.c` | M | WHNF | 793,445 | 24,167 | 14,357 | 1.68 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s34.c.ctor` | M | WHNF, head `r_RVal` | 793,448 | 24,179 | 14,369 | 1.68 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s34.c.val` | M | NORMAL | 793,616 | 396,601 | 156,128 | 2.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s35.i` | M | WHNF | 109,745 | 24,018 | 19,716 | 1.22 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s35.i.ctor` | M | WHNF, head `r_RVal` | 109,749 | 24,035 | 19,733 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s35.i.val` | M | NORMAL | 110,137 | 31,889 | 23,325 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s35.c` | S | WHNF | 793,019 | 6,350 | 5,647 | 1.12 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s35.c.ctor` | S | WHNF, head `r_RVal` | 793,022 | 6,362 | 5,659 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s35.c.val` | M | NORMAL | 793,190 | 12,648 | 8,286 | 1.53 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s36.i` | M | WHNF | 85,615 | 20,811 | 17,602 | 1.18 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s36.i.ctor` | M | WHNF, head `r_RErr` | 85,619 | 20,816 | 17,607 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s36.i.val` | M | NORMAL | 86,007 | 20,822 | 17,613 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s36.c` | S | WHNF | 159,367 | 3,808 | 3,376 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s36.c.ctor` | S | WHNF, head `r_RErr` | 159,370 | 3,810 | 3,378 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s36.c.val` | S | NORMAL | 159,538 | 3,815 | 3,383 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s37.i` | M | WHNF | 109,700 | 23,462 | 19,229 | 1.22 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s37.i.ctor` | M | WHNF, head `r_RVal` | 109,704 | 23,479 | 19,246 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s37.i.val` | M | NORMAL | 110,092 | 25,996 | 21,320 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s37.c` | S | WHNF | 792,142 | 6,546 | 5,753 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s37.c.ctor` | S | WHNF, head `r_RVal` | 792,145 | 6,558 | 5,765 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s37.c.val` | S | NORMAL | 792,313 | 7,850 | 6,820 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s38.i` | M | WHNF | 109,724 | 24,638 | 20,072 | 1.23 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s38.i.ctor` | M | WHNF, head `r_RVal` | 109,728 | 24,655 | 20,089 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s38.i.val` | M | NORMAL | 110,116 | 27,551 | 22,454 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s38.c` | S | WHNF | 792,166 | 7,557 | 6,434 | 1.17 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s38.c.ctor` | S | WHNF, head `r_RVal` | 792,169 | 7,569 | 6,446 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s38.c.val` | S | NORMAL | 792,337 | 8,935 | 7,566 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s39.i` | M | WHNF | 109,805 | 24,366 | 19,969 | 1.22 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s39.i.ctor` | M | WHNF, head `r_RVal` | 109,809 | 24,383 | 19,986 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s39.i.val` | M | NORMAL | 110,197 | 26,905 | 22,062 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s39.c` | S | WHNF | 792,281 | 6,668 | 5,873 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s39.c.ctor` | S | WHNF, head `r_RVal` | 792,284 | 6,680 | 5,885 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s39.c.val` | S | NORMAL | 792,452 | 7,977 | 6,942 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s4.i` | S | WHNF | 77,336 | 3,334 | 2,902 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s4.i.ctor` | S | WHNF, head `r_RVal` | 77,340 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s4.i.val` | S | NORMAL | 77,728 | 4,962 | 4,410 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s4.c` | S | WHNF | 6,807 | 240 | 240 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s4.c.ctor` | S | WHNF, head `r_RVal` | 6,810 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s4.c.val` | S | NORMAL | 6,978 | 1,034 | 941 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s40.i` | M | WHNF | 110,452 | 43,329 | 30,229 | 1.43 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s40.i.ctor` | M | WHNF, head `r_RErr` | 110,456 | 43,334 | 30,234 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s40.i.val` | M | NORMAL | 110,844 | 43,340 | 30,240 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s40.c` | M | WHNF | 4,532,984 | 24,287 | 14,398 | 1.69 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s40.c.ctor` | M | WHNF, head `r_RErr` | 4,532,987 | 24,289 | 14,400 | 1.69 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s40.c.val` | M | NORMAL | 4,533,256 | 24,294 | 14,405 | 1.69 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s41.i` | S | WHNF | 77,273 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s41.i.ctor` | S | WHNF, head `r_RVal` | 77,277 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s41.i.val` | S | NORMAL | 77,665 | 4,067 | 3,607 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s41.c` | S | WHNF | 6,439 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s41.c.ctor` | S | WHNF, head `r_RVal` | 6,442 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s41.c.val` | S | NORMAL | 6,610 | 1,032 | 935 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s42.i` | S | WHNF | 77,281 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s42.i.ctor` | S | WHNF, head `r_RVal` | 77,285 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s42.i.val` | S | NORMAL | 77,673 | 4,040 | 3,586 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s42.c` | S | WHNF | 6,447 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s42.c.ctor` | S | WHNF, head `r_RVal` | 6,450 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s42.c.val` | S | NORMAL | 6,618 | 1,001 | 909 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s43.i` | S | WHNF | 77,186 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s43.i.ctor` | S | WHNF, head `r_RVal` | 77,190 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s43.i.val` | S | NORMAL | 77,578 | 3,567 | 3,172 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s43.c` | S | WHNF | 6,338 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s43.c.ctor` | S | WHNF, head `r_RVal` | 6,341 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s43.c.val` | S | NORMAL | 6,509 | 911 | 840 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s44.i` | S | WHNF | 77,233 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s44.i.ctor` | S | WHNF, head `r_RVal` | 77,237 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s44.i.val` | S | NORMAL | 77,625 | 4,321 | 3,710 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s44.c` | S | WHNF | 6,385 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s44.c.ctor` | S | WHNF, head `r_RVal` | 6,388 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s44.c.val` | S | NORMAL | 6,556 | 1,506 | 1,219 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s45.i` | S | WHNF | 77,155 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s45.i.ctor` | S | WHNF, head `r_RVal` | 77,159 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s45.i.val` | S | NORMAL | 77,547 | 2,878 | 2,587 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s45.c` | S | WHNF | 6,307 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s45.c.ctor` | S | WHNF, head `r_RVal` | 6,310 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s45.c.val` | S | NORMAL | 6,478 | 407 | 404 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s46.i` | S | WHNF | 77,143 | 2,558 | 2,270 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s46.i.ctor` | S | WHNF, head `r_RVal` | 77,147 | 2,575 | 2,287 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s46.i.val` | S | NORMAL | 77,535 | 2,862 | 2,571 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s46.c` | S | WHNF | 6,311 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s46.c.ctor` | S | WHNF, head `r_RVal` | 6,314 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s46.c.val` | S | NORMAL | 6,482 | 430 | 427 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s47.i` | S | WHNF | 77,232 | 2,556 | 2,268 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s47.i.ctor` | S | WHNF, head `r_RVal` | 77,236 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s47.i.val` | S | NORMAL | 77,624 | 3,872 | 3,379 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s47.c` | S | WHNF | 8,093 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s47.c.ctor` | S | WHNF, head `r_RVal` | 8,096 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s47.c.val` | S | NORMAL | 8,264 | 994 | 906 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s48.i` | S | WHNF | 77,271 | 2,556 | 2,268 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s48.i.ctor` | S | WHNF, head `r_RVal` | 77,275 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s48.i.val` | S | NORMAL | 77,663 | 3,824 | 3,434 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s48.c` | S | WHNF | 8,132 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s48.c.ctor` | S | WHNF, head `r_RVal` | 8,135 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s48.c.val` | S | NORMAL | 8,303 | 922 | 863 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s49.i` | S | WHNF | 77,185 | 2,556 | 2,268 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s49.i.ctor` | S | WHNF, head `r_RVal` | 77,189 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s49.i.val` | S | NORMAL | 77,577 | 3,357 | 2,901 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s49.c` | S | WHNF | 8,046 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s49.c.ctor` | S | WHNF, head `r_RVal` | 8,049 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s49.c.val` | S | NORMAL | 8,217 | 817 | 746 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s5.i` | S | WHNF | 77,704 | 3,334 | 2,902 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s5.i.ctor` | S | WHNF, head `r_RVal` | 77,708 | 3,351 | 2,919 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s5.i.val` | S | NORMAL | 78,096 | 5,908 | 5,236 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s5.c` | S | WHNF | 1,773 | 240 | 240 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s5.c.ctor` | S | WHNF, head `r_RVal` | 1,776 | 252 | 252 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s5.c.val` | S | NORMAL | 1,871 | 977 | 894 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s50.i` | M | WHNF | 84,714 | 27,072 | 22,639 | 1.20 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s50.i.ctor` | M | WHNF, head `r_RVal` | 84,718 | 27,089 | 22,656 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s50.i.val` | M | NORMAL | 85,106 | 27,985 | 23,350 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s50.c` | S | WHNF | 97,043 | 4,300 | 3,900 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s50.c.ctor` | S | WHNF, head `r_RVal` | 97,046 | 4,312 | 3,912 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s50.c.val` | S | NORMAL | 97,214 | 5,069 | 4,572 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s51.i` | M | WHNF | 83,217 | 42,810 | 35,355 | 1.21 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s51.i.ctor` | M | WHNF, head `r_RVal` | 83,221 | 42,827 | 35,372 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s51.i.val` | M | NORMAL | 83,609 | 43,615 | 35,906 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s51.c` | S | WHNF | 95,543 | 6,608 | 6,044 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s51.c.ctor` | S | WHNF, head `r_RVal` | 95,546 | 6,620 | 6,056 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s51.c.val` | S | NORMAL | 95,714 | 7,173 | 6,478 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s52.i` | M | WHNF | 79,108 | 16,209 | 13,594 | 1.19 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s52.i.ctor` | M | WHNF, head `r_RVal` | 79,112 | 16,226 | 13,611 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s52.i.val` | M | NORMAL | 79,500 | 16,986 | 14,207 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s52.c` | S | WHNF | 26,172 | 2,518 | 2,333 | 1.08 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s52.c.ctor` | S | WHNF, head `r_RVal` | 26,175 | 2,530 | 2,345 | 1.08 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s52.c.val` | S | NORMAL | 26,343 | 3,054 | 2,754 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s53.i` | M | WHNF | 84,761 | 27,072 | 22,639 | 1.20 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s53.i.ctor` | M | WHNF, head `r_RVal` | 84,765 | 27,089 | 22,656 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s53.i.val` | M | NORMAL | 85,153 | 28,411 | 23,742 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s53.c` | S | WHNF | 97,090 | 4,300 | 3,900 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s53.c.ctor` | S | WHNF, head `r_RVal` | 97,093 | 4,312 | 3,912 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s53.c.val` | S | NORMAL | 97,261 | 5,149 | 4,638 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s54.i` | M | WHNF | 83,264 | 45,036 | 37,129 | 1.21 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s54.i.ctor` | M | WHNF, head `r_RVal` | 83,268 | 45,053 | 37,146 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s54.i.val` | M | NORMAL | 83,656 | 45,203 | 37,293 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s54.c` | S | WHNF | 95,590 | 6,780 | 6,202 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s54.c.ctor` | S | WHNF, head `r_RVal` | 95,593 | 6,792 | 6,214 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s54.c.val` | S | NORMAL | 95,761 | 6,914 | 6,333 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s55.i` | S | WHNF | 77,208 | 2,556 | 2,268 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s55.i.ctor` | S | WHNF, head `r_RVal` | 77,212 | 2,573 | 2,285 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s55.i.val` | S | NORMAL | 77,600 | 4,441 | 3,647 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s55.c` | S | WHNF | 8,055 | 165 | 165 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s55.c.ctor` | S | WHNF, head `r_RVal` | 8,058 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s55.c.val` | S | NORMAL | 8,226 | 1,709 | 1,480 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s56.i` | M | WHNF | 84,760 | 27,072 | 22,639 | 1.20 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s56.i.ctor` | M | WHNF, head `r_RVal` | 84,764 | 27,089 | 22,656 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s56.i.val` | M | NORMAL | 85,152 | 28,598 | 23,887 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s56.c` | S | WHNF | 97,075 | 4,300 | 3,900 | 1.10 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s56.c.ctor` | S | WHNF, head `r_RVal` | 97,078 | 4,312 | 3,912 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s56.c.val` | S | NORMAL | 97,246 | 5,537 | 4,871 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s57.i` | M | WHNF | 119,308 | 436,152 | 299,286 | 1.46 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s57.i.ctor` | M | WHNF, head `r_RVal` | 119,312 | 436,169 | 299,303 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s57.i.val` | M | NORMAL | 119,700 | 438,237 | 300,446 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s57.c` | M | WHNF | 501,380 | 191,151 | 139,489 | 1.37 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s57.c.ctor` | M | WHNF, head `r_RVal` | 501,383 | 191,163 | 139,501 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s57.c.val` | M | NORMAL | 501,551 | 192,822 | 140,333 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s58.i` | M | WHNF | 116,841 | 417,406 | 289,065 | 1.44 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s58.i.ctor` | M | WHNF, head `r_RVal` | 116,845 | 417,423 | 289,082 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s58.i.val` | M | NORMAL | 117,233 | 417,903 | 289,509 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s58.c` | M | WHNF | 505,615 | 189,324 | 138,627 | 1.37 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s58.c.ctor` | M | WHNF, head `r_RVal` | 505,618 | 189,336 | 138,639 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s58.c.val` | M | NORMAL | 505,786 | 190,350 | 139,242 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s59.i` | M | WHNF | 104,663 | 493,056 | 329,903 | 1.49 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s59.i.ctor` | M | WHNF, head `r_RVal` | 104,667 | 493,073 | 329,920 | 1.49 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s59.i.val` | M | NORMAL | 105,055 | 493,507 | 330,270 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s59.c` | M | WHNF | 415,526 | 252,185 | 174,030 | 1.45 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s59.c.ctor` | M | WHNF, head `r_RVal` | 415,529 | 252,197 | 174,042 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s59.c.val` | M | NORMAL | 415,697 | 253,387 | 174,540 | 1.45 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s6.i` | S | WHNF | 77,126 | 2,623 | 2,335 | 1.12 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s6.i.ctor` | S | WHNF, head `r_RVal` | 77,130 | 2,640 | 2,352 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s6.i.val` | S | NORMAL | 77,518 | 2,845 | 2,551 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s6.c` | S | WHNF | 2,103 | 228 | 228 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s6.c.ctor` | S | WHNF, head `r_RVal` | 2,106 | 240 | 240 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s6.c.val` | S | NORMAL | 2,274 | 408 | 402 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s60.i` | M | WHNF | 93,136 | 245,898 | 178,977 | 1.37 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s60.i.ctor` | M | WHNF, head `r_RVal` | 93,140 | 245,915 | 178,994 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s60.i.val` | M | NORMAL | 93,528 | 246,878 | 179,725 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s60.c` | M | WHNF | 138,356 | 74,597 | 57,157 | 1.31 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s60.c.ctor` | M | WHNF, head `r_RVal` | 138,359 | 74,609 | 57,169 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s60.c.val` | M | NORMAL | 138,527 | 75,169 | 57,639 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s61.i` | M | WHNF | 92,746 | 241,370 | 175,932 | 1.37 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s61.i.ctor` | M | WHNF, head `r_RVal` | 92,750 | 241,387 | 175,949 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s61.i.val` | M | NORMAL | 93,138 | 242,348 | 176,678 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s61.c` | M | WHNF | 138,017 | 73,696 | 56,519 | 1.30 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s61.c.ctor` | M | WHNF, head `r_RVal` | 138,020 | 73,708 | 56,531 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s61.c.val` | M | NORMAL | 138,188 | 74,266 | 56,999 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s62.i` | M | WHNF | 104,992 | 380,932 | 265,133 | 1.44 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s62.i.ctor` | M | WHNF, head `r_RVal` | 104,996 | 380,949 | 265,150 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s62.i.val` | M | NORMAL | 105,384 | 382,107 | 265,967 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s62.c` | M | WHNF | 660,733 | 150,661 | 116,092 | 1.30 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s62.c.ctor` | M | WHNF, head `r_RVal` | 660,736 | 150,673 | 116,104 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s62.c.val` | M | NORMAL | 660,942 | 151,788 | 116,889 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s63.i` | S | WHNF | 77,827 | 4,771 | 4,191 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s63.i.ctor` | S | WHNF, head `r_RVal` | 77,831 | 4,788 | 4,208 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s63.i.val` | S | NORMAL | 78,219 | 4,989 | 4,403 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s63.c` | S | WHNF | 2,120 | 596 | 596 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s63.c.ctor` | S | WHNF, head `r_RVal` | 2,123 | 608 | 608 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s63.c.val` | S | NORMAL | 2,291 | 764 | 758 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s64.i` | S | WHNF | 77,757 | 4,745 | 4,165 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s64.i.ctor` | S | WHNF, head `r_RVal` | 77,761 | 4,762 | 4,182 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s64.i.val` | S | NORMAL | 78,149 | 4,991 | 4,400 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s64.c` | S | WHNF | 2,050 | 570 | 570 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s64.c.ctor` | S | WHNF, head `r_RVal` | 2,053 | 582 | 582 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s64.c.val` | S | NORMAL | 2,221 | 766 | 755 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s65.i` | M | WHNF | 80,889 | 12,991 | 11,055 | 1.18 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s65.i.ctor` | M | WHNF, head `r_RVal` | 80,893 | 13,008 | 11,072 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s65.i.val` | M | NORMAL | 81,281 | 14,659 | 12,351 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s65.c` | S | WHNF | 78,724 | 1,883 | 1,826 | 1.03 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s65.c.ctor` | S | WHNF, head `r_RVal` | 78,727 | 1,895 | 1,838 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s65.c.val` | S | NORMAL | 78,895 | 2,709 | 2,546 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s66.i` | M | WHNF | 81,070 | 13,011 | 11,065 | 1.18 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s66.i.ctor` | M | WHNF, head `r_RVal` | 81,074 | 13,028 | 11,082 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s66.i.val` | M | NORMAL | 81,462 | 15,625 | 13,104 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s66.c` | S | WHNF | 79,044 | 1,905 | 1,842 | 1.03 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s66.c.ctor` | S | WHNF, head `r_RVal` | 79,047 | 1,917 | 1,854 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s66.c.val` | S | NORMAL | 79,215 | 2,759 | 2,584 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s67.i` | M | WHNF | 79,040 | 10,998 | 9,528 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s67.i.ctor` | M | WHNF, head `r_RErr` | 79,044 | 11,003 | 9,533 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s67.i.val` | M | NORMAL | 79,432 | 11,009 | 9,539 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s67.c` | S | WHNF | 11,153 | 1,730 | 1,655 | 1.05 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s67.c.ctor` | S | WHNF, head `r_RErr` | 11,156 | 1,732 | 1,657 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s67.c.val` | S | NORMAL | 11,324 | 1,737 | 1,662 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s68.i` | S | WHNF | 77,235 | 2,702 | 2,414 | 1.12 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s68.i.ctor` | S | WHNF, head `r_RVal` | 77,239 | 2,719 | 2,431 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s68.i.val` | S | NORMAL | 77,627 | 2,855 | 2,564 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s68.c` | S | WHNF | 2,230 | 212 | 212 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s68.c.ctor` | S | WHNF, head `r_RVal` | 2,233 | 224 | 224 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s68.c.val` | S | NORMAL | 2,401 | 339 | 336 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s69.i` | S | WHNF | 77,308 | 2,633 | 2,345 | 1.12 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s69.i.ctor` | S | WHNF, head `r_RVal` | 77,312 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s69.i.val` | S | NORMAL | 77,700 | 3,182 | 2,851 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s69.c` | S | WHNF | 2,340 | 267 | 267 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s69.c.ctor` | S | WHNF, head `r_RVal` | 2,343 | 279 | 279 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s69.c.val` | S | NORMAL | 2,511 | 627 | 584 | 1.07 | aviary@bfba908+dirty |
 | `d2.sets.s7.i` | S | WHNF | 77,231 | 3,512 | 3,080 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s7.i.ctor` | S | WHNF, head `r_RVal` | 77,235 | 3,529 | 3,097 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s7.i.val` | S | NORMAL | 77,623 | 3,825 | 3,373 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s7.c` | S | WHNF | 2,240 | 351 | 351 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s7.c.ctor` | S | WHNF, head `r_RVal` | 2,243 | 363 | 363 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s7.c.val` | S | NORMAL | 2,411 | 644 | 624 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s70.i` | S | WHNF | 77,041 | 1,672 | 1,527 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s70.i.ctor` | S | WHNF, head `r_RVal` | 77,045 | 1,689 | 1,544 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s70.i.val` | S | NORMAL | 77,433 | 1,821 | 1,673 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s70.c` | XS | WHNF | 1,319 | 82 | 82 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s70.c.ctor` | XS | WHNF, head `r_RVal` | 1,322 | 94 | 94 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s70.c.val` | S | NORMAL | 1,490 | 205 | 202 | 1.01 | aviary@bfba908+dirty |
 | `d2.sets.s71.i` | S | WHNF | 77,439 | 4,450 | 3,870 | 1.15 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s71.i.ctor` | S | WHNF, head `r_RVal` | 77,443 | 4,467 | 3,887 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s71.i.val` | S | NORMAL | 77,831 | 5,001 | 4,370 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s71.c` | S | WHNF | 1,639 | 379 | 379 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s71.c.ctor` | S | WHNF, head `r_RVal` | 1,642 | 391 | 391 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s71.c.val` | S | NORMAL | 1,810 | 860 | 809 | 1.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s72.i` | S | WHNF | 77,235 | 2,424 | 2,136 | 1.13 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s72.i.ctor` | S | WHNF, head `r_RVal` | 77,239 | 2,441 | 2,153 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s72.i.val` | S | NORMAL | 77,627 | 3,130 | 2,774 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s72.c` | S | WHNF | 1,507 | 103 | 103 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s72.c.ctor` | S | WHNF, head `r_RVal` | 1,510 | 115 | 115 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s72.c.val` | S | NORMAL | 1,678 | 730 | 662 | 1.10 | aviary@bfba908+dirty |
 | `d2.sets.s73.i` | S | WHNF | 85,328 | 3,495 | 3,070 | 1.14 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s73.i.ctor` | S | WHNF, head `r_RErr` | 85,332 | 3,500 | 3,075 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s73.i.val` | S | NORMAL | 85,720 | 3,506 | 3,081 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s73.c` | S | WHNF | 71,271 | 565 | 565 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s73.c.ctor` | S | WHNF, head `r_RErr` | 71,274 | 567 | 567 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s73.c.val` | S | NORMAL | 71,442 | 572 | 572 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s8.i` | S | WHNF | 77,023 | 1,815 | 1,670 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s8.i.ctor` | S | WHNF, head `r_RVal` | 77,027 | 1,832 | 1,687 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s8.i.val` | S | NORMAL | 77,415 | 2,299 | 2,126 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s8.c` | S | WHNF | 2,038 | 151 | 151 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s8.c.ctor` | S | WHNF, head `r_RVal` | 2,041 | 163 | 163 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s8.c.val` | S | NORMAL | 2,209 | 583 | 555 | 1.05 | aviary@bfba908+dirty |
 | `d2.sets.s9.i` | S | WHNF | 77,048 | 1,732 | 1,592 | 1.09 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini |
 | `d2.sets.s9.i.ctor` | S | WHNF, head `r_RErr` | 77,052 | 1,737 | 1,597 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.sets.s9.i.val` | S | NORMAL | 77,440 | 1,743 | 1,603 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.sets.s9.c` | S | WHNF | 2,025 | 154 | 154 | 1.00 | SKIlark test_sets.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.sets.s9.c.ctor` | S | WHNF, head `r_RErr` | 2,028 | 156 | 156 | 1.00 | aviary@bfba908+dirty |
+| `d2.sets.s9.c.val` | S | NORMAL | 2,196 | 161 | 161 | 1.00 | aviary@bfba908+dirty |
 | `d2.library.b1.i` | M | WHNF | 79,464 | 11,807 | 9,983 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b1.i.ctor` | M | WHNF, head `r_RVal` | 79,468 | 11,824 | 10,000 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b1.i.val` | M | NORMAL | 79,856 | 12,707 | 10,726 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b1.c` | S | WHNF | 1,489 | 951 | 948 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b1.c.ctor` | S | WHNF, head `r_RVal` | 1,492 | 963 | 960 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b1.c.val` | S | NORMAL | 1,575 | 1,627 | 1,467 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b10.i` | M | WHNF | 80,425 | 24,842 | 20,853 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b10.i.ctor` | M | WHNF, head `r_RVal` | 80,429 | 24,859 | 20,870 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b10.i.val` | M | NORMAL | 80,817 | 25,009 | 21,017 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b10.c` | S | WHNF | 5,296 | 3,517 | 3,238 | 1.09 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b10.c.ctor` | S | WHNF, head `r_RVal` | 5,299 | 3,529 | 3,250 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b10.c.val` | S | NORMAL | 5,394 | 3,646 | 3,364 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b11.i` | M | WHNF | 84,041 | 24,676 | 20,711 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b11.i.ctor` | M | WHNF, head `r_RVal` | 84,045 | 24,693 | 20,728 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b11.i.val` | M | NORMAL | 84,433 | 63,058 | 29,224 | 2.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b11.c` | S | WHNF | 11,017 | 3,686 | 3,431 | 1.07 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b11.c.ctor` | S | WHNF, head `r_RVal` | 11,020 | 3,698 | 3,443 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b11.c.val` | M | NORMAL | 11,216 | 41,964 | 11,840 | 3.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b12.i` | M | WHNF | 81,008 | 22,709 | 19,221 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b12.i.ctor` | M | WHNF, head `r_RErr` | 81,012 | 22,714 | 19,226 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b12.i.val` | M | NORMAL | 81,400 | 22,720 | 19,232 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b12.c` | S | WHNF | 7,946 | 3,126 | 2,920 | 1.07 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b12.c.ctor` | S | WHNF, head `r_RErr` | 7,949 | 3,128 | 2,922 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b12.c.val` | S | NORMAL | 8,145 | 3,133 | 2,927 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b13.i` | M | WHNF | 79,060 | 14,963 | 12,843 | 1.17 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b13.i.ctor` | M | WHNF, head `r_RVal` | 79,064 | 14,980 | 12,860 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b13.i.val` | M | NORMAL | 79,452 | 18,722 | 15,190 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b13.c` | S | WHNF | 3,808 | 2,322 | 2,166 | 1.07 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b13.c.ctor` | S | WHNF, head `r_RVal` | 3,811 | 2,334 | 2,178 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b13.c.val` | S | NORMAL | 3,906 | 5,939 | 4,385 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b14.i` | S | WHNF | 78,836 | 9,743 | 8,437 | 1.15 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b14.i.ctor` | S | WHNF, head `r_RErr` | 78,840 | 9,748 | 8,442 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b14.i.val` | S | NORMAL | 79,228 | 9,754 | 8,448 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b14.c` | S | WHNF | 3,286 | 1,658 | 1,554 | 1.07 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b14.c.ctor` | S | WHNF, head `r_RErr` | 3,289 | 1,660 | 1,556 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b14.c.val` | S | NORMAL | 3,384 | 1,665 | 1,561 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b15.i` | M | WHNF | 80,545 | 26,867 | 22,655 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b15.i.ctor` | M | WHNF, head `r_RErr` | 80,549 | 26,872 | 22,660 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b15.i.val` | M | NORMAL | 80,937 | 26,878 | 22,666 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b15.c` | S | WHNF | 5,160 | 3,810 | 3,512 | 1.08 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b15.c.ctor` | S | WHNF, head `r_RErr` | 5,163 | 3,812 | 3,514 | 1.08 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b15.c.val` | S | NORMAL | 5,258 | 3,817 | 3,519 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b16.i` | M | WHNF | 96,178 | 157,469 | 121,501 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b16.i.ctor` | M | WHNF, head `r_RVal` | 96,182 | 157,486 | 121,518 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b16.i.val` | M | NORMAL | 96,570 | 159,392 | 122,928 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b16.c` | M | WHNF | 51,258 | 43,997 | 30,145 | 1.46 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b16.c.ctor` | M | WHNF, head `r_RVal` | 51,261 | 44,009 | 30,157 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b16.c.val` | M | NORMAL | 51,360 | 44,856 | 30,700 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b17.i` | M | WHNF | 96,285 | 159,691 | 122,494 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b17.i.ctor` | M | WHNF, head `r_RVal` | 96,289 | 159,708 | 122,511 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b17.i.val` | M | NORMAL | 96,677 | 161,707 | 123,961 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b17.c` | M | WHNF | 53,532 | 44,951 | 30,899 | 1.45 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b17.c.ctor` | M | WHNF, head `r_RVal` | 53,535 | 44,963 | 30,911 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b17.c.val` | M | NORMAL | 53,634 | 46,023 | 31,589 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b18.i` | M | WHNF | 82,723 | 51,812 | 42,573 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b18.i.ctor` | M | WHNF, head `r_RVal` | 82,727 | 51,829 | 42,590 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b18.i.val` | M | NORMAL | 83,115 | 53,451 | 43,920 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b18.c` | M | WHNF | 23,333 | 12,071 | 10,546 | 1.14 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b18.c.ctor` | M | WHNF, head `r_RVal` | 23,336 | 12,083 | 10,558 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b18.c.val` | M | NORMAL | 23,435 | 13,403 | 11,448 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b19.i` | M | WHNF | 84,228 | 65,189 | 53,285 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b19.i.ctor` | M | WHNF, head `r_RVal` | 84,232 | 65,206 | 53,302 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b19.i.val` | M | NORMAL | 84,620 | 66,906 | 54,695 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b19.c` | M | WHNF | 23,295 | 14,380 | 12,363 | 1.16 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b19.c.ctor` | M | WHNF, head `r_RVal` | 23,298 | 14,392 | 12,375 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b19.c.val` | M | NORMAL | 23,397 | 15,734 | 13,279 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b2.i` | M | WHNF | 79,682 | 11,813 | 9,989 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b2.i.ctor` | M | WHNF, head `r_RVal` | 79,686 | 11,830 | 10,006 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b2.i.val` | M | NORMAL | 80,074 | 12,707 | 10,726 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b2.c` | S | WHNF | 1,491 | 949 | 946 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b2.c.ctor` | S | WHNF, head `r_RVal` | 1,494 | 961 | 958 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b2.c.val` | S | NORMAL | 1,577 | 1,629 | 1,469 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b20.i` | M | WHNF | 87,196 | 77,671 | 62,897 | 1.23 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b20.i.ctor` | M | WHNF, head `r_RVal` | 87,200 | 77,688 | 62,914 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b20.i.val` | M | NORMAL | 87,588 | 80,159 | 64,756 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b20.c` | M | WHNF | 29,371 | 17,650 | 14,823 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b20.c.ctor` | M | WHNF, head `r_RVal` | 29,374 | 17,662 | 14,835 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b20.c.val` | M | NORMAL | 29,473 | 19,414 | 16,019 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b21.i` | M | WHNF | 82,451 | 39,439 | 32,802 | 1.20 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b21.i.ctor` | M | WHNF, head `r_RErr` | 82,455 | 39,444 | 32,807 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b21.i.val` | M | NORMAL | 82,843 | 39,450 | 32,813 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b21.c` | S | WHNF | 22,478 | 8,438 | 7,718 | 1.09 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b21.c.ctor` | S | WHNF, head `r_RErr` | 22,481 | 8,440 | 7,720 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b21.c.val` | S | NORMAL | 22,580 | 8,445 | 7,725 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b22.i` | M | WHNF | 92,234 | 134,953 | 104,634 | 1.29 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b22.i.ctor` | M | WHNF, head `r_RVal` | 92,238 | 134,970 | 104,651 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b22.i.val` | M | NORMAL | 92,626 | 138,650 | 107,217 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b22.c` | M | WHNF | 49,392 | 40,106 | 27,623 | 1.45 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b22.c.ctor` | M | WHNF, head `r_RVal` | 49,395 | 40,118 | 27,635 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b22.c.val` | M | NORMAL | 49,494 | 42,928 | 29,049 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b23.i` | M | WHNF | 92,131 | 132,805 | 103,757 | 1.28 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b23.i.ctor` | M | WHNF, head `r_RVal` | 92,135 | 132,822 | 103,774 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b23.i.val` | M | NORMAL | 92,523 | 135,762 | 105,559 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b23.c` | M | WHNF | 44,035 | 38,137 | 26,228 | 1.45 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b23.c.ctor` | M | WHNF, head `r_RVal` | 44,038 | 38,149 | 26,240 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b23.c.val` | M | NORMAL | 44,137 | 40,039 | 27,068 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b24.i` | M | WHNF | 101,101 | 210,025 | 156,308 | 1.34 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b24.i.ctor` | M | WHNF, head `r_RVal` | 101,105 | 210,042 | 156,325 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b24.i.val` | M | NORMAL | 101,493 | 216,118 | 159,115 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b24.c` | M | WHNF | 63,169 | 96,741 | 47,760 | 2.03 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b24.c.ctor` | M | WHNF, head `r_RVal` | 63,172 | 96,753 | 47,772 | 2.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b24.c.val` | M | NORMAL | 63,271 | 100,295 | 48,909 | 2.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b25.i` | M | WHNF | 108,527 | 301,931 | 211,513 | 1.43 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b25.i.ctor` | M | WHNF, head `r_RVal` | 108,531 | 301,948 | 211,530 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b25.i.val` | M | NORMAL | 108,919 | 319,262 | 219,193 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b25.c` | M | WHNF | 94,326 | 257,602 | 82,840 | 3.11 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b25.c.ctor` | M | WHNF, head `r_RVal` | 94,329 | 257,614 | 82,852 | 3.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b25.c.val` | M | NORMAL | 94,428 | 269,388 | 87,409 | 3.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b26.i` | M | WHNF | 92,234 | 134,953 | 104,634 | 1.29 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b26.i.ctor` | M | WHNF, head `r_RVal` | 92,238 | 134,970 | 104,651 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b26.i.val` | M | NORMAL | 92,626 | 138,650 | 107,217 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b26.c` | M | WHNF | 49,392 | 40,106 | 27,623 | 1.45 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b26.c.ctor` | M | WHNF, head `r_RVal` | 49,395 | 40,118 | 27,635 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b26.c.val` | M | NORMAL | 49,494 | 42,928 | 29,049 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b27.i` | M | WHNF | 92,024 | 133,996 | 103,943 | 1.29 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b27.i.ctor` | M | WHNF, head `r_RVal` | 92,028 | 134,013 | 103,960 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b27.i.val` | M | NORMAL | 92,416 | 136,663 | 105,824 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b27.c` | M | WHNF | 49,276 | 37,543 | 26,472 | 1.42 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b27.c.ctor` | M | WHNF, head `r_RVal` | 49,279 | 37,555 | 26,484 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b27.c.val` | M | NORMAL | 49,378 | 39,235 | 27,563 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b28.i` | M | WHNF | 101,204 | 213,288 | 157,486 | 1.35 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b28.i.ctor` | M | WHNF, head `r_RVal` | 101,208 | 213,305 | 157,503 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b28.i.val` | M | NORMAL | 101,596 | 221,620 | 162,139 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b28.c` | M | WHNF | 69,244 | 100,721 | 49,902 | 2.02 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b28.c.ctor` | M | WHNF, head `r_RVal` | 69,247 | 100,733 | 49,914 | 2.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b28.c.val` | M | NORMAL | 69,346 | 106,824 | 52,513 | 2.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b29.i` | M | WHNF | 92,595 | 126,637 | 99,765 | 1.27 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b29.i.ctor` | M | WHNF, head `r_RVal` | 92,599 | 126,654 | 99,782 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b29.i.val` | M | NORMAL | 92,987 | 129,017 | 101,509 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b29.c` | M | WHNF | 80,178 | 34,915 | 27,166 | 1.29 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b29.c.ctor` | M | WHNF, head `r_RVal` | 80,181 | 34,927 | 27,178 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b29.c.val` | M | NORMAL | 80,280 | 36,504 | 28,246 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b3.i` | M | WHNF | 79,449 | 12,774 | 10,789 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b3.i.ctor` | M | WHNF, head `r_RVal` | 79,453 | 12,791 | 10,806 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b3.i.val` | M | NORMAL | 79,841 | 13,670 | 11,528 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b3.c` | S | WHNF | 1,630 | 1,069 | 1,066 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b3.c.ctor` | S | WHNF, head `r_RVal` | 1,633 | 1,081 | 1,078 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b3.c.val` | S | NORMAL | 1,716 | 1,751 | 1,591 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b31.i` | L | WHNF | 177,685 | 1,619,631 | 856,075 | 1.89 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b31.i.ctor` | L | WHNF, head `r_RVal` | 177,689 | 1,619,648 | 856,092 | 1.89 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b31.i.val` | L | NORMAL | 178,077 | 1,642,092 | 861,648 | 1.91 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b31.c` | M | WHNF | 536,490 | 760,102 | 444,029 | 1.71 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b31.c.ctor` | M | WHNF, head `r_RVal` | 536,493 | 760,114 | 444,041 | 1.71 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b31.c.val` | M | NORMAL | 536,630 | 777,844 | 447,357 | 1.74 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b33.i` | M | WHNF | 85,318 | 36,972 | 30,315 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b33.i.ctor` | M | WHNF, head `r_RVal` | 85,322 | 36,989 | 30,332 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b33.i.val` | M | NORMAL | 85,710 | 44,652 | 32,914 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b33.c` | S | WHNF | 13,277 | 6,159 | 5,581 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b33.c.ctor` | S | WHNF, head `r_RVal` | 13,280 | 6,171 | 5,593 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b33.c.val` | M | NORMAL | 13,476 | 13,762 | 8,108 | 1.70 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b34.i` | M | WHNF | 86,246 | 37,455 | 30,792 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b34.i.ctor` | M | WHNF, head `r_RVal` | 86,250 | 37,472 | 30,809 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b34.i.val` | M | NORMAL | 86,638 | 55,547 | 35,203 | 1.58 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b34.c` | S | WHNF | 14,207 | 6,091 | 5,528 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b34.c.ctor` | S | WHNF, head `r_RVal` | 14,210 | 6,103 | 5,540 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b34.c.val` | M | NORMAL | 14,406 | 24,108 | 9,869 | 2.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b35.i` | M | WHNF | 84,235 | 36,821 | 30,213 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b35.i.ctor` | M | WHNF, head `r_RVal` | 84,239 | 36,838 | 30,230 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b35.i.val` | M | NORMAL | 84,627 | 47,549 | 33,295 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b35.c` | S | WHNF | 12,675 | 6,088 | 5,525 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b35.c.ctor` | S | WHNF, head `r_RVal` | 12,678 | 6,100 | 5,537 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b35.c.val` | M | NORMAL | 12,874 | 16,739 | 8,535 | 1.96 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b36.i` | M | WHNF | 83,593 | 36,695 | 30,123 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b36.i.ctor` | M | WHNF, head `r_RVal` | 83,597 | 36,712 | 30,140 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b36.i.val` | M | NORMAL | 83,985 | 37,021 | 30,422 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b36.c` | S | WHNF | 8,182 | 5,488 | 4,987 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b36.c.ctor` | S | WHNF, head `r_RVal` | 8,185 | 5,500 | 4,999 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b36.c.val` | S | NORMAL | 8,280 | 5,727 | 5,208 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b37.i` | M | WHNF | 83,387 | 37,084 | 30,397 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b37.i.ctor` | M | WHNF, head `r_RVal` | 83,391 | 37,101 | 30,414 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b37.i.val` | M | NORMAL | 83,779 | 37,506 | 30,786 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b37.c` | S | WHNF | 67,845 | 6,778 | 6,038 | 1.12 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b37.c.ctor` | S | WHNF, head `r_RVal` | 67,848 | 6,790 | 6,050 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b37.c.val` | S | NORMAL | 68,016 | 7,141 | 6,373 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b38.i` | M | WHNF | 84,762 | 37,225 | 30,493 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b38.i.ctor` | M | WHNF, head `r_RVal` | 84,766 | 37,242 | 30,510 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b38.i.val` | M | NORMAL | 85,154 | 47,298 | 33,522 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b38.c` | S | WHNF | 12,680 | 6,264 | 5,673 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b38.c.ctor` | S | WHNF, head `r_RVal` | 12,683 | 6,276 | 5,685 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b38.c.val` | M | NORMAL | 12,879 | 16,260 | 8,630 | 1.88 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b39.i` | M | WHNF | 83,543 | 37,379 | 30,555 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b39.i.ctor` | M | WHNF, head `r_RVal` | 83,547 | 37,396 | 30,572 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b39.i.val` | M | NORMAL | 83,935 | 37,699 | 30,848 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b39.c` | S | WHNF | 8,259 | 5,798 | 5,245 | 1.11 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b39.c.ctor` | S | WHNF, head `r_RVal` | 8,262 | 5,810 | 5,257 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b39.c.val` | S | NORMAL | 8,357 | 6,031 | 5,460 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b4.i` | S | WHNF | 79,230 | 9,058 | 7,731 | 1.17 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b4.i.ctor` | S | WHNF, head `r_RErr` | 79,234 | 9,063 | 7,736 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b4.i.val` | S | NORMAL | 79,622 | 9,069 | 7,742 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b4.c` | S | WHNF | 1,359 | 835 | 832 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b4.c.ctor` | S | WHNF, head `r_RErr` | 1,362 | 837 | 834 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b4.c.val` | S | NORMAL | 1,445 | 842 | 839 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b40.i` | M | WHNF | 83,431 | 34,668 | 28,631 | 1.21 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b40.i.ctor` | M | WHNF, head `r_RVal` | 83,435 | 34,685 | 28,648 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b40.i.val` | M | NORMAL | 83,823 | 35,083 | 29,006 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b40.c` | S | WHNF | 7,050 | 4,945 | 4,496 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b40.c.ctor` | S | WHNF, head `r_RVal` | 7,053 | 4,957 | 4,508 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b40.c.val` | S | NORMAL | 7,148 | 5,252 | 4,763 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b41.i` | M | WHNF | 83,222 | 34,668 | 28,631 | 1.21 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b41.i.ctor` | M | WHNF, head `r_RVal` | 83,226 | 34,685 | 28,648 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b41.i.val` | M | NORMAL | 83,614 | 35,083 | 29,006 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b41.c` | S | WHNF | 7,050 | 4,945 | 4,496 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b41.c.ctor` | S | WHNF, head `r_RVal` | 7,053 | 4,957 | 4,508 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b41.c.val` | S | NORMAL | 7,148 | 5,252 | 4,763 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b42.i` | M | WHNF | 162,984 | 829,979 | 514,657 | 1.61 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b42.i.ctor` | M | WHNF, head `r_RVal` | 162,988 | 829,996 | 514,674 | 1.61 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b42.i.val` | M | NORMAL | 163,376 | 858,706 | 521,017 | 1.65 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b42.c` | M | WHNF | 10,538,978 | 463,719 | 306,374 | 1.51 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b42.c.ctor` | M | WHNF, head `r_RVal` | 10,538,981 | 463,731 | 306,386 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b42.c.val` | M | NORMAL | 10,539,295 | 492,397 | 312,696 | 1.57 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b43.i` | M | WHNF | 162,944 | 705,450 | 449,924 | 1.57 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b43.i.ctor` | M | WHNF, head `r_RVal` | 162,948 | 705,467 | 449,941 | 1.57 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b43.i.val` | M | NORMAL | 163,336 | 743,185 | 457,843 | 1.62 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b43.c` | M | WHNF | 10,538,938 | 432,310 | 286,269 | 1.51 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b43.c.ctor` | M | WHNF, head `r_RVal` | 10,538,941 | 432,322 | 286,281 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b43.c.val` | M | NORMAL | 10,539,255 | 469,996 | 294,150 | 1.60 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b44.i` | M | WHNF | 162,958 | 849,546 | 524,296 | 1.62 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b44.i.ctor` | M | WHNF, head `r_RVal` | 162,962 | 849,563 | 524,313 | 1.62 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b44.i.val` | M | NORMAL | 163,350 | 874,959 | 530,212 | 1.65 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b44.c` | M | WHNF | 10,538,952 | 478,040 | 314,585 | 1.52 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b44.c.ctor` | M | WHNF, head `r_RVal` | 10,538,955 | 478,052 | 314,597 | 1.52 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b44.c.val` | M | NORMAL | 10,539,269 | 503,404 | 320,463 | 1.57 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b45.i` | M | WHNF | 144,134 | 373,742 | 266,884 | 1.40 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b45.i.ctor` | M | WHNF, head `r_RVal` | 144,138 | 373,759 | 266,901 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b45.i.val` | M | NORMAL | 144,526 | 374,174 | 267,276 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b45.c` | M | WHNF | 1,922,598 | 213,589 | 151,416 | 1.41 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b45.c.ctor` | M | WHNF, head `r_RVal` | 1,922,601 | 213,601 | 151,428 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b45.c.val` | M | NORMAL | 1,922,738 | 213,948 | 151,735 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b46.i` | M | WHNF | 143,726 | 47,927 | 39,156 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b46.i.ctor` | M | WHNF, head `r_RErr` | 143,730 | 47,932 | 39,161 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b46.i.val` | M | NORMAL | 144,118 | 47,938 | 39,167 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b46.c` | M | WHNF | 1,880,026 | 28,763 | 23,765 | 1.21 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b46.c.ctor` | M | WHNF, head `r_RErr` | 1,880,029 | 28,765 | 23,767 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b46.c.val` | M | NORMAL | 1,880,166 | 28,770 | 23,772 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b47.i` | M | WHNF | 144,344 | 374,950 | 267,616 | 1.40 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b47.i.ctor` | M | WHNF, head `r_RVal` | 144,348 | 374,967 | 267,633 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b47.i.val` | M | NORMAL | 144,736 | 375,552 | 268,148 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b47.c` | M | WHNF | 1,940,880 | 214,934 | 152,318 | 1.41 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b47.c.ctor` | M | WHNF, head `r_RVal` | 1,940,883 | 214,946 | 152,330 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b47.c.val` | M | NORMAL | 1,941,020 | 215,436 | 152,750 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b48.i` | M | WHNF | 104,090 | 105,179 | 83,056 | 1.27 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b48.i.ctor` | M | WHNF, head `r_RVal` | 104,094 | 105,196 | 83,073 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b48.i.val` | M | NORMAL | 104,482 | 134,749 | 89,365 | 1.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b48.c` | M | WHNF | 878,478 | 25,944 | 22,185 | 1.17 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b48.c.ctor` | M | WHNF, head `r_RVal` | 878,481 | 25,956 | 22,197 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b48.c.val` | M | NORMAL | 878,681 | 55,432 | 28,412 | 1.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b49.i` | M | WHNF | 104,114 | 114,443 | 89,625 | 1.28 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b49.i.ctor` | M | WHNF, head `r_RVal` | 104,118 | 114,460 | 89,642 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b49.i.val` | M | NORMAL | 104,506 | 159,703 | 99,042 | 1.61 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b49.c` | M | WHNF | 878,502 | 31,104 | 26,403 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b49.c.ctor` | M | WHNF, head `r_RVal` | 878,505 | 31,116 | 26,415 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b49.c.val` | M | NORMAL | 878,705 | 76,227 | 35,690 | 2.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b5.i` | M | WHNF | 79,772 | 21,997 | 18,401 | 1.20 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b5.i.ctor` | M | WHNF, head `r_RVal` | 79,776 | 22,014 | 18,418 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b5.i.val` | M | NORMAL | 80,164 | 22,224 | 18,622 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b5.c` | S | WHNF | 3,135 | 2,498 | 2,384 | 1.05 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b5.c.ctor` | S | WHNF, head `r_RVal` | 3,138 | 2,510 | 2,396 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b5.c.val` | S | NORMAL | 3,233 | 2,670 | 2,550 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b50.i` | M | WHNF | 95,001 | 84,430 | 67,235 | 1.26 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b50.i.ctor` | M | WHNF, head `r_RVal` | 95,005 | 84,447 | 67,252 | 1.26 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b50.i.val` | M | NORMAL | 95,393 | 84,663 | 67,462 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b50.c` | M | WHNF | 682,080 | 25,030 | 18,280 | 1.37 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b50.c.ctor` | M | WHNF, head `r_RVal` | 682,083 | 25,042 | 18,292 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b50.c.val` | M | NORMAL | 682,283 | 25,213 | 18,457 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b51.i` | M | WHNF | 99,185 | 77,198 | 62,532 | 1.23 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b51.i.ctor` | M | WHNF, head `r_RVal` | 99,189 | 77,215 | 62,549 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b51.i.val` | M | NORMAL | 99,577 | 107,163 | 69,129 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b51.c` | M | WHNF | 781,008 | 20,435 | 17,889 | 1.14 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b51.c.ctor` | M | WHNF, head `r_RVal` | 781,011 | 20,447 | 17,901 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b51.c.val` | M | NORMAL | 781,211 | 50,264 | 24,357 | 2.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b52.i` | M | WHNF | 99,193 | 77,198 | 62,532 | 1.23 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b52.i.ctor` | M | WHNF, head `r_RVal` | 99,197 | 77,215 | 62,549 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b52.i.val` | M | NORMAL | 99,585 | 107,192 | 69,152 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b52.c` | M | WHNF | 781,016 | 20,435 | 17,889 | 1.14 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b52.c.ctor` | M | WHNF, head `r_RVal` | 781,019 | 20,447 | 17,901 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b52.c.val` | M | NORMAL | 781,219 | 50,293 | 24,380 | 2.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b53.i` | M | WHNF | 92,471 | 31,197 | 26,385 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b53.i.ctor` | M | WHNF, head `r_RErr` | 92,475 | 31,202 | 26,390 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b53.i.val` | M | NORMAL | 92,863 | 31,208 | 26,396 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b53.c` | S | WHNF | 138,665 | 7,703 | 6,997 | 1.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b53.c.ctor` | S | WHNF, head `r_RErr` | 138,668 | 7,705 | 6,999 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b53.c.val` | S | NORMAL | 138,767 | 7,710 | 7,004 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b54.i` | M | WHNF | 104,895 | 74,045 | 59,891 | 1.24 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b54.i.ctor` | M | WHNF, head `r_RVal` | 104,899 | 74,062 | 59,908 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b54.i.val` | M | NORMAL | 105,287 | 74,428 | 60,214 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b54.c` | M | WHNF | 3,800,383 | 19,346 | 17,173 | 1.13 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b54.c.ctor` | M | WHNF, head `r_RVal` | 3,800,386 | 19,358 | 17,185 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b54.c.val` | M | NORMAL | 3,800,586 | 19,677 | 17,447 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b55.i` | M | WHNF | 105,839 | 126,297 | 97,303 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b55.i.ctor` | M | WHNF, head `r_RVal` | 105,843 | 126,314 | 97,320 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b55.i.val` | M | NORMAL | 106,231 | 137,267 | 100,355 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b55.c` | M | WHNF | 3,801,327 | 33,893 | 28,622 | 1.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b55.c.ctor` | M | WHNF, head `r_RVal` | 3,801,330 | 33,905 | 28,634 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b55.c.val` | M | NORMAL | 3,801,530 | 44,811 | 31,625 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b56.i` | M | WHNF | 105,069 | 141,318 | 107,867 | 1.31 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b56.i.ctor` | M | WHNF, head `r_RVal` | 105,073 | 141,335 | 107,884 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b56.i.val` | M | NORMAL | 105,461 | 141,756 | 108,255 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b56.c` | M | WHNF | 3,806,796 | 41,595 | 34,833 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b56.c.ctor` | M | WHNF, head `r_RVal` | 3,806,799 | 41,607 | 34,845 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b56.c.val` | M | NORMAL | 3,806,999 | 41,830 | 35,021 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b57.i` | M | WHNF | 114,667 | 142,636 | 108,847 | 1.31 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b57.i.ctor` | M | WHNF, head `r_RVal` | 114,671 | 142,653 | 108,864 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b57.i.val` | M | NORMAL | 115,059 | 143,189 | 109,234 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b57.c` | M | WHNF | 2,732,710 | 42,769 | 35,887 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b57.c.ctor` | M | WHNF, head `r_RVal` | 2,732,713 | 42,781 | 35,899 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b57.c.val` | M | NORMAL | 2,732,913 | 43,004 | 36,074 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b58.i` | L | WHNF | 140,974 | 1,666,478 | 872,867 | 1.91 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b58.i.ctor` | L | WHNF, head `r_RVal` | 140,978 | 1,666,495 | 872,884 | 1.91 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b58.i.val` | L | NORMAL | 141,366 | 1,667,202 | 873,435 | 1.91 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b58.c` | M | WHNF | 615,485 | 864,073 | 506,790 | 1.70 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b58.c.ctor` | M | WHNF, head `r_RVal` | 615,488 | 864,085 | 506,802 | 1.70 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b58.c.val` | M | NORMAL | 615,625 | 866,100 | 507,305 | 1.71 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b59.i` | L | WHNF | 151,877 | 2,778,091 | 1,320,456 | 2.10 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b59.i.ctor` | L | WHNF, head `r_RVal` | 151,881 | 2,778,108 | 1,320,473 | 2.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b59.i.val` | L | NORMAL | 152,269 | 2,809,047 | 1,326,144 | 2.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b59.c` | L | WHNF | 3,601,679 | 1,020,273 | 568,177 | 1.80 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b59.c.ctor` | L | WHNF, head `r_RVal` | 3,601,682 | 1,020,285 | 568,189 | 1.80 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b59.c.val` | L | NORMAL | 3,601,882 | 1,052,448 | 573,786 | 1.83 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b6.i` | M | WHNF | 79,785 | 22,991 | 19,225 | 1.20 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b6.i.ctor` | M | WHNF, head `r_RVal` | 79,789 | 23,008 | 19,242 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b6.i.val` | M | NORMAL | 80,177 | 23,245 | 19,468 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b6.c` | S | WHNF | 3,138 | 2,626 | 2,512 | 1.05 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b6.c.ctor` | S | WHNF, head `r_RVal` | 3,141 | 2,638 | 2,524 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b6.c.val` | S | NORMAL | 3,236 | 2,826 | 2,701 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b60.i` | L | WHNF | 139,908 | 1,270,449 | 713,203 | 1.78 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b60.i.ctor` | L | WHNF, head `r_RVal` | 139,912 | 1,270,466 | 713,220 | 1.78 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b60.i.val` | L | NORMAL | 140,300 | 1,272,347 | 714,741 | 1.78 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b60.c` | M | WHNF | 697,106 | 600,105 | 379,358 | 1.58 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b60.c.ctor` | M | WHNF, head `r_RVal` | 697,109 | 600,117 | 379,370 | 1.58 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b60.c.val` | M | NORMAL | 697,277 | 602,394 | 380,368 | 1.58 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b61.i` | M | WHNF | 139,805 | 384,692 | 272,440 | 1.41 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b61.i.ctor` | M | WHNF, head `r_RVal` | 139,809 | 384,709 | 272,457 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b61.i.val` | M | NORMAL | 140,197 | 385,870 | 272,899 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b61.c` | M | WHNF | 499,264 | 114,459 | 87,286 | 1.31 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b61.c.ctor` | M | WHNF, head `r_RVal` | 499,267 | 114,471 | 87,298 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b61.c.val` | M | NORMAL | 499,366 | 115,017 | 87,763 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b62.i` | M | WHNF | 139,857 | 51,937 | 42,552 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b62.i.ctor` | M | WHNF, head `r_RErr` | 139,861 | 51,942 | 42,557 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b62.i.val` | M | NORMAL | 140,249 | 51,948 | 42,563 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b62.c` | M | WHNF | 498,509 | 22,455 | 19,310 | 1.16 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b62.c.ctor` | M | WHNF, head `r_RErr` | 498,512 | 22,457 | 19,312 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b62.c.val` | M | NORMAL | 498,611 | 22,462 | 19,317 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b63.i` | M | WHNF | 104,817 | 402,613 | 275,287 | 1.46 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b63.i.ctor` | M | WHNF, head `r_RVal` | 104,821 | 402,630 | 275,304 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b63.i.val` | M | NORMAL | 105,209 | 402,863 | 275,502 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b63.c` | M | WHNF | 219,333 | 85,548 | 65,598 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b63.c.ctor` | M | WHNF, head `r_RVal` | 219,336 | 85,560 | 65,610 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b63.c.val` | M | NORMAL | 219,435 | 85,923 | 65,959 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b64.i` | M | WHNF | 104,841 | 461,467 | 309,045 | 1.49 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b64.i.ctor` | M | WHNF, head `r_RVal` | 104,845 | 461,484 | 309,062 | 1.49 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b64.i.val` | M | NORMAL | 105,233 | 461,702 | 309,260 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b64.c` | M | WHNF | 219,501 | 103,016 | 77,402 | 1.33 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b64.c.ctor` | M | WHNF, head `r_RVal` | 219,504 | 103,028 | 77,414 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b64.c.val` | M | NORMAL | 219,603 | 103,454 | 77,826 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b65.i` | M | WHNF | 96,735 | 113,236 | 89,365 | 1.27 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b65.i.ctor` | M | WHNF, head `r_RVal` | 96,739 | 113,253 | 89,382 | 1.27 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b65.i.val` | M | NORMAL | 97,127 | 113,475 | 89,570 | 1.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b65.c` | M | WHNF | 182,530 | 31,658 | 26,556 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b65.c.ctor` | M | WHNF, head `r_RVal` | 182,533 | 31,670 | 26,568 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b65.c.val` | M | NORMAL | 182,632 | 32,067 | 26,953 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b66.i` | M | WHNF | 96,120 | 105,733 | 83,838 | 1.26 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b66.i.ctor` | M | WHNF, head `r_RVal` | 96,124 | 105,750 | 83,855 | 1.26 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b66.i.val` | M | NORMAL | 96,512 | 105,952 | 84,038 | 1.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b66.c` | M | WHNF | 151,079 | 27,950 | 23,502 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b66.c.ctor` | M | WHNF, head `r_RVal` | 151,082 | 27,962 | 23,514 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b66.c.val` | M | NORMAL | 151,181 | 28,339 | 23,879 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b67.i` | M | WHNF | 105,580 | 478,027 | 318,029 | 1.50 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b67.i.ctor` | M | WHNF, head `r_RVal` | 105,584 | 478,044 | 318,046 | 1.50 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b67.i.val` | M | NORMAL | 105,972 | 478,250 | 318,232 | 1.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b67.c` | M | WHNF | 229,871 | 110,140 | 82,380 | 1.34 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b67.c.ctor` | M | WHNF, head `r_RVal` | 229,874 | 110,152 | 82,392 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b67.c.val` | M | NORMAL | 229,973 | 110,578 | 82,804 | 1.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b68.i` | M | WHNF | 105,588 | 167,227 | 128,335 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b68.i.ctor` | M | WHNF, head `r_RVal` | 105,592 | 167,244 | 128,352 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b68.i.val` | M | NORMAL | 105,980 | 167,453 | 128,527 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b68.c` | M | WHNF | 229,927 | 38,917 | 32,270 | 1.21 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b68.c.ctor` | M | WHNF, head `r_RVal` | 229,930 | 38,929 | 32,282 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b68.c.val` | M | NORMAL | 230,029 | 39,341 | 32,682 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b69.i` | M | WHNF | 105,560 | 167,227 | 128,335 | 1.30 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b69.i.ctor` | M | WHNF, head `r_RVal` | 105,564 | 167,244 | 128,352 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b69.i.val` | M | NORMAL | 105,952 | 167,453 | 128,527 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b69.c` | M | WHNF | 231,263 | 38,917 | 32,270 | 1.21 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b69.c.ctor` | M | WHNF, head `r_RVal` | 231,266 | 38,929 | 32,282 | 1.21 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b69.c.val` | M | NORMAL | 231,365 | 39,341 | 32,682 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b7.i` | M | WHNF | 79,773 | 22,967 | 19,201 | 1.20 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b7.i.ctor` | M | WHNF, head `r_RVal` | 79,777 | 22,984 | 19,218 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b7.i.val` | M | NORMAL | 80,165 | 23,221 | 19,444 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b7.c` | S | WHNF | 3,191 | 2,701 | 2,572 | 1.05 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b7.c.ctor` | S | WHNF, head `r_RVal` | 3,194 | 2,713 | 2,584 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b7.c.val` | S | NORMAL | 3,289 | 2,901 | 2,761 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b70.i` | M | WHNF | 96,898 | 104,655 | 83,024 | 1.26 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b70.i.ctor` | M | WHNF, head `r_RVal` | 96,902 | 104,672 | 83,041 | 1.26 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b70.i.val` | M | NORMAL | 97,290 | 104,862 | 83,212 | 1.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b70.c` | M | WHNF | 168,065 | 29,229 | 24,481 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b70.c.ctor` | M | WHNF, head `r_RVal` | 168,068 | 29,241 | 24,493 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b70.c.val` | M | NORMAL | 168,167 | 29,626 | 24,866 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b71.i` | M | WHNF | 104,986 | 341,626 | 240,422 | 1.42 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b71.i.ctor` | M | WHNF, head `r_RVal` | 104,990 | 341,643 | 240,439 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b71.i.val` | M | NORMAL | 105,378 | 341,834 | 240,610 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b71.c` | M | WHNF | 445,777 | 101,057 | 75,995 | 1.33 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b71.c.ctor` | M | WHNF, head `r_RVal` | 445,780 | 101,069 | 76,007 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b71.c.val` | M | NORMAL | 445,948 | 101,231 | 76,153 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b72.i` | M | WHNF | 98,495 | 129,887 | 101,189 | 1.28 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b72.i.ctor` | M | WHNF, head `r_RVal` | 98,499 | 129,904 | 101,206 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b72.i.val` | M | NORMAL | 98,887 | 130,118 | 101,386 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b72.c` | M | WHNF | 1,209,543 | 41,736 | 31,646 | 1.32 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b72.c.ctor` | M | WHNF, head `r_RVal` | 1,209,546 | 41,748 | 31,658 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b72.c.val` | M | NORMAL | 1,209,746 | 41,940 | 31,819 | 1.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b73.i` | L | WHNF | 132,294 | 2,732,107 | 1,249,002 | 2.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b73.i.ctor` | L | WHNF, head `r_RVal` | 132,298 | 2,732,124 | 1,249,019 | 2.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b73.i.val` | L | NORMAL | 132,686 | 2,732,275 | 1,249,153 | 2.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b73.c` | M | WHNF | 846,066 | 398,993 | 264,780 | 1.51 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b73.c.ctor` | M | WHNF, head `r_RVal` | 846,069 | 399,005 | 264,792 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b73.c.val` | M | NORMAL | 846,168 | 399,121 | 264,883 | 1.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b74.i` | L | WHNF | 132,302 | 2,721,864 | 1,245,769 | 2.18 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b74.i.ctor` | L | WHNF, head `r_RVal` | 132,306 | 2,721,881 | 1,245,786 | 2.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b74.i.val` | L | NORMAL | 132,694 | 2,722,031 | 1,245,919 | 2.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b74.c` | M | WHNF | 865,437 | 408,950 | 270,580 | 1.51 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b74.c.ctor` | M | WHNF, head `r_RVal` | 865,440 | 408,962 | 270,592 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b74.c.val` | M | NORMAL | 865,539 | 409,077 | 270,682 | 1.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b75.i` | L | WHNF | 131,688 | 1,166,567 | 667,870 | 1.75 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b75.i.ctor` | L | WHNF, head `r_RVal` | 131,692 | 1,166,584 | 667,887 | 1.75 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b75.i.val` | L | NORMAL | 132,080 | 1,166,734 | 668,020 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b75.c` | M | WHNF | 849,290 | 212,413 | 145,897 | 1.46 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b75.c.ctor` | M | WHNF, head `r_RVal` | 849,293 | 212,425 | 145,909 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b75.c.val` | M | NORMAL | 849,392 | 212,540 | 145,999 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b76.i` | M | WHNF | 130,618 | 91,579 | 73,112 | 1.25 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b76.i.ctor` | M | WHNF, head `r_RVal` | 130,622 | 91,596 | 73,129 | 1.25 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b76.i.val` | M | NORMAL | 131,010 | 91,909 | 73,408 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b76.c` | M | WHNF | 827,636 | 20,672 | 17,341 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b76.c.ctor` | M | WHNF, head `r_RVal` | 827,639 | 20,684 | 17,353 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b76.c.val` | M | NORMAL | 827,738 | 21,155 | 17,813 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b77.i` | M | WHNF | 130,678 | 91,579 | 73,112 | 1.25 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b77.i.ctor` | M | WHNF, head `r_RVal` | 130,682 | 91,596 | 73,129 | 1.25 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b77.i.val` | M | NORMAL | 131,070 | 92,597 | 73,883 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b77.c` | M | WHNF | 826,889 | 20,668 | 17,337 | 1.19 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b77.c.ctor` | M | WHNF, head `r_RVal` | 826,892 | 20,680 | 17,349 | 1.19 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b77.c.val` | M | NORMAL | 826,991 | 21,141 | 17,772 | 1.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b78.i` | M | WHNF | 99,382 | 582,579 | 376,926 | 1.55 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b78.i.ctor` | M | WHNF, head `r_RVal` | 99,386 | 582,596 | 376,943 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b78.i.val` | M | NORMAL | 99,774 | 584,715 | 378,501 | 1.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b78.c` | M | WHNF | 248,793 | 195,033 | 139,186 | 1.40 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b78.c.ctor` | M | WHNF, head `r_RVal` | 248,796 | 195,045 | 139,198 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b78.c.val` | M | NORMAL | 248,895 | 196,765 | 140,407 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b79.i` | L | WHNF | 100,200 | 1,183,180 | 665,728 | 1.78 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b79.i.ctor` | L | WHNF, head `r_RVal` | 100,204 | 1,183,197 | 665,745 | 1.78 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b79.i.val` | L | NORMAL | 100,592 | 1,184,728 | 666,778 | 1.78 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b79.c` | M | WHNF | 246,136 | 351,122 | 235,502 | 1.49 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b79.c.ctor` | M | WHNF, head `r_RVal` | 246,139 | 351,134 | 235,514 | 1.49 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b79.c.val` | M | NORMAL | 246,238 | 352,093 | 236,260 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b8.i` | S | WHNF | 79,583 | 5,259 | 4,545 | 1.16 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b8.i.ctor` | S | WHNF, head `r_RErr` | 79,587 | 5,264 | 4,550 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b8.i.val` | S | NORMAL | 79,975 | 5,270 | 4,556 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b8.c` | S | WHNF | 3,035 | 582 | 582 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b8.c.ctor` | S | WHNF, head `r_RErr` | 3,038 | 584 | 584 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b8.c.val` | S | NORMAL | 3,133 | 589 | 589 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b80.i` | M | WHNF | 98,590 | 37,626 | 31,420 | 1.20 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b80.i.ctor` | M | WHNF, head `r_RVal` | 98,594 | 37,643 | 31,437 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b80.i.val` | M | NORMAL | 98,982 | 41,381 | 33,763 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b80.c` | M | WHNF | 239,077 | 12,175 | 10,849 | 1.12 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b80.c.ctor` | M | WHNF, head `r_RVal` | 239,080 | 12,187 | 10,861 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b80.c.val` | M | NORMAL | 239,179 | 15,794 | 13,070 | 1.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b81.i` | L | WHNF | 129,805 | 1,161,846 | 660,028 | 1.76 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b81.i.ctor` | L | WHNF, head `r_RVal` | 129,809 | 1,161,863 | 660,045 | 1.76 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b81.i.val` | L | NORMAL | 130,197 | 1,162,106 | 660,255 | 1.76 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b81.c` | M | WHNF | 705,636 | 471,531 | 325,513 | 1.45 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b81.c.ctor` | M | WHNF, head `r_RVal` | 705,639 | 471,543 | 325,525 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b81.c.val` | M | NORMAL | 705,738 | 472,387 | 325,941 | 1.45 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b82.i` | M | WHNF | 128,997 | 55,429 | 45,501 | 1.22 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b82.i.ctor` | M | WHNF, head `r_RVal` | 129,001 | 55,446 | 45,518 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b82.i.val` | M | NORMAL | 129,389 | 56,557 | 46,387 | 1.22 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b82.c` | M | WHNF | 662,660 | 18,449 | 16,070 | 1.15 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b82.c.ctor` | M | WHNF, head `r_RVal` | 662,663 | 18,461 | 16,082 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b82.c.val` | M | NORMAL | 662,762 | 19,441 | 16,834 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b83.i` | L | WHNF | 138,511 | 1,288,858 | 715,606 | 1.80 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b83.i.ctor` | L | WHNF, head `r_RVal` | 138,515 | 1,288,875 | 715,623 | 1.80 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b83.i.val` | L | NORMAL | 138,903 | 1,289,118 | 715,833 | 1.80 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b83.c` | M | WHNF | 1,604,711 | 539,220 | 370,290 | 1.46 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b83.c.ctor` | M | WHNF, head `r_RVal` | 1,604,714 | 539,232 | 370,302 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b83.c.val` | M | NORMAL | 1,604,813 | 540,152 | 370,756 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b84.i` | M | WHNF | 110,271 | 296,095 | 216,688 | 1.37 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b84.i.ctor` | M | WHNF, head `r_RVal` | 110,275 | 296,112 | 216,705 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b84.i.val` | M | NORMAL | 110,663 | 296,404 | 216,986 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b84.c` | M | WHNF | 377,537 | 107,653 | 84,190 | 1.28 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b84.c.ctor` | M | WHNF, head `r_RVal` | 377,540 | 107,665 | 84,202 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b84.c.val` | M | NORMAL | 377,639 | 108,809 | 85,280 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b85.i` | M | WHNF | 110,246 | 287,338 | 210,329 | 1.37 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b85.i.ctor` | M | WHNF, head `r_RVal` | 110,250 | 287,355 | 210,346 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b85.i.val` | M | NORMAL | 110,638 | 287,624 | 210,586 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b85.c` | M | WHNF | 1,050,695 | 136,748 | 106,439 | 1.28 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b85.c.ctor` | M | WHNF, head `r_RVal` | 1,050,698 | 136,760 | 106,451 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b85.c.val` | M | NORMAL | 1,050,866 | 137,666 | 107,279 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b86.i` | M | WHNF | 148,051 | 782,429 | 490,280 | 1.60 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b86.i.ctor` | M | WHNF, head `r_RVal` | 148,055 | 782,446 | 490,297 | 1.60 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b86.i.val` | M | NORMAL | 148,443 | 784,034 | 491,155 | 1.60 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b86.c` | M | WHNF | 574,851 | 287,862 | 201,847 | 1.43 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b86.c.ctor` | M | WHNF, head `r_RVal` | 574,854 | 287,874 | 201,859 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b86.c.val` | M | NORMAL | 574,953 | 291,454 | 203,141 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b87.i` | L | WHNF | 170,558 | 3,464,082 | 1,420,670 | 2.44 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b87.i.ctor` | L | WHNF, head `r_RVal` | 170,562 | 3,464,099 | 1,420,687 | 2.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b87.i.val` | L | NORMAL | 170,950 | 3,464,469 | 1,420,931 | 2.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b87.c` | L | WHNF | 1,475,798 | 1,298,345 | 744,296 | 1.74 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b87.c.ctor` | L | WHNF, head `r_RVal` | 1,475,801 | 1,298,357 | 744,308 | 1.74 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b87.c.val` | L | NORMAL | 1,475,900 | 1,300,755 | 744,828 | 1.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b9.i` | S | WHNF | 77,408 | 856 | 853 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini |
 | `d2.library.b9.i.ctor` | S | WHNF, head `r_RVal` | 77,412 | 873 | 870 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.library.b9.i.val` | S | NORMAL | 77,800 | 4,783 | 2,506 | 1.91 | avon-copy@e69cf59, confirmed by mini |
 | `d2.library.b9.c` | XS | WHNF | 809 | 7 | 7 | 1.00 | SKIlark test_library.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.library.b9.c.ctor` | XS | WHNF, head `r_RVal` | 812 | 19 | 19 | 1.00 | aviary@bfba908+dirty |
+| `d2.library.b9.c.val` | S | NORMAL | 895 | 3,872 | 1,598 | 2.42 | aviary@bfba908+dirty |
 | `d2.pure.n1.c` | S | WHNF | 4,768 | 1,835 | 1,750 | 1.05 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n1.c.ctor` | S | WHNF, head `r_RVal` | 4,771 | 1,847 | 1,762 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n1.c.val` | S | NORMAL | 4,892 | 6,141 | 4,460 | 1.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n1.i` | M | WHNF | 78,621 | 16,492 | 13,983 | 1.18 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n1.i.ctor` | M | WHNF, head `r_RVal` | 78,625 | 16,509 | 14,000 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n1.i.val` | M | NORMAL | 79,013 | 20,887 | 16,782 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n10.c` | M | WHNF | 327,458 | 187,786 | 115,080 | 1.63 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n10.c.ctor` | M | WHNF, head `r_RVal` | 327,461 | 187,798 | 115,092 | 1.63 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n10.c.val` | M | NORMAL | 327,598 | 188,773 | 115,769 | 1.63 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n10.i` | M | WHNF | 101,134 | 166,782 | 126,525 | 1.32 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n10.i.ctor` | M | WHNF, head `r_RVal` | 101,138 | 166,799 | 126,542 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n10.i.val` | M | NORMAL | 101,526 | 169,295 | 127,803 | 1.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n11.c` | M | WHNF | 327,506 | 187,803 | 115,097 | 1.63 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n11.c.ctor` | M | WHNF, head `r_RVal` | 327,509 | 187,815 | 115,109 | 1.63 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n11.c.val` | M | NORMAL | 327,646 | 188,790 | 115,786 | 1.63 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n11.i` | M | WHNF | 101,182 | 167,771 | 126,806 | 1.32 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n11.i.ctor` | M | WHNF, head `r_RVal` | 101,186 | 167,788 | 126,823 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n11.i.val` | M | NORMAL | 101,574 | 170,284 | 128,084 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n12.c` | M | WHNF | 327,282 | 101,114 | 76,692 | 1.32 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n12.c.ctor` | M | WHNF, head `r_RVal` | 327,285 | 101,126 | 76,704 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n12.c.val` | M | NORMAL | 327,422 | 101,915 | 77,241 | 1.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n12.i` | M | WHNF | 100,874 | 163,363 | 124,701 | 1.31 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n12.i.ctor` | M | WHNF, head `r_RVal` | 100,878 | 163,380 | 124,718 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n12.i.val` | M | NORMAL | 101,266 | 164,637 | 125,620 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n13.c` | S | WHNF | 327,166 | 2,345 | 2,342 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n13.c.ctor` | S | WHNF, head `r_RErr` | 327,169 | 2,347 | 2,344 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n13.c.val` | S | NORMAL | 327,306 | 2,352 | 2,349 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n13.i` | S | WHNF | 100,674 | 9,058 | 7,731 | 1.17 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n13.i.ctor` | S | WHNF, head `r_RErr` | 100,678 | 9,063 | 7,736 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n13.i.val` | S | NORMAL | 101,066 | 9,069 | 7,742 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n14.c` | S | WHNF | 327,271 | 6,193 | 5,470 | 1.13 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n14.c.ctor` | S | WHNF, head `r_RErr` | 327,274 | 6,195 | 5,472 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n14.c.val` | S | NORMAL | 327,411 | 6,200 | 5,477 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n14.i` | M | WHNF | 100,863 | 30,550 | 25,515 | 1.20 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n14.i.ctor` | M | WHNF, head `r_RErr` | 100,867 | 30,555 | 25,520 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n14.i.val` | M | NORMAL | 101,255 | 30,561 | 25,526 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n15.c` | S | WHNF | 3,099,389 | 6,523 | 5,780 | 1.13 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n15.c.ctor` | S | WHNF, head `r_RErr` | 3,099,392 | 6,525 | 5,782 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n15.c.val` | S | NORMAL | 3,099,706 | 6,530 | 5,787 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n15.i` | M | WHNF | 101,644 | 30,796 | 25,741 | 1.20 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n15.i.ctor` | M | WHNF, head `r_RErr` | 101,648 | 30,801 | 25,746 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n15.i.val` | M | NORMAL | 102,036 | 30,807 | 25,752 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n16.c` | S | WHNF | 1,835 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n16.c.ctor` | S | WHNF, head `r_RVal` | 1,838 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n16.c.val` | S | NORMAL | 1,971 | 588 | 567 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n16.i` | S | WHNF | 77,254 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n16.i.ctor` | S | WHNF, head `r_RVal` | 77,258 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n16.i.val` | S | NORMAL | 77,646 | 3,967 | 3,592 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n17.c` | S | WHNF | 1,835 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n17.c.ctor` | S | WHNF, head `r_RVal` | 1,838 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n17.c.val` | S | NORMAL | 1,971 | 625 | 601 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n17.i` | S | WHNF | 77,254 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n17.i.ctor` | S | WHNF, head `r_RVal` | 77,258 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n17.i.val` | S | NORMAL | 77,646 | 4,034 | 3,652 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n18.c` | S | WHNF | 1,859 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n18.c.ctor` | S | WHNF, head `r_RVal` | 1,862 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n18.c.val` | S | NORMAL | 1,995 | 692 | 660 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n18.i` | S | WHNF | 77,278 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n18.i.ctor` | S | WHNF, head `r_RVal` | 77,282 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n18.i.val` | S | NORMAL | 77,670 | 4,066 | 3,693 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n19.c` | S | WHNF | 6,539 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n19.c.ctor` | S | WHNF, head `r_RVal` | 6,542 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n19.c.val` | M | NORMAL | 6,852 | 20,852 | 9,263 | 2.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n19.i` | S | WHNF | 80,450 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n19.i.ctor` | S | WHNF, head `r_RVal` | 80,454 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n19.i.val` | M | NORMAL | 80,842 | 54,999 | 35,484 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n2.c` | S | WHNF | 4,758 | 1,835 | 1,750 | 1.05 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n2.c.ctor` | S | WHNF, head `r_RVal` | 4,761 | 1,847 | 1,762 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n2.c.val` | S | NORMAL | 4,882 | 6,104 | 4,447 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n2.i` | M | WHNF | 78,611 | 16,492 | 13,983 | 1.18 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n2.i.ctor` | M | WHNF, head `r_RVal` | 78,615 | 16,509 | 14,000 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n2.i.val` | M | NORMAL | 79,003 | 20,850 | 16,769 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n20.c` | S | WHNF | 4,905 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n20.c.ctor` | S | WHNF, head `r_RVal` | 4,908 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n20.c.val` | M | NORMAL | 5,218 | 10,633 | 5,558 | 1.91 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n20.i` | S | WHNF | 78,816 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n20.i.ctor` | S | WHNF, head `r_RVal` | 78,820 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n20.i.val` | M | NORMAL | 79,208 | 37,163 | 25,926 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n21.c` | S | WHNF | 1,841 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n21.c.ctor` | S | WHNF, head `r_RVal` | 1,844 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n21.c.val` | S | NORMAL | 1,977 | 455 | 452 | 1.01 | aviary@bfba908+dirty |
 | `d2.pure.n21.i` | S | WHNF | 77,206 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n21.i.ctor` | S | WHNF, head `r_RVal` | 77,210 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n21.i.val` | S | NORMAL | 77,598 | 3,358 | 3,033 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n22.c` | S | WHNF | 2,015 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n22.c.ctor` | S | WHNF, head `r_RVal` | 2,018 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n22.c.val` | S | NORMAL | 2,151 | 462 | 449 | 1.03 | aviary@bfba908+dirty |
 | `d2.pure.n22.i` | S | WHNF | 77,634 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n22.i.ctor` | S | WHNF, head `r_RVal` | 77,638 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n22.i.val` | S | NORMAL | 78,026 | 3,473 | 3,147 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n23.c` | S | WHNF | 19,609 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n23.c.ctor` | S | WHNF, head `r_RVal` | 19,612 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n23.c.val` | S | NORMAL | 19,818 | 4,017 | 2,960 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n23.i` | S | WHNF | 77,256 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n23.i.ctor` | S | WHNF, head `r_RVal` | 77,260 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n23.i.val` | S | NORMAL | 77,648 | 6,840 | 5,692 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n24.c` | S | WHNF | 20,089 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n24.c.ctor` | S | WHNF, head `r_RVal` | 20,092 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n24.c.val` | M | NORMAL | 20,298 | 20,061 | 10,434 | 1.92 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n24.i` | S | WHNF | 77,736 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n24.i.ctor` | S | WHNF, head `r_RVal` | 77,740 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n24.i.val` | M | NORMAL | 78,128 | 30,208 | 18,408 | 1.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n25.c` | S | WHNF | 19,604 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n25.c.ctor` | S | WHNF, head `r_RVal` | 19,607 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n25.c.val` | S | NORMAL | 19,813 | 4,760 | 3,120 | 1.53 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n25.i` | S | WHNF | 77,255 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n25.i.ctor` | S | WHNF, head `r_RVal` | 77,259 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n25.i.val` | S | NORMAL | 77,647 | 7,595 | 5,778 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n26.c` | S | WHNF | 1,915 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n26.c.ctor` | S | WHNF, head `r_RVal` | 1,918 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n26.c.val` | S | NORMAL | 2,051 | 458 | 445 | 1.03 | aviary@bfba908+dirty |
 | `d2.pure.n26.i` | S | WHNF | 77,436 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n26.i.ctor` | S | WHNF, head `r_RVal` | 77,440 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n26.i.val` | S | NORMAL | 77,828 | 3,475 | 3,149 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n27.c` | S | WHNF | 4,861 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n27.c.ctor` | S | WHNF, head `r_RVal` | 4,864 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n27.c.val` | M | NORMAL | 5,174 | 10,469 | 5,404 | 1.94 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n27.i` | S | WHNF | 78,774 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n27.i.ctor` | S | WHNF, head `r_RVal` | 78,778 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n27.i.val` | M | NORMAL | 79,166 | 20,916 | 15,514 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n28.c` | S | WHNF | 4,964 | 692 | 692 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n28.c.ctor` | S | WHNF, head `r_RVal` | 4,967 | 704 | 704 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n28.c.val` | S | NORMAL | 5,104 | 1,028 | 1,015 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n28.i` | S | WHNF | 77,766 | 6,466 | 5,595 | 1.16 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n28.i.ctor` | S | WHNF, head `r_RVal` | 77,770 | 6,483 | 5,612 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n28.i.val` | S | NORMAL | 78,158 | 9,229 | 7,871 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n29.c` | S | WHNF | 1,784 | 165 | 165 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n29.c.ctor` | S | WHNF, head `r_RVal` | 1,787 | 177 | 177 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n29.c.val` | S | NORMAL | 1,920 | 560 | 547 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n29.i` | S | WHNF | 77,203 | 2,883 | 2,595 | 1.11 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n29.i.ctor` | S | WHNF, head `r_RVal` | 77,207 | 2,900 | 2,612 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n29.i.val` | S | NORMAL | 77,595 | 3,601 | 3,257 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n3.c` | S | WHNF | 4,758 | 1,827 | 1,746 | 1.05 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n3.c.ctor` | S | WHNF, head `r_RVal` | 4,761 | 1,839 | 1,758 | 1.05 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n3.c.val` | S | NORMAL | 4,882 | 6,139 | 4,484 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n3.i` | M | WHNF | 78,611 | 16,484 | 13,979 | 1.18 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n3.i.ctor` | M | WHNF, head `r_RVal` | 78,615 | 16,501 | 13,996 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n3.i.val` | M | NORMAL | 79,003 | 20,885 | 16,806 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n30.c` | XS | WHNF | 1,708 | 85 | 85 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n30.c.ctor` | XS | WHNF, head `r_RErr` | 1,711 | 87 | 87 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n30.c.val` | XS | NORMAL | 1,844 | 92 | 92 | 1.00 | aviary@bfba908+dirty |
 | `d2.pure.n30.i` | S | WHNF | 77,036 | 1,952 | 1,812 | 1.08 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n30.i.ctor` | S | WHNF, head `r_RErr` | 77,040 | 1,957 | 1,817 | 1.08 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n30.i.val` | S | NORMAL | 77,428 | 1,963 | 1,823 | 1.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n31.c` | M | WHNF | 1,691,476 | 505,046 | 339,325 | 1.49 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n31.c.ctor` | M | WHNF, head `r_RVal` | 1,691,479 | 505,058 | 339,337 | 1.49 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n31.c.val` | M | NORMAL | 1,691,616 | 509,072 | 340,108 | 1.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n31.i` | L | WHNF | 119,875 | 1,437,603 | 775,243 | 1.85 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n31.i.ctor` | L | WHNF, head `r_RVal` | 119,879 | 1,437,620 | 775,260 | 1.85 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n31.i.val` | L | NORMAL | 120,267 | 1,441,689 | 776,058 | 1.86 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n32.c` | M | WHNF | 1,521,952 | 488,726 | 330,947 | 1.48 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n32.c.ctor` | M | WHNF, head `r_RVal` | 1,521,955 | 488,738 | 330,959 | 1.48 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n32.c.val` | M | NORMAL | 1,522,054 | 489,346 | 331,450 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n32.i` | L | WHNF | 119,944 | 1,411,783 | 765,395 | 1.84 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n32.i.ctor` | L | WHNF, head `r_RVal` | 119,948 | 1,411,800 | 765,412 | 1.84 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n32.i.val` | L | NORMAL | 120,336 | 1,412,941 | 766,222 | 1.84 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n33.c` | M | WHNF | 6,960,057 | 90,499 | 70,439 | 1.28 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n33.c.ctor` | M | WHNF, head `r_RVal` | 6,960,060 | 90,511 | 70,451 | 1.28 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n33.c.val` | M | NORMAL | 6,960,260 | 128,110 | 78,249 | 1.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n33.i` | M | WHNF | 129,384 | 225,295 | 169,996 | 1.33 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n33.i.ctor` | M | WHNF, head `r_RVal` | 129,388 | 225,312 | 170,013 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n33.i.val` | M | NORMAL | 129,776 | 263,040 | 177,925 | 1.48 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n34.c` | M | WHNF | 7,085,689 | 111,452 | 86,049 | 1.30 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n34.c.ctor` | M | WHNF, head `r_RVal` | 7,085,692 | 111,464 | 86,061 | 1.30 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n34.c.val` | M | NORMAL | 7,086,006 | 136,785 | 91,905 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n34.i` | M | WHNF | 129,390 | 270,796 | 199,907 | 1.35 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n34.i.ctor` | M | WHNF, head `r_RVal` | 129,394 | 270,813 | 199,924 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n34.i.val` | M | NORMAL | 129,782 | 296,183 | 205,806 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n35.c` | M | WHNF | 6,960,081 | 123,258 | 95,635 | 1.29 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n35.c.ctor` | M | WHNF, head `r_RVal` | 6,960,084 | 123,270 | 95,647 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n35.c.val` | M | NORMAL | 6,960,284 | 151,812 | 101,856 | 1.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n35.i` | M | WHNF | 129,408 | 286,708 | 210,170 | 1.36 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n35.i.ctor` | M | WHNF, head `r_RVal` | 129,412 | 286,725 | 210,187 | 1.36 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n35.i.val` | M | NORMAL | 129,800 | 315,380 | 216,494 | 1.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n36.c` | S | WHNF | 1,293,052 | 2,685 | 2,604 | 1.03 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n36.c.ctor` | S | WHNF, head `r_RErr` | 1,293,055 | 2,687 | 2,606 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n36.c.val` | S | NORMAL | 1,293,154 | 2,692 | 2,611 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n36.i` | M | WHNF | 117,446 | 12,219 | 10,549 | 1.16 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n36.i.ctor` | M | WHNF, head `r_RErr` | 117,450 | 12,224 | 10,554 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n36.i.val` | M | NORMAL | 117,838 | 12,230 | 10,560 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n37.c` | S | WHNF | 1,293,303 | 4,943 | 4,371 | 1.13 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n37.c.ctor` | S | WHNF, head `r_RErr` | 1,293,306 | 4,945 | 4,373 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n37.c.val` | S | NORMAL | 1,293,405 | 4,950 | 4,378 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n37.i` | M | WHNF | 117,426 | 16,593 | 14,187 | 1.17 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n37.i.ctor` | M | WHNF, head `r_RErr` | 117,430 | 16,598 | 14,192 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n37.i.val` | M | NORMAL | 117,818 | 16,604 | 14,198 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n38.c` | M | WHNF | 1,826,793 | 549,534 | 363,628 | 1.51 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n38.c.ctor` | M | WHNF, head `r_RVal` | 1,826,796 | 549,546 | 363,640 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n38.c.val` | M | NORMAL | 1,826,933 | 557,330 | 366,467 | 1.52 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n38.i` | L | WHNF | 122,706 | 1,568,331 | 824,735 | 1.90 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n38.i.ctor` | L | WHNF, head `r_RVal` | 122,710 | 1,568,348 | 824,752 | 1.90 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n38.i.val` | L | NORMAL | 123,098 | 1,576,187 | 827,606 | 1.90 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n39.c` | M | WHNF | 1,656,842 | 875,234 | 555,800 | 1.57 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n39.c.ctor` | M | WHNF, head `r_RVal` | 1,656,845 | 875,246 | 555,812 | 1.57 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n39.c.val` | M | NORMAL | 1,656,982 | 876,150 | 556,418 | 1.57 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n39.i` | L | WHNF | 120,166 | 3,102,782 | 1,340,736 | 2.31 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n39.i.ctor` | L | WHNF, head `r_RVal` | 120,170 | 3,102,799 | 1,340,753 | 2.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n39.i.val` | L | NORMAL | 120,558 | 3,103,752 | 1,341,397 | 2.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n4.c` | S | WHNF | 4,744 | 1,285 | 1,251 | 1.03 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n4.c.ctor` | S | WHNF, head `r_RErr` | 4,747 | 1,287 | 1,253 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n4.c.val` | S | NORMAL | 4,868 | 1,292 | 1,258 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n4.i` | M | WHNF | 78,597 | 12,093 | 10,299 | 1.17 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n4.i.ctor` | M | WHNF, head `r_RErr` | 78,601 | 12,098 | 10,304 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n4.i.val` | M | NORMAL | 78,989 | 12,104 | 10,310 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n40.c` | S | WHNF | 5,163,757 | 2,968 | 2,860 | 1.04 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n40.c.ctor` | S | WHNF, head `r_RErr` | 5,163,760 | 2,970 | 2,862 | 1.04 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n40.c.val` | S | NORMAL | 5,163,960 | 2,975 | 2,867 | 1.04 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n40.i` | M | WHNF | 118,411 | 12,717 | 10,999 | 1.16 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n40.i.ctor` | M | WHNF, head `r_RErr` | 118,415 | 12,722 | 11,004 | 1.16 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n40.i.val` | M | NORMAL | 118,803 | 12,728 | 11,010 | 1.16 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n41.c` | M | WHNF | 19,525,986 | 280,438 | 185,158 | 1.51 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n41.c.ctor` | M | WHNF, head `r_RVal` | 19,525,989 | 280,450 | 185,170 | 1.51 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n41.c.val` | M | NORMAL | 19,526,372 | 281,195 | 185,671 | 1.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n41.i` | M | WHNF | 138,204 | 572,013 | 361,003 | 1.58 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n41.i.ctor` | M | WHNF, head `r_RVal` | 138,208 | 572,030 | 361,020 | 1.58 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n41.i.val` | M | NORMAL | 138,596 | 572,777 | 361,523 | 1.58 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n42.c` | M | WHNF | 19,526,450 | 22,831 | 19,832 | 1.15 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n42.c.ctor` | M | WHNF, head `r_RVal` | 19,526,453 | 22,843 | 19,844 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n42.c.val` | M | NORMAL | 19,526,836 | 26,842 | 21,501 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n42.i` | M | WHNF | 138,668 | 59,234 | 47,618 | 1.24 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n42.i.ctor` | M | WHNF, head `r_RVal` | 138,672 | 59,251 | 47,635 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n42.i.val` | M | NORMAL | 139,060 | 63,259 | 49,301 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n43.c` | M | WHNF | 19,525,978 | 258,263 | 190,818 | 1.35 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n43.c.ctor` | M | WHNF, head `r_RVal` | 19,525,981 | 258,275 | 190,830 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n43.c.val` | M | NORMAL | 19,526,364 | 260,490 | 191,834 | 1.36 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n43.i` | M | WHNF | 138,196 | 478,494 | 325,749 | 1.47 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n43.i.ctor` | M | WHNF, head `r_RVal` | 138,200 | 478,511 | 325,766 | 1.47 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n43.i.val` | M | NORMAL | 138,588 | 480,749 | 326,789 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n44.c` | M | WHNF | 19,525,925 | 21,434 | 17,800 | 1.20 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n44.c.ctor` | M | WHNF, head `r_RVal` | 19,525,928 | 21,446 | 17,812 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n44.c.val` | M | NORMAL | 19,526,311 | 21,645 | 18,005 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n44.i` | M | WHNF | 138,143 | 50,577 | 41,194 | 1.23 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n44.i.ctor` | M | WHNF, head `r_RVal` | 138,147 | 50,594 | 41,211 | 1.23 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n44.i.val` | M | NORMAL | 138,535 | 50,815 | 41,426 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n45.c` | M | WHNF | 19,525,930 | 19,756 | 17,658 | 1.12 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n45.c.ctor` | M | WHNF, head `r_RVal` | 19,525,933 | 19,768 | 17,670 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n45.c.val` | M | NORMAL | 19,526,316 | 20,254 | 18,106 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n45.i` | M | WHNF | 138,148 | 53,247 | 43,105 | 1.24 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n45.i.ctor` | M | WHNF, head `r_RVal` | 138,152 | 53,264 | 43,122 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n45.i.val` | M | NORMAL | 138,540 | 53,812 | 43,553 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n46.c` | M | WHNF | 19,525,922 | 19,756 | 17,658 | 1.12 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n46.c.ctor` | M | WHNF, head `r_RVal` | 19,525,925 | 19,768 | 17,670 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n46.c.val` | M | NORMAL | 19,526,308 | 20,093 | 17,973 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n46.i` | M | WHNF | 138,140 | 53,247 | 43,105 | 1.24 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n46.i.ctor` | M | WHNF, head `r_RVal` | 138,144 | 53,264 | 43,122 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n46.i.val` | M | NORMAL | 138,532 | 53,608 | 43,435 | 1.23 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n47.c` | M | WHNF | 19,526,450 | 22,517 | 18,774 | 1.20 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n47.c.ctor` | M | WHNF, head `r_RVal` | 19,526,453 | 22,529 | 18,786 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n47.c.val` | M | NORMAL | 19,526,836 | 26,543 | 20,458 | 1.30 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n47.i` | M | WHNF | 138,668 | 57,192 | 46,084 | 1.24 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n47.i.ctor` | M | WHNF, head `r_RVal` | 138,672 | 57,209 | 46,101 | 1.24 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n47.i.val` | M | NORMAL | 139,060 | 61,237 | 47,787 | 1.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n48.c` | M | WHNF | 19,525,955 | 220,848 | 165,409 | 1.34 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n48.c.ctor` | M | WHNF, head `r_RVal` | 19,525,958 | 220,860 | 165,421 | 1.34 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n48.c.val` | M | NORMAL | 19,526,341 | 224,093 | 166,475 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n48.i` | M | WHNF | 138,173 | 397,973 | 277,831 | 1.43 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n48.i.ctor` | M | WHNF, head `r_RVal` | 138,177 | 397,990 | 277,848 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n48.i.val` | M | NORMAL | 138,565 | 401,232 | 278,911 | 1.44 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n49.c` | M | WHNF | 19,525,933 | 135,130 | 104,812 | 1.29 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n49.c.ctor` | M | WHNF, head `r_RVal` | 19,525,936 | 135,142 | 104,824 | 1.29 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n49.c.val` | M | NORMAL | 19,526,319 | 135,399 | 105,074 | 1.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n49.i` | M | WHNF | 138,151 | 285,192 | 207,885 | 1.37 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n49.i.ctor` | M | WHNF, head `r_RVal` | 138,155 | 285,209 | 207,902 | 1.37 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n49.i.val` | M | NORMAL | 138,543 | 285,484 | 208,170 | 1.37 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n5.c` | S | WHNF | 5,858 | 1,393 | 1,359 | 1.03 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n5.c.ctor` | S | WHNF, head `r_RErr` | 5,861 | 1,395 | 1,361 | 1.02 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n5.c.val` | S | NORMAL | 6,159 | 1,400 | 1,366 | 1.02 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n5.i` | M | WHNF | 79,333 | 12,051 | 10,257 | 1.17 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n5.i.ctor` | M | WHNF, head `r_RErr` | 79,337 | 12,056 | 10,262 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n5.i.val` | M | NORMAL | 79,725 | 12,062 | 10,268 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n50.c` | M | WHNF | 19,525,978 | 25,937 | 22,059 | 1.18 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n50.c.ctor` | M | WHNF, head `r_RVal` | 19,525,981 | 25,949 | 22,071 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n50.c.val` | M | NORMAL | 19,526,364 | 26,277 | 22,348 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n50.i` | M | WHNF | 138,196 | 66,375 | 52,970 | 1.25 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n50.i.ctor` | M | WHNF, head `r_RVal` | 138,200 | 66,392 | 52,987 | 1.25 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n50.i.val` | M | NORMAL | 138,588 | 66,733 | 53,276 | 1.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n51.c` | S | WHNF | 19,525,805 | 119 | 119 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n51.c.ctor` | S | WHNF, head `r_RErr` | 19,525,808 | 121 | 121 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n51.c.val` | S | NORMAL | 19,526,191 | 126 | 126 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n51.i` | S | WHNF | 137,954 | 1,650 | 1,510 | 1.09 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n51.i.ctor` | S | WHNF, head `r_RErr` | 137,958 | 1,655 | 1,515 | 1.09 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n51.i.val` | S | NORMAL | 138,346 | 1,661 | 1,521 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n6.c` | S | WHNF | 4,604 | 355 | 355 | 1.00 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.pure.n6.c.ctor` | S | WHNF, head `r_RErr` | 4,607 | 357 | 357 | 1.00 | aviary@bfba908+dirty |
+| `d2.pure.n6.c.val` | S | NORMAL | 4,728 | 362 | 362 | 1.00 | aviary@bfba908+dirty |
 | `d2.pure.n6.i` | S | WHNF | 78,363 | 3,495 | 3,070 | 1.14 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n6.i.ctor` | S | WHNF, head `r_RErr` | 78,367 | 3,500 | 3,075 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n6.i.val` | S | NORMAL | 78,755 | 3,506 | 3,081 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n7.c` | S | WHNF | 4,878 | 1,323 | 1,289 | 1.03 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n7.c.ctor` | S | WHNF, head `r_RErr` | 4,881 | 1,325 | 1,291 | 1.03 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n7.c.val` | S | NORMAL | 5,014 | 1,330 | 1,296 | 1.03 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n7.i` | M | WHNF | 78,544 | 12,055 | 10,261 | 1.17 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n7.i.ctor` | M | WHNF, head `r_RErr` | 78,548 | 12,060 | 10,266 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n7.i.val` | M | NORMAL | 78,936 | 12,066 | 10,272 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n8.c` | M | WHNF | 327,434 | 111,846 | 84,216 | 1.33 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n8.c.ctor` | M | WHNF, head `r_RVal` | 327,437 | 111,858 | 84,228 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n8.c.val` | M | NORMAL | 327,574 | 112,909 | 84,920 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n8.i` | M | WHNF | 101,110 | 163,047 | 124,546 | 1.31 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n8.i.ctor` | M | WHNF, head `r_RVal` | 101,114 | 163,064 | 124,563 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n8.i.val` | M | NORMAL | 101,502 | 164,610 | 125,666 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n9.c` | M | WHNF | 327,442 | 127,914 | 95,011 | 1.35 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n9.c.ctor` | M | WHNF, head `r_RVal` | 327,445 | 127,926 | 95,023 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n9.c.val` | M | NORMAL | 327,582 | 128,954 | 95,710 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.pure.n9.i` | M | WHNF | 101,118 | 163,909 | 125,256 | 1.31 | SKIlark test_pure.py (aviary); confirmed by avon-copy, mini |
 | `d2.pure.n9.i.ctor` | M | WHNF, head `r_RVal` | 101,122 | 163,926 | 125,273 | 1.31 | avon-copy@e69cf59, confirmed by mini |
+| `d2.pure.n9.i.val` | M | NORMAL | 101,510 | 165,609 | 126,428 | 1.31 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x1.i` | S | WHNF | 830,714 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x1.i.ctor` | S | WHNF, head `r_RVal` | 830,718 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x1.i.val` | L | NORMAL | 831,106 | 2,320,197 | 87,213 | 26.60 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x1.c` | S | WHNF | 655,079 | 418 | 418 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x1.c.ctor` | S | WHNF, head `r_RVal` | 655,082 | 430 | 430 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x1.c.val` | L | NORMAL | 655,392 | 2,233,377 | 73,814 | 30.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x10.i` | S | WHNF | 828,920 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x10.i.ctor` | S | WHNF, head `r_RVal` | 828,924 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x10.i.val` | M | NORMAL | 829,312 | 70,691 | 42,101 | 1.68 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x10.c` | S | WHNF | 650,615 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x10.c.ctor` | S | WHNF, head `r_RVal` | 650,618 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x10.c.val` | M | NORMAL | 650,916 | 67,782 | 39,480 | 1.72 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x11.i` | S | WHNF | 829,480 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x11.i.ctor` | S | WHNF, head `r_RVal` | 829,484 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x11.i.val` | M | NORMAL | 829,872 | 116,412 | 81,785 | 1.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x11.c` | S | WHNF | 651,175 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x11.c.ctor` | S | WHNF, head `r_RVal` | 651,178 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x11.c.val` | M | NORMAL | 651,476 | 113,503 | 79,164 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x12.i` | S | WHNF | 828,150 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x12.i.ctor` | S | WHNF, head `r_RVal` | 828,154 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x12.i.val` | S | NORMAL | 828,542 | 4,808 | 4,421 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x12.c` | S | WHNF | 649,845 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x12.c.ctor` | S | WHNF, head `r_RVal` | 649,848 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x12.c.val` | S | NORMAL | 650,146 | 1,899 | 1,800 | 1.05 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x13.i` | S | WHNF | 828,918 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x13.i.ctor` | S | WHNF, head `r_RVal` | 828,922 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x13.i.val` | S | NORMAL | 829,310 | 3,336 | 3,045 | 1.10 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x13.c` | S | WHNF | 650,613 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x13.c.ctor` | S | WHNF, head `r_RVal` | 650,616 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x13.c.val` | S | NORMAL | 650,914 | 427 | 424 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x14.i` | S | WHNF | 829,208 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x14.i.ctor` | S | WHNF, head `r_RVal` | 829,212 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x14.i.val` | S | NORMAL | 829,600 | 8,429 | 7,353 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x14.c` | S | WHNF | 650,903 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x14.c.ctor` | S | WHNF, head `r_RVal` | 650,906 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x14.c.val` | S | NORMAL | 651,204 | 5,520 | 4,732 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x15.i` | S | WHNF | 829,353 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x15.i.ctor` | S | WHNF, head `r_RVal` | 829,357 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x15.i.val` | M | NORMAL | 829,745 | 199,824 | 52,663 | 3.79 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x15.c` | S | WHNF | 651,048 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x15.c.ctor` | S | WHNF, head `r_RVal` | 651,051 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x15.c.val` | M | NORMAL | 651,349 | 196,915 | 50,042 | 3.93 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x16.i` | S | WHNF | 828,535 | 2,908 | 2,626 | 1.11 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x16.i.ctor` | S | WHNF, head `r_RErr` | 828,539 | 2,913 | 2,631 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x16.i.val` | S | NORMAL | 828,927 | 2,919 | 2,637 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x16.c` | S | WHNF | 650,230 | 159 | 159 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x16.c.ctor` | S | WHNF, head `r_RErr` | 650,233 | 161 | 161 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x16.c.val` | S | NORMAL | 650,531 | 166 | 166 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x17.i` | S | WHNF | 828,737 | 3,886 | 3,461 | 1.12 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x17.i.ctor` | S | WHNF, head `r_RErr` | 828,741 | 3,891 | 3,466 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x17.i.val` | S | NORMAL | 829,129 | 3,897 | 3,472 | 1.12 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x17.c` | S | WHNF | 650,346 | 281 | 281 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x17.c.ctor` | S | WHNF, head `r_RErr` | 650,349 | 283 | 283 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x17.c.val` | S | NORMAL | 650,647 | 288 | 288 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x18.i` | S | WHNF | 827,968 | 2,110 | 1,970 | 1.07 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x18.i.ctor` | S | WHNF, head `r_RErr` | 827,972 | 2,115 | 1,975 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x18.i.val` | S | NORMAL | 828,360 | 2,121 | 1,981 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x18.c` | S | WHNF | 649,745 | 127 | 127 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x18.c.ctor` | S | WHNF, head `r_RErr` | 649,748 | 129 | 129 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x18.c.val` | S | NORMAL | 650,046 | 134 | 134 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x19.i` | M | WHNF | 831,686 | 25,481 | 19,262 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x19.i.ctor` | M | WHNF, head `r_RVal` | 831,690 | 25,498 | 19,279 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x19.i.val` | M | NORMAL | 832,078 | 269,885 | 125,237 | 2.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x19.c` | M | WHNF | 107,034 | 18,925 | 13,576 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x19.c.ctor` | M | WHNF, head `r_RVal` | 107,037 | 18,937 | 13,588 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x19.c.val` | M | NORMAL | 107,347 | 247,577 | 106,570 | 2.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x2.i` | S | WHNF | 833,613 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x2.i.ctor` | S | WHNF, head `r_RVal` | 833,617 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x2.i.val` | M | NORMAL | 834,005 | 491,214 | 95,687 | 5.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x2.c` | S | WHNF | 657,978 | 418 | 418 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x2.c.ctor` | S | WHNF, head `r_RVal` | 657,981 | 430 | 430 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x2.c.val` | M | NORMAL | 658,291 | 483,418 | 88,520 | 5.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x20.i` | M | WHNF | 832,349 | 25,481 | 19,262 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x20.i.ctor` | M | WHNF, head `r_RVal` | 832,353 | 25,498 | 19,279 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x20.i.val` | M | NORMAL | 832,741 | 318,839 | 145,290 | 2.19 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x20.c` | M | WHNF | 107,697 | 18,925 | 13,576 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x20.c.ctor` | M | WHNF, head `r_RVal` | 107,700 | 18,937 | 13,588 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x20.c.val` | M | NORMAL | 108,010 | 290,573 | 122,085 | 2.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x21.i` | M | WHNF | 833,443 | 88,503 | 60,914 | 1.45 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x21.i.ctor` | M | WHNF, head `r_RVal` | 833,447 | 88,520 | 60,931 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x21.i.val` | M | NORMAL | 833,835 | 746,903 | 330,571 | 2.26 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x21.c` | M | WHNF | 109,031 | 81,952 | 55,233 | 1.48 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x21.c.ctor` | M | WHNF, head `r_RVal` | 109,034 | 81,964 | 55,245 | 1.48 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x21.c.val` | M | NORMAL | 109,344 | 724,880 | 311,112 | 2.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x22.i` | M | WHNF | 833,877 | 84,609 | 61,372 | 1.38 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x22.i.ctor` | M | WHNF, head `r_RVal` | 833,881 | 84,626 | 61,389 | 1.38 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x22.i.val` | M | NORMAL | 834,269 | 751,967 | 341,431 | 2.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x22.c` | M | WHNF | 109,465 | 78,058 | 55,691 | 1.40 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x22.c.ctor` | M | WHNF, head `r_RVal` | 109,468 | 78,070 | 55,703 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x22.c.val` | M | NORMAL | 109,778 | 724,728 | 318,548 | 2.28 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x23.i` | M | WHNF | 830,850 | 65,545 | 46,039 | 1.42 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x23.i.ctor` | M | WHNF, head `r_RVal` | 830,854 | 65,562 | 46,056 | 1.42 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x23.i.val` | M | NORMAL | 831,242 | 177,187 | 94,801 | 1.87 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x23.c` | M | WHNF | 106,198 | 58,989 | 40,353 | 1.46 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x23.c.ctor` | M | WHNF, head `r_RVal` | 106,201 | 59,001 | 40,365 | 1.46 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x23.c.val` | M | NORMAL | 106,511 | 160,321 | 80,334 | 2.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x24.i` | M | WHNF | 829,545 | 25,481 | 19,262 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x24.i.ctor` | M | WHNF, head `r_RVal` | 829,549 | 25,498 | 19,279 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x24.i.val` | M | NORMAL | 829,937 | 93,782 | 66,881 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x24.c` | M | WHNF | 104,893 | 18,925 | 13,576 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x24.c.ctor` | M | WHNF, head `r_RVal` | 104,896 | 18,937 | 13,588 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x24.c.val` | M | NORMAL | 105,206 | 87,098 | 61,093 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x25.i` | M | WHNF | 830,572 | 25,481 | 19,262 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x25.i.ctor` | M | WHNF, head `r_RVal` | 830,576 | 25,498 | 19,279 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x25.i.val` | M | NORMAL | 830,964 | 179,974 | 80,057 | 2.25 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x25.c` | M | WHNF | 105,920 | 18,925 | 13,576 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x25.c.ctor` | M | WHNF, head `r_RVal` | 105,923 | 18,937 | 13,588 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x25.c.val` | M | NORMAL | 106,233 | 164,354 | 66,594 | 2.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x26.i` | M | WHNF | 830,270 | 25,477 | 19,258 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x26.i.ctor` | M | WHNF, head `r_RVal` | 830,274 | 25,494 | 19,275 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x26.i.val` | M | NORMAL | 830,662 | 178,155 | 78,598 | 2.27 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x26.c` | M | WHNF | 105,618 | 18,921 | 13,572 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x26.c.ctor` | M | WHNF, head `r_RVal` | 105,621 | 18,933 | 13,584 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x26.c.val` | M | NORMAL | 105,931 | 164,995 | 66,987 | 2.46 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x27.i` | M | WHNF | 830,995 | 25,473 | 19,254 | 1.32 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x27.i.ctor` | M | WHNF, head `r_RVal` | 830,999 | 25,490 | 19,271 | 1.32 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x27.i.val` | M | NORMAL | 831,387 | 297,908 | 134,938 | 2.21 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x27.c` | M | WHNF | 106,345 | 18,919 | 13,570 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x27.c.ctor` | M | WHNF, head `r_RVal` | 106,348 | 18,931 | 13,582 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x27.c.val` | M | NORMAL | 106,658 | 282,768 | 121,731 | 2.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x28.i` | M | WHNF | 830,706 | 44,798 | 32,280 | 1.39 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x28.i.ctor` | M | WHNF, head `r_RVal` | 830,710 | 44,815 | 32,297 | 1.39 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x28.i.val` | M | NORMAL | 831,098 | 217,883 | 101,987 | 2.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x28.c` | M | WHNF | 106,054 | 38,242 | 26,594 | 1.44 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x28.c.ctor` | M | WHNF, head `r_RVal` | 106,057 | 38,254 | 26,606 | 1.44 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x28.c.val` | M | NORMAL | 106,367 | 201,749 | 87,992 | 2.29 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x29.i` | M | WHNF | 831,805 | 88,503 | 60,914 | 1.45 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x29.i.ctor` | M | WHNF, head `r_RVal` | 831,809 | 88,520 | 60,931 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x29.i.val` | M | NORMAL | 832,197 | 268,951 | 138,482 | 1.94 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x29.c` | M | WHNF | 107,153 | 81,947 | 55,228 | 1.48 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x29.c.ctor` | M | WHNF, head `r_RVal` | 107,156 | 81,959 | 55,240 | 1.48 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x29.c.val` | M | NORMAL | 107,466 | 244,521 | 117,359 | 2.08 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x3.i` | S | WHNF | 831,283 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x3.i.ctor` | S | WHNF, head `r_RVal` | 831,287 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x3.i.val` | M | NORMAL | 831,675 | 891,310 | 113,764 | 7.83 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x3.c` | S | WHNF | 655,648 | 418 | 418 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x3.c.ctor` | S | WHNF, head `r_RVal` | 655,651 | 430 | 430 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x3.c.val` | M | NORMAL | 655,961 | 704,626 | 107,357 | 6.56 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x30.i` | M | WHNF | 829,444 | 99,991 | 68,992 | 1.45 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x30.i.ctor` | M | WHNF, head `r_RErr` | 829,448 | 99,996 | 68,997 | 1.45 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x30.i.val` | M | NORMAL | 829,836 | 100,002 | 69,003 | 1.45 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x30.c` | M | WHNF | 70,352 | 95,382 | 64,952 | 1.47 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x30.c.ctor` | M | WHNF, head `r_RErr` | 70,355 | 95,384 | 64,954 | 1.47 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x30.c.val` | M | NORMAL | 70,653 | 95,389 | 64,959 | 1.47 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x31.i` | S | WHNF | 829,319 | 4,836 | 4,267 | 1.13 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x31.i.ctor` | S | WHNF, head `r_RErr` | 829,323 | 4,841 | 4,272 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x31.i.val` | S | NORMAL | 829,711 | 4,847 | 4,278 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x31.c` | S | WHNF | 102,037 | 372 | 372 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x31.c.ctor` | S | WHNF, head `r_RErr` | 102,040 | 374 | 374 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x31.c.val` | S | NORMAL | 102,350 | 379 | 379 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x32.i` | M | WHNF | 830,089 | 23,652 | 17,734 | 1.33 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x32.i.ctor` | M | WHNF, head `r_RErr` | 830,093 | 23,657 | 17,739 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x32.i.val` | M | NORMAL | 830,481 | 23,663 | 17,745 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x32.c` | M | WHNF | 71,001 | 18,655 | 13,306 | 1.40 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x32.c.ctor` | M | WHNF, head `r_RErr` | 71,004 | 18,657 | 13,308 | 1.40 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x32.c.val` | M | NORMAL | 71,302 | 18,662 | 13,313 | 1.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x33.i` | M | WHNF | 829,098 | 22,306 | 16,532 | 1.35 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x33.i.ctor` | M | WHNF, head `r_RErr` | 829,102 | 22,311 | 16,537 | 1.35 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x33.i.val` | M | NORMAL | 829,490 | 22,317 | 16,543 | 1.35 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x33.c` | M | WHNF | 70,092 | 18,475 | 13,126 | 1.41 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x33.c.ctor` | M | WHNF, head `r_RErr` | 70,095 | 18,477 | 13,128 | 1.41 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x33.c.val` | M | NORMAL | 70,393 | 18,482 | 13,133 | 1.41 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x34.i` | S | WHNF | 830,100 | 4,577 | 4,008 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x34.i.ctor` | S | WHNF, head `r_RErr` | 830,104 | 4,582 | 4,013 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x34.i.val` | S | NORMAL | 830,492 | 4,588 | 4,019 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x34.c` | S | WHNF | 71,012 | 259 | 259 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x34.c.ctor` | S | WHNF, head `r_RErr` | 71,015 | 261 | 261 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x34.c.val` | S | NORMAL | 71,313 | 266 | 266 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x4.i` | S | WHNF | 829,385 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x4.i.ctor` | S | WHNF, head `r_RVal` | 829,389 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x4.i.val` | M | NORMAL | 829,777 | 247,332 | 64,426 | 3.84 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x4.c` | S | WHNF | 651,080 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x4.c.ctor` | S | WHNF, head `r_RVal` | 651,083 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x4.c.val` | M | NORMAL | 651,381 | 244,423 | 61,805 | 3.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x5.i` | S | WHNF | 832,217 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x5.i.ctor` | S | WHNF, head `r_RVal` | 832,221 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x5.i.val` | L | NORMAL | 832,609 | 1,793,736 | 173,862 | 10.32 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x5.c` | S | WHNF | 656,822 | 429 | 429 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x5.c.ctor` | S | WHNF, head `r_RVal` | 656,825 | 441 | 441 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x5.c.val` | L | NORMAL | 657,135 | 1,587,666 | 150,671 | 10.54 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x6.i` | S | WHNF | 833,627 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x6.i.ctor` | S | WHNF, head `r_RVal` | 833,631 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x6.i.val` | L | NORMAL | 834,019 | 2,036,097 | 227,539 | 8.95 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x6.c` | S | WHNF | 658,232 | 429 | 429 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x6.c.ctor` | S | WHNF, head `r_RVal` | 658,235 | 441 | 441 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x6.c.val` | L | NORMAL | 658,545 | 1,749,240 | 204,348 | 8.56 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x7.i` | S | WHNF | 829,928 | 4,829 | 4,252 | 1.14 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x7.i.ctor` | S | WHNF, head `r_RVal` | 829,932 | 4,846 | 4,269 | 1.14 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x7.i.val` | M | NORMAL | 830,320 | 453,399 | 78,824 | 5.75 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x7.c` | S | WHNF | 654,293 | 418 | 418 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x7.c.ctor` | S | WHNF, head `r_RVal` | 654,296 | 430 | 430 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x7.c.val` | M | NORMAL | 654,606 | 317,606 | 72,113 | 4.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x8.i` | S | WHNF | 828,936 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x8.i.ctor` | S | WHNF, head `r_RVal` | 828,940 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x8.i.val` | S | NORMAL | 829,328 | 3,535 | 3,241 | 1.09 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x8.c` | S | WHNF | 650,631 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x8.c.ctor` | S | WHNF, head `r_RVal` | 650,634 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x8.c.val` | S | NORMAL | 650,932 | 626 | 620 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x9.i` | S | WHNF | 830,601 | 3,112 | 2,824 | 1.10 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x9.i.ctor` | S | WHNF, head `r_RVal` | 830,605 | 3,129 | 2,841 | 1.10 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x9.i.val` | M | NORMAL | 830,993 | 83,951 | 61,017 | 1.38 | avon-copy@e69cf59, confirmed by mini |
 | `d2.numtext.x9.c` | S | WHNF | 652,296 | 235 | 235 | 1.00 | SKIlark test_numtext.py (aviary); confirmed by avon-copy, mini |
 | `d2.numtext.x9.c.ctor` | S | WHNF, head `r_RVal` | 652,299 | 247 | 247 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.numtext.x9.c.val` | M | NORMAL | 652,597 | 81,042 | 58,396 | 1.39 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s1.i` | S | WHNF | 152,105 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s1.i.ctor` | S | WHNF, head `r_RVal` | 152,109 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s1.i.val` | M | NORMAL | 152,497 | 209,237 | 61,487 | 3.40 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s1.c` | S | WHNF | 68,047 | 517 | 517 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s1.c.ctor` | S | WHNF, head `r_RVal` | 68,050 | 529 | 529 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s1.c.val` | M | NORMAL | 68,250 | 37,187 | 14,845 | 2.51 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s10.i` | S | WHNF | 161,719 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s10.i.ctor` | S | WHNF, head `r_RVal` | 161,723 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s10.i.val` | L | NORMAL | 162,111 | 1,044,089 | 201,443 | 5.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s10.c` | S | WHNF | 68,414 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s10.c.ctor` | S | WHNF, head `r_RVal` | 68,417 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s10.c.val` | M | NORMAL | 68,617 | 154,672 | 55,736 | 2.78 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s11.i` | S | WHNF | 155,890 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s11.i.ctor` | S | WHNF, head `r_RVal` | 155,894 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s11.i.val` | M | NORMAL | 156,282 | 651,134 | 130,879 | 4.98 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s11.c` | S | WHNF | 78,918 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s11.c.ctor` | S | WHNF, head `r_RVal` | 78,921 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s11.c.val` | M | NORMAL | 79,190 | 90,022 | 32,894 | 2.74 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s12.i` | S | WHNF | 148,642 | 1,065 | 1,065 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s12.i.ctor` | S | WHNF, head `r_RErr` | 148,646 | 1,070 | 1,070 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s12.i.val` | S | NORMAL | 149,034 | 1,076 | 1,076 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s12.c` | XS | WHNF | 53,517 | 6 | 6 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.symbols.s12.c.ctor` | XS | WHNF, head `r_RErr` | 53,520 | 8 | 8 | 1.00 | aviary@bfba908+dirty |
+| `d2.symbols.s12.c.val` | XS | NORMAL | 53,720 | 13 | 13 | 1.00 | aviary@bfba908+dirty |
 | `d2.symbols.s13.i` | S | WHNF | 149,953 | 4,279 | 3,786 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s13.i.ctor` | S | WHNF, head `r_RVal` | 149,957 | 4,296 | 3,803 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s13.i.val` | S | NORMAL | 150,345 | 4,433 | 3,937 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s13.c` | S | WHNF | 4,137 | 398 | 398 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.symbols.s13.c.ctor` | S | WHNF, head `r_RVal` | 4,140 | 410 | 410 | 1.00 | aviary@bfba908+dirty |
+| `d2.symbols.s13.c.val` | S | NORMAL | 4,239 | 515 | 512 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s14.i` | S | WHNF | 149,111 | 4,135 | 3,709 | 1.11 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s14.i.ctor` | S | WHNF, head `r_RErr` | 149,115 | 4,140 | 3,714 | 1.11 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s14.i.val` | S | NORMAL | 149,503 | 4,146 | 3,720 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s14.c` | S | WHNF | 2,064 | 373 | 373 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.symbols.s14.c.ctor` | S | WHNF, head `r_RErr` | 2,067 | 375 | 375 | 1.00 | aviary@bfba908+dirty |
+| `d2.symbols.s14.c.val` | S | NORMAL | 2,166 | 380 | 380 | 1.00 | aviary@bfba908+dirty |
 | `d2.symbols.s15.i` | S | WHNF | 188,921 | 4,214 | 3,728 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s15.i.ctor` | S | WHNF, head `r_RErr` | 188,925 | 4,219 | 3,733 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s15.i.val` | S | NORMAL | 189,313 | 4,225 | 3,739 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s15.c` | S | WHNF | 338,395 | 624 | 624 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s15.c.ctor` | S | WHNF, head `r_RErr` | 338,398 | 626 | 626 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s15.c.val` | S | NORMAL | 338,497 | 631 | 631 | 1.00 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s16.i` | S | WHNF | 148,882 | 2,023 | 1,883 | 1.07 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s16.i.ctor` | S | WHNF, head `r_RErr` | 148,886 | 2,028 | 1,888 | 1.07 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s16.i.val` | S | NORMAL | 149,274 | 2,034 | 1,894 | 1.07 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s16.c` | S | WHNF | 1,091 | 109 | 109 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.symbols.s16.c.ctor` | S | WHNF, head `r_RErr` | 1,094 | 111 | 111 | 1.00 | aviary@bfba908+dirty |
+| `d2.symbols.s16.c.val` | S | NORMAL | 1,193 | 116 | 116 | 1.00 | aviary@bfba908+dirty |
 | `d2.symbols.s17.i` | M | WHNF | 150,474 | 10,674 | 9,134 | 1.17 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s17.i.ctor` | M | WHNF, head `r_RVal` | 150,478 | 10,691 | 9,151 | 1.17 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s17.i.val` | M | NORMAL | 150,866 | 10,922 | 9,371 | 1.17 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s17.c` | S | WHNF | 4,495 | 1,113 | 1,110 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s17.c.ctor` | S | WHNF, head `r_RVal` | 4,498 | 1,125 | 1,122 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s17.c.val` | S | NORMAL | 4,597 | 1,303 | 1,289 | 1.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s18.i` | S | WHNF | 150,359 | 5,542 | 4,816 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s18.i.ctor` | S | WHNF, head `r_RVal` | 150,363 | 5,559 | 4,833 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s18.i.val` | S | NORMAL | 150,751 | 5,974 | 5,217 | 1.15 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s18.c` | M | WHNF | 34,987 | 20,375 | 17,322 | 1.18 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s18.c.ctor` | M | WHNF, head `r_RVal` | 34,990 | 20,387 | 17,334 | 1.18 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s18.c.val` | M | NORMAL | 35,089 | 20,825 | 17,704 | 1.18 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s19.i` | S | WHNF | 155,574 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s19.i.ctor` | S | WHNF, head `r_RVal` | 155,578 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s19.i.val` | M | NORMAL | 155,966 | 473,090 | 109,117 | 4.34 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s19.c` | S | WHNF | 131,740 | 517 | 517 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s19.c.ctor` | S | WHNF, head `r_RVal` | 131,743 | 529 | 529 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s19.c.val` | M | NORMAL | 132,057 | 81,786 | 30,619 | 2.67 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s2.i` | S | WHNF | 153,104 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s2.i.ctor` | S | WHNF, head `r_RVal` | 153,108 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s2.i.val` | M | NORMAL | 153,496 | 279,467 | 75,116 | 3.72 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s2.c` | S | WHNF | 66,497 | 517 | 517 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s2.c.ctor` | S | WHNF, head `r_RVal` | 66,500 | 529 | 529 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s2.c.val` | M | NORMAL | 66,700 | 51,388 | 19,431 | 2.64 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s20.i` | S | WHNF | 149,229 | 5,040 | 4,375 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s20.i.ctor` | S | WHNF, head `r_RVal` | 149,233 | 5,057 | 4,392 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s20.i.val` | S | NORMAL | 149,621 | 6,233 | 5,477 | 1.14 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s20.c` | M | WHNF | 131,934 | 30,164 | 24,804 | 1.22 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s20.c.ctor` | M | WHNF, head `r_RVal` | 131,937 | 30,176 | 24,816 | 1.22 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s20.c.val` | M | NORMAL | 132,251 | 31,669 | 25,637 | 1.24 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s21.i` | S | WHNF | 156,993 | 2,633 | 2,345 | 1.12 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s21.i.ctor` | S | WHNF, head `r_RVal` | 156,997 | 2,650 | 2,362 | 1.12 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s21.i.val` | S | NORMAL | 157,385 | 2,923 | 2,632 | 1.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s21.c` | S | WHNF | 15,646 | 278 | 278 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini, aviary |
 | `d2.symbols.s21.c.ctor` | S | WHNF, head `r_RVal` | 15,649 | 290 | 290 | 1.00 | aviary@bfba908+dirty |
+| `d2.symbols.s21.c.val` | S | NORMAL | 15,748 | 399 | 396 | 1.01 | aviary@bfba908+dirty |
 | `d2.symbols.s22.i` | M | WHNF | 161,066 | 28,835 | 24,042 | 1.20 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s22.i.ctor` | M | WHNF, head `r_RVal` | 161,070 | 28,852 | 24,059 | 1.20 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s22.i.val` | M | NORMAL | 161,458 | 29,292 | 24,461 | 1.20 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s22.c` | S | WHNF | 33,915 | 7,288 | 6,428 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s22.c.ctor` | S | WHNF, head `r_RVal` | 33,918 | 7,300 | 6,440 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s22.c.val` | S | NORMAL | 34,017 | 7,837 | 6,932 | 1.13 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s3.i` | S | WHNF | 159,786 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s3.i.ctor` | S | WHNF, head `r_RVal` | 159,790 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s3.i.val` | M | NORMAL | 160,178 | 296,467 | 81,247 | 3.65 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s3.c` | S | WHNF | 79,778 | 517 | 517 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s3.c.ctor` | S | WHNF, head `r_RVal` | 79,781 | 529 | 529 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s3.c.val` | M | NORMAL | 79,981 | 47,004 | 18,403 | 2.55 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s4.i` | S | WHNF | 153,079 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s4.i.ctor` | S | WHNF, head `r_RVal` | 153,083 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s4.i.val` | M | NORMAL | 153,471 | 277,832 | 74,520 | 3.73 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s4.c` | S | WHNF | 188,402 | 581 | 581 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s4.c.ctor` | S | WHNF, head `r_RVal` | 188,405 | 593 | 593 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s4.c.val` | M | NORMAL | 188,605 | 50,111 | 19,258 | 2.60 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s5.i` | S | WHNF | 152,931 | 5,493 | 4,770 | 1.15 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s5.i.ctor` | S | WHNF, head `r_RVal` | 152,935 | 5,510 | 4,787 | 1.15 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s5.i.val` | M | NORMAL | 153,323 | 208,590 | 61,028 | 3.42 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s5.c` | S | WHNF | 77,262 | 521 | 521 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s5.c.ctor` | S | WHNF, head `r_RVal` | 77,265 | 533 | 533 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s5.c.val` | M | NORMAL | 77,465 | 36,804 | 14,708 | 2.50 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s6.i` | S | WHNF | 159,397 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s6.i.ctor` | S | WHNF, head `r_RVal` | 159,401 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s6.i.val` | M | NORMAL | 159,789 | 915,854 | 179,059 | 5.11 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s6.c` | S | WHNF | 66,112 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s6.c.ctor` | S | WHNF, head `r_RVal` | 66,115 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s6.c.val` | M | NORMAL | 66,315 | 134,950 | 48,552 | 2.78 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s7.i` | S | WHNF | 156,798 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s7.i.ctor` | S | WHNF, head `r_RVal` | 156,802 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s7.i.val` | M | NORMAL | 157,190 | 719,077 | 143,636 | 5.01 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s7.c` | S | WHNF | 63,559 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s7.c.ctor` | S | WHNF, head `r_RVal` | 63,562 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s7.c.val` | M | NORMAL | 63,762 | 102,417 | 37,060 | 2.76 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s8.i` | S | WHNF | 159,417 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s8.i.ctor` | S | WHNF, head `r_RVal` | 159,421 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s8.i.val` | M | NORMAL | 159,809 | 853,798 | 168,652 | 5.06 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s8.c` | S | WHNF | 66,142 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s8.c.ctor` | S | WHNF, head `r_RVal` | 66,145 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s8.c.val` | M | NORMAL | 66,345 | 126,503 | 45,252 | 2.80 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s9.i` | S | WHNF | 162,596 | 3,703 | 3,271 | 1.13 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s9.i.ctor` | S | WHNF, head `r_RVal` | 162,600 | 3,720 | 3,288 | 1.13 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s9.i.val` | L | NORMAL | 162,988 | 1,296,647 | 236,217 | 5.49 | avon-copy@e69cf59, confirmed by mini |
 | `d2.symbols.s9.c` | S | WHNF | 69,281 | 240 | 240 | 1.00 | SKIlark test_symbols.py (aviary); confirmed by avon-copy, mini |
 | `d2.symbols.s9.c.ctor` | S | WHNF, head `r_RVal` | 69,284 | 252 | 252 | 1.00 | avon-copy@e69cf59, confirmed by mini |
+| `d2.symbols.s9.c.val` | M | NORMAL | 69,484 | 178,421 | 63,220 | 2.82 | avon-copy@e69cf59, confirmed by mini |
 
 ## Family D3
 
@@ -2346,13 +3290,13 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 
 ## Family D5
 
-52 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
+78 rows (0 of them fuel-edge rows). aviary `bfba908+dirty`, Avon repo `e69cf59`, binary `avon 0.1.0` built 2026-11-06T17:09:27 (sha256 `91a03aac2701b9ff`).
 
 | engine | checks | pass | fail |
 |---|---:|---:|---:|
-| avon-copy | 36 | 36 | 0 |
-| avon-share | 104 | 104 | 0 |
-| mini | 24 | 24 | 0 |
+| avon-copy | 54 | 54 | 0 |
+| avon-share | 156 | 156 | 0 |
+| mini | 36 | 36 | 0 |
 
 `copy` is the pinned normal-order count (asserted); `share` is Avon's
 graph-reduction count (held as a regression pin). Size is in leaves.
@@ -2361,56 +3305,82 @@ graph-reduction count (held as a regression pin). Size is in leaves.
 |---|---|---|---:|---:|---:|---:|---|
 | `d5.own.ack11.i` | M | WHNF | 110,749 | 366,259 | 256,462 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack11.i.ctor` | M | WHNF, head `r_RVal` | 110,753 | 366,276 | 256,479 | 1.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack11.i.val` | M | NORMAL | 111,141 | 366,332 | 256,534 | 1.43 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack11.c` | M | WHNF | 231,375 | 128,509 | 96,413 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack11.c.ctor` | M | WHNF, head `r_RVal` | 231,378 | 128,521 | 96,425 | 1.33 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack11.c.val` | M | NORMAL | 231,515 | 128,565 | 96,468 | 1.33 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack22.i` | L | WHNF | 110,797 | 3,493,983 | 1,439,218 | 2.43 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack22.i.ctor` | L | WHNF, head `r_RVal` | 110,801 | 3,494,000 | 1,439,235 | 2.43 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.i.val` | L | NORMAL | 111,189 | 3,494,060 | 1,439,294 | 2.43 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack22.c` | M | WHNF | 231,423 | 875,554 | 495,567 | 1.77 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack22.c.ctor` | M | WHNF, head `r_RVal` | 231,426 | 875,566 | 495,579 | 1.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack22.c.val` | M | NORMAL | 231,563 | 875,614 | 495,626 | 1.77 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack23.i` | L | WHNF | 110,821 | 7,262,863 | 2,311,404 | 3.14 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack23.i.ctor` | L | WHNF, head `r_RVal` | 110,825 | 7,262,880 | 2,311,421 | 3.14 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.i.val` | L | NORMAL | 111,213 | 7,262,940 | 2,311,480 | 3.14 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack23.c` | L | WHNF | 231,447 | 1,500,677 | 773,684 | 1.94 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack23.c.ctor` | L | WHNF, head `r_RVal` | 231,450 | 1,500,689 | 773,696 | 1.94 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.ack23.c.val` | L | NORMAL | 231,587 | 1,500,737 | 773,743 | 1.94 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.ack32.i` | XL | WHNF | 110,981 | 680,063,388 | 27,793,952 | 24.47 | avon-copy@e69cf59 |
 | `d5.own.ack32.i.ctor` | XL | WHNF, head `r_RVal` | 110,985 | 680,063,405 | 27,793,969 | 24.47 | avon-copy@e69cf59 |
+| `d5.own.ack32.i.val` | XL | NORMAL | 111,373 | 680,063,469 | 27,794,032 | 24.47 | avon-copy@e69cf59 |
 | `d5.own.ack32.c` | L | WHNF | 231,607 | 59,516,399 | 8,529,021 | 6.98 | avon-copy@e69cf59 |
 | `d5.own.ack32.c.ctor` | L | WHNF, head `r_RVal` | 231,610 | 59,516,411 | 8,529,033 | 6.98 | avon-copy@e69cf59 |
+| `d5.own.ack32.c.val` | L | NORMAL | 231,747 | 59,516,463 | 8,529,084 | 6.98 | avon-copy@e69cf59 |
 | `d5.own.collatz27.i` | L | WHNF | 103,237 |  | 34,290,950 |  | none (share only) |
 | `d5.own.collatz27.i.ctor` | L | WHNF, head `r_RVal` | 103,241 |  | 34,290,967 |  | none (share only) |
+| `d5.own.collatz27.i.val` | L | NORMAL | 103,629 |  | 34,291,892 |  | none (share only) |
 | `d5.own.collatz27.c` | L | WHNF | 41,085 |  | 26,841,318 |  | none (share only) |
 | `d5.own.collatz27.c.ctor` | L | WHNF, head `r_RVal` | 41,088 |  | 26,841,330 |  | none (share only) |
+| `d5.own.collatz27.c.val` | L | NORMAL | 41,221 |  | 26,842,249 |  | none (share only) |
 | `d5.own.collatz5.i` | L | WHNF | 102,213 | 2,265,139 | 474,523 | 4.77 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.collatz5.i.ctor` | L | WHNF, head `r_RVal` | 102,217 | 2,265,156 | 474,540 | 4.77 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz5.i.val` | L | NORMAL | 102,605 | 2,265,238 | 474,617 | 4.77 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.collatz5.c` | L | WHNF | 40,061 | 1,295,123 | 74,467 | 17.39 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.collatz5.c.ctor` | L | WHNF, head `r_RVal` | 40,064 | 1,295,135 | 74,479 | 17.39 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.collatz5.c.val` | L | NORMAL | 40,197 | 1,295,210 | 74,550 | 17.37 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.collatz6.i` | L | WHNF | 102,245 | 40,048,782 | 708,511 | 56.53 | avon-copy@e69cf59 |
 | `d5.own.collatz6.i.ctor` | L | WHNF, head `r_RVal` | 102,249 | 40,048,799 | 708,528 | 56.52 | avon-copy@e69cf59 |
+| `d5.own.collatz6.i.val` | L | NORMAL | 102,637 | 40,048,908 | 708,629 | 56.52 | avon-copy@e69cf59 |
 | `d5.own.collatz6.c` | L | WHNF | 40,093 | 31,830,446 | 110,033 | 289.28 | avon-copy@e69cf59 |
 | `d5.own.collatz6.c.ctor` | L | WHNF, head `r_RVal` | 40,096 | 31,830,458 | 110,045 | 289.25 | avon-copy@e69cf59 |
+| `d5.own.collatz6.c.val` | L | NORMAL | 40,229 | 31,830,560 | 110,140 | 289.00 | avon-copy@e69cf59 |
 | `d5.own.collatz7.i` | L | WHNF | 102,317 |  | 1,382,530 |  | none (share only) |
 | `d5.own.collatz7.i.ctor` | L | WHNF, head `r_RVal` | 102,321 |  | 1,382,547 |  | none (share only) |
+| `d5.own.collatz7.i.val` | L | NORMAL | 102,709 |  | 1,382,712 |  | none (share only) |
 | `d5.own.collatz7.c` | M | WHNF | 40,165 |  | 252,174 |  | none (share only) |
 | `d5.own.collatz7.c.ctor` | M | WHNF, head `r_RVal` | 40,168 |  | 252,186 |  | none (share only) |
+| `d5.own.collatz7.c.val` | M | NORMAL | 40,301 |  | 252,345 |  | none (share only) |
 | `d5.own.collatz9.i` | L | WHNF | 102,357 |  | 1,624,637 |  | none (share only) |
 | `d5.own.collatz9.i.ctor` | L | WHNF, head `r_RVal` | 102,361 |  | 1,624,654 |  | none (share only) |
+| `d5.own.collatz9.i.val` | L | NORMAL | 102,749 |  | 1,624,843 |  | none (share only) |
 | `d5.own.collatz9.c` | M | WHNF | 40,205 |  | 295,763 |  | none (share only) |
 | `d5.own.collatz9.c.ctor` | M | WHNF, head `r_RVal` | 40,208 |  | 295,775 |  | none (share only) |
+| `d5.own.collatz9.c.val` | M | NORMAL | 40,341 |  | 295,958 |  | none (share only) |
 | `d5.own.tak1284.i` | XL | WHNF | 120,928 |  | 114,113,213 |  | none (share only) |
 | `d5.own.tak1284.i.ctor` | XL | WHNF, head `r_RVal` | 120,932 |  | 114,113,230 |  | none (share only) |
+| `d5.own.tak1284.i.val` | XL | NORMAL | 121,320 |  | 114,113,285 |  | none (share only) |
 | `d5.own.tak1284.c` | L | WHNF | 1,086,465 | 90,757,450 | 37,514,773 | 2.42 | avon-copy@e69cf59 |
 | `d5.own.tak1284.c.ctor` | L | WHNF, head `r_RVal` | 1,086,468 | 90,757,462 | 37,514,785 | 2.42 | avon-copy@e69cf59 |
+| `d5.own.tak1284.c.val` | L | NORMAL | 1,086,605 | 90,757,505 | 37,514,828 | 2.42 | avon-copy@e69cf59 |
 | `d5.own.tak321.i` | M | WHNF | 120,760 | 574,857 | 371,491 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak321.i.ctor` | M | WHNF, head `r_RVal` | 120,764 | 574,874 | 371,508 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak321.i.val` | M | NORMAL | 121,152 | 574,923 | 371,557 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak321.c` | M | WHNF | 1,086,297 | 211,485 | 136,265 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak321.c.ctor` | M | WHNF, head `r_RVal` | 1,086,300 | 211,497 | 136,277 | 1.55 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak321.c.val` | M | NORMAL | 1,086,437 | 211,534 | 136,314 | 1.55 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak642.i` | L | WHNF | 120,816 | 14,964,963 | 3,512,099 | 4.26 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak642.i.ctor` | L | WHNF, head `r_RVal` | 120,820 | 14,964,980 | 3,512,116 | 4.26 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.i.val` | L | NORMAL | 121,208 | 14,965,035 | 3,512,171 | 4.26 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak642.c` | L | WHNF | 1,086,353 | 2,311,022 | 1,219,574 | 1.89 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak642.c.ctor` | L | WHNF, head `r_RVal` | 1,086,356 | 2,311,034 | 1,219,586 | 1.89 | avon-copy@e69cf59, confirmed by mini |
+| `d5.own.tak642.c.val` | L | NORMAL | 1,086,493 | 2,311,077 | 1,219,629 | 1.89 | avon-copy@e69cf59, confirmed by mini |
 | `d5.own.tak840.i` | XL | WHNF | 120,800 |  | 112,593,215 |  | none (share only) |
 | `d5.own.tak840.i.ctor` | XL | WHNF, head `r_RVal` | 120,804 |  | 112,593,232 |  | none (share only) |
+| `d5.own.tak840.i.val` | XL | NORMAL | 121,192 |  | 112,593,287 |  | none (share only) |
 | `d5.own.tak840.c` | L | WHNF | 1,086,337 | 90,226,020 | 37,186,647 | 2.43 | avon-copy@e69cf59 |
 | `d5.own.tak840.c.ctor` | L | WHNF, head `r_RVal` | 1,086,340 | 90,226,032 | 37,186,659 | 2.43 | avon-copy@e69cf59 |
+| `d5.own.tak840.c.val` | L | NORMAL | 1,086,477 | 90,226,075 | 37,186,702 | 2.43 | avon-copy@e69cf59 |
 
 ## Timing, family C
 
